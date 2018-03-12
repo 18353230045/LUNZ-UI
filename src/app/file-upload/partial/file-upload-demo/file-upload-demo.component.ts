@@ -45,7 +45,7 @@ export class FileUploadDemoComponent implements OnInit {
         // do something
     };
 
-    // 移除已上传列表事件
+    // 移除已上传文件事件
     removeHandle(event: any) {
         this.log.debug(event);
 
@@ -59,7 +59,7 @@ export class FileUploadDemoComponent implements OnInit {
         // do something
     };
 
-    // 点击已上传列表事件
+    // 点击已上传文件事件
     previewHandle(event: any) {
         this.log.debug(event);
 
