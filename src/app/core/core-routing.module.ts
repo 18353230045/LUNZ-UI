@@ -19,7 +19,8 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../chart/chart.module#ChartModule' },
     { path: '', loadChildren: '../datepicker/datepicker.module#DatepickerModule' },
     { path: '', loadChildren: '../dropdown/dropdown.module#DropdownModule' },
-    { path: '', loadChildren: '../form/form.module#FormModule' }
+    { path: '', loadChildren: '../form/form.module#FormModule' },
+    { path: '', loadChildren: '../treeview-demo/treeview-demo.module#TreeviewDemoModule' },
 ]);
 
 @NgModule({
