@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 import { SharedModule } from 'app/shared/shared.module';
 import { TreeviewDemoRoutingModule } from './treeview-demo-routing.module';
 
@@ -14,12 +13,14 @@ import { TreeviewDemoService } from './shared/treeview-demo.service';
     imports: [
         CommonModule,
         SharedModule,
-        TreeviewDemoRoutingModule,
+        TreeviewDemoRoutingModule
     ],
+
     declarations: [
         TreeviewDemoComponent,
         UsingDocumentsComponent
     ],
+
     providers: [
         TreeviewDemoService
     ]
