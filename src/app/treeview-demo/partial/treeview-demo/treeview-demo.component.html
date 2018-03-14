@@ -5,13 +5,13 @@
         <span class="m-portlet__head-icon">
           <i class="flaticon-interface-2"></i>
         </span>
-        <h3 class="m-portlet__head-text">树结构</h3>
+        <h3 class="m-portlet__head-text" (contextmenu)="mouseAction( $event)">树结构</h3>
       </div>
     </div>
     <div class="m-portlet__head-tools">
       <ul class="m-portlet__nav">
         <li class="m-portlet__nav-item">
-          <a routerLink="./new" class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill">
+          <a class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill">
             <span>
               <a [routerLink]="['using-documents']">使用文档</a>
             </span>
@@ -21,11 +21,11 @@
     </div>
   </div>
   <div class="m-portlet__body">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-        </div>
-      </div>
-    </div>
+    <tree-root #tree [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)">
+      <ng-template #treeNodeTemplate let-node let-index="index">
+        <i class="fa fa-file"></i>
+        <span>{{ node.data.name }}</span>
+      </ng-template>
+    </tree-root>
   </div>
 </div>
