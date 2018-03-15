@@ -84,7 +84,7 @@ export class TreeviewDemoComponent implements OnInit {
         }, error => this.log.error('子列表获取失败。', error));
 
         return new Promise((resolve, reject) => {
-            setTimeout(() => resolve(newNodes), 1000);
+            setTimeout(() => resolve(newNodes), 1500);
         });
     };
 
