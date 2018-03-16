@@ -4,7 +4,7 @@ import { Routes, RouterModule, Route } from '@angular/router';
 import { RouteExtensions } from '../core/route.service';
 
 import { FileUploadDemoComponent } from './partial/file-upload-demo/file-upload-demo.component';
-import { UsingDocumentsComponent } from 'app/file-upload/partial/using-documents/using-documents.component';
+import { UsingDocumentsComponent } from './partial/using-documents/using-documents.component';
 
 const routes: Routes =
     RouteExtensions.withHost(
