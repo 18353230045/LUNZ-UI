@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FormValidatorRoutingModule } from './form-validator-demo-routing.module';
 import { FormValidatorComponent } from './partial/form-validator/form-validator.component';
 
-import { UsingDocumentsComponent } from './partial/doc/using-documents/using-documents.component';
+import { UsingDocumentsComponent } from './partial/using-documents/using-documents.component';
 
 @NgModule({
     imports: [

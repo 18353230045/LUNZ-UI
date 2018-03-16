@@ -4,7 +4,7 @@ import { Routes, RouterModule, Route } from '@angular/router';
 import { RouteExtensions } from '../core/route.service';
 
 import { FormValidatorComponent } from './partial/form-validator/form-validator.component';
-import { UsingDocumentsComponent } from './partial/doc/using-documents/using-documents.component';
+import { UsingDocumentsComponent } from './partial/using-documents/using-documents.component';
 
 const routes: Routes =
     RouteExtensions.withHost(
