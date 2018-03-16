@@ -13,12 +13,13 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
         SharedModule,
         VehicleSelectionRoutingModule
     ],
+
     declarations: [
         VehicleSelectionDemoComponent,
         UsingDocumentsComponent
     ],
-    providers: [
-    ]
+
+    providers: []
 })
 
 export class VehicleManagementDemoModule { }
