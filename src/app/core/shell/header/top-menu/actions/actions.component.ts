@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { LoggerFactory } from '../../../../logger-factory.service';
 import { Logger } from '../../../../logger.service';
-import { OperationService } from '../../quick-actions/operation-service/operation.service';
+import { OperationService } from '../../quick-actions/shared/operation.service';
 
 declare var $: any;
 

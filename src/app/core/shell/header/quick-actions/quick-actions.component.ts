@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { LoggerFactory } from '../../../logger-factory.service';
 import { Logger } from '../../../logger.service';
-import { OperationService } from './operation-service/operation.service';
+import { OperationService } from './shared/operation.service';
 
 @Component({
     selector: 'app-quick-actions, [app-quick-actions]',
