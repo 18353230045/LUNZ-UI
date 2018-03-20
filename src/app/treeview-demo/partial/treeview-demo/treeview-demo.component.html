@@ -1,0 +1,31 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text" (contextmenu)="mouseAction( $event)">树结构</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <a class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill">
+            <span>
+              <a [routerLink]="['using-documents']">使用文档</a>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <tree-root #tree [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)">
+      <ng-template #treeNodeTemplate let-node let-index="index">
+        <i class="fa fa-file"></i>
+        <span>{{ node.data.name }}</span>
+      </ng-template>
+    </tree-root>
+  </div>
+</div>

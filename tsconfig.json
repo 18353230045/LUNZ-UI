@@ -18,6 +18,11 @@
         "lib": [
             "es2016",
             "dom"
+        ],
+        "no-inferrable-types": [
+            true,
+            "ignore-params",
+            "ignore-properties"
         ]
     }
 }

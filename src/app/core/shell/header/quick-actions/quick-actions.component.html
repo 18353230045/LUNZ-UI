@@ -9,29 +9,45 @@
   <div class="m-dropdown__inner">
     <div class="m-dropdown__header m--align-center">
       <span class="m-dropdown__header-title">快捷操作</span>
-      <span class="m-dropdown__header-subtitle">快速进入常用模块</span>
+      <span class="m-dropdown__header-subtitle">
+        快速进入常用模块
+        <i class="flaticon-edit-1 lz-flaticon-edit-1" (click)="$event.stopPropagation();editModuleOpen()" [hidden]="editModules"></i>
+        <i class="flaticon-edit-1 lz-flaticon-edit-1" (click)="$event.stopPropagation();editModuleClose()" [hidden]="!editModules"></i>
+      </span>
     </div>
     <div class="m-dropdown__body m-dropdown__body--paddingless">
-      <div class="m-dropdown__content">
+      <div class="m-dropdown__content" [hidden]="myModuleShow">
         <div class="m-scrollable" data-scrollable="false" data-max-height="380" data-mobile-max-height="200">
           <div class="m-nav-grid m-nav-grid--skin-light">
-            <div *ngIf="modelOption">
-              <app-my-module [modelName]="'我的模块'" [modelList]="quickOperationMyModelList" [addIcon]="true" [moveIcon]="true" [removeAllIcon]="false"
-                [modelListName]="'quickOperationMyModelList'" (addModelEv)="gitAllModel($event)" [removeListName]="'quickOperationMyModelList'"></app-my-module>
-              <app-my-module [modelName]="'历史访问模块'" [modelList]="quickOperationOpenHistoryList" [addIcon]="false" [moveIcon]="false" [removeAllIcon]="true"
-                [modelListName]="'quickOperationOpenHistoryList'" [removeListName]="'openHistoryList'"></app-my-module>
-            </div>
-            <div *ngIf="!modelOption" class="lz-model-add-wr">
-              <h5>模块列表</h5>
-              <label class="m-checkbox m-checkbox--state-brand lz-m-checkbox--state-brand" *ngFor="let itemModel of allModelList;let i=index" (click)="$event.stopPropagation();handle($event,itemModel)">
-                <input type="checkbox" checked="{{itemModel.checked}}" />{{itemModel.name}}
-                <span></span>
-              </label>
-              <div class="lz-model-add-icon text-center">
-                <i class="lz-my-model-add-icon m-portlet__nav-link m-dropdown__toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand"
-                  (click)="$event.stopPropagation();submitCheckedModel()">添加</i>
-                <i (click)="$event.stopPropagation();cancelAddModel()" class="lz-my-model-add-icon m-portlet__nav-link m-dropdown__toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">取消</i>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 lz-m-nav-__item" 
+                    *ngFor="let module of moduleList"
+                    [ngClass]="{'lz-m-nav-__item-edit':editModules}"
+                    (click)="$event.stopPropagation();operationModule(module)">
+                  <div href="#" class="lz-m-nav-grid__item">
+                    <i class="m-nav-grid__icon flatico-add {{module.icon}}"></i>
+                    <h6 class="m-nav-grid__text">{{module.name}}</h6>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="m-dropdown__content" [hidden]="!myModuleShow">
+        <div class="m-scrollable" data-scrollable="false" data-max-height="380" data-mobile-max-height="200">
+          <div *ngIf="!modelOption" class="lz-model-add-wr">
+            <h5>模块列表</h5>
+            <label class="m-radio m-radio--brand lz-m-radio--state-brand" *ngFor="let itemModel of allModelList;let i=index" 
+            (click)="$event.stopPropagation();handle($event,itemModel)">
+              <input type="radio" name="module" /> {{itemModel.name}}
+              <span></span>
+            </label>
+            <div class="lz-model-add-icon text-center">
+              <i class="lz-my-model-add-icon m-portlet__nav-link m-dropdown__toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand"
+                (click)="$event.stopPropagation();submitCheckedModel()">添加</i>
+              <i (click)="$event.stopPropagation();cancelAddModel()" class="lz-my-model-add-icon m-portlet__nav-link m-dropdown__toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">取消</i>
             </div>
           </div>
         </div>

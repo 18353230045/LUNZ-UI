@@ -13,13 +13,14 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../order-management/order-management.module#OrderManagementModule' },
     { path: '', loadChildren: '../messages/web-message.module#WebMessageModule' },
     { path: '', loadChildren: '../ngx-bootstrap/ngx-bootstrap.module#NgxBootstrapModule' },
-    { path: '', loadChildren: '../form-validator/form-validator.module#FormValidatorModule' },
+    { path: '', loadChildren: '../form-validator-demo/form-validator-demo.module#FormValidatorDemoModule' },
     { path: '', loadChildren: '../vehicle-selection-demo/vehicle-management-demo.module#VehicleManagementDemoModule' },
-    { path: '', loadChildren: '../file-upload/file-upload.module#FileUploadModule' },
+    { path: '', loadChildren: '../file-upload-demo/file-upload.module#FileUploadModule' },
     { path: '', loadChildren: '../chart/chart.module#ChartModule' },
     { path: '', loadChildren: '../datepicker/datepicker.module#DatepickerModule' },
-    { path: '', loadChildren: '../dropdown/dropdown.module#DropdownModule' },
-    { path: '', loadChildren: '../form/form.module#FormModule' }
+    { path: '', loadChildren: '../dropdown-demo/dropdown-demo.module#DropdownDemoModule' },
+    { path: '', loadChildren: '../form/form.module#FormModule' },
+    { path: '', loadChildren: '../treeview-demo/treeview-demo.module#TreeviewDemoModule' },
 ]);
 
 @NgModule({
@@ -28,4 +29,5 @@ const routes: Routes = RouteExtensions.withShell([
     providers: [
     ]
 })
+
 export class CoreRoutingModule { }

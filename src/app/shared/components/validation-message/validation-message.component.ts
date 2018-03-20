@@ -2,19 +2,19 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 const validationMessages: any = {
-    required: '{label}不能为空。',
-    email: '请输入有效的Email地址。',
-    minLength: '{label}最少为 {length} 个字符。',
-    maxlength: '{label}最长为 {length} 个字符。',
+    required: '{label}不能为空 ',
+    email: '请输入有效的邮箱地址 ',
+    minLength: '{label}最少为 {length} 个字符 ',
+    maxlength: '{label}最长为 {length} 个字符 ',
     date: '日期格式不正确。',
-    minDate: '日期不能小于{label}。',
-    maxDate: '日期不能大于{label}。',
-    number: '请输入number值。',
-    min: '不能小于{label}。',
-    max: '不能大于{label}。',
-    rangeLength: '{label}个字符。',
-    url: 'url格式不正确。',
-    equalTo: '两次输入不一致。'
+    minDate: '日期不能小于{label} ',
+    maxDate: '日期不能大于{label} ',
+    number: '请输入数字 ',
+    min: '不能小于{label} ',
+    max: '不能大于{label} ',
+    rangeLength: '{label}个字符 ',
+    url: '网址格式不正确 ',
+    equalTo: '两次输入不一致 '
 };
 
 @Component({

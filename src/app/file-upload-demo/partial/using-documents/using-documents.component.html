@@ -1,0 +1,56 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">表单验证器使用文档</h3>
+      </div>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <ul>
+      <li>
+        <h5>使用方法：</h5>
+        <span>1、在当前模块的.module.ts中引入:</span>
+        <br/>
+        <code> import &#123; ElModule &#125; from 'element-angular';</code>
+      </li>
+      <li>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;添加到@NgModule装饰器中:</span>
+        <br/>
+        <code>@NgModule(&#123;
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;imports: [
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ElModule.forRoot()
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;]
+          <br/>&#125;);</code>
+      </li>
+      <li>
+        <span>2、.component.ts中:</span>
+        <br/>
+        <code> import &#123; FormBuilder, FormControl, FormGroup, Validators &#125; from '@angular/forms';</code>
+        <br/>
+        <code> import &#123; CustomValidators &#125; from 'ng2-validation';</code>
+      </li>
+      <li>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;class类中,定义form变量实现接口FormGroup，构造函数中定义验证规则，详见demo,如：'form-validator.component.ts’</span>
+      </li>
+      <li>
+        <span>3、.component.html中，以验证email为例：</span>
+      </li>
+      <li>
+        <code>
+          &lt;form [formGroup]="form"&gt;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" class="form-control" name="email" formControlName="email" /&gt;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;app-validation-message [control]="form.controls['email']"&gt;&lt;/app-validation-message&gt;
+          <br/>&lt;/form&gt;
+        </code>
+      </li>
+      <li>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;注：ng2-validation验证器中的phone验证电话号码不能针对国内电话号码规则正确验证，使用angular内置验证器通过正则表达式来进行验证。</span>
+        <span>详细见demo文档，‘form-validator.component.html’</span>
+      </li>
+    </ul>
+  </div>
+</div>

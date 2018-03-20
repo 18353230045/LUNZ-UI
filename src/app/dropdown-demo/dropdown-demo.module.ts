@@ -2,24 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
-import { VehicleSelectionRoutingModule } from './vehicle-management-demo-routing.module';
+import { DropdownRoutingModule } from './dropdown-demo-routing.module';
 
-import { VehicleSelectionDemoComponent } from './partial/vehicle-selection-demo/vehicle-selection-demo.component';
+import { DropdownComponent } from './partial/dropdown/dropdown.component';
 import { UsingDocumentsComponent } from './partial/using-documents/using-documents.component';
 
 @NgModule({
     imports: [
         CommonModule,
         SharedModule,
-        VehicleSelectionRoutingModule
+        DropdownRoutingModule
     ],
 
     declarations: [
-        VehicleSelectionDemoComponent,
+        DropdownComponent,
         UsingDocumentsComponent
-    ],
-
-    providers: []
+    ]
 })
 
-export class VehicleManagementDemoModule { }
+export class DropdownDemoModule { }

@@ -1,0 +1,32 @@
+.m-dropdown .m-dropdown__wrapper {
+  width: 245px;
+}
+
+.m-dropdown__arrow .m-dropdown__arrow--left {
+  left: 34px;
+  margin-left: 0;
+}
+
+.m-dropdown__arrow .m-dropdown__arrow--right {
+  right: 34px;
+  margin-left: 0;
+}
+
+.m-dropdown__arrow--adjust-right {
+  right: 33px;
+  left: auto;
+}
+
+.m-dropdown__arrow--adjust-left {
+  left: 33px;
+  right: auto;
+}
+
+.m-dropdown__disabled {
+  color: #b4bccc !important;
+  cursor: not-allowed !important;
+}
+
+.dropdown-btn-remove-icon {
+  cursor: pointer;
+}

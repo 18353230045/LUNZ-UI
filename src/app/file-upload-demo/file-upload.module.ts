@@ -1,25 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SharedModule } from '../shared/shared.module';
-import { VehicleSelectionRoutingModule } from './vehicle-management-demo-routing.module';
+import { ElModule } from 'element-angular';
 
-import { VehicleSelectionDemoComponent } from './partial/vehicle-selection-demo/vehicle-selection-demo.component';
+import { SharedModule } from '../shared/shared.module';
+import { FileUploadRoutingModule } from './file-upload-routing.module';
+
+import { FileUploadDemoComponent } from './partial/file-upload-demo/file-upload-demo.component';
 import { UsingDocumentsComponent } from './partial/using-documents/using-documents.component';
 
 @NgModule({
     imports: [
         CommonModule,
         SharedModule,
-        VehicleSelectionRoutingModule
+        FileUploadRoutingModule,
+        ElModule.forRoot(),
     ],
-
     declarations: [
-        VehicleSelectionDemoComponent,
+        FileUploadDemoComponent,
         UsingDocumentsComponent
-    ],
-
-    providers: []
+    ]
 })
-
-export class VehicleManagementDemoModule { }
+export class FileUploadModule { }

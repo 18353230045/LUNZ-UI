@@ -1,0 +1,63 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">下拉选择器</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <a class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill">
+            <span>
+              <a [routerLink]="['using-documents']">使用文档</a>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-4">
+          <h6>默认样式（btn模式），点击触发</h6>
+          <app-dropdown-selection [options]="options" [position]="'left'" [dropText]="'部门'" [class]="'btn-secondary'" (selected)="handle1($event)">
+          </app-dropdown-selection>
+          <div>{{item1}}</div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4">
+          <h6>btn模式下自定义样式，鼠标移入触发</h6>
+          <app-dropdown-selection 
+            [options]="options" 
+            [position]="'right'" 
+            [trigger]="'hover'" 
+            [dropText]="'人员列表'" 
+            [class]="'btn-primary'" 
+            [multiselect]="true"
+            (selected)="handle2($event)">
+          </app-dropdown-selection>
+          <div>{{item2}}</div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4">
+          <h6>icon模式下默认样式，点击触发</h6>
+          <app-dropdown-selection [options]="options" [position]="'center'" [type]="'icon'" (selected)="handle3($event)">
+          </app-dropdown-selection>
+          <div>{{item3}}</div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4">
+          <h6>icon模式下自定义样式，鼠标移入触发</h6>
+          <app-dropdown-selection [options]="options" [position]="'center'" [trigger]="'hover'" [type]="'icon'" 
+            [class]="'m-btn--icon m-btn--icon-only btn-lg btn-default m-btn--air m-btn--pill'"
+            (selected)="handle4($event)"
+            [itemIcon]="'flaticon-interface'">
+          </app-dropdown-selection>
+          <div>{{item4}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

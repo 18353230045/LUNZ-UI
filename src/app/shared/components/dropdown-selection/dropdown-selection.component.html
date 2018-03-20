@@ -1,0 +1,38 @@
+<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-push m-dropdown--align-{{position}}" 
+    [ngClass]="{'m-dropdown--open':openDropdown}">
+    <a href="javascript:void(0)" class="m-dropdown__toggle btn {{class}}" 
+        [hidden]="trigger==='hover'" 
+        (click)="openDropdown=!openDropdown"
+        [ngClass]="{'dropdown-toggle':type==='btn'}">
+        <span [hidden]="type==='icon'">{{dropText}}</span>
+        <i class="{{iconClass}}" [hidden]="type==='btn'"></i>
+    </a>
+    <a href="javascript:void(0)" class="m-dropdown__toggle btn {{class}}" 
+        [hidden]="trigger==='click'" 
+        (mouseenter)="openDropdown=true"
+        (mouseleave)="openDropdown=false"
+        [ngClass]="{'dropdown-toggle':type==='btn'}">
+        <span [hidden]="type==='icon'">{{dropText}}</span>
+        <i class="{{iconClass}}" [hidden]="type==='btn'"></i>
+    </a>
+    <i class="la la-times-circle-o dropdown-btn-remove-icon" [hidden]="type==='icon'||isEmpty||!multiselect" (click)="removeValue()"></i>
+  <div class="m-dropdown__wrapper" (mouseenter)="openDropdown=true" (mouseleave)="openDropdown=false">
+    <span class="m-dropdown__arrow m-dropdown__arrow--adjust m-dropdown__arrow--{{position}}"></span>
+    <div class="m-dropdown__inner">
+      <div class="m-dropdown__body">
+        <div class="m-dropdown__content">
+          <ul class="m-nav">
+            <li class="m-nav__item" *ngFor="let option of options" 
+              (click)="$event.stopPropagation();onSelected(option)">
+              <a href="javascript:void(0)" class="m-nav__link"
+                [ngClass]="{'m-dropdown__disabled':option.disabled}">
+                <i class="m-nav__link-icon {{itemIcon}}" [ngClass]="{'m-dropdown__disabled':option.disabled}"></i>
+                <span class="m-nav__link-text" [ngClass]="{'m-dropdown__disabled':option.disabled}">{{option.text}}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
