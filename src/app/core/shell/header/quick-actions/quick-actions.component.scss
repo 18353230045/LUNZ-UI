@@ -18,6 +18,42 @@
   }
 }
 
-.lz-m-checkbox--state-brand {
+.lz-m-radio--state-brand {
   margin-right: 10px;
+}
+
+.lz-flaticon-edit-1 {
+  padding: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.flatico-add {
+  display: inline-block;
+  font-size: 34px;
+  color: #c4c5d6;
+}
+
+.lz-m-nav-grid__item {
+  margin: 25px 0;
+  padding: 25px 0;
+  text-align: center;
+
+  h6 {
+    color: #6e45cf;
+  }
+}
+
+.lz-m-nav-__item {
+  border-right: 1px solid #f4f5f8;
+  border-bottom: 1px solid #f4f5f8;
+  cursor: pointer;
+}
+
+.lz-m-nav-__item:hover {
+  background: #fdfdff;
+}
+
+.lz-m-nav-__item-edit {
+  background: #e8e8eb;
 }
