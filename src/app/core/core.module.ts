@@ -52,7 +52,6 @@ import { TopMenuComponent } from './shell/header/top-menu/top-menu.component';
 import { ActionsComponent } from './shell/header/top-menu/actions/actions.component';
 import { ReportsComponent } from './shell/header/top-menu/reports/reports.component';
 import { AppsComponent } from './shell/header/top-menu/apps/apps.component';
-import { MyModuleComponent } from './shell/header/quick-actions/my-module/my-module.component';
 
 export function createHttpService(
     backend: ConnectionBackend,
@@ -112,8 +111,7 @@ export function createCurrencyPipe() {
         TopMenuComponent,
         ActionsComponent,
         ReportsComponent,
-        AppsComponent,
-        MyModuleComponent
+        AppsComponent
     ],
     entryComponents: [
         ChangePasswordModalComponent,
