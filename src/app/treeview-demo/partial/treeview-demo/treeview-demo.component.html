@@ -5,17 +5,15 @@
         <span class="m-portlet__head-icon">
           <i class="flaticon-interface-2"></i>
         </span>
-        <h3 class="m-portlet__head-text" (contextmenu)="mouseAction( $event)">树结构</h3>
+        <h3 class="m-portlet__head-text" (contextmenu)="mouseAction($event)">树结构</h3>
       </div>
     </div>
     <div class="m-portlet__head-tools">
       <ul class="m-portlet__nav">
-        <li class="m-portlet__nav-item">
-          <a class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill">
-            <span>
-              <a [routerLink]="['using-documents']">使用文档</a>
-            </span>
-          </a>
+        <li class="m-portlet__nav-item" [routerLink]="['using-documents']">
+          <button class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
         </li>
       </ul>
     </div>
