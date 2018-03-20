@@ -35,6 +35,9 @@
       </div>
       <div class="m-dropdown__content" [hidden]="!myModuleShow">
         <div class="m-scrollable" data-scrollable="false" data-max-height="380" data-mobile-max-height="200">
+          <button type="button" (click)="cancelMoeuleEdit($event)" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="la la-reply"></i>
+          </button>
           <div *ngIf="!modelOption" class="lz-model-add-wr">
             <tree-root [nodes]="nodes" [options]="options" (toggleExpanded)="onEvent($event)">
               <ng-template>

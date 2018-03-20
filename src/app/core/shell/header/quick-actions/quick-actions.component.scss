@@ -58,3 +58,15 @@
 .lz-m-nav-__item-edit {
   background: #e8e8eb;
 }
+
+.m-scrollable {
+  position: relative;
+
+  button {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+  }
+}

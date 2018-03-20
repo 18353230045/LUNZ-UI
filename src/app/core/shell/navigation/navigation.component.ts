@@ -88,7 +88,7 @@ export class NavigationComponent implements OnInit, AfterViewChecked {
             .subscribe(menuItems => {
                 this.menuItems = menuItems;
                 this.arrangementMenu(menuItems);
-                localStorage.setItem('moduleTree',JSON.stringify(menuItems));
+                localStorage.setItem('moduleTree', JSON.stringify(menuItems));
             }, error => {
                 this.log.error(error);
             });

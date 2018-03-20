@@ -124,7 +124,7 @@ export class QuickActionsComponent implements OnInit {
     // 获取本地所有模块（赋值tree）
     getAllModel() {
         this.nodes.length = 0;
-        this.nodes = JSON.parse(localStorage.getItem(`moduleTree`));;
+        this.nodes = JSON.parse(localStorage.getItem(`moduleTree`));
     };
 
     // 添加、编辑、快速进入模块
@@ -160,6 +160,17 @@ export class QuickActionsComponent implements OnInit {
         ];
 
         this.submitCheckedModel();
+    };
+
+    // 退出moduleTree
+    cancelMoeuleEdit(event: any) {
+        event.stopPropagation();
+
+        this.moduleList.forEach((item: any) => {
+            item.isActive = false;
+        });
+
+        this.myModuleShow = false;
     };
 
     // 保存模块
