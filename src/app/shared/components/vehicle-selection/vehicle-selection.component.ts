@@ -13,7 +13,7 @@ declare const $: any;
 })
 
 export class VehicleSelectionComponent implements OnInit {
-    @Input() outputType?: string = 'model';
+    @Input() outputType?: String = 'model';
     @Output() selected = new EventEmitter<Array<any>>();
 
     log: Logger;
