@@ -21,10 +21,8 @@
           <div class="m-nav-grid m-nav-grid--skin-light">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 lz-m-nav-__item" 
-                    *ngFor="let module of moduleList"
-                    [ngClass]="{'lz-m-nav-__item-edit':editModules}"
-                    (click)="$event.stopPropagation();operationModule(module)">
+                <div class="col-lg-6 col-md-6 col-sm-6 lz-m-nav-__item" *ngFor="let module of moduleList" [ngClass]="{'lz-m-nav-__item-edit':editModules}"
+                  (click)="operationModule($event,module)">
                   <div href="#" class="lz-m-nav-grid__item">
                     <i class="m-nav-grid__icon flatico-add {{module.icon}}"></i>
                     <h6 class="m-nav-grid__text">{{module.name}}</h6>
@@ -38,17 +36,12 @@
       <div class="m-dropdown__content" [hidden]="!myModuleShow">
         <div class="m-scrollable" data-scrollable="false" data-max-height="380" data-mobile-max-height="200">
           <div *ngIf="!modelOption" class="lz-model-add-wr">
-            <h5>模块列表</h5>
-            <label class="m-radio m-radio--brand lz-m-radio--state-brand" *ngFor="let itemModel of allModelList;let i=index" 
-            (click)="$event.stopPropagation();handle($event,itemModel)">
-              <input type="radio" name="module" /> {{itemModel.name}}
-              <span></span>
-            </label>
-            <div class="lz-model-add-icon text-center">
-              <i class="lz-my-model-add-icon m-portlet__nav-link m-dropdown__toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand"
-                (click)="$event.stopPropagation();submitCheckedModel()">添加</i>
-              <i (click)="$event.stopPropagation();cancelAddModel()" class="lz-my-model-add-icon m-portlet__nav-link m-dropdown__toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">取消</i>
-            </div>
+            <tree-root [nodes]="nodes" [options]="options" (toggleExpanded)="onEvent($event)">
+              <ng-template>
+                <i class="fa fa-file"></i>
+                <span (click)="handle($event,node)">{{ node.data.name }}</span>
+              </ng-template>
+            </tree-root>
           </div>
         </div>
       </div>
