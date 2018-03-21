@@ -4,7 +4,7 @@ import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
 import { TreeviewDemoService } from '../../shared/treeview-demo.service';
 
-import { ITreeOptions } from 'angular-tree-component';
+import { ITreeOptions, IActionMapping } from 'angular-tree-component';
 
 @Component({
     selector: 'app-treeview-demo',
