@@ -30,17 +30,18 @@
 
 .flatico-add {
   display: inline-block;
+  margin-bottom: 14px;
   font-size: 34px;
   color: #c4c5d6;
 }
 
 .lz-m-nav-grid__item {
   margin: 25px 0;
-  padding: 25px 0;
+  padding: 26px 0;
   text-align: center;
 
   h6 {
-    color: #6e45cf;
+    color: #716aca;
   }
 }
 
@@ -56,4 +57,16 @@
 
 .lz-m-nav-__item-edit {
   background: #e8e8eb;
+}
+
+.m-scrollable {
+  position: relative;
+
+  button {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+  }
 }

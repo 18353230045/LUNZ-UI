@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { NgxQueryModule } from '@zhongruigroup/ngx-query';
+import { TreeModule } from 'angular-tree-component';
 
 import { environment } from '../../environments/environment';
 import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
@@ -32,7 +33,7 @@ import { SsoServiceService } from '../sso/shared/sso-service.service';
 
 import { MessageService } from '../messages/shared/message.service';
 import { OrdersService } from '../order-management/shared/orders.service';
-import { OperationService } from './shell/header/quick-actions/operation-service/operation.service';
+import { OperationService } from './shell/header/quick-actions/shared/operation.service';
 
 import { ShellComponent } from './shell/shell.component';
 import { HeaderComponent } from './shell/header/header.component';
@@ -88,7 +89,8 @@ export function createCurrencyPipe() {
         SharedModule,
         CoreRoutingModule,
         SsoModule,
-        WebMessageModule
+        WebMessageModule,
+        TreeModule
     ],
     exports: [
         HeaderComponent

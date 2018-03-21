@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ITreeOptions, IActionMapping } from 'angular-tree-component';
+
 import { LoggerFactory } from '../../../../logger-factory.service';
 import { Logger } from '../../../../logger.service';
-import { OperationService } from '../../quick-actions/operation-service/operation.service';
+import { OperationService } from '../../quick-actions/shared/operation.service';
 
 declare var $: any;
 
@@ -20,26 +22,44 @@ export class ActionsComponent implements OnInit {
     allModelList: Array<any> = [];
     temporaryList: Array<any> = [];
     recordClickMenu: Array<any> = [];
+    nodes: Array<any> = [];
 
-    editMyModel: Boolean = false;
     editModel: Boolean = false;
     addModel: Boolean = false;
+
+    // 定义点击tree item事件
+    actionMapping: IActionMapping = {
+        mouse: {
+            click: (tree, node) => this.handle(event, node)
+        }
+    };
+
+    // 配置tree选项
+    options: ITreeOptions = {
+        actionMapping: this.actionMapping,
+    };
 
     constructor(
         private loggerFactory: LoggerFactory,
         private operationService: OperationService,
     ) {
         this.log = this.loggerFactory.getLogger();
+
+        // 取消tree组件内部打开子级菜单事件冒泡
+        $('body').on('click', '.toggle-children-wrapper', function (event: any) {
+            event.stopPropagation();
+        });
     };
 
     ngOnInit() {
-        this.myOperationMyModelList = this.operationService.getModeList(`myOperationMyModelList`) || [];
-        this.myOperationOpenHistoryList = this.operationService.getModeList(`openHistoryList`) || [];
+        this.myOperationMyModelList = this.operationService.getModeList(`myOperationMyModelList`, 0) || [];
+        this.myOperationOpenHistoryList = this.operationService.getModeList(`openHistoryList`, 1) || [];
 
         $('.m-menu__submenu--left').on('click', '.lz-m-menu__link', function () {
             $(this).parents('.m-menu__item--rel').removeClass('m-menu__item--open-dropdown m-menu__item--hover');
         });
     };
+
     moveModel(row: any, i: any, list: Array<any>, sortType: number, moveListName: string): void {
         if (sortType === 1) {
             list.forEach((item, index) => {
@@ -63,7 +83,13 @@ export class ActionsComponent implements OnInit {
 
         this.operationService.sortModelList(list);
 
+        list.forEach((item: any) => {
+            item.name = item.name.replace(/我的模块 /g, '');
+        });
+
         localStorage.setItem(`${moveListName}`, JSON.stringify(list));
+
+        this.myOperationMyModelList = this.operationService.getModeList(`myOperationMyModelList`, 0) || [];
     };
 
     deleteModel(row: any, list: Array<any>, i: number, deleteListName: string): void {
@@ -84,41 +110,64 @@ export class ActionsComponent implements OnInit {
         this.log.info(`移除成功！`);
     };
 
-    gitAllModel() {
-        const allModel = JSON.parse(localStorage.getItem(`menuListAll`));
+
+    // 获取本地所有模块（赋值tree）
+    getAllModel() {
+        this.nodes.length = 0;
+        let clickNum = 1;
+        const allModel = JSON.parse(localStorage.getItem(`moduleTree`)) || [];
 
         allModel.forEach((item: any) => {
+            clickNum += 1;
+            item.clickNum = clickNum;
             this.myOperationMyModelList.forEach((itemt: any) => {
-                if (item.name === itemt.name) {
+                if (item.name === itemt.name.replace(/我的模块 /g, '')) {
                     item.checked = true;
-
                     this.temporaryList.push(item);
                 };
             });
+
+            item.children.forEach((row: any) => {
+                clickNum += 1;
+                row.clickNum = clickNum;
+                this.myOperationMyModelList.forEach((itemtt: any) => {
+                    if (row.name === itemtt.name.replace(/我的模块 /g, '')) {
+                        row.checked = true;
+
+                        this.temporaryList.push(row);
+                    };
+                });
+            });
         });
 
-        this.allModelList = allModel;
+        this.nodes = allModel;
         this.addModel = true;
     };
 
     handle(event: any, modelList: any) {
-        if (event.target.checked === true) {
-            this.temporaryList.push({
-                name: modelList.name,
-                icon: modelList.icon,
-                url: modelList.url,
-                clickNum: modelList.clickNum,
-                checked: true
-            });
-        } else {
-            this.temporaryList.forEach((item: any, index: any) => {
-                if (modelList.name === item.name) {
-                    this.temporaryList.splice(index, 1);
-
-                    return;
-                }
-            });
+        if (modelList.data.children.length > 0) {
+            return;
         }
+
+        for (let i = 0; i < this.temporaryList.length; i++) {
+            if (modelList.data.name === this.temporaryList[i].name) {
+                this.temporaryList.splice(i, 1);
+                modelList.data.checked = false;
+
+                return;
+            }
+
+        }
+
+        this.temporaryList.push({
+            name: modelList.data.name,
+            icon: modelList.data.icon,
+            url: modelList.data.ngUrl,
+            clickNum: modelList.data.clickNum,
+            checked: true
+        });
+
+        modelList.data.checked = true;
     };
 
     submitCheckedModel(): void {
@@ -127,8 +176,14 @@ export class ActionsComponent implements OnInit {
             return;
         }
 
-        this.myOperationMyModelList = this.operationService.sortModelList(this.temporaryList);
-        localStorage.setItem(`myOperationMyModelList`, JSON.stringify(this.myOperationMyModelList));
+        localStorage.setItem(`myOperationMyModelList`, JSON.stringify(this.temporaryList));
+
+        const myOperationMyModelList = JSON.parse(localStorage.getItem('myOperationMyModelList'));
+        myOperationMyModelList.forEach((item: any) => {
+            item.name = `我的模块 ${item.name}`;
+        });
+
+        this.myOperationMyModelList = this.operationService.sortModelList(myOperationMyModelList);
 
         this.temporaryList = [];
         this.addModel = false;
@@ -140,5 +195,4 @@ export class ActionsComponent implements OnInit {
         this.temporaryList = [];
         this.addModel = false;
     };
-
 };

@@ -10,7 +10,7 @@
 
 .m-menu__item .lz-model-edit-active {
   position: absolute;
-  right: 30px;
+  right: 21px;
 }
 
 @keyframes myModeleditIconMove {
@@ -19,7 +19,7 @@
   }
 
   to {
-    right: 60px;
+    right: 50px;
   }
 }
 
@@ -30,7 +30,7 @@
 
 @keyframes myModeleditIconBack {
   from {
-    right: 60px;
+    right: 50px;
   }
 
   to {
@@ -109,4 +109,17 @@
 
 .lz-add-model-cancel span:hover {
   transform: scale(1.2);
+}
+
+.lz-m-menu__item {
+  padding-left: 20px;
+}
+
+.m-menu__subnav {
+  max-height: 470px;
+  overflow-y: auto;
+}
+
+.m-menu__item-title {
+  height: 20px;
 }

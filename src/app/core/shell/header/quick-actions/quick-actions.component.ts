@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { ITreeOptions, IActionMapping } from 'angular-tree-component';
+
 import { LoggerFactory } from '../../../logger-factory.service';
 import { Logger } from '../../../logger.service';
-import { OperationService } from './operation-service/operation.service';
+import { OperationService } from './shared/operation.service';
+
+
+declare var $: any;
 
 @Component({
     selector: 'app-quick-actions, [app-quick-actions]',
@@ -14,11 +19,23 @@ import { OperationService } from './operation-service/operation.service';
 export class QuickActionsComponent implements OnInit {
     log: Logger;
 
+    nodes: Array<any> = [];
     moduleList: Array<any> = [];
-    allModelList: Array<any> = [];
     temporaryList: any;
     myModuleShow: Boolean = false;
     editModules: Boolean = false;
+
+    // 定义点击tree item事件
+    actionMapping: IActionMapping = {
+        mouse: {
+            click: (tree, node) => this.handle(event, node)
+        }
+    };
+
+    // 配置tree选项
+    options: ITreeOptions = {
+        actionMapping: this.actionMapping,
+    };
 
     constructor(
         private loggerFactory: LoggerFactory,
@@ -29,8 +46,14 @@ export class QuickActionsComponent implements OnInit {
 
     ngOnInit() {
         this.getModuleList();
+
+        // 取消tree组件内部打开子级菜单事件冒泡
+        $('body').on('click', '.toggle-children-wrapper', function (event: any) {
+            event.stopPropagation();
+        });
     };
 
+    // 获取Mymodule
     getModuleList() {
         const modulelist = JSON.parse(localStorage.getItem('quickOperationMyModelList'));
         if (modulelist === null) {
@@ -70,6 +93,7 @@ export class QuickActionsComponent implements OnInit {
         }
     };
 
+    // 激活编辑
     editModuleOpen() {
         this.moduleList.forEach((item: any) => {
             if (!item.isEmpty) {
@@ -83,6 +107,7 @@ export class QuickActionsComponent implements OnInit {
         this.editModules = true;
     };
 
+    // 关闭编辑
     editModuleClose() {
         this.moduleList.forEach((item: any) => {
             if (!item.isEmpty) {
@@ -96,15 +121,16 @@ export class QuickActionsComponent implements OnInit {
         this.editModules = false;
     };
 
+    // 获取本地所有模块（赋值tree）
     getAllModel() {
-        // 获取本地所有模块
-        this.allModelList = [];
-        this.allModelList = JSON.parse(localStorage.getItem(`menuListAll`));
+        this.nodes.length = 0;
+        this.nodes = JSON.parse(localStorage.getItem(`moduleTree`));
     };
 
     // 添加、编辑、快速进入模块
-    operationModule(item: any) {
+    operationModule(event: any, item: any) {
         if (item.isEmpty || this.editModules) {
+            event.stopPropagation();
             this.getAllModel();
             item.isActive = true;
             this.myModuleShow = true;
@@ -115,18 +141,36 @@ export class QuickActionsComponent implements OnInit {
 
     // 选择模块
     handle(event: any, row: any) {
+        event.stopPropagation();
+        if (row.data.children.length > 0) {
+            return;
+        }
+
         this.temporaryList = [
             {
-                name: row.name,
-                sparName: row.name,
-                icon: row.icon,
-                sparIcon: row.icon,
-                url: row.url,
+                name: row.data.name,
+                sparName: row.data.name,
+                icon: row.data.icon,
+                sparIcon: row.data.icon,
+                url: row.data.ngUrl,
                 isEmpty: false,
                 isEdit: false,
                 isActive: false
             }
         ];
+
+        this.submitCheckedModel();
+    };
+
+    // 退出moduleTree
+    cancelMoeuleEdit(event: any) {
+        event.stopPropagation();
+
+        this.moduleList.forEach((item: any) => {
+            item.isActive = false;
+        });
+
+        this.myModuleShow = false;
     };
 
     // 保存模块
@@ -213,7 +257,7 @@ export class QuickActionsComponent implements OnInit {
         this.temporaryList = [];
     };
 
-    // 取消
+    // 取消编辑or添加
     cancelAddModel(): void {
         this.temporaryList = null;
         this.myModuleShow = false;
