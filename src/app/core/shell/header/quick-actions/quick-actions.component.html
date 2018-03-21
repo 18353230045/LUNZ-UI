@@ -39,9 +39,9 @@
             <i class="la la-reply"></i>
           </button>
           <div *ngIf="!modelOption" class="lz-model-add-wr">
-            <tree-root [nodes]="nodes" [options]="options" (toggleExpanded)="onEvent($event)">
-              <ng-template>
-                <i class="fa fa-file"></i>
+            <tree-root [nodes]="nodes" [options]="options">
+              <ng-template #treeNodeTemplate let-node="node" let-index="index">
+                <i class="jstree-icon jstree-themeicon {{node.data.icon}} m--font-success jstree-themeicon-custom"></i>
                 <span (click)="handle($event,node)">{{ node.data.name }}</span>
               </ng-template>
             </tree-root>

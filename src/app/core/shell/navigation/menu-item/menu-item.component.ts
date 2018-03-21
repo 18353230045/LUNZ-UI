@@ -67,6 +67,7 @@ export class MenuItemComponent implements OnInit {
                     icon: menu.icon,
                     url: menu.ngUrl
                 });
+
                 localStorage.setItem(`openHistoryList`, JSON.stringify(openHistoryList));
             }
         }
