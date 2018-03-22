@@ -1,0 +1,17 @@
+.lz-select-selection {
+  position: relative;
+
+  i {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    margin-top: -9px;
+    background: #fff;
+    cursor: pointer;
+  }
+}
+
+.lz-select-selection i:hover {
+  color: #7148d2
+}

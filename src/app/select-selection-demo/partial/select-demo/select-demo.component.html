@@ -1,0 +1,51 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">select选择器</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item" [routerLink]="['using-documents']">
+          <button class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- 默认 -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <h6>默认</h6>
+          <app-select-selection [selects]="selects1" (selected)="selected1($event)"></app-select-selection>
+          <p>你选择的值为：{{selectValue1}}</p>
+        </div>
+        <!-- item禁用 -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <h6>第二项禁选</h6>
+          <app-select-selection [selects]="selects2" (selected)="selected2($event)"></app-select-selection>
+          <p>你选择的值为：{{selectValue2}}</p>
+        </div>
+        <!-- 默认选中 -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <h6>默认选中</h6>
+          <app-select-selection [selects]="selects3" (selected)="selected3($event)" [defaultValue]="defaultValue"></app-select-selection>
+          <p>你选择的值为：{{selectValue3}}</p>
+        </div>
+        <!-- 可清除值 -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <h6>可清除</h6>
+          <app-select-selection [selects]="selects4" (selected)="selected4($event)" [clear]="true" (clearEventer)="clear()"></app-select-selection>
+          <p>你选择的值为：{{selectValue4}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

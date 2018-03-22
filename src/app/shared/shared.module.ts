@@ -20,6 +20,7 @@ import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions
 import { NgxQueryToolbarComponent } from './components/ngx-query-toolbar/ngx-query-toolbar.component';
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
 import { DropdownSelectionComponent } from './components/dropdown-selection/dropdown-selection.component';
+import { SelectSelectionComponent } from './components/select-selection/select-selection.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 
@@ -63,7 +64,8 @@ export function createDecimalPipe() {
         LaddaDirective,
         NgxQueryToolbarComponent,
         VehicleSelectionComponent,
-        DropdownSelectionComponent
+        DropdownSelectionComponent,
+        SelectSelectionComponent
     ],
 
     exports: [
@@ -77,6 +79,7 @@ export function createDecimalPipe() {
         NgxDatatableActionsComponent,
         NgxQueryToolbarComponent,
         VehicleSelectionComponent,
+        SelectSelectionComponent,
         NgxDataTableDirective,
         ApplyPermissionDirective,
         BsDateValueDirective,

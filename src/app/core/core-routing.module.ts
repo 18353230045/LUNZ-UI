@@ -21,13 +21,13 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../dropdown-demo/dropdown-demo.module#DropdownDemoModule' },
     { path: '', loadChildren: '../form/form.module#FormModule' },
     { path: '', loadChildren: '../treeview-demo/treeview-demo.module#TreeviewDemoModule' },
+    { path: '', loadChildren: '../select-selection-demo/select-selection-demo.module#SelectSelectionDemoModule' }
 ]);
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
-    providers: [
-    ]
+    providers: [ ]
 })
 
 export class CoreRoutingModule { }
