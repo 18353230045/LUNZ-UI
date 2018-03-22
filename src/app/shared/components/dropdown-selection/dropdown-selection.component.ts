@@ -18,6 +18,7 @@ export class DropdownSelectionComponent implements OnInit {
     @Input() multiselect?: Boolean = false;
 
     @Output() selected = new EventEmitter();
+    @Output() remove = new EventEmitter();
 
     openDropdown: Boolean = false;
     isEmpty: Boolean = true;
@@ -57,6 +58,7 @@ export class DropdownSelectionComponent implements OnInit {
     removeValue(): void {
         this.dropText = this.recordBtnText;
         this.isEmpty = true;
+        this.remove.emit();
     };
 
 };

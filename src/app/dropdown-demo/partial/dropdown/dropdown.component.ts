@@ -41,4 +41,8 @@ export class DropdownComponent implements OnInit {
     handle4(event: any) {
         this.item4 = JSON.stringify(event);
     };
+
+    remove() {
+        this.item2 = '';
+    };
 };
