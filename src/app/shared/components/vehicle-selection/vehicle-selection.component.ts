@@ -151,12 +151,9 @@ export class VehicleSelectionComponent implements OnInit {
 
             this.selected.emit(this.outGoingList);
 
-            // let dropdown = document.getElementById('dropdown');
-            // let className = dropdown.className;
-
-            // if (className.indexOf('m-dropdown--open') > 0) {
-            //     this.removeClass(dropdown, 'm-dropdown--open');
-            // }
+            $('.m-dropdown.m-dropdown--open').each(function () {
+                $(this).mDropdown().hide();
+            });
 
             return;
 
@@ -199,6 +196,11 @@ export class VehicleSelectionComponent implements OnInit {
             this.outGoingList['carSeriesId'] = item.id;
 
             this.selected.emit(this.outGoingList);
+
+            $('.m-dropdown.m-dropdown--open').each(function () {
+                $(this).mDropdown().hide();
+            });
+
             return;
 
         } else if (this.outputType === `model`) {
@@ -234,6 +236,10 @@ export class VehicleSelectionComponent implements OnInit {
         this.outGoingList[`carModelInfo`] = item;
 
         this.selected.emit(this.outGoingList);
+
+        $('.m-dropdown.m-dropdown--open').each(function () {
+            $(this).mDropdown().hide();
+        });
 
     };
 
