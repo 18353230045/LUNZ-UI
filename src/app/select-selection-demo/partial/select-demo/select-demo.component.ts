@@ -23,39 +23,39 @@ export class SelectDemoComponent implements OnInit {
 
     ngOnInit() {
         this.selects1 = [
-            { text: 'item01', value: '01' },
-            { text: 'item02', value: '02' },
-            { text: 'item03', value: '03' },
-            { text: 'item04', value: '04' },
-            { text: 'item05', value: '05' },
-            { text: 'item06', value: '06' }
+            { text: '一年级', value: '01' },
+            { text: '二年级', value: '02' },
+            { text: '三年级', value: '03' },
+            { text: '四年级', value: '04' },
+            { text: '五年级', value: '05' },
+            { text: '六年级', value: '06' }
         ];
 
         this.selects2 = [
-            { text: 'item01', value: '01' },
-            { text: 'item02', value: '02', disabled: true },
-            { text: 'item03', value: '03' },
-            { text: 'item04', value: '04' },
-            { text: 'item05', value: '05' },
-            { text: 'item06', value: '06' }
+            { text: '一0二班', value: '01' },
+            { text: '一0三班', value: '02', disabled: true },
+            { text: '一0四班', value: '03' },
+            { text: '一0五班', value: '04' },
+            { text: '一0六班', value: '05' },
+            { text: '一0七班', value: '06' }
         ];
 
         this.selects3 = [
-            { text: 'item01', value: '01' },
-            { text: 'item02', value: '02' },
-            { text: 'item03', value: '03' },
-            { text: 'item04', value: '04' },
-            { text: 'item05', value: '05' },
-            { text: 'item06', value: '06' }
+            { text: 'A组', value: '01' },
+            { text: 'B组', value: '02' },
+            { text: 'C组', value: '03' },
+            { text: 'D组', value: '04' },
+            { text: 'E组', value: '05' },
+            { text: 'F组', value: '06' }
         ];
 
         this.selects4 = [
-            { text: 'item01', value: '01' },
-            { text: 'item02', value: '02' },
-            { text: 'item03', value: '03' },
-            { text: 'item04', value: '04' },
-            { text: 'item05', value: '05' },
-            { text: 'item06', value: '06' }
+            { text: '一楼', value: '01' },
+            { text: '二楼', value: '02' },
+            { text: '三楼', value: '03' },
+            { text: '四楼', value: '04' },
+            { text: '五楼', value: '05' },
+            { text: '六楼', value: '06' }
         ];
 
         this.defaultValue = '05';

@@ -10,6 +10,8 @@ export class SelectSelectionComponent implements OnInit {
     @Input() selects: Array<any> = [];
     @Input() defaultValue?: any;
     @Input() clear?: Boolean = false;
+    @Input() label: String;
+    @Input() showType?: String = 'inline';
 
     @Output() selected = new EventEmitter();
     @Output() clearEventer = new EventEmitter();

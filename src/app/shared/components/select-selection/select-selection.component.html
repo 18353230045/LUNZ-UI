@@ -1,6 +1,24 @@
 <div class="lz-select-selection">
-  <select class="form-control m-input m-input--square" [ngModel]="defaultValue" (ngModelChange)="defaultValue=$event;select($event)">
-    <option *ngFor="let option of selects" [value]="option.value" [disabled]="option.disabled">{{option.text}}</option>
-  </select>
-  <i [hidden]="!clear||defaultValue==null" (click)="clearValue()" class="la la-times-circle"></i>
+  <!-- 内联 -->
+  <div [hidden]="showType==='inline'">
+    <label>{{label}}</label>
+    <div class="lz-select-selection-select">
+      <select class="form-control m-input m-input--square" [ngModel]="defaultValue" (ngModelChange)="defaultValue=$event;select($event)">
+        <option *ngFor="let option of selects" [value]="option.value" [disabled]="option.disabled">{{option.text}}</option>
+      </select>
+      <i [hidden]="!clear||defaultValue==null" (click)="clearValue()" class="la la-times-circle"></i>
+    </div>
+  </div>
+  <!-- 块级 -->
+  <div [hidden]="showType==='block'" class="lz-select-selection-wrapper">
+    <div class="lz-display-flex">
+      <label class="lz-margin-auto">{{label}}</label>
+    </div>
+    <div class="lz-select-selection-select">
+      <select class="form-control m-input m-input--square" [ngModel]="defaultValue" (ngModelChange)="defaultValue=$event;select($event)">
+        <option *ngFor="let option of selects" [value]="option.value" [disabled]="option.disabled">{{option.text}}</option>
+      </select>
+      <i [hidden]="!clear||defaultValue==null" (click)="clearValue()" class="la la-times-circle"></i>
+    </div>
+  </div>
 </div>
