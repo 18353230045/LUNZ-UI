@@ -63,7 +63,7 @@
                 <small>（不能小于5）</small>
               </label>
               <input type="text" class="form-control" name="min" formControlName="min" />
-              <app-validation-message [control]="form.controls['min']" label="5"></app-validation-message>
+              <app-validation-message [control]="form.controls['min']" label="最小值数字验证"></app-validation-message>
             </div>
           </div>
           <!-- 最大值（number）验证 -->
@@ -74,18 +74,29 @@
                 <small>（不能大于5）</small>
               </label>
               <input type="text" class="form-control" name="max" formControlName="max" />
-              <app-validation-message [control]="form.controls['max']" label="5"></app-validation-message>
+              <app-validation-message [control]="form.controls['max']" label="最大值数字验证"></app-validation-message>
             </div>
           </div>
-          <!-- 字符长度范围验证 -->
+          <!-- 最大字符长度验证 -->
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
             <div class="form-group">
               <label for="rangeLength">
-                字符长度范围验证
-                <small>（5-10个字符）</small>
+                    最大字符长度验证
+                <small>（最长5个字符）</small>
               </label>
-              <input type="text" class="form-control" name="rangeLength" formControlName="rangeLength" />
-              <app-validation-message [control]="form.controls['rangeLength']" label="5-10"></app-validation-message>
+              <input type="text" class="form-control" name="rangeLength" formControlName="maxLength" />
+              <app-validation-message [control]="form.controls['maxLength']" label="最大字符长度验证"></app-validation-message>
+            </div>
+          </div>
+          <!-- 最小字符长度验证 -->
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+            <div class="form-group">
+              <label for="rangeLength">
+                    最小字符长度验证
+                <small>（最小5个字符）</small>
+              </label>
+              <input type="text" class="form-control" name="rangeLength" formControlName="minLength" />
+              <app-validation-message [control]="form.controls['minLength']" label="最小字符长度验证"></app-validation-message>
             </div>
           </div>
           <!-- 日期验证 -->
