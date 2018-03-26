@@ -17,17 +17,17 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../vehicle-selection-demo/vehicle-management-demo.module#VehicleManagementDemoModule' },
     { path: '', loadChildren: '../file-upload-demo/file-upload.module#FileUploadModule' },
     { path: '', loadChildren: '../chart/chart.module#ChartModule' },
-    { path: '', loadChildren: '../datepicker/datepicker.module#DatepickerModule' },
     { path: '', loadChildren: '../dropdown-demo/dropdown-demo.module#DropdownDemoModule' },
     { path: '', loadChildren: '../form/form.module#FormModule' },
     { path: '', loadChildren: '../treeview-demo/treeview-demo.module#TreeviewDemoModule' },
-    { path: '', loadChildren: '../select-selection-demo/select-selection-demo.module#SelectSelectionDemoModule' }
+    { path: '', loadChildren: '../select-selection-demo/select-selection-demo.module#SelectSelectionDemoModule' },
+    { path: '', loadChildren: '../datepicker-demo/datepicker-demo.module#DatepickerDemoModule' }
 ]);
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
-    providers: [ ]
+    providers: []
 })
 
 export class CoreRoutingModule { }
