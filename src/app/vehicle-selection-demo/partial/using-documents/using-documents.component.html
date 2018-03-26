@@ -63,12 +63,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>outputType</td>
-                  <td>可选，选择输出类型</td>
-                  <td>string</td>
-                  <td>brand（车品牌），series（车系），model（车型）</td>
-                  <td>model</td>
+                <tr *ngFor="let params of paramsList">
+                  <td>{{params.name}}</td>
+                  <td>{{params.explain}}</td>
+                  <td>{{params.type}}</td>
+                  <td>{{params.optionaValue}}</td>
+                  <td>{{params.defaultValue}}</td>
                 </tr>
               </tbody>
             </table>
