@@ -30,4 +30,4 @@ const routes: Routes = RouteExtensions.withShell([
     providers: []
 })
 
-export class CoreRoutingModule { }
+export class CoreRoutingModule { };
