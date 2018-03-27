@@ -21,6 +21,7 @@ import { NgxQueryToolbarComponent } from './components/ngx-query-toolbar/ngx-que
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
 import { DropdownSelectionComponent } from './components/dropdown-selection/dropdown-selection.component';
 import { SelectSelectionComponent } from './components/select-selection/select-selection.component';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 
@@ -52,20 +53,23 @@ export function createDecimalPipe() {
     declarations: [
         LoaderComponent,
         HostComponent,
-        NgxDataTableDirective,
-        ApplyPermissionDirective,
         ValidationMessageComponent,
         FileUploadComponent,
         NgxDatatableFooterComponent,
         NgxDatatablePagerComponent,
         NgxDatatableActionsComponent,
-        RmbPipe,
-        BsDateValueDirective,
-        LaddaDirective,
         NgxQueryToolbarComponent,
         VehicleSelectionComponent,
         DropdownSelectionComponent,
-        SelectSelectionComponent
+        SelectSelectionComponent,
+        DatepickerComponent,
+
+        NgxDataTableDirective,
+        ApplyPermissionDirective,
+        BsDateValueDirective,
+        LaddaDirective,
+
+        RmbPipe,
     ],
 
     exports: [
@@ -80,11 +84,14 @@ export function createDecimalPipe() {
         NgxQueryToolbarComponent,
         VehicleSelectionComponent,
         SelectSelectionComponent,
+        DatepickerComponent,
+
         NgxDataTableDirective,
         ApplyPermissionDirective,
         BsDateValueDirective,
-        RmbPipe,
-        LaddaDirective
+        LaddaDirective,
+
+        RmbPipe
     ],
 
     providers: [

@@ -30,6 +30,8 @@
       "../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js",
       "../node_modules/urijs/src/URI.min.js",
       "../node_modules/signalr/jquery.signalR.js",
+      "../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
+      "../node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js",
 
       "assets/js/framework/base/app.js",
       "assets/js/framework/base/util.js",
