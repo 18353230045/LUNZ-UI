@@ -12,7 +12,13 @@ export class UsingDocumentsComponent implements OnInit {
 
     ngOnInit() {
         this.paramsList = [
-            { name: 'outputType', explain: '可选，选择输出类型', type: 'string', optionaValue: 'brand（车品牌），series（车系），model（车型）', defaultValue: 'model' }
+            {
+                name: 'outputType',
+                explain: '可选，选择输出类型',
+                type: 'string',
+                optionaValue: 'brand（车品牌），series（车系），model（车型）',
+                defaultValue: 'model'
+            }
         ];
     };
 };
