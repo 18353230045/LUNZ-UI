@@ -14,6 +14,8 @@ declare const $: any;
 
 export class VehicleSelectionComponent implements OnInit {
     @Input() outputType?: String = 'model';
+    @Input() separateCharacter?: String = '/';
+
     @Output() selected = new EventEmitter<Array<any>>();
 
     log: Logger;
@@ -36,10 +38,10 @@ export class VehicleSelectionComponent implements OnInit {
 
     letterActive: String = 'A';
     filterString: any = '';
-    outPutBrand: string;
-    outPutSeries: string;
-    outPutModel: string;
-    outPutResult: String = `选择车品牌/车系/车型`;
+    outPutBrand: String;
+    outPutSeries: String;
+    outPutModel: String;
+    outPutResult: String;
 
     constructor(
         private vehicleService: VehicleService,
@@ -47,10 +49,11 @@ export class VehicleSelectionComponent implements OnInit {
     ) {
         this.log = this.loggerFactory.getLogger();
     };
-
+    
     ngOnInit() {
         this.getLetterList();
         this.getCarbrand(`A`);
+        this.outPutResult = `选择车品牌${this.separateCharacter}车系${this.separateCharacter}车型`;
     };
 
     // 获取字母表
@@ -159,7 +162,7 @@ export class VehicleSelectionComponent implements OnInit {
 
         } else if (this.outputType === `series`) {
             this.outPutBrand = `${item.tree.name}`;
-            // this.outPutResult = `${item.tree.name}/车系/车型`;
+            // this.outPutResult = `${item.tree.name}${this.separateCharacter}车系${this.separateCharacter}车型`;
             this.outGoingList = {
                 carBrandName: item.tree.name,
                 carBrandId: item.tree.id
@@ -192,7 +195,7 @@ export class VehicleSelectionComponent implements OnInit {
         };
 
         if (this.outputType === `series`) {
-            this.outPutResult = `${this.outPutBrand}/${item.name}`;
+            this.outPutResult = `${this.outPutBrand}${this.separateCharacter}${item.name}`;
             this.outGoingList['carSeriesName'] = item.name;
             this.outGoingList['carSeriesId'] = item.id;
 
@@ -206,12 +209,12 @@ export class VehicleSelectionComponent implements OnInit {
 
         } else if (this.outputType === `model`) {
             this.outPutSeries = `${item.name}`;
-            // this.outPutResult = `${this.outPutBrand}/${item.name}/车型`;
+            // this.outPutResult = `${this.outPutBrand}${this.separateCharacter}${item.name}/车型`;
             this.outGoingList[`carSeriesName`] = item.name;
             this.outGoingList[`carSeriesId`] = item.id;
         } else if (this.outputType === `model`) {
             this.outPutSeries = item.name;
-            this.outPutResult = `${this.outPutBrand}/${item.name}`;
+            this.outPutResult = `${this.outPutBrand}${this.separateCharacter}${item.name}`;
         }
 
         this.vehicleService.getCarModels(item.id).subscribe(Response => {
@@ -233,7 +236,7 @@ export class VehicleSelectionComponent implements OnInit {
             return;
         };
 
-        this.outPutResult = `${this.outPutBrand}/${this.outPutSeries}/${item.mosaicName}`;
+        this.outPutResult = `${this.outPutBrand}${this.separateCharacter}${this.outPutSeries}${this.separateCharacter}${item.mosaicName}`;
         this.outGoingList[`carModelInfo`] = item;
 
         this.selected.emit(this.outGoingList);

@@ -83,6 +83,20 @@ export class UsingDocumentsComponent implements OnInit {
                 defaultValue: 'years'
             },
             {
+                name: 'multidate',
+                explain: '可选，支持多选',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'false'
+            },
+            {
+                name: 'multidateSeparator',
+                explain: '可选， 当支持多选时，值于值之间的隔字符',
+                type: 'String',
+                optionaValue: '任意',
+                defaultValue: ','
+            },
+            {
                 name: 'orientation',
                 explain: '可选，日期选择框弹出位置',
                 type: 'String',

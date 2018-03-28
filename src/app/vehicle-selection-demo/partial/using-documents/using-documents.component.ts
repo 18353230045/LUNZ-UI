@@ -18,6 +18,13 @@ export class UsingDocumentsComponent implements OnInit {
                 type: 'String',
                 optionaValue: 'brand（车品牌），series（车系），model（车型）',
                 defaultValue: 'model'
+            },
+            {
+                name: 'separateCharacter',
+                explain: '可选，当配置为车辆系列和车辆品牌是可用，类别之间的隔字符',
+                type: 'String',
+                optionaValue: '任意',
+                defaultValue: '/'
             }
         ];
     };

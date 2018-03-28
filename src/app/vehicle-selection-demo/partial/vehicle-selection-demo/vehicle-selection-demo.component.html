@@ -31,7 +31,7 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
           <h6>选择车辆型号</h6>
-          <app-vehicle-selection [outputType]="'model'" (selected)="getModel($event)"></app-vehicle-selection>
+          <app-vehicle-selection [outputType]="'model'" [separateCharacter]="'-'" (selected)="getModel($event)"></app-vehicle-selection>
         </div>
       </div>
       <div class="row">
