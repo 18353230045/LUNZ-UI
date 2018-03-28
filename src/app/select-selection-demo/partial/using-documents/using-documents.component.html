@@ -28,7 +28,14 @@
         </code>
       </li>
       <li>
-        <span>2、.component.ts中,声明组件需要的数据，如:</span>
+        <span>2、.component.html中，直接引用组件标签，传入需要的配置字段，如：</span>
+      </li>
+      <li>
+        <code>&lt;app-select-selection [label]="'年级'" [selects]="selects4" (selected)="selected1($event)" [defaultValue]="defaultValue"
+          [clear]="true" (clearEventer)="clear()"&gt;&lt;/app-select-selection&gt;</code>
+      </li>
+      <li>
+        <span>3、.component.ts中,声明组件需要的数据，如:</span>
         <br/>
         <code> selects1: Array&lt;any&gt; = [];</code>
         <br/>
@@ -62,13 +69,6 @@
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;this.selectValue1 = null;
           <br/> &#125;;
         </code>
-      </li>
-      <li>
-        <span>3、.component.html中，直接引用组件标签，传入需要的配置字段，如：</span>
-      </li>
-      <li>
-        <code>&lt;app-select-selection [label]="'年级'" [selects]="selects4" (selected)="selected1($event)" [defaultValue]="defaultValue"
-          [clear]="true" (clearEventer)="clear()"&gt;&lt;/app-select-selection&gt;</code>
       </li>
       <li>
         <span>4、组件参数说明：</span>

@@ -41,7 +41,18 @@
             &nbsp;&nbsp;&nbsp;&nbsp;]<br/>&#125;);</code>
       </li>
       <li>
-        <span>2、.component.ts中:</span>
+        <span>2、.component.html中，以验证email为例,其他见demo文件'form-validator.component.html'：</span>
+      </li>
+      <li>
+        <code>
+          &lt;form [formGroup]="form"&gt;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" class="form-control" name="email" formControlName="email" /&gt;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;app-validation-message [control]="form.controls['email']"&gt;&lt;/app-validation-message&gt;
+          <br/>&lt;/form&gt;
+        </code>
+      </li>
+      <li>
+        <span>3、.component.ts中:</span>
         <br/>
         <code> import &#123; FormBuilder, FormControl, FormGroup, Validators &#125; from '@angular/forms';</code>
         <br/>
@@ -75,17 +86,6 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&#125;;<br/><br/>
             &nbsp;&nbsp;&nbsp;&nbsp;ngOnInit() &#123;&nbsp;&nbsp;&#125;;<br/>
             &#125;;<br/>
-        </code>
-      </li>
-      <li>
-        <span>3、.component.html中，以验证email为例,其他见demo文件'form-validator.component.html'：</span>
-      </li>
-      <li>
-        <code>
-          &lt;form [formGroup]="form"&gt;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" class="form-control" name="email" formControlName="email" /&gt;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;app-validation-message [control]="form.controls['email']"&gt;&lt;/app-validation-message&gt;
-          <br/>&lt;/form&gt;
         </code>
       </li>
       <li>

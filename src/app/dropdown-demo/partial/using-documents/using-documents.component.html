@@ -27,7 +27,15 @@
           <br/>&#125;);</code>
       </li>
       <li>
-        <span>2、.component.ts中声明传入组件的数据源变量，如：</span>
+        <span>2、.component.html中，直接引用组件标签，如：</span>
+      </li>
+      <li>
+        <code>
+          &lt;app-dropdown-selection [options]="options" [position]="'left'" [dropText]="'部门'" [class]="'btn-secondary'" (selected)="handle1($event)"&gt;&lt;/app-dropdown-selection&gt;
+        </code>
+      </li>
+      <li>
+        <span>3、.component.ts中声明传入组件的数据源变量，如：</span>
         <br/>
         <code>
           export class DropdownComponent implements OnInit &#123;
@@ -46,14 +54,6 @@
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&#125;;
           <br/> &#125;;
           <br/>
-        </code>
-      </li>
-      <li>
-        <span>3、.component.html中，直接引用组件标签，如：</span>
-      </li>
-      <li>
-        <code>
-          &lt;app-dropdown-selection [options]="options" [position]="'left'" [dropText]="'部门'" [class]="'btn-secondary'" (selected)="handle1($event)"&gt;&lt;/app-dropdown-selection&gt;
         </code>
       </li>
       <li>
