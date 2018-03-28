@@ -15,7 +15,7 @@ export class UsingDocumentsComponent implements OnInit {
             {
                 name: 'outputType',
                 explain: '可选，选择输出类型',
-                type: 'string',
+                type: 'String',
                 optionaValue: 'brand（车品牌），series（车系），model（车型）',
                 defaultValue: 'model'
             }

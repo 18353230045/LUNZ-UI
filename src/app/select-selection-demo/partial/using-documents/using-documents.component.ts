@@ -15,7 +15,7 @@ export class UsingDocumentsComponent implements OnInit {
             {
                 name: 'selects',
                 explain: '必选，数据源',
-                type: 'Array<{text:string,value:string,disabled?:Boolean}>',
+                type: 'Array<{text:String,value:String,disabled?:Boolean}>',
                 optionaValue: '—',
                 defaultValue: '-'
             },
@@ -43,7 +43,7 @@ export class UsingDocumentsComponent implements OnInit {
             {
                 name: 'defaultValue',
                 explain: '可选，为组件内部传递默认值',
-                type: 'string',
+                type: 'String',
                 optionaValue: '—',
                 defaultValue: '-'
             },
