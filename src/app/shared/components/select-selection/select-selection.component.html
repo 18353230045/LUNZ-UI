@@ -3,7 +3,7 @@
   <div [hidden]="showType==='inline'">
     <label>{{label}}</label>
     <div class="lz-select-selection-select">
-      <select class="form-control m-input m-input--square" [ngModel]="defaultValue" (ngModelChange)="defaultValue=$event;select($event)">
+      <select class="form-control m-input" [ngModel]="defaultValue" (ngModelChange)="defaultValue=$event;select($event)">
         <option *ngFor="let option of selects" [value]="option.value" [disabled]="option.disabled">{{option.text}}</option>
       </select>
       <i [hidden]="!clear||defaultValue==null" (click)="clearValue()" class="la la-times-circle"></i>
@@ -15,7 +15,7 @@
       <label class="lz-margin-auto">{{label}}</label>
     </div>
     <div class="lz-select-selection-select">
-      <select class="form-control m-input m-input--square" [ngModel]="defaultValue" (ngModelChange)="defaultValue=$event;select($event)">
+      <select class="form-control m-input" [ngModel]="defaultValue" (ngModelChange)="defaultValue=$event;select($event)">
         <option *ngFor="let option of selects" [value]="option.value" [disabled]="option.disabled">{{option.text}}</option>
       </select>
       <i [hidden]="!clear||defaultValue==null" (click)="clearValue()" class="la la-times-circle"></i>
