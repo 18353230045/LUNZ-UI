@@ -13,81 +13,81 @@ export class UsingDocumentsComponent implements OnInit {
     ngOnInit() {
         this.paramsList = [
             {
-                name: 'options',
-                explain: '必选，数据源',
-                type: 'Array<{text:string,id:string,disabled?:Boolean}>',
+                name: 'id',
+                explain: '必选，input框标签id，用于绑定时间选择事件',
+                type: 'String',
                 optionaValue: '—',
                 defaultValue: '-'
             },
             {
-                name: 'type',
-                explain: '可选，组件类型（btn,icon）',
-                type: 'string',
-                optionaValue: 'btn,icon',
-                defaultValue: 'btn'
+                name: 'format',
+                explain: '可选，日期格式化',
+                type: 'String',
+                optionaValue: '可通过d，dd，D，DD，m，mm，M，MM，yy，yyyy任意组合',
+                defaultValue: 'yyyy年mm月dd日'
             },
             {
-                name: 'position',
-                explain: '可选，组件展开位置',
-                type: 'string',
-                optionaValue: 'center,right,left',
-                defaultValue: 'center'
+                name: 'todayHighlight',
+                explain: '可选，今日高亮',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'true'
             },
             {
-                name: 'dropText',
-                explain: '可选，为btn型时可用，显示列表title，为icon型时不可用',
-                type: 'string',
-                optionaValue: '—',
-                defaultValue: '-'
+                name: 'autoclose',
+                explain: '可选，选择完后自动关闭',
+                type: 'StBooleanring',
+                optionaValue: 'true,false',
+                defaultValue: 'true'
             },
             {
-                name: 'class',
-                explain: '可选，为dropdown触发按钮添加样式',
-                type: 'string',
-                optionaValue: '—',
-                defaultValue: '-'
-            },
-            {
-                name: 'iconClass',
-                explain: '可选，为icon型可用，为dropdown触发按钮添加图标',
-                type: 'string',
-                optionaValue: '—',
-                defaultValue: 'la la-ellipsis-h'
-            },
-            {
-                name: 'itemIcon',
-                explain: '可选，为item添加图标',
-                type: 'string',
-                optionaValue: '—',
-                defaultValue: 'flaticon-share'
-            },
-            {
-                name: 'trigger',
-                explain: '可选，选择触发dropdown方式',
-                type: 'string',
-                optionaValue: 'click,hover',
-                defaultValue: 'click'
-            },
-            {
-                name: 'multiselect',
-                explain: '可选，btn型可用，选择是否支持多选',
+                name: 'calendarWeeks',
+                explain: '可选， 显示左侧的星期数',
                 type: 'Boolean',
                 optionaValue: 'true,false',
                 defaultValue: 'false'
             },
             {
-                name: 'selected',
-                explain: '选择item项时向外传递事件方法，同时向外传递选择的item值',
-                type: '—',
-                optionaValue: '—',
-                defaultValue: '-'
+                name: 'clearBtn',
+                explain: '可选，显示清除按钮',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'false'
             },
             {
-                name: 'remove',
-                explain: '可选，为btn型时，移除value值时向外传递事件',
-                type: '—',
-                optionaValue: '—',
-                defaultValue: '-'
+                name: 'todayBtn',
+                explain: '可选，显示今日按钮',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'false'
+            },
+            {
+                name: 'startView',
+                explain: '可选，打开时的视图',
+                type: 'String',
+                optionaValue: 'days,months,years',
+                defaultValue: 'days'
+            },
+            {
+                name: 'minViewMode',
+                explain: '可选， 最小选择视图',
+                type: 'String',
+                optionaValue: 'days,months,years',
+                defaultValue: 'days'
+            },
+            {
+                name: 'maxViewMode',
+                explain: '可选，最大选择视图',
+                type: 'String',
+                optionaValue: 'days,months,years',
+                defaultValue: 'years'
+            },
+            {
+                name: 'orientation',
+                explain: '可选，日期选择框弹出位置',
+                type: 'String',
+                optionaValue: 'left,right,bottom,auto,top left,top right,auto top,auto bottom',
+                defaultValue: 'bottom'
             }
         ];
     };

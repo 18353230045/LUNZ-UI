@@ -7,54 +7,54 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DatepickerSelectComponent implements OnInit {
-    value1: String;
-    value2: String;
-    value3: String;
-    value4: String;
-    value5: String;
-    value6: String;
-    value7: String;
-    value8: String;
-    value9: String;
+    date1: String;
+    date2: String;
+    date3: String;
+    date4: String;
+    date5: String;
+    date6: String;
+    date7: String;
+    date8: String;
+    date9: String;
 
     constructor() { };
 
     ngOnInit() { };
 
-    getValue1(event: any) {
-        this.value1 = event;
+    getDate1(event: any) {
+        this.date1 = event;
     };
 
-    getValue2(event: any) {
-        this.value2 = event;
+    getDate2(event: any) {
+        this.date2 = event;
     };
 
-    getValue3(event: any) {
-        this.value3 = event;
+    getDate3(event: any) {
+        this.date3 = event;
     };
 
-    getValue4(event: any) {
-        this.value4 = event;
+    getDate4(event: any) {
+        this.date4 = event;
     };
 
-    getValue5(event: any) {
-        this.value5 = event;
+    getDate5(event: any) {
+        this.date5 = event;
     };
 
-    getValue6(event: any) {
-        this.value6 = event;
+    getDate6(event: any) {
+        this.date6 = event;
     };
 
-    getValue7(event: any) {
-        this.value7 = event;
+    getDate7(event: any) {
+        this.date7 = event;
     };
 
-    getValue8(event: any) {
-        this.value8 = event;
+    getDate8(event: any) {
+        this.date8 = event;
     };
 
-    getValue9(event: any) {
-        this.value9 = event;
+    getDate9(event: any) {
+        this.date9 = event;
     };
 
 };
