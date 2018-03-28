@@ -10,7 +10,7 @@ declare const $: any;
 
 export class DatepickerComponent implements OnInit, AfterViewInit {
     @Input() id: String; // input框id
-    @Input() format?: String = 'yyyy-mm-dd'; // input框id
+    @Input() format?: String = 'yyyy年mm月dd日'; // input框id
     @Input() todayHighlight?: Boolean = true; // 今日高亮
     @Input() autoclose?: Boolean = true; // 选择完后自动关闭
     @Input() calendarWeeks?: Boolean = false; // 显示星期左侧的星期数
