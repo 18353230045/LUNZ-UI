@@ -22,6 +22,7 @@ import { VehicleSelectionComponent } from './components/vehicle-selection/vehicl
 import { DropdownSelectionComponent } from './components/dropdown-selection/dropdown-selection.component';
 import { SelectSelectionComponent } from './components/select-selection/select-selection.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 
@@ -63,6 +64,7 @@ export function createDecimalPipe() {
         DropdownSelectionComponent,
         SelectSelectionComponent,
         DatepickerComponent,
+        TabsComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
@@ -70,6 +72,8 @@ export function createDecimalPipe() {
         LaddaDirective,
 
         RmbPipe,
+
+
     ],
 
     exports: [
@@ -85,6 +89,7 @@ export function createDecimalPipe() {
         VehicleSelectionComponent,
         SelectSelectionComponent,
         DatepickerComponent,
+        TabsComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,

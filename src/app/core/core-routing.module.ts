@@ -21,7 +21,8 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../form/form.module#FormModule' },
     { path: '', loadChildren: '../treeview-demo/treeview-demo.module#TreeviewDemoModule' },
     { path: '', loadChildren: '../select-selection-demo/select-selection-demo.module#SelectSelectionDemoModule' },
-    { path: '', loadChildren: '../datepicker-demo/datepicker-demo.module#DatepickerDemoModule' }
+    { path: '', loadChildren: '../datepicker-demo/datepicker-demo.module#DatepickerDemoModule' },
+    { path: '', loadChildren: '../tabs-demo/tabs-demo.module#TabsDemoModule' }
 ]);
 
 @NgModule({
