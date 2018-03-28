@@ -41,6 +41,7 @@
             [dropText]="'人员列表'" 
             [class]="'btn-primary'"
             [multiselect]="true" 
+            [separateCharacter]="','"
             (selected)="handle2($event)"
             (remove)="remove()">
           </app-dropdown-selection>

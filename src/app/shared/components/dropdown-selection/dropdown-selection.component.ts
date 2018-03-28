@@ -15,6 +15,7 @@ export class DropdownSelectionComponent implements OnInit {
     @Input() itemIcon?: String = 'flaticon-share';
     @Input() class?: String;
     @Input() trigger?: String = 'click';
+    @Input() separateCharacter?: String = '/';
     @Input() multiselect?: Boolean = false;
 
     @Output() selected = new EventEmitter();
@@ -40,7 +41,7 @@ export class DropdownSelectionComponent implements OnInit {
                 this.dropText = `${item.text}`;
                 this.isEmpty = false;
             } else {
-                this.dropText += `/${item.text}`;
+                this.dropText += `${this.separateCharacter}${item.text}`;
             }
             this.selected.emit(item);
             return;
