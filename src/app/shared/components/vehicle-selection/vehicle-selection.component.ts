@@ -49,7 +49,7 @@ export class VehicleSelectionComponent implements OnInit {
     ) {
         this.log = this.loggerFactory.getLogger();
     };
-    
+
     ngOnInit() {
         this.getLetterList();
         this.getCarbrand(`A`);
@@ -236,7 +236,8 @@ export class VehicleSelectionComponent implements OnInit {
             return;
         };
 
-        this.outPutResult = `${this.outPutBrand}${this.separateCharacter}${this.outPutSeries}${this.separateCharacter}${item.mosaicName}`;
+        this.outPutResult = `${this.outPutBrand}${this.separateCharacter}
+                             ${this.outPutSeries}${this.separateCharacter}${item.mosaicName}`;
         this.outGoingList[`carModelInfo`] = item;
 
         this.selected.emit(this.outGoingList);

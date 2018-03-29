@@ -1,1 +1,56 @@
-123456
+<!-- line-tabs -->
+<ul *ngIf="tabsType==='line-tabs'" [ngClass]="{'m-tabs-line--2x':bootomBorder2X}" class="nav nav-tabs  m-tabs-line {{colorThemeStyle}}"
+  role="tablist">
+  <li *ngFor="let tabs of tabsData;let i=index" [ngClass]="{'dropdown':tabs.dropdown}" class="nav-item m-tabs__item">
+    <a *ngIf="!tabs.dropdown" [ngClass]="{'disabled':tabs.disabled,'active':i===choice}" (click)="selectedItem(tabs)" class="nav-link m-tabs__link lz-tabs-item"
+      data-toggle="tab">
+      <i *ngIf="tabs.icon" class="{{tabs.icon}}"></i>
+      <span>{{tabs.text}}</span>
+    </a>
+    <a *ngIf="tabs.dropdown" [ngClass]="{'disabled':tabs.disabled,'active':i===choice}" class="nav-link m-tabs__link dropdown-toggle"
+      data-toggle="dropdown">
+      <i *ngIf="tabs.icon" class="{{tabs.icon}}"></i>
+      <span>{{tabs.text}}</span>
+    </a>
+    <div *ngIf="tabs.dropdown" class="dropdown-menu">
+      <a *ngFor="let dropdown of tabs.dropdownArray" (click)="selectedItem(dropdown)" class="dropdown-item" data-toggle="tab">{{dropdown.text}}</a>
+    </div>
+  </li>
+</ul>
+
+<!-- bootstrap-line-tabs -->
+<ul *ngIf="tabsType==='bootstrap-line-tabs'" class="nav nav-tabs nav-fill" role="tablist">
+  <li *ngFor="let tabs of tabsData;let i=index" [ngClass]="{'dropdown':tabs.dropdown}" class="nav-item">
+    <a *ngIf="!tabs.dropdown" [ngClass]="{'disabled':tabs.disabled,'active':i===choice}" (click)="selectedItem(tabs)" class="nav-link"
+      data-toggle="tab">
+      <i *ngIf="tabs.icon" class="{{tabs.icon}} {{iconColor}}"></i>
+      <span>{{tabs.text}}</span>
+    </a>
+    <a *ngIf="tabs.dropdown" [ngClass]="{'disabled':tabs.disabled,'active':i===choice}" class="nav-link dropdown-toggle" data-toggle="dropdown">
+      <i *ngIf="tabs.icon" class="{{tabs.icon}} {{iconColor}}"></i>
+      <span>{{tabs.text}}</span>
+    </a>
+    <div *ngIf="tabs.dropdown" class="dropdown-menu">
+      <a *ngFor="let dropdown of tabs.dropdownArray" (click)="selectedItem(dropdown)" class="dropdown-item" data-toggle="tab">{{dropdown.text}}</a>
+    </div>
+  </li>
+</ul>
+
+<!-- bootstrap-btn-tabs -->
+<ul *ngIf="tabsType==='bootstrap-btn-tabs'" class="nav nav-pills {{btnColor}}" role="tablist">
+  <li *ngFor="let tabs of tabsData;let i=index" [ngClass]="{'dropdown':tabs.dropdown}" class="nav-item">
+    <a *ngIf="!tabs.dropdown" [ngClass]="{'disabled':tabs.disabled,'active':i===choice}" (click)="selectedItem(tabs)" class="nav-link"
+      data-toggle="tab">
+      <i *ngIf="tabs.icon" class="{{tabs.icon}}"></i>
+      <span>{{tabs.text}}</span>
+    </a>
+    <a *ngIf="tabs.dropdown" [ngClass]="{'disabled':tabs.disabled,'active':i===choice}" class="nav-link dropdown-toggle" data-toggle="dropdown"
+      role="button">
+      <i *ngIf="tabs.icon" class="{{tabs.icon}}"></i>
+      <span>{{tabs.text}}</span>
+    </a>
+    <div *ngIf="tabs.dropdown" class="dropdown-menu">
+      <a *ngFor="let dropdown of tabs.dropdownArray" (click)="selectedItem(dropdown)" class="dropdown-item" data-toggle="tab">{{dropdown.text}}</a>
+    </div>
+  </li>
+</ul>
