@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-tabs',
@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@
     styleUrls: ['./tabs.component.scss']
 })
 
-export class TabsComponent implements OnInit, AfterViewInit {
+export class TabsComponent implements OnInit {
     @Input() tabsData: Array<any> = [];  // 添加tabs的数据（必传）
     @Input() tabsType?: String = 'line-tabs'; // 设置tabs的类型[line-tabs，bootstrap-line-tabs,bootstrap-btn-tabs]默认line-tabs
     @Input() bootomBorder2X?: Boolean = false;  // line-tabs时可用，设置激活时下边框为粗边框
@@ -19,9 +19,7 @@ export class TabsComponent implements OnInit, AfterViewInit {
 
     constructor() { };
 
-    ngOnInit() { };
-
-    ngAfterViewInit() {
+    ngOnInit() {
         this.defaultSelection(this.tabsData, this.choice);
     };
 
@@ -33,9 +31,9 @@ export class TabsComponent implements OnInit, AfterViewInit {
         this.selected.emit(event);
     };
 
-    defaultSelection(arr: Array<any>, i: any) {
+    defaultSelection(arr: Array<any>, choice: any) {
         arr.forEach((item, index) => {
-            if (i === index) {
+            if (choice === index) {
                 this.selectedItem(item);
             }
         });
