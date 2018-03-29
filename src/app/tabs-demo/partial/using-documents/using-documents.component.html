@@ -13,6 +13,11 @@
     <ul>
       <li>
         <h5>使用方法：</h5>
+        <span>
+          <b>说明：</b>
+          tabs组件有三种类型，分别是：'line-tabs'，'bootstrap-line-tabs'，'bootstrap-btn-tabs'，默认是'line-tabs'，每种类型对应的样式请查看demo。</span>
+      </li>
+      <li>
         <span>1、在当前模块的.module.ts中引入:</span>
         <br/>
         <code> import &#123; SharedModule &#125; from '../shared/shared.module';</code>
@@ -27,33 +32,54 @@
           <br/>&#125;);</code>
       </li>
       <li>
-        <span>2、.component.html中，直接引用组件标签，如：</span>
+        <span>2、.component.html中，直接引用组件标签，传入需要类型对应的参数即可，如：</span>
       </li>
       <li>
+        <h6>&nbsp;&nbsp;&nbsp;&nbsp;line-tabs类型:</h6>
         <code>
-          &lt;app-dropdown-selection [options]="options" [position]="'left'" [dropText]="'部门'" [class]="'btn-secondary'" (selected)="handle1($event)"&gt;&lt;/app-dropdown-selection&gt;
+          &lt;app-tabs [tabsData]="tabsArray1" (selected)="getItem1($event)"&gt;&lt;/app-tabs&gt;
+        </code>
+        <h6>&nbsp;&nbsp;&nbsp;&nbsp;bootstrap-line-tabs类型:</h6>
+        <code>
+          &lt;app-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-line-tabs'" (selected)="getItem1($event)"&gt;&lt;/app-tabs&gt;
+        </code>
+        <h6>&nbsp;&nbsp;&nbsp;&nbsp;bootstrap-btn-tabs类型:</h6>
+        <code>
+          &lt;app-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-btn-tabs'" (selected)="getItem1($event)"&gt;&lt;/app-tabs&gt;
         </code>
       </li>
       <li>
-        <span>3、.component.ts中声明传入组件的数据源变量，如：</span>
+        <span>3、.component.ts中声明传入组件的数据源变量和定义组件内部传出的事件方法如：</span>
         <br/>
         <code>
-          export class DropdownComponent implements OnInit &#123;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;options: Array&lt;any&gt; = [];<br/>
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;constructor() &#123; &#125;;<br/>
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;ngOnInit() &#123;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.options = [
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: 'item1', id: '01' &#125;,
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: 'item2', id: '02', disabled:
-          true &#125;,
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: 'item3', id: '03' &#125;,
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: 'item4', id: '04' &#125;,
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: 'item5', id: '05' &#125;,
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: 'item6', id: '06' &#125;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;];
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&#125;;
-          <br/> &#125;;
+          export class TabsDemoComponent implements OnInit &#123;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;tabsArray1: Array&lt;any&gt; = [];
           <br/>
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;constructor() &#123; &#125;;
+          <br/>
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;ngOnInit() &#123;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.tabsArray1 = [
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '北京', id: '01' &#125;,
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '深圳', id: '02', disabled:
+          true &#125;,
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '广州', id: '03' &#125;,
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; 
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: '上海', 
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: '04',
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dropdown: true,
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dropdownArray: [
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '黄浦区', id: '01' &#125;,
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '普陀区', id: '02' &#125;,
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '虹口区', id: '03' &#125;,
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '浦东新区', id: '04' &#125;
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;,
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;];
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&#125;;
+          <br/>
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;getItem1(event: any) &#123;
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do something;
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&#125;;
+          <br/>&#125;;
         </code>
       </li>
       <li>

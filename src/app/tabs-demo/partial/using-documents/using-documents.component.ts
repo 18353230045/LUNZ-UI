@@ -13,85 +13,58 @@ export class UsingDocumentsComponent implements OnInit {
     ngOnInit() {
         this.paramsList = [
             {
-                name: 'options',
-                explain: '必选，数据源',
-                type: 'Array<{text:String,id:String,disabled?:Boolean}>',
+                name: 'tabsData',
+                explain: '必选，tabs数据源',
+                type: `Array<{text:String}>，注：text字段为必传，若项有下拉项，则需添加字段dropdown:true，
+                    和下拉选项字段dropdownArray:Array<{text:String}>,若项需禁选，则添加字段disabled：true`,
                 optionaValue: '—',
                 defaultValue: '-'
             },
             {
-                name: 'type',
-                explain: '可选，组件类型（btn,icon）',
+                name: 'tabsType',
+                explain: '可选，tabs组件类型',
                 type: 'String',
-                optionaValue: 'btn,icon',
-                defaultValue: 'btn'
+                optionaValue: 'line-tabs，bootstrap-line-tabs，bootstrap-btn-tabs',
+                defaultValue: 'line-tabs'
             },
             {
-                name: 'position',
-                explain: '可选，组件展开位置',
-                type: 'String',
-                optionaValue: 'center,right,left',
-                defaultValue: 'center'
-            },
-            {
-                name: 'dropText',
-                explain: '可选，为btn型时可用，显示列表title，为icon型时不可用',
-                type: 'String',
-                optionaValue: '—',
-                defaultValue: '-'
-            },
-            {
-                name: 'class',
-                explain: '可选，为dropdown触发按钮添加样式',
-                type: 'String',
-                optionaValue: '—',
-                defaultValue: '-'
-            },
-            {
-                name: 'iconClass',
-                explain: '可选，为icon型可用，为dropdown触发按钮添加图标',
-                type: 'String',
-                optionaValue: '—',
-                defaultValue: 'la la-ellipsis-h'
-            },
-            {
-                name: 'itemIcon',
-                explain: '可选，为item添加图标',
-                type: 'String',
-                optionaValue: '—',
-                defaultValue: 'flaticon-share'
-            },
-            {
-                name: 'separateCharacter',
-                explain: '可选，为btn型并且配置多选时可用，选择值之间的隔字符',
-                type: 'String',
-                optionaValue: '任意',
-                defaultValue: '/'
-            },
-            {
-                name: 'trigger',
-                explain: '可选，选择触发dropdown方式',
-                type: 'String',
-                optionaValue: 'click,hover',
-                defaultValue: 'click'
-            },
-            {
-                name: 'multiselect',
-                explain: '可选，btn型可用，选择是否支持多选',
+                name: 'bootomBorder2X',
+                explain: '可选，line-tabs时可用，设置激活时下边框为粗边框',
                 type: 'Boolean',
-                optionaValue: 'true,false',
+                optionaValue: 'true，false',
                 defaultValue: 'false'
             },
             {
-                name: 'selected',
-                explain: '选择item项时向外传递事件方法，同时向外传递选择的item值',
-                type: '—',
-                optionaValue: '—',
-                defaultValue: '-'
+                name: 'colorThemeStyle',
+                explain: '可选，line-tabs时可用，设置item的字体颜色',
+                type: 'String',
+                optionaValue: '任意样式类，建议使用框架自带样式类',
+                defaultValue: 'm-tabs-line--primary'
             },
             {
-                name: 'remove',
-                explain: '可选，为btn型时，移除value值时向外传递事件',
+                name: 'btnColor',
+                explain: '可选，为bootstrap-btn-tabs时可用，设置btn的颜色',
+                type: 'String',
+                optionaValue: '任意样式类，建议使用框架自带样式类',
+                defaultValue: 'nav-pills--success'
+            },
+            {
+                name: 'iconColor',
+                explain: '可选，为bootstrap-tabs时可用，设置icon的颜色',
+                type: 'String',
+                optionaValue: '任意样式类，建议使用框架自带样式类',
+                defaultValue: 'm--font-brand'
+            },
+            {
+                name: 'choice',
+                explain: '可选，设置默认加载激活第几个tab',
+                type: 'Number',
+                optionaValue: '任意小于tab总数的数字',
+                defaultValue: '0，默认激活第一个tab'
+            },
+            {
+                name: 'selected',
+                explain: '选择项时向外传递事件方法，同时向外传递选择的项数据',
                 type: '—',
                 optionaValue: '—',
                 defaultValue: '-'
