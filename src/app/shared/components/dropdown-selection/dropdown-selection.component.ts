@@ -8,22 +8,22 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export class DropdownSelectionComponent implements OnInit {
     @Input() options: Array<any> = [];
-    @Input() position?: String = 'center';
-    @Input() type?: String = 'btn';
-    @Input() dropText?: String;
-    @Input() iconClass?: String = 'la la-ellipsis-h';
-    @Input() itemIcon?: String = 'flaticon-share';
-    @Input() class?: String;
-    @Input() trigger?: String = 'click';
-    @Input() separateCharacter?: String = '/';
-    @Input() multiselect?: Boolean = false;
+    @Input() position?: string = 'center';
+    @Input() type?: string = 'btn';
+    @Input() dropText?: string;
+    @Input() iconClass?: string = 'la la-ellipsis-h';
+    @Input() itemIcon?: string = 'flaticon-share';
+    @Input() class?: string;
+    @Input() trigger?: string = 'click';
+    @Input() separateCharacter?: string = '/';
+    @Input() multiselect?: boolean = false;
 
     @Output() selected = new EventEmitter();
     @Output() remove = new EventEmitter();
 
-    openDropdown: Boolean = false;
-    isEmpty: Boolean = true;
-    recordBtnText: String;
+    openDropdown: boolean = false;
+    isEmpty: boolean = true;
+    recordBtnText: string;
 
     constructor() { };
 

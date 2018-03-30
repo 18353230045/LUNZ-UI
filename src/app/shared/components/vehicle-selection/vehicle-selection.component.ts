@@ -13,19 +13,19 @@ declare const $: any;
 })
 
 export class VehicleSelectionComponent implements OnInit {
-    @Input() outputType?: String = 'model';
-    @Input() separateCharacter?: String = '/';
+    @Input() outputType?: string = 'model';
+    @Input() separateCharacter?: string = '/';
 
     @Output() selected = new EventEmitter<Array<any>>();
 
     log: Logger;
 
-    carSeriesNav: Boolean = true;
-    carModelNav: Boolean = true;
-    carBrand: Boolean = false;
-    carSeries: Boolean = true;
-    carModels: Boolean = true;
-    isclose: Boolean = false;
+    carSeriesNav: boolean = true;
+    carModelNav: boolean = true;
+    carBrand: boolean = false;
+    carSeries: boolean = true;
+    carModels: boolean = true;
+    isclose: boolean = false;
 
     letterList: Array<any>;
     carBrandList: Array<any>;
@@ -36,12 +36,12 @@ export class VehicleSelectionComponent implements OnInit {
     filterTemporaryList: Array<any>;
     outGoingList: any;
 
-    letterActive: String = 'A';
+    letterActive: string = 'A';
     filterString: any = '';
-    outPutBrand: String;
-    outPutSeries: String;
-    outPutModel: String;
-    outPutResult: String;
+    outPutBrand: string;
+    outPutSeries: string;
+    outPutModel: string;
+    outPutResult: string;
 
     constructor(
         private vehicleService: VehicleService,
@@ -56,12 +56,12 @@ export class VehicleSelectionComponent implements OnInit {
         this.outPutResult = `选择车品牌${this.separateCharacter}车系${this.separateCharacter}车型`;
     };
 
-    // 获取字母表
+    // get the alphabet
     getLetterList() {
         this.letterList = this.vehicleService.letterList();
     };
 
-    // 处理车系数据
+    // handling vehicle data
     handleCarSeriesData(obj: any) {
         const arr: Array<any> = [];
         let assembleObj = {
@@ -90,7 +90,7 @@ export class VehicleSelectionComponent implements OnInit {
         return arr;
     };
 
-    // 处理车型数据
+    // processing model data
     handleCarModelsData(obj: any) {
         const arr: Array<any> = [];
         let assembleObj = {
@@ -128,7 +128,7 @@ export class VehicleSelectionComponent implements OnInit {
         return arr;
     };
 
-    // 获取车品牌
+    // get the car brand
     getCarbrand(code: string) {
         this.vehicleService.getCarbrand(code).subscribe(Response => {
             this.carBrandList = Response;
@@ -143,7 +143,7 @@ export class VehicleSelectionComponent implements OnInit {
 
 
 
-    // 获取车系列
+    // get the car series
     getCarSeries(item: any) {
         if (this.outputType === `brand`) {
             this.outPutResult = item.tree.name;
@@ -188,7 +188,7 @@ export class VehicleSelectionComponent implements OnInit {
         });
     };
 
-    // 获取车型
+    // get the car model
     getCarModels(item: any) {
         if (item.title) {
             return;
@@ -230,7 +230,7 @@ export class VehicleSelectionComponent implements OnInit {
         });
     };
 
-    // 选择车型
+    // selection model
     selectCarModels(item: any) {
         if (item.title) {
             return;
@@ -248,7 +248,7 @@ export class VehicleSelectionComponent implements OnInit {
 
     };
 
-    // 过滤车系数据
+    // filter car series data
     filterCarSeriesData(array: Array<any>) {
         this.filterTemporaryList = array.filter((item: any) => {
             const patt = new RegExp(`${this.filterString}`, `i`);
@@ -258,7 +258,7 @@ export class VehicleSelectionComponent implements OnInit {
         this.carSeriesList = this.filterTemporaryList;
     };
 
-    // 过滤车型数据
+    // filter car models data
     filterCarModelsData(array: Array<any>) {
         this.filterTemporaryList = array.filter((item: any) => {
             const patt = new RegExp(`${this.filterString}`, `i`);

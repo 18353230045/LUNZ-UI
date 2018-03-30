@@ -7,13 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 
 export class TabsComponent implements OnInit {
-    @Input() tabsData: Array<any> = [];  // 添加tabs的数据（必传）
-    @Input() tabsType?: String = 'line-tabs'; // 设置tabs的类型[line-tabs，bootstrap-line-tabs,bootstrap-btn-tabs]默认line-tabs
-    @Input() bootomBorder2X?: Boolean = false;  // line-tabs时可用，设置激活时下边框为粗边框
-    @Input() colorThemeStyle?: String = 'm-tabs-line--primary';  // line-tabs时可用，设置item的字体颜色
-    @Input() btnColor?: String = 'nav-pills--success';  // 为bootstrap-btn-tabs时可用，设置btn的颜色
-    @Input() iconColor?: String = 'm--font-brand';  // 为bootstrap-tabs时可用，设置icon的颜色
-    @Input() choice?: Number = 0;  // 设置默认加载激活第几个tab
+    @Input() tabsData: Array<any> = [];  // data
+    @Input() tabsType?: string = 'line-tabs'; // tabs is type [line-tabs，bootstrap-line-tabs,bootstrap-btn-tabs]default line-tabs
+    @Input() bootomBorder2X?: boolean = false;  // when'line-tabs'is available, set the active border to the rough border.
+    @Input() colorThemeStyle?: string = 'm-tabs-line--primary';  // when'line-tabs'is available, set the font color of item
+    @Input() btnColor?: string = 'nav-pills--success';  // when'bootstrap-btn-tabs'is available, set the color of btn.
+    @Input() iconColor?: string = 'm--font-brand';  // when'bootstrap-tabs'is available, set the color of Icon
+    @Input() choice?: number = 0;  // setting the default load to activate the number of tab
 
     @Output() selected = new EventEmitter();
 
