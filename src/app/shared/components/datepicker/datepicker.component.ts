@@ -10,6 +10,7 @@ declare const $: any;
 
 export class DatepickerComponent implements OnInit, AfterViewInit {
     @Input() id: string; // input id
+    @Input() date: string = ''; 
     @Input() format?: string = 'yyyy年mm月dd日'; // format
     @Input() todayHighlight?: boolean = true; // today highlight
     @Input() autoclose?: boolean = true; // auto close
@@ -24,7 +25,7 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
     @Input() multidate?: boolean = false; // multidate(default: false)
     @Input() multidateSeparator?: string = ','; // multidate multidateSeparator
 
-    @Output() selected = new EventEmitter();
+    @Output() dateChange = new EventEmitter();
 
     constructor() { };
 
@@ -52,13 +53,8 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
             multidate: this.multidate,   // multidate(default: false)
             multidateSeparator: this.multidateSeparator,   // multidate multidateSeparator
         }).on('changeDate', (ev: any) => {
-            this.outgoingValue(ev.target.value);
+            this.dateChange.emit(ev.target.value);
         });
-
-    };
-
-    outgoingValue(event: any): void {
-        this.selected.emit(event);
     };
 
 };

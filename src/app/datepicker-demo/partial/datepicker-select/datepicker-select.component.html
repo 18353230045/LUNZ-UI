@@ -23,47 +23,47 @@
       <div class="row form-group m-form__group">
         <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
           <h6>默认</h6>
-          <app-datepicker [id]="'default'" (selected)="getDate1($event)"></app-datepicker>
+          <app-datepicker [id]="'default'" [(date)]="date1"></app-datepicker>
           <div>{{date1}}</div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
           <h6>显示今日按钮</h6>
-          <app-datepicker [id]="'todayBtn'" [todayBtn]="true" (selected)="getDate2($event)"></app-datepicker>
+          <app-datepicker [id]="'todayBtn'" [todayBtn]="true" [(date)]="date2"></app-datepicker>
           <div>{{date2}}</div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
           <h6>显示清除按钮</h6>
-          <app-datepicker [id]="'clearBtn'" [clearBtn]="true" (selected)="getDate3($event)"></app-datepicker>
+          <app-datepicker [id]="'clearBtn'" [clearBtn]="true" [(date)]="date3"></app-datepicker>
           <div>{{date3}}</div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
           <h6>只选择年</h6>
-          <app-datepicker [id]="'year'" [startView]="'years'" [minViewMode]="'years'" [maxViewMode]="'years'" [format]="'yyyy年'" (selected)="getDate4($event)"></app-datepicker>
+          <app-datepicker [id]="'year'" [startView]="'years'" [minViewMode]="'years'" [maxViewMode]="'years'" [format]="'yyyy年'" [(date)]="date4"></app-datepicker>
           <div>{{date4}}</div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
           <h6>只选择月</h6>
-          <app-datepicker [id]="'month'" [startView]="'months'" [minViewMode]="'months'" [maxViewMode]="'months'" [format]="'mm月'" (selected)="getDate5($event)"></app-datepicker>
+          <app-datepicker [id]="'month'" [startView]="'months'" [minViewMode]="'months'" [maxViewMode]="'months'" [format]="'mm月'" [(date)]="date5"></app-datepicker>
           <div>{{date5}}</div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
           <h6>只选择日</h6>
-          <app-datepicker [id]="'day'" [startView]="'days'" [minViewMode]="'days'" [maxViewMode]="'days'" [format]="'dd日'" (selected)="getDate6($event)"></app-datepicker>
+          <app-datepicker [id]="'day'" [startView]="'days'" [minViewMode]="'days'" [maxViewMode]="'days'" [format]="'dd日'" [(date)]="date6"></app-datepicker>
           <div>{{date6}}</div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
           <h6>只选择年月</h6>
-          <app-datepicker [id]="'yearmonth'" [startView]="'years'" [minViewMode]="'months'" [maxViewMode]="'years'" [format]="'yyyy年mm月'" (selected)="getDate7($event)"></app-datepicker>
+          <app-datepicker [id]="'yearmonth'" [startView]="'years'" [minViewMode]="'months'" [maxViewMode]="'years'" [format]="'yyyy年mm月'" [(date)]="date7"></app-datepicker>
           <div>{{date7}}</div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
           <h6>只选择月日</h6>
-          <app-datepicker [id]="'monthday'" [startView]="'months'" [minViewMode]="'days'" [maxViewMode]="'months'" [format]="'mm月dd日'" (selected)="getDate8($event)"></app-datepicker>
+          <app-datepicker [id]="'monthday'" [startView]="'months'" [minViewMode]="'days'" [maxViewMode]="'months'" [format]="'mm月dd日'" [(date)]="date8"></app-datepicker>
           <div>{{date8}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6 m-portlet__body">
           <h6>支持多选</h6>
-          <app-datepicker [id]="'multidate'" [clearBtn]="true" [autoclose]="false" [multidate]="true" (selected)="getDate9($event)"></app-datepicker>
+          <app-datepicker [id]="'multidate'" [clearBtn]="true" [autoclose]="false" [multidate]="true" [(date)]="date9"></app-datepicker>
           <div>{{date9}}</div>
         </div>
       </div>
