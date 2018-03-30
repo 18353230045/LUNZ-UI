@@ -20,6 +20,13 @@ export class UsingDocumentsComponent implements OnInit {
                 defaultValue: '-'
             },
             {
+                name: 'date',
+                explain: '必选，组件交互入口，可使用[(date)]=\'date1\'实现双向数据绑定',
+                type: '—',
+                optionaValue: '—',
+                defaultValue: '-'
+            },
+            {
                 name: 'format',
                 explain: '可选，日期格式化',
                 type: 'String',

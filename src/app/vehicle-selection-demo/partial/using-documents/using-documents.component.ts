@@ -20,6 +20,13 @@ export class UsingDocumentsComponent implements OnInit {
                 defaultValue: 'model'
             },
             {
+                name: 'outPutResult',
+                explain: '必选，与组件进行通信的变量',
+                type: 'any',
+                optionaValue: '-',
+                defaultValue: '-'
+            },
+            {
                 name: 'separateCharacter',
                 explain: '可选，当配置为车辆系列和车辆品牌是可用，类别之间的隔字符',
                 type: 'String',

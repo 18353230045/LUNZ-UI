@@ -34,21 +34,24 @@
           </li>
           <li>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;在使用车型选择组件的视图（.component.html）中，直接引用组件标签即可， 传入需要组件传出的值的类型[‘brand’：车品牌（id/name），‘series’：车品牌(id/name)+车系列(id/name)，
-              ‘model’：车品牌(id/name)+车系列(id/name)+车型所有信息]和接受组件传出的事件方法，此两项必传。例如：
+              ‘model’：车品牌(id/name)+车系列(id/name)+车型所有信息]和与组件进行通信的变量，此两项必传。例如：
             </span>
             <br/>
-            <code>&lt;app-vehicle-selection [outputType]="'brand'" (selected)="getBrand($event)"&gt;&lt;/app-vehicle-selection&gt;</code>
+            <code>&lt;app-vehicle-selection [outputType]="'brand'" [(outPutResult)]="brand"&gt;&lt;/app-vehicle-selection&gt;</code>
           </li>
           <li>
-            <span>3、.component.ts中:</span>
+            <span>3、在.component.ts只需声明用于和组件通讯的变量，例如：</span>
             <br/>
-            <span>在.component.ts只需声明用于接受组件传出的事件方法，例如：</span>
-            <br/>
-            <code>getBrand(event: any) &#123;
-              <br/> &nbsp;&nbsp;&nbsp;&nbsp;somecode(event);
-              <br/>&#125;;</code>
-            <br/>
-            <span>event即是组件传出的数据，详细见demo</span>
+            <code>
+              export class VehicleSelectionDemoComponent implements OnInit &#123;
+              <br/>&nbsp;&nbsp;&nbsp;&nbsp;brand: any;
+              <br/>
+              <br/> &nbsp;&nbsp;&nbsp;&nbsp;constructor() &#123; &#125;;
+              <br/>
+              <br/> &nbsp;&nbsp;&nbsp;&nbsp;ngOnInit() &#123;&nbsp;&#125;;
+              <br/>
+              <br/>&#125;;
+            </code>
           </li>
           <li>
             <span>4、组件参数说明：</span>

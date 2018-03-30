@@ -49,7 +49,7 @@ export class UsingDocumentsComponent implements OnInit {
             },
             {
                 name: 'clearEventer',
-                explain: '可选，配置清除功能时可用，清楚value值向外传递事件',
+                explain: '可选，配置清除功能时可用，清楚value值时向外传递事件',
                 type: '—',
                 optionaValue: '—',
                 defaultValue: '-'

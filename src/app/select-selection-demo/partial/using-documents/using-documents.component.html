@@ -35,21 +35,20 @@
           [clear]="true" (clearEventer)="clear()"&gt;&lt;/app-select-selection&gt;</code>
       </li>
       <li>
-        <span>3、.component.ts中,声明组件需要的数据，如:</span>
+        <span>3、.component.ts中,声明组件需要的数据和与组件实现双向数据绑定的变量如:</span>
         <br/>
-        <code> selects1: Array&lt;any&gt; = [];</code>
-        <br/>
-        <code>
-          ngOnInit() &#123;
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;this.selects1 = [
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '一年级', value: '01' &#125;,
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '二年级', value: '02, disabled: true &#125;,
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '三年级', value: '03' &#125;,
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '四年级', value: '04' &#125;,
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '五年级', value: '05' &#125;,
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '六年级', value: '06' &#125;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;];
-          <br/> &#125;;
+        <code> selects1: Array&lt;any&gt; = [];
+        <br/>  selectValue1: any;
+        <br/> ngOnInit() &#123;
+        <br/> &nbsp;&nbsp;&nbsp;&nbsp;this.selects1 = [
+        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '一年级', value: '01' &#125;,
+        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '二年级', value: '02, disabled: true &#125;,
+        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '三年级', value: '03' &#125;,
+        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '四年级', value: '04' &#125;,
+        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '五年级', value: '05' &#125;,
+        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '六年级', value: '06' &#125;
+        <br/> &nbsp;&nbsp;&nbsp;&nbsp;];
+        <br/> &#125;;
         </code>
       </li>
       <li>

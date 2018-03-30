@@ -31,11 +31,11 @@
       </li>
       <li>
         <code>
-          &lt;app-datepicker [id]="'default'" (selected)="getValue($event)"&gt;&lt;/app-datepicker&gt;
+          &lt;app-datepicker [id]="'default'" [(date)]="date"&gt;&lt;/app-datepicker&gt;
         </code>
       </li>
       <li>
-        <span>3、.component.ts中声明用于接受组件传出的事件方法，如：</span>
+        <span>3、.component.ts中声明用于与组件实现双向数据绑定的变量，如：</span>
         <br/>
         <code>
           export class DatepickerSelectComponent implements OnInit &#123;
@@ -45,9 +45,6 @@
           <br/>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;ngOnInit() &#123;&nbsp;&#125;;
           <br/>
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;getDate(event: any) &#123;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.date = event;
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&#125;;
           <br/>&#125;;
         </code>
       </li>

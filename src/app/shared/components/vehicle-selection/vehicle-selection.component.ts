@@ -200,8 +200,6 @@ export class VehicleSelectionComponent implements OnInit {
 
             this.outPutResultChange.emit(this.outGoingList);
 
-            // this.selected.emit(this.outGoingList);
-
             $('.m-dropdown.m-dropdown--open').each(function () {
                 $(this).mDropdown().hide();
             });
