@@ -13,8 +13,8 @@ declare const $: any;
 })
 
 export class VehicleSelectionComponent implements OnInit {
-    @Input() outputType?: string = 'model';
-    @Input() separateCharacter?: string = '/';
+    @Input() outputType?: String = 'model';
+    @Input() separateCharacter?: String = '/';
     @Input() outPutResult?: any;
 
     @Output() selected = new EventEmitter<Array<any>>();
@@ -22,12 +22,12 @@ export class VehicleSelectionComponent implements OnInit {
 
     log: Logger;
 
-    carSeriesNav: boolean = true;
-    carModelNav: boolean = true;
-    carBrand: boolean = false;
-    carSeries: boolean = true;
-    carModels: boolean = true;
-    isclose: boolean = false;
+    carSeriesNav: Boolean = true;
+    carModelNav: Boolean = true;
+    carBrand: Boolean = false;
+    carSeries: Boolean = true;
+    carModels: Boolean = true;
+    isclose: Boolean = false;
 
     letterList: Array<any>;
     carBrandList: Array<any>;
@@ -38,12 +38,12 @@ export class VehicleSelectionComponent implements OnInit {
     filterTemporaryList: Array<any>;
     outGoingList: any;
 
-    letterActive: string = 'A';
+    letterActive: String = 'A';
     filterString: any = '';
-    outPutBrand: string;
-    outPutSeries: string;
-    outPutModel: string;
-    showResult: string;
+    outPutBrand: String;
+    outPutSeries: String;
+    outPutModel: String;
+    showResult: String;
 
     constructor(
         private vehicleService: VehicleService,

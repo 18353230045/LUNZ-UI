@@ -9,21 +9,21 @@ declare const $: any;
 })
 
 export class DatepickerComponent implements OnInit, AfterViewInit {
-    @Input() id: string; // input id
-    @Input() date: string = ''; 
-    @Input() format?: string = 'yyyy年mm月dd日'; // format
-    @Input() todayHighlight?: boolean = true; // today highlight
-    @Input() autoclose?: boolean = true; // auto close
-    @Input() calendarWeeks?: boolean = false; // show left week
-    @Input() clearBtn?: boolean = false; // show clear btn(default: false)
-    @Input() todayBtn?: boolean = false; // show today btn(default: false)
-    @Input() startView?: string = 'days'; // open the start view(default: days)
-    @Input() minViewMode?: string = 'days'; // min select view(days,months,years)
-    @Input() maxViewMode?: string = 'years'; // max select view(days,months,years)
-    @Input() orientation?: string = 'bottom'; // position(default: auto)
+    @Input() id: String; // input id
+    @Input() date: String = '';
+    @Input() format?: String = 'yyyy年mm月dd日'; // format
+    @Input() todayHighlight?: Boolean = true; // today highlight
+    @Input() autoclose?: Boolean = true; // auto close
+    @Input() calendarWeeks?: Boolean = false; // show left week
+    @Input() clearBtn?: Boolean = false; // show clear btn(default: false)
+    @Input() todayBtn?: Boolean = false; // show today btn(default: false)
+    @Input() startView?: String = 'days'; // open the start view(default: days)
+    @Input() minViewMode?: String = 'days'; // min select view(days,months,years)
+    @Input() maxViewMode?: String = 'years'; // max select view(days,months,years)
+    @Input() orientation?: String = 'bottom'; // position(default: auto)
 
-    @Input() multidate?: boolean = false; // multidate(default: false)
-    @Input() multidateSeparator?: string = ','; // multidate multidateSeparator
+    @Input() multidate?: Boolean = false; // multidate(default: false)
+    @Input() multidateSeparator?: String = ','; // multidate multidateSeparator
 
     @Output() dateChange = new EventEmitter();
 
@@ -45,7 +45,7 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
             calendarWeeks: this.calendarWeeks,   // show left week
             clearBtn: this.clearBtn,   // show clear btn(default: false)
             todayBtn: this.todayBtn,   // show today btn(default: false)
-            startView: this.startView,   //open the start view(default: days)
+            startView: this.startView,   // open the start view(default: days)
             minViewMode: this.minViewMode,   // min select view(days,months,years)
             maxViewMode: this.maxViewMode,   // max select view(days,months,years)
             assumeNearbyYear: true,   // auto assumeNearbyYear
