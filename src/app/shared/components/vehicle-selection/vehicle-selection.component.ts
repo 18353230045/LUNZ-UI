@@ -15,8 +15,10 @@ declare const $: any;
 export class VehicleSelectionComponent implements OnInit {
     @Input() outputType?: string = 'model';
     @Input() separateCharacter?: string = '/';
+    @Input() outPutResult?: any;
 
     @Output() selected = new EventEmitter<Array<any>>();
+    @Output() outPutResultChange = new EventEmitter();
 
     log: Logger;
 
@@ -41,7 +43,7 @@ export class VehicleSelectionComponent implements OnInit {
     outPutBrand: string;
     outPutSeries: string;
     outPutModel: string;
-    outPutResult: string;
+    showResult: string;
 
     constructor(
         private vehicleService: VehicleService,
@@ -53,7 +55,7 @@ export class VehicleSelectionComponent implements OnInit {
     ngOnInit() {
         this.getLetterList();
         this.getCarbrand(`A`);
-        this.outPutResult = `选择车品牌${this.separateCharacter}车系${this.separateCharacter}车型`;
+        this.showResult = this.outPutResult || `选择车品牌${this.separateCharacter}车系${this.separateCharacter}车型`;
     };
 
     // get the alphabet
@@ -137,22 +139,17 @@ export class VehicleSelectionComponent implements OnInit {
         });
     };
 
-    removeClass(element: any, className: any) {
-        element.className = element.className.replace(new RegExp(className), '');
-    }
-
-
-
     // get the car series
     getCarSeries(item: any) {
         if (this.outputType === `brand`) {
-            this.outPutResult = item.tree.name;
+            this.showResult = item.tree.name;
+            this.outPutResult = item;
             this.outGoingList = {
                 carBrandName: item.tree.name,
                 carBrandId: item.tree.id
             };
 
-            this.selected.emit(this.outGoingList);
+            this.outPutResultChange.emit(this.outGoingList);
 
             $('.m-dropdown.m-dropdown--open').each(function () {
                 $(this).mDropdown().hide();
@@ -195,11 +192,15 @@ export class VehicleSelectionComponent implements OnInit {
         };
 
         if (this.outputType === `series`) {
-            this.outPutResult = `${this.outPutBrand}${this.separateCharacter}${item.name}`;
+            this.showResult = `${this.outPutBrand}${this.separateCharacter}${item.name}`;
+            this.outPutResult = item;
+
             this.outGoingList['carSeriesName'] = item.name;
             this.outGoingList['carSeriesId'] = item.id;
 
-            this.selected.emit(this.outGoingList);
+            this.outPutResultChange.emit(this.outGoingList);
+
+            // this.selected.emit(this.outGoingList);
 
             $('.m-dropdown.m-dropdown--open').each(function () {
                 $(this).mDropdown().hide();
@@ -236,11 +237,13 @@ export class VehicleSelectionComponent implements OnInit {
             return;
         };
 
-        this.outPutResult = `${this.outPutBrand}${this.separateCharacter}
-                             ${this.outPutSeries}${this.separateCharacter}${item.mosaicName}`;
+        this.showResult = `${this.outPutBrand}${this.separateCharacter}
+                           ${this.outPutSeries}${this.separateCharacter}${item.mosaicName}`;
+
+        this.outPutResult = item;
         this.outGoingList[`carModelInfo`] = item;
 
-        this.selected.emit(this.outGoingList);
+        this.outPutResultChange.emit(this.outGoingList);
 
         $('.m-dropdown.m-dropdown--open').each(function () {
             $(this).mDropdown().hide();

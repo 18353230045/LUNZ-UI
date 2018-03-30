@@ -13,17 +13,5 @@ export class VehicleSelectionDemoComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-    }
-
-    getBrand(event: any) {
-        this.brand = JSON.stringify(event);
-    };
-
-    getSeries(event: any) {
-        this.series = JSON.stringify(event);
-    };
-
-    getModel(event: any) {
-        this.model = JSON.stringify(event);
     };
 }
