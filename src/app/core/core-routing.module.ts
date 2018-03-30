@@ -18,7 +18,6 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../file-upload-demo/file-upload.module#FileUploadModule' },
     { path: '', loadChildren: '../chart/chart.module#ChartModule' },
     { path: '', loadChildren: '../dropdown-demo/dropdown-demo.module#DropdownDemoModule' },
-    { path: '', loadChildren: '../form/form.module#FormModule' },
     { path: '', loadChildren: '../treeview-demo/treeview-demo.module#TreeviewDemoModule' },
     { path: '', loadChildren: '../select-selection-demo/select-selection-demo.module#SelectSelectionDemoModule' },
     { path: '', loadChildren: '../datepicker-demo/datepicker-demo.module#DatepickerDemoModule' },
