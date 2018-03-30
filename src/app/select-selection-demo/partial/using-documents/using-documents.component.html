@@ -31,7 +31,7 @@
         <span>2、.component.html中，直接引用组件标签，传入需要的配置字段，如：</span>
       </li>
       <li>
-        <code>&lt;app-select-selection [label]="'年级'" [selects]="selects4" (selected)="selected1($event)" [defaultValue]="defaultValue"
+        <code>&lt;app-select-selection [label]="'年级'" [selects]="selects1" [(model)]="selectValue1"
           [clear]="true" (clearEventer)="clear()"&gt;&lt;/app-select-selection&gt;</code>
       </li>
       <li>
@@ -49,15 +49,6 @@
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '五年级', value: '05' &#125;,
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '六年级', value: '06' &#125;
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;];
-          <br/> &#125;;
-        </code>
-      </li>
-      <li>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;定义接收组件内部向外传递事件方法</span>
-        <br/>
-        <code>
-          selected1(event: any) &#123;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;this.selectValue1 = event;
           <br/> &#125;;
         </code>
       </li>

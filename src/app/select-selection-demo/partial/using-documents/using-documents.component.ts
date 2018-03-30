@@ -34,22 +34,22 @@ export class UsingDocumentsComponent implements OnInit {
                 defaultValue: 'inline'
             },
             {
-                name: 'selected',
-                explain: '选择时向外传递事件方法，同时向外传递选择值,block）',
+                name: 'model',
+                explain: '组件交互的入口，可使用[(model)]=\'selectValue1\'实现双向数据绑定',
                 type: '—',
                 optionaValue: '—',
                 defaultValue: '-'
             },
             {
-                name: 'defaultValue',
-                explain: '可选，为组件内部传递默认值',
-                type: 'String',
-                optionaValue: '—',
-                defaultValue: '-'
+                name: 'clear',
+                explain: '可选，配置可清除功能',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'false'
             },
             {
                 name: 'clearEventer',
-                explain: '可选，配置清除功能时可用，点击清除时向外传递事件',
+                explain: '可选，配置清除功能时可用，清楚value值向外传递事件',
                 type: '—',
                 optionaValue: '—',
                 defaultValue: '-'
