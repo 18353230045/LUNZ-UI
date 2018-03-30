@@ -8,12 +8,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export class SelectSelectionComponent implements OnInit {
     @Input() selects: Array<any> = [];
-    @Input() label: String;
-    @Input() showType?: String = 'inline';
-    @Input() defaultValue?: any;
-    @Input() clear?: Boolean = false;
+    @Input() label: string;
+    @Input() showType?: string = 'inline';
+    @Input() model: any = '';
+    @Input() clear?: boolean = false;
 
-    @Output() selected = new EventEmitter();
+    @Output() modelChange = new EventEmitter();
     @Output() clearEventer = new EventEmitter();
 
     constructor() { };
@@ -22,11 +22,12 @@ export class SelectSelectionComponent implements OnInit {
     };
 
     select(event: any) {
-        this.selected.emit(event);
+        this.model = event;
+        this.modelChange.emit(event);
     };
 
     clearValue() {
-        this.defaultValue = null;
+        this.model = null;
         this.clearEventer.emit();
     };
 

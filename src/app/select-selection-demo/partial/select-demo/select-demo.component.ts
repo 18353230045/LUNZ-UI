@@ -12,11 +12,9 @@ export class SelectDemoComponent implements OnInit {
     selects3: Array<any> = [];
     selects4: Array<any> = [];
 
-    defaultValue: any;
-
     selectValue1: any;
     selectValue2: any;
-    selectValue3: any;
+    selectValue3: any = '03';
     selectValue4: any;
 
     constructor() { };
@@ -58,23 +56,6 @@ export class SelectDemoComponent implements OnInit {
             { text: '六楼', value: '06' }
         ];
 
-        this.defaultValue = '05';
-    };
-
-    selected1(event: any) {
-        this.selectValue1 = event;
-    };
-
-    selected2(event: any) {
-        this.selectValue2 = event;
-    };
-
-    selected3(event: any) {
-        this.selectValue3 = event;
-    };
-
-    selected4(event: any) {
-        this.selectValue4 = event;
     };
 
     clear() {

@@ -24,25 +24,25 @@
         <!-- 默认 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>默认(内联/无清除/无默认值)</h6>
-          <app-select-selection [label]="'年级'" [selects]="selects1" (selected)="selected1($event)"></app-select-selection>
+          <app-select-selection [label]="'年级'" [selects]="selects1" [(model)]="selectValue1"></app-select-selection>
           <p>你选择的值为：{{selectValue1}}</p>
         </div>
         <!-- item禁用 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>第二项禁选(块级)</h6>
-          <app-select-selection [label]="'班级'" [selects]="selects2" (selected)="selected2($event)" [showType]="'block'"></app-select-selection>
+          <app-select-selection [label]="'班级'" [selects]="selects2" [(model)]="selectValue2" [showType]="'block'"></app-select-selection>
           <p>你选择的值为：{{selectValue2}}</p>
         </div>
         <!-- 默认选中 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>默认值</h6>
-          <app-select-selection [label]="'小组'" [selects]="selects3" (selected)="selected3($event)" [defaultValue]="defaultValue"></app-select-selection>
+          <app-select-selection [label]="'小组'" [selects]="selects3" [(model)]="selectValue3"></app-select-selection>
           <p>你选择的值为：{{selectValue3}}</p>
         </div>
         <!-- 可清除值 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>可清除</h6>
-          <app-select-selection [label]="'楼层'" [selects]="selects4" (selected)="selected4($event)" [clear]="true" (clearEventer)="clear()"></app-select-selection>
+          <app-select-selection [label]="'楼层'" [selects]="selects4" [(model)]="selectValue4" [clear]="true" (clearEventer)="clear()"></app-select-selection>
           <p>你选择的值为：{{selectValue4}}</p>
         </div>
       </div>
