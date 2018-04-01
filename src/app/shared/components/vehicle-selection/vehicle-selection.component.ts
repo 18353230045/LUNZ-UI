@@ -40,9 +40,9 @@ export class VehicleSelectionComponent implements OnInit {
 
     letterActive: String = 'A';
     filterString: any = '';
-    outPutBrand: String;
-    outPutSeries: String;
-    outPutModel: String;
+    outPutBrand: String = '品牌';
+    outPutSeries: String = '车系';
+    outPutModel: String = '车型';
     showResult: String;
 
     constructor(
@@ -58,7 +58,7 @@ export class VehicleSelectionComponent implements OnInit {
         this.showResult = this.outPutResult || `选择车品牌${this.separateCharacter}车系${this.separateCharacter}车型`;
     };
 
-    // get the alphabet
+    // get alphabet
     getLetterList() {
         this.letterList = this.vehicleService.letterList();
     };
@@ -130,7 +130,7 @@ export class VehicleSelectionComponent implements OnInit {
         return arr;
     };
 
-    // get the car brand
+    // get car brand
     getCarbrand(code: string) {
         this.vehicleService.getCarbrand(code).subscribe(Response => {
             this.carBrandList = Response;
@@ -139,11 +139,13 @@ export class VehicleSelectionComponent implements OnInit {
         });
     };
 
-    // get the car series
+    // get car series
     getCarSeries(item: any) {
         if (this.outputType === `brand`) {
             this.showResult = item.tree.name;
+            this.outPutBrand = item.tree.name;
             this.outPutResult = item;
+
             this.outGoingList = {
                 carBrandName: item.tree.name,
                 carBrandId: item.tree.id
@@ -176,7 +178,9 @@ export class VehicleSelectionComponent implements OnInit {
         this.vehicleService.getCarSeries(item.tree.id).subscribe(Response => {
             this.carSeriesList = this.handleCarSeriesData(Response);
             this.carSeriesFilterList = this.handleCarSeriesData(Response);
-            this.carSeriesNav = false;
+
+            this.carSeriesNav = true;
+            this.carModelNav = true;
             this.carBrand = true;
             this.carSeries = false;
             this.carModels = true;
@@ -185,15 +189,19 @@ export class VehicleSelectionComponent implements OnInit {
         });
     };
 
-    // get the car model
+    // get car model
     getCarModels(item: any) {
+        console.log(item);
         if (item.title) {
             return;
         };
 
         if (this.outputType === `series`) {
             this.showResult = `${this.outPutBrand}${this.separateCharacter}${item.name}`;
+            this.outPutSeries = item.name;
             this.outPutResult = item;
+
+            this.carSeriesNav = false;
 
             this.outGoingList['carSeriesName'] = item.name;
             this.outGoingList['carSeriesId'] = item.id;
@@ -208,19 +216,17 @@ export class VehicleSelectionComponent implements OnInit {
 
         } else if (this.outputType === `model`) {
             this.outPutSeries = `${item.name}`;
+
             // this.outPutResult = `${this.outPutBrand}${this.separateCharacter}${item.name}/车型`;
             this.outGoingList[`carSeriesName`] = item.name;
             this.outGoingList[`carSeriesId`] = item.id;
-        } else if (this.outputType === `model`) {
-            this.outPutSeries = item.name;
-            this.outPutResult = `${this.outPutBrand}${this.separateCharacter}${item.name}`;
         }
 
         this.vehicleService.getCarModels(item.id).subscribe(Response => {
             this.carModelList = this.handleCarModelsData(Response);
             this.carModelFilterList = this.handleCarModelsData(Response);
 
-            this.carModelNav = false;
+            this.carSeriesNav = false;
             this.carBrand = true;
             this.carSeries = true;
             this.carModels = false;
@@ -231,6 +237,7 @@ export class VehicleSelectionComponent implements OnInit {
 
     // selection model
     selectCarModels(item: any) {
+        console.log(item);
         if (item.title) {
             return;
         };
@@ -239,7 +246,10 @@ export class VehicleSelectionComponent implements OnInit {
                            ${this.outPutSeries}${this.separateCharacter}${item.mosaicName}`;
 
         this.outPutResult = item;
+        this.outPutModel = item.mosaicName;
         this.outGoingList[`carModelInfo`] = item;
+
+        this.carModelNav = false;
 
         this.outPutResultChange.emit(this.outGoingList);
 
