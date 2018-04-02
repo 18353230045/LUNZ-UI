@@ -7,7 +7,7 @@
 <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
   <span class="m-menu__arrow m-menu__arrow--adjust"></span>
   <ul class="m-menu__subnav" *ngIf="!addModel">
-    <li class="m-menu__item m-menu__item-title">
+    <li class="m-menu__item m-menu__item-title" [style.margin-bottom]="editModel ? '8px': '-10px'">
       <span class="lz-history-model-title">&nbsp;</span>
       <span class="fa lz-model-edit-active" [ngClass]="{'flaticon-more-v2 lz-model-edit-icon-back':!editModel,'flaticon-interface-5 lz-model-edit-icon-move':editModel}"
         (click)="editModel=!editModel">
@@ -18,7 +18,7 @@
     <!-- 我的模块 -->
     <li class="m-menu__item" *ngFor="let mode of myOperationMyModelList | slice:0:5;let i=index">
       <a class="m-menu__link lz-m-menu__link" (click)="operationService.fastEntryModule(mode)">
-        <i class="m-menu__link-icon {{mode.icon}} "></i>
+        <i class="m-menu__link-icon {{mode.icon}}"></i>
         <span class="m-menu__link-title">
           <span class="m-menu__link-wrap">
             <span class="m-menu__link-text">{{mode.name}}
@@ -57,7 +57,7 @@
     </li>
     <!-- >remove all -->
     <li class="m-menu__item" *ngIf="myOperationOpenHistoryList.length!==0">
-      <span class="lz-history-model-de" *ngIf="editModel" (click)="$event.stopPropagation();deleteModelAll()">remove history all</span>
+      <span class="lz-history-model-de float-right" *ngIf="editModel" (click)="$event.stopPropagation();deleteModelAll()">移除全部历史</span>
     </li>
   </ul>
   <ul class="m-menu__subnav" *ngIf="addModel">
@@ -65,7 +65,7 @@
       <div class="lz-m-menu__item">
         <tree-root [nodes]="nodes" [options]="options">
           <ng-template #treeNodeTemplate let-node="node" let-index="index">
-            <i class="jstree-icon jstree-themeicon {{node.data.icon}} m--font-success jstree-themeicon-custom" role="presentation"></i>
+            <i class="jstree-icon jstree-themeicon {{node.data.icon}} jstree-themeicon-custom" role="presentation"></i>
             <span>{{ node.data.name }}</span>
             <i class="la la-check m--font-primary" [hidden]="!node.data.checked"></i>
           </ng-template>
@@ -73,8 +73,10 @@
       </div>
     </li>
     <li class="lz-add-model-cancel">
-      <span (click)="$event.stopPropagation();submitCheckedModel()">添加</span>
-      <span (click)="$event.stopPropagation();cancelCheckedModel()">取消</span>
+      <a class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+       (click)="$event.stopPropagation();submitCheckedModel()">添加</a>
+      <a class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+       (click)="$event.stopPropagation();cancelCheckedModel()">取消</a>
     </li>
   </ul>
 </div>
