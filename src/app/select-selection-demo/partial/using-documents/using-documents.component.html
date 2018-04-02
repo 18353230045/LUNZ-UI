@@ -31,32 +31,23 @@
         <span>2、.component.html中，直接引用组件标签，传入需要的配置字段，如：</span>
       </li>
       <li>
-        <code>&lt;app-select-selection [label]="'年级'" [selects]="selects1" [(model)]="selectValue1"
-          [clear]="true" (clearEventer)="clear()"&gt;&lt;/app-select-selection&gt;</code>
+        <code>&lt;app-select-selection [label]="'年级'" [selects]="selects1" [(model)]="selectValue1" [clear]="true"&gt;&lt;/app-select-selection&gt;
+        </code>
       </li>
       <li>
         <span>3、.component.ts中,声明组件需要的数据和与组件实现双向数据绑定的变量如:</span>
         <br/>
         <code> selects1: Array&lt;any&gt; = [];
-        <br/>  selectValue1: any;
-        <br/> ngOnInit() &#123;
-        <br/> &nbsp;&nbsp;&nbsp;&nbsp;this.selects1 = [
-        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '一年级', value: '01' &#125;,
-        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '二年级', value: '02, disabled: true &#125;,
-        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '三年级', value: '03' &#125;,
-        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '四年级', value: '04' &#125;,
-        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '五年级', value: '05' &#125;,
-        <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '六年级', value: '06' &#125;
-        <br/> &nbsp;&nbsp;&nbsp;&nbsp;];
-        <br/> &#125;;
-        </code>
-      </li>
-      <li>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;当配置清除功能时，定义接收组件内部向外传递的清除事件方法</span>
-        <br/>
-        <code>
-          clear() &#123;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;this.selectValue1 = null;
+          <br/> selectValue1: any;
+          <br/> ngOnInit() &#123;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;this.selects1 = [
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '一年级', value: '01' &#125;,
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '二年级', value: '02, disabled: true &#125;,
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '三年级', value: '03' &#125;,
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '四年级', value: '04' &#125;,
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '五年级', value: '05' &#125;,
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: '六年级', value: '06' &#125;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;];
           <br/> &#125;;
         </code>
       </li>

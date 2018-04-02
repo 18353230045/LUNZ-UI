@@ -48,13 +48,6 @@ export class UsingDocumentsComponent implements OnInit {
                 defaultValue: 'false'
             },
             {
-                name: 'clearEventer',
-                explain: '可选，配置清除功能时可用，清楚value值时向外传递事件',
-                type: '—',
-                optionaValue: '—',
-                defaultValue: '-'
-            },
-            {
                 name: 'disabled',
                 explain: '当item项禁选时，数据对象添加‘disabled：true’字段即可',
                 type: '—',

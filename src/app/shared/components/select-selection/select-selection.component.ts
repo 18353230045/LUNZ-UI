@@ -14,7 +14,6 @@ export class SelectSelectionComponent implements OnInit {
     @Input() clear?: Boolean = false;
 
     @Output() modelChange = new EventEmitter();
-    @Output() clearEventer = new EventEmitter();
 
     constructor() { };
 
@@ -28,7 +27,7 @@ export class SelectSelectionComponent implements OnInit {
 
     clearValue() {
         this.model = null;
-        this.clearEventer.emit();
+        this.modelChange.emit(this.model);
     };
 
 };
