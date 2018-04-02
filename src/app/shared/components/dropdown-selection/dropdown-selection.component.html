@@ -1,21 +1,21 @@
 <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-push m-dropdown--align-{{position}}" 
     [ngClass]="{'m-dropdown--open':openDropdown}">
     <a href="javascript:void(0)" class="m-dropdown__toggle btn {{class}}" 
-        [hidden]="trigger==='hover'" 
+        *ngIf="trigger==='click'" 
         (click)="openDropdown=!openDropdown"
         [ngClass]="{'dropdown-toggle':type==='btn'}">
-        <span [hidden]="type==='icon'">{{dropText}}</span>
-        <i class="{{iconClass}}" [hidden]="type==='btn'"></i>
+        <span *ngIf="type==='btn'">{{dropText}}</span>
+        <i class="{{iconClass}}" *ngIf="type==='icon'"></i>
     </a>
     <a href="javascript:void(0)" class="m-dropdown__toggle btn {{class}}" 
-        [hidden]="trigger==='click'" 
+        *ngIf="trigger==='hover'" 
         (mouseenter)="openDropdown=true"
         (mouseleave)="openDropdown=false"
         [ngClass]="{'dropdown-toggle':type==='btn'}">
-        <span [hidden]="type==='icon'">{{dropText}}</span>
-        <i class="{{iconClass}}" [hidden]="type==='btn'"></i>
+        <span *ngIf="type==='btn'">{{dropText}}</span>
+        <i class="{{iconClass}}" *ngIf="type==='icon'"></i>
     </a>
-    <i class="la la-times-circle-o dropdown-btn-remove-icon" [hidden]="type==='icon'||isEmpty||!multiselect" (click)="removeValue()"></i>
+    <i class="la la-times-circle-o dropdown-btn-remove-icon" *ngIf="type==='btn'&&!isEmpty&&multiselect" (click)="removeValue()"></i>
   <div class="m-dropdown__wrapper" (mouseenter)="openDropdown=true" (mouseleave)="openDropdown=false">
     <span class="m-dropdown__arrow m-dropdown__arrow--adjust m-dropdown__arrow--{{position}}"></span>
     <div class="m-dropdown__inner">
