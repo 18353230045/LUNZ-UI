@@ -21,49 +21,62 @@
   <div class="m-portlet__body">
     <div class="container-fluid">
       <div class="row form-group m-form__group">
-        <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>默认</h6>
           <app-datepicker [id]="'default'" [(date)]="date1"></app-datepicker>
           <div>{{date1}}</div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>显示今日按钮</h6>
           <app-datepicker [id]="'todayBtn'" [todayBtn]="true" [(date)]="date2"></app-datepicker>
           <div>{{date2}}</div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>显示清除按钮</h6>
           <app-datepicker [id]="'clearBtn'" [clearBtn]="true" [(date)]="date3"></app-datepicker>
           <div>{{date3}}</div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>只选择年</h6>
           <app-datepicker [id]="'year'" [startView]="'years'" [minViewMode]="'years'" [maxViewMode]="'years'" [format]="'yyyy年'" [(date)]="date4"></app-datepicker>
           <div>{{date4}}</div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>只选择月</h6>
-          <app-datepicker [id]="'month'" [startView]="'months'" [minViewMode]="'months'" [maxViewMode]="'months'" [format]="'mm月'" [(date)]="date5"></app-datepicker>
+          <app-datepicker [id]="'month'" [startView]="'months'" [minViewMode]="'months'" [maxViewMode]="'months'" [format]="'mm月'"
+            [(date)]="date5"></app-datepicker>
           <div>{{date5}}</div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>只选择日</h6>
           <app-datepicker [id]="'day'" [startView]="'days'" [minViewMode]="'days'" [maxViewMode]="'days'" [format]="'dd日'" [(date)]="date6"></app-datepicker>
           <div>{{date6}}</div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>只选择年月</h6>
-          <app-datepicker [id]="'yearmonth'" [startView]="'years'" [minViewMode]="'months'" [maxViewMode]="'years'" [format]="'yyyy年mm月'" [(date)]="date7"></app-datepicker>
+          <app-datepicker [id]="'yearmonth'" [startView]="'years'" [minViewMode]="'months'" [maxViewMode]="'years'" [format]="'yyyy年mm月'"
+            [(date)]="date7"></app-datepicker>
           <div>{{date7}}</div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-4 m-portlet__body">
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>只选择月日</h6>
-          <app-datepicker [id]="'monthday'" [startView]="'months'" [minViewMode]="'days'" [maxViewMode]="'months'" [format]="'mm月dd日'" [(date)]="date8"></app-datepicker>
+          <app-datepicker [id]="'monthday'" [startView]="'months'" [minViewMode]="'days'" [maxViewMode]="'months'" [format]="'mm月dd日'"
+            [(date)]="date8"></app-datepicker>
           <div>{{date8}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6 m-portlet__body">
           <h6>支持多选</h6>
-          <app-datepicker [id]="'multidate'" [clearBtn]="true" [autoclose]="false" [multidate]="true" [(date)]="date9"></app-datepicker>
+          <app-datepicker [id]="'multidate'" [clearBtn]="true" [autoclose]="false" [multidate]="true" [(date)]="date10"></app-datepicker>
+          <div>{{date10}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 m-portlet__body">
+          <h6>传出原始时间格式</h6>
+          <app-datepicker [id]="'displayDate'" [(original)]="date11" [dateType]="'originalDate'"></app-datepicker>
+          <div>{{date11}}</div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
+          <h6>无iocn</h6>
+          <app-datepicker [id]="'noicon'" [dateIcon]="false" [(date)]="date9"></app-datepicker>
           <div>{{date9}}</div>
         </div>
       </div>

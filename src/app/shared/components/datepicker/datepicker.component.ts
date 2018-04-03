@@ -11,12 +11,15 @@ declare const $: any;
 export class DatepickerComponent implements OnInit, AfterViewInit {
     @Input() id: String; // input id
     @Input() date: String = '';
+    @Input() original?: String;
+    @Input() dateType: String = 'displayDate';
     @Input() format?: String = 'yyyy年mm月dd日'; // format
     @Input() todayHighlight?: Boolean = true; // today highlight
     @Input() autoclose?: Boolean = true; // auto close
     @Input() calendarWeeks?: Boolean = false; // show left week
     @Input() clearBtn?: Boolean = false; // show clear btn(default: false)
     @Input() todayBtn?: Boolean = false; // show today btn(default: false)
+    @Input() dateIcon?: Boolean = true; // input frame icon
     @Input() startView?: String = 'days'; // open the start view(default: days)
     @Input() minViewMode?: String = 'days'; // min select view(days,months,years)
     @Input() maxViewMode?: String = 'years'; // max select view(days,months,years)
@@ -26,6 +29,7 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
     @Input() multidateSeparator?: String = ','; // multidate multidateSeparator
 
     @Output() dateChange = new EventEmitter();
+    @Output() originalChange = new EventEmitter();
 
     constructor() { };
 
@@ -33,6 +37,10 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         this.setDatePicker();
+
+        $(`.${this.id}`).click(function () {
+            $(this).prev().trigger('focus');
+        });
     };
 
     setDatePicker() {
@@ -53,8 +61,13 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
             multidate: this.multidate,   // multidate(default: false)
             multidateSeparator: this.multidateSeparator,   // multidate multidateSeparator
         }).on('changeDate', (ev: any) => {
-            this.dateChange.emit(ev.target.value);
+
+            if (this.dateType === 'displayDate') {
+                this.dateChange.emit(ev.target.value);
+            } else if (this.dateType === 'originalDate') {
+                this.originalChange.emit(ev.date);
+            }
+
         });
     };
-
 };
