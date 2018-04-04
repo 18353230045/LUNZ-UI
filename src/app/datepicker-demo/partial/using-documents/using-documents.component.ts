@@ -57,7 +57,7 @@ export class UsingDocumentsComponent implements OnInit {
             {
                 name: 'autoclose',
                 explain: '可选，选择完后自动关闭',
-                type: 'StBooleanring',
+                type: 'Boolean',
                 optionaValue: 'true,false',
                 defaultValue: 'true'
             },

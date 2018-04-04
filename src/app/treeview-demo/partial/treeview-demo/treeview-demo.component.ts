@@ -15,6 +15,7 @@ import { ITreeOptions, IActionMapping } from 'angular-tree-component';
 export class TreeviewDemoComponent implements OnInit {
     log: Logger;
     nodes: Array<any> = [];
+    itemData: any;
 
     // 配置tree选项
     options: ITreeOptions = {
@@ -96,4 +97,18 @@ export class TreeviewDemoComponent implements OnInit {
         }, error => this.log.error('操作失败', error));
     };
 
+    // 获取item项数据
+    getItemData(event: any) {
+        const cacheArr: Array<any> = [];
+        this.itemData = JSON.stringify(event, (key: any, value: any) => {
+            if (typeof value === 'object' && value !== null) {
+                if (cacheArr.indexOf(value) !== -1) {
+                    return;
+                }
+                cacheArr.push(value);
+            }
+
+            return value;
+        });
+    };
 };

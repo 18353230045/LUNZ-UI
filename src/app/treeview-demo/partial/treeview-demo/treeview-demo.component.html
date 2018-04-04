@@ -19,11 +19,20 @@
     </div>
   </div>
   <div class="m-portlet__body">
-    <tree-root #tree [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)">
-      <ng-template #treeNodeTemplate let-node="node" let-index="index">
-        <i class="jstree-icon jstree-themeicon {{node.data.icon}} m--font-success jstree-themeicon-custom" role="presentation"></i>
-        <span>{{ node.data.name }}</span>
-      </ng-template>
-    </tree-root>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6">
+          <tree-root #tree [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)">
+            <ng-template #treeNodeTemplate let-node="node" let-index="index">
+              <i class="jstree-icon jstree-themeicon {{node.data.icon}} m--font-success jstree-themeicon-custom" role="presentation"></i>
+              <span (click)="getItemData(node)">{{ node.data.name }}</span>
+            </ng-template>
+          </tree-root>
+        </div>
+        <div class="col-lg-6">
+            {{itemData}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
