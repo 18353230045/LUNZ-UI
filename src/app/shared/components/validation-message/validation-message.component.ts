@@ -10,8 +10,8 @@ const validationMessages: any = {
     minDate: '不能小于{label} ',
     maxDate: '不能大于{label} ',
     number: '请输入数字 ',
-    min: '{label} 不能小于{length} ',
-    max: '{label} 不能大于{length} ',
+    min: '{label} 不能小于{number} ',
+    max: '{label} 不能大于{number} ',
     rangeLength: '{label} {length}个字符 ',
     url: '网址格式不正确 ',
     equalTo: '两次输入不一致 '
@@ -98,13 +98,19 @@ export class ValidationMessageComponent implements OnInit {
         const label = this.label;
 
         let length: any = -1;
+        let number: any = -1;
 
-        if (validator.requiredLength || validator) {
-            length = validator.requiredLength || validator;
+        if (validator.requiredLength) {
+            length = validator.requiredLength;
+        }
+
+        if (validator) {
+            number = validator;
         }
 
         return message
             .replace('{label}', label)
-            .replace('{length}', length);
+            .replace('{length}', length)
+            .replace('{number}', number);
     };
 };
