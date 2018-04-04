@@ -64,20 +64,40 @@
             [(date)]="date8"></app-datepicker>
           <div>{{date8}}</div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 m-portlet__body">
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>支持多选</h6>
-          <app-datepicker [id]="'multidate'" [clearBtn]="true" [autoclose]="false" [multidate]="true" [(date)]="date10"></app-datepicker>
+          <app-datepicker 
+            [id]="'multidate'" 
+            [clearBtn]="true" 
+            [autoclose]="false" 
+            [multidate]="true" 
+            [(date)]="date9" 
+            ></app-datepicker>
+          <div>{{date9}}</div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
+          <h6>指定选择范围[2018-04-09至2014-04-15]</h6>
+          <app-datepicker 
+            [id]="'range'" 
+            [clearBtn]="true" 
+            [autoclose]="false" 
+            [multidate]="true" 
+            [(date)]="date10" 
+            [startDate]="'2018,4,9'"
+            [endDate]="'2018,4,15'"
+            [todayHighlight]="false"
+            ></app-datepicker>
           <div>{{date10}}</div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 m-portlet__body">
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>传出原始时间格式</h6>
           <app-datepicker [id]="'displayDate'" [(original)]="date11" [dateType]="'originalDate'"></app-datepicker>
           <div>{{date11}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>无iocn</h6>
-          <app-datepicker [id]="'noicon'" [dateIcon]="false" [(date)]="date9"></app-datepicker>
-          <div>{{date9}}</div>
+          <app-datepicker [id]="'noicon'" [dateIcon]="false" [(date)]="date12"></app-datepicker>
+          <div>{{date12}}</div>
         </div>
       </div>
     </div>

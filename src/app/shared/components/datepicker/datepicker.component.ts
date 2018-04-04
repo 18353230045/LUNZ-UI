@@ -10,9 +10,9 @@ declare const $: any;
 
 export class DatepickerComponent implements OnInit, AfterViewInit {
     @Input() id: String; // input id
-    @Input() date: String = '';
-    @Input() original?: String;
-    @Input() dateType: String = 'displayDate';
+    @Input() date: any;
+    @Input() original?: any;
+    @Input() dateType?: String = 'displayDate';
     @Input() format?: String = 'yyyy年mm月dd日'; // format
     @Input() todayHighlight?: Boolean = true; // today highlight
     @Input() autoclose?: Boolean = true; // auto close
@@ -23,10 +23,12 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
     @Input() startView?: String = 'days'; // open the start view(default: days)
     @Input() minViewMode?: String = 'days'; // min select view(days,months,years)
     @Input() maxViewMode?: String = 'years'; // max select view(days,months,years)
-    @Input() orientation?: String = 'bottom'; // position(default: auto)
-
     @Input() multidate?: Boolean = false; // multidate(default: false)
     @Input() multidateSeparator?: String = ','; // multidate multidateSeparator
+    @Input() orientation?: String = 'bottom'; // position(default: auto)
+    @Input() startDate?: string; // set startDate
+    @Input() endDate?: string; // set startDate
+
 
     @Output() dateChange = new EventEmitter();
     @Output() originalChange = new EventEmitter();
@@ -36,11 +38,13 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
     ngOnInit() { };
 
     ngAfterViewInit() {
+
         this.setDatePicker();
 
         $(`.${this.id}`).click(function () {
             $(this).prev().trigger('focus');
         });
+
     };
 
     setDatePicker() {
@@ -60,6 +64,8 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
             orientation: this.orientation,   // position(default: auto)
             multidate: this.multidate,   // multidate(default: false)
             multidateSeparator: this.multidateSeparator,   // multidate multidateSeparator
+            startDate: this.startDate ? new Date(this.startDate) : null,  // set startDate
+            endDate: this.startDate ? new Date(this.endDate) : null,   // set endDate
         }).on('changeDate', (ev: any) => {
 
             if (this.dateType === 'displayDate') {

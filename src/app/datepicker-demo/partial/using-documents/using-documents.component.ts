@@ -22,9 +22,23 @@ export class UsingDocumentsComponent implements OnInit {
             {
                 name: 'date',
                 explain: '必选，组件交互入口，可使用[(date)]=\'date1\'实现双向数据绑定',
-                type: '—',
+                type: 'any',
                 optionaValue: '—',
                 defaultValue: '-'
+            },
+            {
+                name: 'original',
+                explain: '可选，当配置传出原始时间格式的可用，用于组件交互入口，可使用[(original)]=\'date1\'实现双向数据绑定',
+                type: 'any',
+                optionaValue: '—',
+                defaultValue: '-'
+            },
+            {
+                name: 'dateType',
+                explain: '可选，配置组件传出时间类型',
+                type: 'String',
+                optionaValue: 'displayDate,originalDate',
+                defaultValue: 'displayDate'
             },
             {
                 name: 'format',
@@ -69,6 +83,13 @@ export class UsingDocumentsComponent implements OnInit {
                 defaultValue: 'false'
             },
             {
+                name: 'dateIcon',
+                explain: '可选，控件图标',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'true'
+            },
+            {
                 name: 'startView',
                 explain: '可选，打开时的视图',
                 type: 'String',
@@ -109,6 +130,20 @@ export class UsingDocumentsComponent implements OnInit {
                 type: 'String',
                 optionaValue: 'left,right,bottom,auto,top left,top right,auto top,auto bottom',
                 defaultValue: 'bottom'
+            },
+            {
+                name: 'startDate',
+                explain: '可选，设定开始日期',
+                type: 'string',
+                optionaValue: '—',
+                defaultValue: '-'
+            },
+            {
+                name: 'endDate',
+                explain: '可选，设定结束日期',
+                type: 'string',
+                optionaValue: '—',
+                defaultValue: '-'
             }
         ];
     };

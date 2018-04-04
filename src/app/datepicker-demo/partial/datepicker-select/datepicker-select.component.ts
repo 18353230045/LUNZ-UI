@@ -18,6 +18,7 @@ export class DatepickerSelectComponent implements OnInit {
     date9: String;
     date10: String;
     date11: String;
+    date12: String;
 
     constructor() { };
 
