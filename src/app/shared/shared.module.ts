@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
@@ -23,6 +23,7 @@ import { DropdownSelectionComponent } from './components/dropdown-selection/drop
 import { SelectSelectionComponent } from './components/select-selection/select-selection.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { InputTextComponent } from './components/input-text/input-text.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 
@@ -48,7 +49,8 @@ export function createDecimalPipe() {
         RouterModule,
         NgxDatatableModule,
         FileUploaderModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
 
     declarations: [
@@ -65,6 +67,7 @@ export function createDecimalPipe() {
         SelectSelectionComponent,
         DatepickerComponent,
         TabsComponent,
+        InputTextComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
@@ -72,6 +75,7 @@ export function createDecimalPipe() {
         LaddaDirective,
 
         RmbPipe,
+
 
 
     ],
@@ -90,6 +94,7 @@ export function createDecimalPipe() {
         SelectSelectionComponent,
         DatepickerComponent,
         TabsComponent,
+        InputTextComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
