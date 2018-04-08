@@ -8,10 +8,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export class SelectSelectionComponent implements OnInit {
     @Input() selects: Array<any> = [];
-    @Input() label: String;
-    @Input() showType?: String = 'inline';
     @Input() model: any = '';
     @Input() clear?: Boolean = false;
+    @Input() disabled?: Boolean = false;
 
     @Output() modelChange = new EventEmitter();
 

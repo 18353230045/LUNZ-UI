@@ -20,25 +20,18 @@ export class UsingDocumentsComponent implements OnInit {
                 defaultValue: '-'
             },
             {
-                name: 'label',
-                explain: '必选，label标签名',
-                type: 'String',
-                optionaValue: '—',
-                defaultValue: '-'
-            },
-            {
-                name: 'showType',
-                explain: '可选，显示类型（inline,block）',
-                type: 'String',
-                optionaValue: 'inline,block',
-                defaultValue: 'inline'
-            },
-            {
                 name: 'model',
                 explain: '组件交互的入口，可使用[(model)]=\'selectValue1\'实现双向数据绑定',
                 type: '—',
                 optionaValue: '—',
                 defaultValue: '-'
+            },
+            {
+                name: 'disabled',
+                explain: '可选，对组件进行禁用',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'false'
             },
             {
                 name: 'clear',
@@ -48,7 +41,7 @@ export class UsingDocumentsComponent implements OnInit {
                 defaultValue: 'false'
             },
             {
-                name: 'disabled',
+                name: 'item项禁用',
                 explain: '当item项禁选时，数据对象添加‘disabled：true’字段即可',
                 type: '—',
                 optionaValue: '—',

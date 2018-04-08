@@ -41,7 +41,7 @@ export class DropdownSelectionComponent implements OnInit {
                 this.dropText = `${item.text}`;
                 this.isEmpty = false;
             } else {
-                this.dropText += `${this.separateCharacter}${item.text}`;
+                this.dropText += `${this.separateCharacter} ${item.text}`;
             }
             this.selected.emit(item);
             return;

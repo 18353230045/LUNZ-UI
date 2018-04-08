@@ -11,11 +11,13 @@ export class SelectDemoComponent implements OnInit {
     selects2: Array<any> = [];
     selects3: Array<any> = [];
     selects4: Array<any> = [];
+    selects5: Array<any> = [];
 
     selectValue1: any;
     selectValue2: any;
-    selectValue3: any = '03';
-    selectValue4: any;
+    selectValue3: any;
+    selectValue4: any = '03';
+    selectValue5: any;
 
     constructor() { };
 
@@ -31,7 +33,7 @@ export class SelectDemoComponent implements OnInit {
 
         this.selects2 = [
             { text: '一0二班', value: '01' },
-            { text: '一0三班', value: '02', disabled: true },
+            { text: '一0三班', value: '02' },
             { text: '一0四班', value: '03' },
             { text: '一0五班', value: '04' },
             { text: '一0六班', value: '05' },
@@ -40,7 +42,7 @@ export class SelectDemoComponent implements OnInit {
 
         this.selects3 = [
             { text: 'A组', value: '01' },
-            { text: 'B组', value: '02' },
+            { text: 'B组', value: '02', disabled: true },
             { text: 'C组', value: '03' },
             { text: 'D组', value: '04' },
             { text: 'E组', value: '05' },
@@ -56,9 +58,15 @@ export class SelectDemoComponent implements OnInit {
             { text: '六楼', value: '06' }
         ];
 
+        this.selects5 = [
+            { text: '一楼', value: '01' },
+            { text: '二楼', value: '02' },
+            { text: '三楼', value: '03' },
+            { text: '四楼', value: '04' },
+            { text: '五楼', value: '05' },
+            { text: '六楼', value: '06' }
+        ];
+
     };
 
-    clear() {
-        this.selectValue4 = null;
-    };
 }

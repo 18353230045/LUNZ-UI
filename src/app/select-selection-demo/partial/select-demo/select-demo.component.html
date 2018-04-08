@@ -23,27 +23,33 @@
       <div class="row">
         <!-- 默认 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
-          <h6>默认(内联/无清除/无默认值)</h6>
-          <app-select-selection [label]="'年级'" [selects]="selects1" [(model)]="selectValue1"></app-select-selection>
+          <h6>默认(无清除/无默认值)</h6>
+          <app-select-selection [selects]="selects1" [(model)]="selectValue1"></app-select-selection>
           <p>你选择的值为：{{selectValue1}}</p>
+        </div>
+        <!-- 禁用 -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <h6>禁用</h6>
+          <app-select-selection [selects]="selects2" [(model)]="selectValue2" [disabled]="true"></app-select-selection>
+          <p>你选择的值为：{{selectValue2}}</p>
         </div>
         <!-- item禁用 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
-          <h6>第二项禁选(块级)</h6>
-          <app-select-selection [label]="'班级'" [selects]="selects2" [(model)]="selectValue2" [showType]="'block'"></app-select-selection>
-          <p>你选择的值为：{{selectValue2}}</p>
+          <h6>第二项禁选</h6>
+          <app-select-selection [selects]="selects3" [(model)]="selectValue3"></app-select-selection>
+          <p>你选择的值为：{{selectValue3}}</p>
         </div>
         <!-- 默认选中 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>默认值</h6>
-          <app-select-selection [label]="'小组'" [selects]="selects3" [(model)]="selectValue3"></app-select-selection>
-          <p>你选择的值为：{{selectValue3}}</p>
+          <app-select-selection [selects]="selects4" [(model)]="selectValue4"></app-select-selection>
+          <p>你选择的值为：{{selectValue4}}</p>
         </div>
         <!-- 可清除值 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>可清除</h6>
-          <app-select-selection [label]="'楼层'" [selects]="selects4" [(model)]="selectValue4" [clear]="true" (clearEventer)="clear()"></app-select-selection>
-          <p>你选择的值为：{{selectValue4}}</p>
+          <app-select-selection [selects]="selects5" [(model)]="selectValue5" [clear]="true"></app-select-selection>
+          <p>你选择的值为：{{selectValue5}}</p>
         </div>
       </div>
     </div>
