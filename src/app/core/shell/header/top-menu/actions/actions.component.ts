@@ -186,7 +186,6 @@ export class ActionsComponent implements OnInit {
             this.log.warn(`最多添加5个模块！`);
             return;
         }
-        console.log(this.temporaryList);
 
         localStorage.setItem(`myOperationMyModelList`, JSON.stringify(this.temporaryList));
 
