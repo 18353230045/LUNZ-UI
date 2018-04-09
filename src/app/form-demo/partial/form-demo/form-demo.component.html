@@ -1,0 +1,136 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">form表单</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [ladda]="saving" type="button" (click)="submit()">
+            <span>
+              <i class="la la-check"></i>
+              <span>保存</span>
+            </span>
+          </button>
+        </li>
+        <li class="m-portlet__nav-item">
+          <button class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" type="button" (click)="location.back()">
+            <span>
+              <i class="la la-rotate-left"></i>
+              <span>取消</span>
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <form (submit)="submit()">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm6">
+            <div class="form-group">
+              <label>
+                <span>订单摘要</span>
+                <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" placeholder="订单摘要" />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm6">
+            <div class="m-form__group form-group">
+              <label>
+                <span>订单类别</span>
+                <span class="text-danger">*</span>
+              </label>
+              <div class="m-radio-inline">
+                <label class="m-radio">
+                  <input type="radio" name="example_3" value="1"> I类
+                  <span></span>
+                </label>
+                <label class="m-radio">
+                  <input type="radio" name="example_3" value="2"> II类
+                  <span></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm6">
+            <div class="m-form__group form-group">
+              <label>
+                <span>订单属性</span>
+              </label>
+              <div class="m-checkbox-inline">
+                <label class="m-checkbox">
+                  <input type="checkbox"> 属性一
+                  <span></span>
+                </label>
+                <label class="m-checkbox">
+                  <input type="checkbox"> 属性二
+                  <span></span>
+                </label>
+                <label class="m-checkbox">
+                  <input type="checkbox"> 属性三
+                  <span></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>
+                <span>日期</span>
+                <span class="text-danger">*</span>
+              </label>
+              <app-datepicker [id]="'date'" [format]="'yyyy-mm-dd'" [clearBtn]="true" [autoclose]="true" [(date)]="date9"></app-datepicker>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>
+                <span>从何处了解本站？</span>
+                <span class="text-danger">*</span>
+              </label>
+              <select class="form-control">
+                <option value="123">123</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>
+                <span>单价</span>
+                <span class="text-danger">*</span>
+              </label>
+              <input type="number" class="form-control" placeholder="单价" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>
+                <span>数量</span>
+                <span class="text-danger">*</span>
+              </label>
+              <input type="number" class="form-control" placeholder="数量" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>金额</label>
+              <span class="form-control">12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

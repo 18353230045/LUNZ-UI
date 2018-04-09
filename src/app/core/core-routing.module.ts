@@ -23,6 +23,7 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../datepicker-demo/datepicker-demo.module#DatepickerDemoModule' },
     { path: '', loadChildren: '../tabs-demo/tabs-demo.module#TabsDemoModule' },
     // { path: '', loadChildren: '../input-text-demo/input-text-demo.module#InputTextDemoModule' }
+    { path: '', loadChildren: '../form-demo/form-demo.module#FormDemoModule' }
 ]);
 
 @NgModule({
