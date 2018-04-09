@@ -32,7 +32,7 @@ export class FormValidatorComponent implements OnInit {
             minDate: [null, [CustomValidators.minDate('2018-03-07')]],
             maxDate: [null, [CustomValidators.maxDate('2018-03-07')]],
             dateRange: [null, [CustomValidators.minDate('2018-03-01'), CustomValidators.maxDate('2018-03-07')]],
-            phone: [null, [Validators.pattern(/^((0\d{2,3}-\d{7,8})|(1[3|4|5|7|8][0-9]\d{8}))$/)]],
+            phone: [null, [Validators.pattern(/^((0\d{2,3}-\d{7,8})|(1[3|4|5|6|7|8|9][0-9]\d{8}))$/)]],
             url: [null, [CustomValidators.url]],
             password: password,
             equalTo: certainPassword
