@@ -131,7 +131,11 @@ export class ActionsComponent implements OnInit {
             this.myOperationMyModelList.forEach((itemt: any) => {
                 if (item.name === itemt.name) {
                     item.checked = true;
-                };
+
+                    if (item.children.length === 0) {
+                        this.temporaryList.push(item);
+                    }
+                }
             });
 
             item.children.forEach((row: any) => {
@@ -182,6 +186,7 @@ export class ActionsComponent implements OnInit {
             this.log.warn(`最多添加5个模块！`);
             return;
         }
+        console.log(this.temporaryList);
 
         localStorage.setItem(`myOperationMyModelList`, JSON.stringify(this.temporaryList));
 
