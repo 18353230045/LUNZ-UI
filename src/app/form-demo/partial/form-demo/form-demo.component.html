@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="m-portlet__body">
-    <form (submit)="submit()">
+    <form [formGroup]="form" (submit)="submit()">
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm6">
@@ -39,7 +39,11 @@
                 <span>订单摘要</span>
                 <span class="text-danger">*</span>
               </label>
-              <input type="text" class="form-control" placeholder="订单摘要" />
+              <input type="text" class="form-control" placeholder="订单摘要" formControlName="required" id="date" [(ngModel)]="nihao" appDatepicker [clearBtn]="true" [format]="'yyyy-mm-dd'"/>
+              <app-validation-message [control]="form.controls['required']" label="订单摘要"></app-validation-message>
+              <div>
+                  {{nihao}}
+              </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-4 col-sm6">
@@ -50,11 +54,11 @@
               </label>
               <div class="m-radio-inline">
                 <label class="m-radio">
-                  <input type="radio" name="example_3" value="1"> I类
+                  <input type="radio" name="example_3" value="1" /> I类
                   <span></span>
                 </label>
                 <label class="m-radio">
-                  <input type="radio" name="example_3" value="2"> II类
+                  <input type="radio" name="example_3" value="2" /> II类
                   <span></span>
                 </label>
               </div>
@@ -67,15 +71,15 @@
               </label>
               <div class="m-checkbox-inline">
                 <label class="m-checkbox">
-                  <input type="checkbox"> 属性一
+                  <input type="checkbox" /> 属性一
                   <span></span>
                 </label>
                 <label class="m-checkbox">
-                  <input type="checkbox"> 属性二
+                  <input type="checkbox" /> 属性二
                   <span></span>
                 </label>
                 <label class="m-checkbox">
-                  <input type="checkbox"> 属性三
+                  <input type="checkbox" /> 属性三
                   <span></span>
                 </label>
               </div>
@@ -89,7 +93,7 @@
                 <span>日期</span>
                 <span class="text-danger">*</span>
               </label>
-              <app-datepicker [id]="'date'" [format]="'yyyy-mm-dd'" [clearBtn]="true" [autoclose]="true" [(date)]="date9"></app-datepicker>
+              <!-- <app-datepicker [id]="'date'" [forma?t]="'yyyy-mm-dd'" [clearBtn]="true" [autoclose]="true" [(date)]="date9"></app-datepicker> -->
             </div>
           </div>
           <div class="col-md-6">

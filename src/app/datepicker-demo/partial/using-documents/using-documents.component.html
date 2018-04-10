@@ -27,11 +27,11 @@
           <br/>&#125;);</code>
       </li>
       <li>
-        <span>2、.component.html中，直接引用组件标签，如：</span>
+        <span>2、.component.html中，直接在input标签上添加‘appDatepicker’指令，给input标签传入id（必须），如：</span>
       </li>
       <li>
         <code>
-          &lt;app-datepicker [id]="'default'" [(date)]="date"&gt;&lt;/app-datepicker&gt;
+          &lt;input class="form-control" type="text" id="default" appDatepicker [(ngModel)]="date" /&gt;
         </code>
       </li>
       <li>

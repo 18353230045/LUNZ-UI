@@ -13,13 +13,6 @@ export class UsingDocumentsComponent implements OnInit {
     ngOnInit() {
         this.paramsList = [
             {
-                name: 'id',
-                explain: '必选，input框标签id，用于绑定时间选择事件',
-                type: 'String',
-                optionaValue: '—',
-                defaultValue: '-'
-            },
-            {
                 name: 'date',
                 explain: '必选，组件交互入口，可使用[(date)]=\'date1\'实现双向数据绑定',
                 type: 'any',
@@ -42,7 +35,7 @@ export class UsingDocumentsComponent implements OnInit {
             },
             {
                 name: 'format',
-                explain: '可选，日期格式化',
+                explain: `可选，日期格式化，当需要传出原始时间格式时，format需传入空字符串，如：[format]=""`,
                 type: 'String',
                 optionaValue: '可通过d，dd，D，DD，m，mm，M，MM，yy，yyyy任意组合',
                 defaultValue: 'yyyy年mm月dd日'
@@ -81,13 +74,6 @@ export class UsingDocumentsComponent implements OnInit {
                 type: 'Boolean',
                 optionaValue: 'true,false',
                 defaultValue: 'false'
-            },
-            {
-                name: 'dateIcon',
-                explain: '可选，控件图标',
-                type: 'Boolean',
-                optionaValue: 'true,false',
-                defaultValue: 'true'
             },
             {
                 name: 'startView',

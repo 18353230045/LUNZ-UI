@@ -16,7 +16,7 @@ export class FormValidatorComponent implements OnInit {
     form: FormGroup;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: FormBuilder
     ) {
         this.form = this.formBuilder.group({
             required: [null, [Validators.required]],

@@ -20,8 +20,7 @@ export class DatepickerSelectComponent implements OnInit {
     date11: String;
     date12: String;
 
-    constructor() { };
+    constructor( ) { };
 
     ngOnInit() { };
-
 };
