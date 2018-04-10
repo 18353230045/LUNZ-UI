@@ -12,8 +12,7 @@ import { CustomValidators } from 'ng2-validation';
 
 export class FormDemoComponent implements OnInit {
     form: FormGroup;
-    date9: any;
-    nihao: any;
+    date: any;
 
     constructor(
         private formBuilder: FormBuilder

@@ -39,11 +39,7 @@
                 <span>订单摘要</span>
                 <span class="text-danger">*</span>
               </label>
-              <input type="text" class="form-control" placeholder="订单摘要" formControlName="required" id="date" [(ngModel)]="nihao" appDatepicker [clearBtn]="true" [format]="'yyyy-mm-dd'"/>
-              <app-validation-message [control]="form.controls['required']" label="订单摘要"></app-validation-message>
-              <div>
-                  {{nihao}}
-              </div>
+              <input type="text" class="form-control" placeholder="订单摘要" />
             </div>
           </div>
           <div class="col-lg-4 col-md-4 col-sm6">
@@ -93,7 +89,13 @@
                 <span>日期</span>
                 <span class="text-danger">*</span>
               </label>
-              <!-- <app-datepicker [id]="'date'" [forma?t]="'yyyy-mm-dd'" [clearBtn]="true" [autoclose]="true" [(date)]="date9"></app-datepicker> -->
+              <div class="input-group">
+                <input class="form-control" type="text" id="todayBtn" appDatepicker [clearBtn]="true" [(ngModel)]="date" formControlName="required" />
+                <span class="input-group-addon default">
+                    <i class="la la-calendar"></i>
+                </span>
+            </div>
+            <app-validation-message [control]="form.controls['required']" label="日期"></app-validation-message>
             </div>
           </div>
           <div class="col-md-6">
