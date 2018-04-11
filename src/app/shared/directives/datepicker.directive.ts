@@ -26,7 +26,6 @@ export class DatepickerDirective implements OnInit, AfterViewInit {
     @Input() endDate?: string; // set startDate
 
     @Output() ngModelChange = new EventEmitter();
-    @Output() originalChange = new EventEmitter();
 
     constructor(private el: ElementRef) { };
 

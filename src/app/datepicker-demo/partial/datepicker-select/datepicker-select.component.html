@@ -141,14 +141,14 @@
           <div>{{date9}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>指定选择范围[2018-04-09至2018-04-15]</h6>
+          <h6>指定最小选择日期2018-04-09</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="range" appDatepicker 
+            <input class="form-control" type="text" id="minDate" appDatepicker 
                 [clearBtn]="true" 
-                [autoclose]="false" 
+                [autoclose]="true"
                 [multidate]="true"
-                [startDate]="'2018,4,9'" 
-                [endDate]="'2018,4,15'" 
+                [startDate]="'2018,4,9'"
+                [endDate]="'8018,04,15'"
                 [todayHighlight]="false" 
                 [(ngModel)]="date10" />
             <span class="input-group-addon default">
@@ -158,12 +158,15 @@
           <div>{{date10}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>传出原始时间格式</h6>
+          <h6>指定最大选择日期2018-04-15</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="displayDate" appDatepicker 
-                [dateType]="'originalDate'"
-                [(ngModel)]="date11" 
-                [format]="" />
+            <input class="form-control" type="text" id="maxDate" appDatepicker 
+                [clearBtn]="true" 
+                [autoclose]="true" 
+                [startDate]="'1018,04,09'" 
+                [endDate]="'2018,04,15'" 
+                [todayHighlight]="false" 
+                [(ngModel)]="date11" />
             <span class="input-group-addon default">
               <i class="la la-calendar"></i>
             </span>
@@ -171,11 +174,41 @@
           <div>{{date11}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>无iocn</h6>
+          <h6>指定选择范围[2018-04-09至2018-04-15]</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="noicon" appDatepicker [(ngModel)]="date12" />
+            <input class="form-control" type="text" id="range" appDatepicker 
+                [clearBtn]="true" 
+                [autoclose]="true" 
+                [multidate]="true"
+                [startDate]="'2018,04,09'" 
+                [endDate]="'2018,04,15'" 
+                [todayHighlight]="false" 
+                [(ngModel)]="date12" />
+            <span class="input-group-addon default">
+              <i class="la la-calendar"></i>
+            </span>
           </div>
           <div>{{date12}}</div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
+          <h6>传出原始时间格式</h6>
+          <div class="input-group">
+            <input class="form-control" type="text" id="displayDate" appDatepicker 
+                [dateType]="'originalDate'"
+                [(ngModel)]="date13" 
+                [format]="" />
+            <span class="input-group-addon default">
+              <i class="la la-calendar"></i>
+            </span>
+          </div>
+          <div>{{date13}}</div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
+          <h6>无iocn</h6>
+          <div class="input-group">
+            <input class="form-control" type="text" id="noicon" appDatepicker [(ngModel)]="date14" />
+          </div>
+          <div>{{date14}}</div>
         </div>
       </div>
     </div>
