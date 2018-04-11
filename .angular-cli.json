@@ -32,6 +32,9 @@
       "../node_modules/signalr/jquery.signalR.js",
       "../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
       "../node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js",
+      "../node_modules/_highcharts@5.0.15@highcharts/highcharts.js",
+      "../node_modules/_highcharts@5.0.15@highcharts/highcharts-3d.js",
+      "../node_modules/_highcharts@5.0.15@highcharts/modules/exporting.js",
 
       "assets/js/framework/base/app.js",
       "assets/js/framework/base/util.js",
@@ -48,6 +51,8 @@
       "assets/js/framework/components/general/quicksearch.js",
       "assets/js/framework/components/general/scroll-top.js",
       "assets/js/framework/components/general/toggle.js",
+    
+      "assets/js/framework/components/plugins/Highcharts/Highcharts.setOptions.js",
       
       "assets/js/default/base/layout.js",
       "assets/js/snippets/custom/pages/user/login.js"

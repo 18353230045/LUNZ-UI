@@ -7,6 +7,8 @@ import { ChartDemoRoutingModule } from './chart-demo-routing.module';
 import { ChartComponent } from './partial/chart/chart.component';
 import { UsingDocumentsComponent } from './partial/using-documents/using-documents.component';
 
+import { ChartsService } from './shared/charts.service';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -16,6 +18,10 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
     declarations: [
         ChartComponent,
         UsingDocumentsComponent
+    ],
+
+    providers: [
+        ChartsService
     ]
 })
 
