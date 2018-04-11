@@ -10,7 +10,7 @@ export class DatepickerDirective implements OnInit, AfterViewInit {
     @Input() ngModel?: any;
     @Input() original?: any;
     @Input() dateType?: String = 'displayDate';
-    @Input() format?: String = 'yyyy年mm月dd日'; // format
+    @Input() format?: String = 'yyyy-mm-dd'; // format
     @Input() todayHighlight?: Boolean = true; // today highlight
     @Input() autoclose?: Boolean = true; // auto close
     @Input() calendarWeeks?: Boolean = false; // show left week
