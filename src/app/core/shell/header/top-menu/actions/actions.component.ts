@@ -30,7 +30,7 @@ export class ActionsComponent implements OnInit {
     // 定义点击tree item事件
     actionMapping: IActionMapping = {
         mouse: {
-            click: (tree, node) => this.handle(event, node)
+            click: (tree, node) => this.handle(node)
         }
     };
 
@@ -155,7 +155,7 @@ export class ActionsComponent implements OnInit {
         this.addModel = true;
     };
 
-    handle(event: any, modelList: any) {
+    handle(modelList: any) {
         if (modelList.data.children.length > 0) {
             return;
         }
