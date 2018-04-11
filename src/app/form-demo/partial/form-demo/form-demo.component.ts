@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { CustomValidators } from 'ng2-validation';
@@ -12,31 +13,38 @@ import { CustomValidators } from 'ng2-validation';
 
 export class FormDemoComponent implements OnInit {
     form: FormGroup;
-    date: any;
+    price: Number;
+    num: Number;
+    saving = false;
 
     constructor(
+        public location: Location,
         private formBuilder: FormBuilder
     ) {
         this.form = this.formBuilder.group({
-            required: [null, [Validators.required]],
-            // email: [null, [CustomValidators.email]],
-            // number: [null, [CustomValidators.number]],
-            // min: [null, [CustomValidators.number, CustomValidators.min(5)]],
-            // max: [null, [CustomValidators.number, CustomValidators.max(5)]],
-            // numberRange: [null, [CustomValidators.number, CustomValidators.min(5), CustomValidators.max(10)]],
-            // maxLength: [null, [Validators.maxLength(5)]],
-            // minLength: [null, [Validators.minLength(5)]],
-            // lengthRange: [null, [Validators.minLength(5), Validators.maxLength(10)]],
-            // date: [null, [CustomValidators.date]],
-            // minDate: [null, [CustomValidators.minDate('2018-03-07')]],
-            // maxDate: [null, [CustomValidators.maxDate('2018-03-07')]],
-            // dateRange: [null, [CustomValidators.minDate('2018-03-01'), CustomValidators.maxDate('2018-03-07')]],
-            // phone: [null, [Validators.pattern(/^((0\d{2,3}-\d{7,8})|(1[3|4|5|6|7|8|9][0-9]\d{8}))$/)]],
-            // url: [null, [CustomValidators.url]]
+            category: [null, [Validators.required]],
+            whereUnderstand: [null, [Validators.required]],
+            price: [null, [Validators.required]],
+            email: [null, [CustomValidators.email]],
+            abstract: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+            numberRange: [null, [Validators.required, CustomValidators.number, CustomValidators.min(1),
+            CustomValidators.max(10)]],
+            date: [null, [Validators.required, CustomValidators.date]],
+            phone: [null, [Validators.pattern(/^((0\d{2,3}-\d{7,8})|(1[3|4|5|6|7|8|9][0-9]\d{8}))$/)]],
         });
-    }
+    };
 
     ngOnInit() {
-    }
 
-}
+    };
+
+    submit() {
+        // some code
+
+        this.saving = true;
+
+        setTimeout(() => {
+            this.location.back();
+        }, 2000);
+    }
+};

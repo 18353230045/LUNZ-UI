@@ -11,7 +11,8 @@
     <div class="m-portlet__head-tools">
       <ul class="m-portlet__nav">
         <li class="m-portlet__nav-item">
-          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [ladda]="saving" type="button" (click)="submit()">
+          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [disabled]="form.invalid" [ladda]="saving" type="button"
+            (click)="submit()">
             <span>
               <i class="la la-check"></i>
               <span>保存</span>
@@ -26,6 +27,11 @@
             </span>
           </button>
         </li>
+        <li class="m-portlet__nav-item" [routerLink]="['using-documents']">
+          <button class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
       </ul>
     </div>
   </div>
@@ -33,37 +39,41 @@
     <form [formGroup]="form" (submit)="submit()">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm6">
+          <div class="col-lg-12 col-md-12 col-sm12">
             <div class="form-group">
               <label>
-                <span>订单摘要</span>
+                <span>摘要</span>
                 <span class="text-danger">*</span>
               </label>
-              <input type="text" class="form-control" placeholder="订单摘要" />
+              <input type="text" class="form-control" formControlName="abstract" placeholder="摘要" />
+              <app-validation-message [control]="form.controls['abstract']" label="摘要"></app-validation-message>
             </div>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm6">
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm6">
             <div class="m-form__group form-group">
               <label>
-                <span>订单类别</span>
+                <span>类别</span>
                 <span class="text-danger">*</span>
               </label>
               <div class="m-radio-inline">
                 <label class="m-radio">
-                  <input type="radio" name="example_3" value="1" /> I类
+                  <input type="radio" name="category" formControlName="category" value="1" /> I类
                   <span></span>
                 </label>
                 <label class="m-radio">
-                  <input type="radio" name="example_3" value="2" /> II类
+                  <input type="radio" name="category" formControlName="category" value="2" /> II类
                   <span></span>
                 </label>
               </div>
+              <app-validation-message [control]="form.controls['category']" label="类别"></app-validation-message>
             </div>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm6">
+          <div class="col-lg-6 col-md-6 col-sm6">
             <div class="m-form__group form-group">
               <label>
-                <span>订单属性</span>
+                <span>属性</span>
               </label>
               <div class="m-checkbox-inline">
                 <label class="m-checkbox">
@@ -90,12 +100,13 @@
                 <span class="text-danger">*</span>
               </label>
               <div class="input-group">
-                <input class="form-control" type="text" id="todayBtn" appDatepicker [clearBtn]="true" [(ngModel)]="date" formControlName="required" />
+                <input class="form-control" type="text" id="todayBtn" appDatepicker [clearBtn]="true" [(ngModel)]="date" formControlName="date"
+                />
                 <span class="input-group-addon default">
-                    <i class="la la-calendar"></i>
+                  <i class="la la-calendar"></i>
                 </span>
-            </div>
-            <app-validation-message [control]="form.controls['required']" label="日期"></app-validation-message>
+              </div>
+              <app-validation-message [control]="form.controls['date']" label="日期"></app-validation-message>
             </div>
           </div>
           <div class="col-md-6">
@@ -104,9 +115,36 @@
                 <span>从何处了解本站？</span>
                 <span class="text-danger">*</span>
               </label>
-              <select class="form-control">
-                <option value="123">123</option>
+              <select class="form-control" formControlName="whereUnderstand">
+                <option value="1">网络</option>
+                <option value="2">朋友介绍</option>
+                <option value="3">其他</option>
               </select>
+              <app-validation-message [control]="form.controls['whereUnderstand']" label="从何处了解本站"></app-validation-message>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>
+                <span>电话</span>
+              </label>
+              <div class="input-group">
+                <input class="form-control" type="text" formControlName="phone" />
+              </div>
+              <app-validation-message [control]="form.controls['phone']" label="电话" [validationMessages]="{pattern:'请输入11位手机号或固定电话号([区号]-[电话号])。'}"></app-validation-message>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>
+                <span>邮箱</span>
+              </label>
+              <div class="input-group">
+                <input class="form-control" type="text" formControlName="email" />
+              </div>
+              <app-validation-message [control]="form.controls['email']" label="邮箱"></app-validation-message>
             </div>
           </div>
         </div>
@@ -117,7 +155,8 @@
                 <span>单价</span>
                 <span class="text-danger">*</span>
               </label>
-              <input type="number" class="form-control" placeholder="单价" />
+              <input type="number" class="form-control" [(ngModel)]="price" placeholder="单价" formControlName="price" />
+              <app-validation-message [control]="form.controls['price']" label="单价"></app-validation-message>
             </div>
           </div>
           <div class="col-md-4">
@@ -126,13 +165,14 @@
                 <span>数量</span>
                 <span class="text-danger">*</span>
               </label>
-              <input type="number" class="form-control" placeholder="数量" />
+              <input type="number" class="form-control" [(ngModel)]="num" placeholder="数量" formControlName="numberRange" />
+              <app-validation-message [control]="form.controls['numberRange']" label="数量"></app-validation-message>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label>金额</label>
-              <span class="form-control">12</span>
+              <span class="form-control">{{price*num||0}}</span>
             </div>
           </div>
         </div>
