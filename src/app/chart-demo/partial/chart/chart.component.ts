@@ -197,7 +197,7 @@ export class ChartComponent implements OnInit {
                 ]
             }]
 
-        })
+        });
     };
 
     // spline
@@ -269,26 +269,28 @@ export class ChartComponent implements OnInit {
                 }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
             }]
 
-        })
+        });
     };
 
     // switchTheme
     switchTheme(theme: any) {
         if (theme === '1') {
-            Highcharts.theme = Highcharts['theme_avocado']
+            Highcharts.theme = Highcharts['theme_avocado'];
         } else if (theme === '2') {
-            Highcharts.theme = Highcharts['theme_dark_blue']
+            Highcharts.theme = Highcharts['theme_sunset'];
         } if (theme === '3') {
-            Highcharts.theme = Highcharts['theme_gray']
+            Highcharts.theme = Highcharts['theme_gray'];
         }
         Highcharts.setOptions(Highcharts.theme);
-        // column
-        this.setColumnCharts();
-        // 3Dcolumn
-        this.set3DColumnCharts();
-        // 3Dpie
-        this.set3DPieCharts();
-        // spline
-        this.setSplineCharts();
+        setTimeout(() => {
+            // column
+            this.setColumnCharts();
+            // 3Dcolumn
+            this.set3DColumnCharts();
+            // 3Dpie
+            this.set3DPieCharts();
+            // spline
+            this.setSplineCharts();
+        }, 500);
     };
 };
