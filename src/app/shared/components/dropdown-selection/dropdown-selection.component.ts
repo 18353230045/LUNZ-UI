@@ -42,8 +42,15 @@ export class DropdownSelectionComponent implements OnInit {
                 this.dropText = `${item.text}`;
                 this.isEmpty = false;
             } else {
+                for (let i = 0; i < this.multiselectArray.length; i++) {
+                    if (item.text === this.multiselectArray[i].text) {
+                        return;
+                    }
+                }
+
                 this.dropText += `${this.separateCharacter} ${item.text}`;
             }
+
             this.multiselectArray.push(item);
             this.selected.emit(this.multiselectArray);
             return;
