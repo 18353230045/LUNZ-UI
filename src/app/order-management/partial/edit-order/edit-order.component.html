@@ -81,8 +81,8 @@
             <label>单价
               <span class="text-danger">*</span>
             </label>
-            <input type="number" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="order.price" />
-            <app-validation-message [control]="form.controls['price']" label="单价"></app-validation-message>
+            <input type="text" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="order.price" />
+            <app-validation-message [control]="form.controls['price']" label="单价" [validationMessages]="{pattern:'请输入数字'}"></app-validation-message>
           </div>
         </div>
         <div class="col-md-4">
@@ -90,8 +90,8 @@
             <label>数量
               <span class="text-danger">*</span>
             </label>
-            <input type="number" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="order.amount" />
-            <app-validation-message [control]="form.controls['amount']" label="数量"></app-validation-message>
+            <input type="text" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="order.amount" />
+            <app-validation-message [control]="form.controls['amount']" label="数量" [validationMessages]="{pattern:'请输入数字'}"></app-validation-message>
           </div>
         </div>
         <div class="col-md-4">
