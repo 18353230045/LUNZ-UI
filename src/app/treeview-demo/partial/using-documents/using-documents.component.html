@@ -8,6 +8,18 @@
         <h3 class="m-portlet__head-text">使用文档</h3>
       </div>
     </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" type="button" (click)="location.back()">
+            <span>
+              <i class="la la-rotate-left"></i>
+              <span>返回</span>
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="m-portlet__body">
     <ul>
@@ -34,41 +46,47 @@
         <span>2、.component.html中（demo）:</span>
         <br/>
         <code>
-            &lt;tree-root #tree [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"&gt;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;ng-template #treeNodeTemplate let-node="node" let-index="index"&gt;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;i class="jstree-icon jstree-themeicon m--font-success jstree-themeicon-custom ｛｛ node.data.icon ｝｝" role="presentation"&gt;&lt;/i&gt;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span (click)="getItemData(node)"&gt; ｛｛ node.data.name ｝｝&lt;/span&gt;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/ng-template&gt;<br/>
-            &lt;/tree-root&gt;<br/>
+          &lt;tree-root #tree [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"&gt;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;ng-template #treeNodeTemplate let-node="node" let-index="index"&gt;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;i class="jstree-icon jstree-themeicon m--font-success jstree-themeicon-custom
+          ｛｛ node.data.icon ｝｝" role="presentation"&gt;&lt;/i&gt;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span (click)="getItemData(node)"&gt; ｛｛ node.data.name ｝｝&lt;/span&gt;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/ng-template&gt;
+          <br/> &lt;/tree-root&gt;
+          <br/>
         </code>
       </li>
       <li>
         <span>3、.component.ts中（demo）</span>
         <br/>
         <code>
-            export class TreeviewDemoComponent implements OnInit &#123;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;nodes: Array&lt;any&gt; = []; <br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;// 配置tree选项<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;options: ITreeOptions = &#123;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allowDrag: true,  // 支持拖动位置<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getChildren: this.getChildrenList.bind(this),  // 异步加载子节点<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allowDrop: (element, &#123; parent, index &#125;) =&gt; &#123; // 拖动选项<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return parent.hasChildren;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;,<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getNodeClone: (item: any) =&gt; (&#123;  // 拖动克隆对象<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: item.node.id,<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: item.node.name<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;)<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&#125;;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;// 获取子列表<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;getChildrenList(node: any) &#123;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let newNodes: Array&lt;any&gt; = [];<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>// asyn get childnodes</small><br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Promise((resolve, reject) =&gt; &#123;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() =&gt; resolve(newNodes), 1500);<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;);<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&#125;;<br/>
-            &#125;;<br/>
+          export class TreeviewDemoComponent implements OnInit &#123;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;nodes: Array&lt;any&gt; = [];
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;// 配置tree选项
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;options: ITreeOptions = &#123;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allowDrag: true, // 支持拖动位置
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getChildren: this.getChildrenList.bind(this), // 异步加载子节点
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allowDrop: (element, &#123; parent, index &#125;) =&gt; &#123;
+          // 拖动选项
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return parent.hasChildren;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;,
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getNodeClone: (item: any) =&gt; (&#123; // 拖动克隆对象
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: item.node.id,
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: item.node.name
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;)
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&#125;;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;// 获取子列表
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;getChildrenList(node: any) &#123;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let newNodes: Array&lt;any&gt; = [];
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <small>// asyn get childnodes</small>
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Promise((resolve, reject) =&gt; &#123;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() =&gt; resolve(newNodes),
+          1500);
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;);
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&#125;;
+          <br/> &#125;;
+          <br/>
         </code>
       </li>
       <li>

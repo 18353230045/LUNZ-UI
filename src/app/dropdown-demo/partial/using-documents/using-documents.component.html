@@ -8,6 +8,18 @@
         <h3 class="m-portlet__head-text">使用文档</h3>
       </div>
     </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" type="button" (click)="location.back()">
+            <span>
+              <i class="la la-rotate-left"></i>
+              <span>返回</span>
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="m-portlet__body">
     <ul>
@@ -39,8 +51,10 @@
         <br/>
         <code>
           export class DropdownComponent implements OnInit &#123;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;options: Array&lt;any&gt; = [];<br/>
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;constructor() &#123; &#125;;<br/>
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;options: Array&lt;any&gt; = [];
+          <br/>
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;constructor() &#123; &#125;;
+          <br/>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;ngOnInit() &#123;
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.options = [
           <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123; text: 'item1', id: '01' &#125;,
