@@ -30,7 +30,7 @@ export class ActionsComponent implements OnInit {
     // 定义点击tree item事件
     actionMapping: IActionMapping = {
         mouse: {
-            click: (tree, node) => this.handle(event, node)
+            click: (tree, node) => this.handle(node)
         }
     };
 
@@ -55,8 +55,20 @@ export class ActionsComponent implements OnInit {
         this.myOperationMyModelList = this.operationService.getModeList(`myOperationMyModelList`, 0) || [];
         this.myOperationOpenHistoryList = this.operationService.getModeList(`openHistoryList`, 1) || [];
 
+        this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
+
         $('.m-menu__submenu--left').on('click', '.lz-m-menu__link', function () {
             $(this).parents('.m-menu__item--rel').removeClass('m-menu__item--open-dropdown m-menu__item--hover');
+        });
+    };
+
+    removeRepeat(arr1: Array<any>, arr2: Array<any>) {
+        arr1.forEach((item: any) => {
+            arr2.forEach((itemt, index) => {
+                if (item.name === itemt.name) {
+                    arr2.splice(index, 1);
+                }
+            });
         });
     };
 
@@ -82,10 +94,6 @@ export class ActionsComponent implements OnInit {
         }
 
         this.operationService.sortModelList(list);
-
-        list.forEach((item: any) => {
-            item.name = item.name.replace(/我的模块 /g, '');
-        });
 
         localStorage.setItem(`${moveListName}`, JSON.stringify(list));
 
@@ -121,19 +129,22 @@ export class ActionsComponent implements OnInit {
             clickNum += 1;
             item.clickNum = clickNum;
             this.myOperationMyModelList.forEach((itemt: any) => {
-                if (item.name === itemt.name.replace(/我的模块 /g, '')) {
+                if (item.name === itemt.name) {
                     item.checked = true;
-                    this.temporaryList.push(item);
-                };
+
+                    if (item.children.length === 0) {
+                        this.temporaryList.push(item);
+                    }
+                }
             });
 
             item.children.forEach((row: any) => {
                 clickNum += 1;
                 row.clickNum = clickNum;
                 this.myOperationMyModelList.forEach((itemtt: any) => {
-                    if (row.name === itemtt.name.replace(/我的模块 /g, '')) {
+                    if (row.name === itemtt.name) {
                         row.checked = true;
-
+                        item.checked = true;
                         this.temporaryList.push(row);
                     };
                 });
@@ -144,7 +155,7 @@ export class ActionsComponent implements OnInit {
         this.addModel = true;
     };
 
-    handle(event: any, modelList: any) {
+    handle(modelList: any) {
         if (modelList.data.children.length > 0) {
             return;
         }
@@ -179,10 +190,6 @@ export class ActionsComponent implements OnInit {
         localStorage.setItem(`myOperationMyModelList`, JSON.stringify(this.temporaryList));
 
         const myOperationMyModelList = JSON.parse(localStorage.getItem('myOperationMyModelList'));
-        myOperationMyModelList.forEach((item: any) => {
-            item.name = `我的模块 ${item.name}`;
-        });
-
         this.myOperationMyModelList = this.operationService.sortModelList(myOperationMyModelList);
 
         this.temporaryList = [];

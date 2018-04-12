@@ -14,7 +14,11 @@ declare const $: any;
 
 export class VehicleSelectionComponent implements OnInit {
     @Input() outputType?: String = 'model';
+    @Input() separateCharacter?: String = '/';
+    @Input() outPutResult?: any;
+
     @Output() selected = new EventEmitter<Array<any>>();
+    @Output() outPutResultChange = new EventEmitter();
 
     log: Logger;
 
@@ -36,10 +40,10 @@ export class VehicleSelectionComponent implements OnInit {
 
     letterActive: String = 'A';
     filterString: any = '';
-    outPutBrand: string;
-    outPutSeries: string;
-    outPutModel: string;
-    outPutResult: String = `选择车品牌/车系/车型`;
+    outPutBrand: String = '品牌';
+    outPutSeries: String = '车系';
+    outPutModel: String = '车型';
+    showResult: String;
 
     constructor(
         private vehicleService: VehicleService,
@@ -51,14 +55,15 @@ export class VehicleSelectionComponent implements OnInit {
     ngOnInit() {
         this.getLetterList();
         this.getCarbrand(`A`);
+        this.showResult = this.outPutResult || `选择车品牌${this.separateCharacter}车系${this.separateCharacter}车型`;
     };
 
-    // 获取字母表
+    // get alphabet
     getLetterList() {
         this.letterList = this.vehicleService.letterList();
     };
 
-    // 处理车系数据
+    // handling vehicle data
     handleCarSeriesData(obj: any) {
         const arr: Array<any> = [];
         let assembleObj = {
@@ -87,7 +92,7 @@ export class VehicleSelectionComponent implements OnInit {
         return arr;
     };
 
-    // 处理车型数据
+    // processing model data
     handleCarModelsData(obj: any) {
         const arr: Array<any> = [];
         let assembleObj = {
@@ -125,7 +130,7 @@ export class VehicleSelectionComponent implements OnInit {
         return arr;
     };
 
-    // 获取车品牌
+    // get car brand
     getCarbrand(code: string) {
         this.vehicleService.getCarbrand(code).subscribe(Response => {
             this.carBrandList = Response;
@@ -134,51 +139,48 @@ export class VehicleSelectionComponent implements OnInit {
         });
     };
 
-    removeClass(element: any, className: any) {
-        element.className = element.className.replace(new RegExp(className), '');
-    }
-
-
-
-    // 获取车系列
+    // get car series
     getCarSeries(item: any) {
         if (this.outputType === `brand`) {
-            this.outPutResult = item.tree.name;
+            this.showResult = item.tree.name;
+            this.outPutBrand = item.tree.name;
+            this.outPutResult = item;
+
             this.outGoingList = {
                 carBrandName: item.tree.name,
                 carBrandId: item.tree.id
             };
 
-            this.selected.emit(this.outGoingList);
+            this.outPutResultChange.emit(this.outGoingList);
 
-            // let dropdown = document.getElementById('dropdown');
-            // let className = dropdown.className;
-
-            // if (className.indexOf('m-dropdown--open') > 0) {
-            //     this.removeClass(dropdown, 'm-dropdown--open');
-            // }
+            $('.m-dropdown.m-dropdown--open').each(function () {
+                $(this).mDropdown().hide();
+            });
 
             return;
 
         } else if (this.outputType === `series`) {
             this.outPutBrand = `${item.tree.name}`;
-            this.outPutResult = `${item.tree.name}/车系/车型`;
+            // this.outPutResult = `${item.tree.name}${this.separateCharacter}车系${this.separateCharacter}车型`;
             this.outGoingList = {
                 carBrandName: item.tree.name,
                 carBrandId: item.tree.id
             };
         } else if (this.outputType === `model`) {
             this.outPutBrand = item.tree.name;
-            this.outPutResult = item.tree.name;
+            // this.outPutResult = item.tree.name;
             this.outGoingList = {
                 carBrandName: item.tree.name,
                 carBrandId: item.tree.id
             };
         }
+
         this.vehicleService.getCarSeries(item.tree.id).subscribe(Response => {
             this.carSeriesList = this.handleCarSeriesData(Response);
             this.carSeriesFilterList = this.handleCarSeriesData(Response);
-            this.carSeriesNav = false;
+
+            this.carSeriesNav = true;
+            this.carModelNav = true;
             this.carBrand = true;
             this.carSeries = false;
             this.carModels = true;
@@ -187,35 +189,44 @@ export class VehicleSelectionComponent implements OnInit {
         });
     };
 
-    // 获取车型
+    // get car model
     getCarModels(item: any) {
+        console.log(item);
         if (item.title) {
             return;
         };
 
         if (this.outputType === `series`) {
-            this.outPutResult = `${this.outPutBrand}/${item.name}`;
+            this.showResult = `${this.outPutBrand}${this.separateCharacter}${item.name}`;
+            this.outPutSeries = item.name;
+            this.outPutResult = item;
+
+            this.carSeriesNav = false;
+
             this.outGoingList['carSeriesName'] = item.name;
             this.outGoingList['carSeriesId'] = item.id;
 
-            this.selected.emit(this.outGoingList);
+            this.outPutResultChange.emit(this.outGoingList);
+
+            $('.m-dropdown.m-dropdown--open').each(function () {
+                $(this).mDropdown().hide();
+            });
+
             return;
 
         } else if (this.outputType === `model`) {
             this.outPutSeries = `${item.name}`;
-            this.outPutResult = `${this.outPutBrand}/${item.name}/车型`;
+
+            // this.outPutResult = `${this.outPutBrand}${this.separateCharacter}${item.name}/车型`;
             this.outGoingList[`carSeriesName`] = item.name;
             this.outGoingList[`carSeriesId`] = item.id;
-        } else if (this.outputType === `model`) {
-            this.outPutSeries = item.name;
-            this.outPutResult = `${this.outPutBrand}/${item.name}`;
         }
 
         this.vehicleService.getCarModels(item.id).subscribe(Response => {
             this.carModelList = this.handleCarModelsData(Response);
             this.carModelFilterList = this.handleCarModelsData(Response);
 
-            this.carModelNav = false;
+            this.carSeriesNav = false;
             this.carBrand = true;
             this.carSeries = true;
             this.carModels = false;
@@ -224,20 +235,31 @@ export class VehicleSelectionComponent implements OnInit {
         });
     };
 
-    // 选择车型
+    // selection model
     selectCarModels(item: any) {
+        console.log(item);
         if (item.title) {
             return;
         };
 
-        this.outPutResult = `${this.outPutBrand}/${this.outPutSeries}/${item.mosaicName}`;
+        this.showResult = `${this.outPutBrand}${this.separateCharacter}
+                           ${this.outPutSeries}${this.separateCharacter}${item.mosaicName}`;
+
+        this.outPutResult = item;
+        this.outPutModel = item.mosaicName;
         this.outGoingList[`carModelInfo`] = item;
 
-        this.selected.emit(this.outGoingList);
+        this.carModelNav = false;
+
+        this.outPutResultChange.emit(this.outGoingList);
+
+        $('.m-dropdown.m-dropdown--open').each(function () {
+            $(this).mDropdown().hide();
+        });
 
     };
 
-    // 过滤车系数据
+    // filter car series data
     filterCarSeriesData(array: Array<any>) {
         this.filterTemporaryList = array.filter((item: any) => {
             const patt = new RegExp(`${this.filterString}`, `i`);
@@ -247,7 +269,7 @@ export class VehicleSelectionComponent implements OnInit {
         this.carSeriesList = this.filterTemporaryList;
     };
 
-    // 过滤车型数据
+    // filter car models data
     filterCarModelsData(array: Array<any>) {
         this.filterTemporaryList = array.filter((item: any) => {
             const patt = new RegExp(`${this.filterString}`, `i`);

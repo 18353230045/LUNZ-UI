@@ -31,6 +31,16 @@ export class FileUploadDemoComponent implements OnInit {
         };
     };
 
+    // 过滤文件
+    limit500(file: File): boolean {
+        if (file.size > 500000) {
+            this.log.info('文件超过了 500 kb.');
+            return false;
+        }
+
+        return true;
+    };
+
     // 上传成功事件
     successHandle(event: any) {
         this.log.info(`${event.commonFile.name} 上传成功!`);
@@ -65,4 +75,5 @@ export class FileUploadDemoComponent implements OnInit {
 
         // do something
     };
-}
+
+};

@@ -21,4 +21,5 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
         UsingDocumentsComponent
     ]
 })
+
 export class FileUploadModule { }

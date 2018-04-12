@@ -1,0 +1,182 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">form表单</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [disabled]="form.invalid" [ladda]="saving" type="button"
+            (click)="submit()">
+            <span>
+              <i class="la la-check"></i>
+              <span>保存</span>
+            </span>
+          </button>
+        </li>
+        <li class="m-portlet__nav-item">
+          <button class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" type="button" (click)="location.back()">
+            <span>
+              <i class="la la-rotate-left"></i>
+              <span>取消</span>
+            </span>
+          </button>
+        </li>
+        <li class="m-portlet__nav-item" [routerLink]="['using-documents']">
+          <button class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <form [formGroup]="form" (submit)="submit()">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm12">
+            <div class="form-group">
+              <label>
+                <span>摘要</span>
+                <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" formControlName="abstract" placeholder="摘要" />
+              <app-validation-message [control]="form.controls['abstract']" label="摘要"></app-validation-message>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm6">
+            <div class="m-form__group form-group">
+              <label>
+                <span>类别</span>
+                <span class="text-danger">*</span>
+              </label>
+              <div class="m-radio-inline">
+                <label class="m-radio">
+                  <input type="radio" name="category" formControlName="category" value="1" /> I类
+                  <span></span>
+                </label>
+                <label class="m-radio">
+                  <input type="radio" name="category" formControlName="category" value="2" /> II类
+                  <span></span>
+                </label>
+              </div>
+              <app-validation-message [control]="form.controls['category']" label="类别"></app-validation-message>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm6">
+            <div class="m-form__group form-group">
+              <label>
+                <span>属性</span>
+              </label>
+              <div class="m-checkbox-inline">
+                <label class="m-checkbox">
+                  <input type="checkbox" /> 属性一
+                  <span></span>
+                </label>
+                <label class="m-checkbox">
+                  <input type="checkbox" /> 属性二
+                  <span></span>
+                </label>
+                <label class="m-checkbox">
+                  <input type="checkbox" /> 属性三
+                  <span></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>
+                <span>日期</span>
+                <span class="text-danger">*</span>
+              </label>
+              <div class="input-group">
+                <input class="form-control" type="text" id="todayBtn" appDatepicker [clearBtn]="true" [(ngModel)]="date" formControlName="date"
+                />
+                <span class="input-group-addon default">
+                  <i class="la la-calendar"></i>
+                </span>
+              </div>
+              <app-validation-message [control]="form.controls['date']" label="日期"></app-validation-message>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>
+                <span>从何处了解本站？</span>
+                <span class="text-danger">*</span>
+              </label>
+              <select class="form-control" formControlName="whereUnderstand">
+                <option value="1">网络</option>
+                <option value="2">朋友介绍</option>
+                <option value="3">其他</option>
+              </select>
+              <app-validation-message [control]="form.controls['whereUnderstand']" label="从何处了解本站"></app-validation-message>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>
+                <span>电话</span>
+              </label>
+              <div class="input-group">
+                <input class="form-control" type="text" formControlName="phone" />
+              </div>
+              <app-validation-message [control]="form.controls['phone']" label="电话" [validationMessages]="{pattern:'请输入11位手机号或固定电话号([区号]-[电话号])。'}"></app-validation-message>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>
+                <span>邮箱</span>
+              </label>
+              <div class="input-group">
+                <input class="form-control" type="text" formControlName="email" />
+              </div>
+              <app-validation-message [control]="form.controls['email']" label="邮箱"></app-validation-message>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>
+                <span>单价</span>
+                <span class="text-danger">*</span>
+              </label>
+              <input type="number" class="form-control" [(ngModel)]="price" placeholder="单价" formControlName="price" />
+              <app-validation-message [control]="form.controls['price']" label="单价"></app-validation-message>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>
+                <span>数量</span>
+                <span class="text-danger">*</span>
+              </label>
+              <input type="number" class="form-control" [(ngModel)]="num" placeholder="数量" formControlName="numberRange" />
+              <app-validation-message [control]="form.controls['numberRange']" label="数量"></app-validation-message>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>金额</label>
+              <span class="form-control">{{price*num||0}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

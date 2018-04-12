@@ -77,12 +77,12 @@
 .lz-history-model-de {
   display: inline-block;
   padding-top: 4px;
-  padding-left: 30px;
+  padding-right: 20px;
   color: #676c7b;
 }
 
 .lz-history-model-de:hover {
-  color: #716aca;
+  color: #f4516c;
   cursor: pointer;
 }
 
@@ -122,4 +122,8 @@
 
 .m-menu__item-title {
   height: 20px;
+}
+
+.jstree-themeicon-custom {
+  color: #716aca !important;
 }

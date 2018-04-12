@@ -83,7 +83,7 @@ proxy.conf.js                   后台代理配置（未使用）
 1. 在 VS Code 中，右键 `order-management` 文件夹，新建文件 `order-management-routing.module.ts`。
 2. 在 module 文件中，配置路由，详细参见文件 `order-management-routing.module.ts`。
 3. 将 OrderManagementRoutingModule 引入到 OrderManagementModule 中。
-4. 打开 `src\app\core\core-routing.module.ts` 文件，将 OrderManagementRoutingModule 配置到路由中，详细参见文件 `core-routing.module.ts`。
+4. 打开 `src\app\core\core-routing.module.ts` 文件，将 OrderManagementModule 配置到路由中，详细参见文件 `core-routing.module.ts`。
 
 ## 创建Service
 
@@ -91,6 +91,7 @@ proxy.conf.js                   后台代理配置（未使用）
 2. 在 VS Code 命令行中，定位到 `src\app\order-management\shared` 目录。
 3. 使用 `ng g service Orders` 命令创建 OrdersService。
 4. 打开 `orders.service.ts` 文件，填充服务器通信方法，详细参见文件 `orders.service.ts`。
+5. 打开 `src\app\order-management\order-management.module.ts` 文件，将`OrdersService` 引入到OrderManagementModule中，并添加到providers中，详细参见文件 `order-management.module.ts`。
 
 ## 创建列表组件
 

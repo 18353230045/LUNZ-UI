@@ -1,0 +1,81 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">tabs</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item" [routerLink]="['using-documents']">
+          <button class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid">
+      <!-- line-tabs -->
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-4">
+          <h6>line-tabs型 [默认]</h6>
+          <app-tabs [tabsData]="tabsArray1" (selected)="getItem1($event)"></app-tabs>
+          <p>{{efferentValue1}}</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-4">
+          <h6>line-tabs型 [自定义颜色]</h6>
+          <app-tabs [tabsData]="tabsArray1" [colorThemeStyle]="'m-tabs-line--warning'" (selected)="getItem2($event)"></app-tabs>
+          <p>{{efferentValue2}}</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-4">
+          <h6>line-tabs型 [粗下边框]</h6>
+          <app-tabs [tabsData]="tabsArray1" [bootomBorder2X]="true" (selected)="getItem3($event)"></app-tabs>
+          <p>{{efferentValue3}}</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-4">
+          <h6>line-tabs型 [加载时选择上海]</h6>
+          <app-tabs [tabsData]="tabsArray1" [choice]="1" (selected)="getItem4($event)"></app-tabs>
+          <p>{{efferentValue4}}</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-4">
+          <h6>line-tabs型 [item项有图标、下拉项、有禁选项.深圳]</h6>
+          <app-tabs [tabsData]="tabsArray2" (selected)="getItem5($event)"></app-tabs>
+          <p>{{efferentValue5}}</p>
+        </div>
+      </div>
+      <hr/>
+      <!-- bootstrap-line-tabs -->
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-4">
+          <h6>bootstrap-line-tabs型 [默认]</h6>
+          <app-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-line-tabs'" (selected)="getItem6($event)"></app-tabs>
+          <p>{{efferentValue6}}</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-4">
+          <h6>bootstrap-line-tabs型 [有图标、下拉项、有禁选]</h6>
+          <app-tabs [tabsData]="tabsArray2" [tabsType]="'bootstrap-line-tabs'" (selected)="getItem7($event)"></app-tabs>
+          <p>{{efferentValue7}}</p>
+        </div>
+      </div>
+      <hr/>
+      <!-- bootstrap-btn-tabs -->
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-4">
+          <h6>bootstrap-btn-tabs型 [默认]</h6>
+          <app-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-btn-tabs'" (selected)="getItem8($event)"></app-tabs>
+          <p>{{efferentValue8}}</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-4">
+          <h6>bootstrap-tabs型 [有图标、下拉项、有禁选、改变按钮颜色]</h6>
+          <app-tabs [tabsData]="tabsArray2" [tabsType]="'bootstrap-btn-tabs'" [btnColor]="'nav-pills--danger'" (selected)="getItem9($event)"></app-tabs>
+          <p>{{efferentValue9}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

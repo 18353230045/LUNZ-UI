@@ -19,14 +19,6 @@ export class OperationService {
     getModeList(modelName: string, moduelType: any) {
         const modeList = JSON.parse(localStorage.getItem(modelName)) || [];
 
-        modeList.forEach((item: any) => {
-            if (moduelType === 0) {
-                item.name = `我的模块 ${item.name}`;
-            } else {
-                item.name = `历史访问 ${item.name}`;
-            }
-        });
-
         if (modeList !== null) {
             return this.sortModelList(modeList);
         }
@@ -44,7 +36,7 @@ export class OperationService {
             if (openHistoryList == null) {
                 this.recordClickMenu.push({
                     clickNum: 1,
-                    name: rew.name.replace(/我的模块/g, '').replace(/历史访问/g, ''),
+                    name: rew.name,
                     icon: rew.icon,
                     url: rew.url
                 });
@@ -54,7 +46,7 @@ export class OperationService {
                 this.recordClickMenu = JSON.parse(openHistoryList);
 
                 for (let i = 0; i < this.recordClickMenu.length; i++) {
-                    if (this.recordClickMenu[i].name === rew.name.replace(/我的模块 /g, '').replace(/历史访问 /g, '')) {
+                    if (this.recordClickMenu[i].name === rew.name) {
                         this.recordClickMenu[i].clickNum += 1;
 
                         localStorage.setItem(`openHistoryList`, JSON.stringify(this.recordClickMenu));
@@ -65,7 +57,7 @@ export class OperationService {
 
                 this.recordClickMenu.push({
                     clickNum: 1,
-                    name: rew.name.replace(/我的模块 /g, '').replace(/历史访问 /g, ''),
+                    name: rew.name,
                     icon: rew.icon,
                     url: rew.url
                 });

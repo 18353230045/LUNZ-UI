@@ -12,7 +12,7 @@
       <span class="m-dropdown__header-subtitle">
         快速进入常用模块
         <i class="flaticon-edit-1 lz-flaticon-edit-1" (click)="$event.stopPropagation();editModuleOpen()" [hidden]="editModules"></i>
-        <i class="flaticon-edit-1 lz-flaticon-edit-1" (click)="$event.stopPropagation();editModuleClose()" [hidden]="!editModules"></i>
+        <i class="la la-check lz-flaticon-edit-1" (click)="$event.stopPropagation();editModuleClose()" [hidden]="!editModules"></i>
       </span>
     </div>
     <div class="m-dropdown__body m-dropdown__body--paddingless">
@@ -41,7 +41,7 @@
           <div *ngIf="!modelOption" class="lz-model-add-wr">
             <tree-root [nodes]="nodes" [options]="options">
               <ng-template #treeNodeTemplate let-node="node" let-index="index">
-                <i class="jstree-icon jstree-themeicon {{node.data.icon}} m--font-success jstree-themeicon-custom"></i>
+                <i class="jstree-icon jstree-themeicon {{node.data.icon}} jstree-themeicon-custom"></i>
                 <span (click)="handle($event,node)">{{ node.data.name }}</span>
               </ng-template>
             </tree-root>

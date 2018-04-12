@@ -24,4 +24,4 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
     ]
 })
 
-export class FormValidatorDemoModule { }
+export class FormValidatorDemoModule { };

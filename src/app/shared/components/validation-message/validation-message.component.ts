@@ -4,15 +4,15 @@ import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/fo
 const validationMessages: any = {
     required: '{label}不能为空 ',
     email: '请输入有效的邮箱地址 ',
-    minLength: '{label}最少为 {length} 个字符 ',
-    maxlength: '{label}最长为 {length} 个字符 ',
+    minlength: '{label} 最少为 {length} 个字符 ',
+    maxlength: '{label} 最长为 {length} 个字符 ',
     date: '日期格式不正确。',
-    minDate: '日期不能小于{label} ',
-    maxDate: '日期不能大于{label} ',
+    minDate: '不能小于{label} ',
+    maxDate: '不能大于{label} ',
     number: '请输入数字 ',
-    min: '不能小于{label} ',
-    max: '不能大于{label} ',
-    rangeLength: '{label}个字符 ',
+    min: '{label} 不能小于{number} ',
+    max: '{label} 不能大于{number} ',
+    rangeLength: '{label} {length}个字符 ',
     url: '网址格式不正确 ',
     equalTo: '两次输入不一致 '
 };
@@ -22,8 +22,8 @@ const validationMessages: any = {
     templateUrl: './validation-message.component.html',
     styleUrls: ['./validation-message.component.scss']
 })
-export class ValidationMessageComponent implements OnInit {
 
+export class ValidationMessageComponent implements OnInit {
     @Input()
     formGroup: FormGroup;
     @Input('for')
@@ -40,16 +40,16 @@ export class ValidationMessageComponent implements OnInit {
                 this._validationMessages[prop] = validationMessages[prop];
             }
         }
-    }
+    };
     get validationMessages(): any {
         return this._validationMessages;
-    }
+    };
     messages: string[];
 
     private _validationMessages: any;
     private _formControl: AbstractControl;
 
-    constructor() { }
+    constructor() { };
 
     ngOnInit() {
         if (this.control && this.control !== null) {
@@ -63,11 +63,12 @@ export class ValidationMessageComponent implements OnInit {
         }
 
         this._formControl.statusChanges.subscribe(status => this.validate());
-    }
+    };
 
     validate() {
         const formControl = this._formControl;
         let maxmin = '';
+
         this.messages = [];
 
         if (formControl && formControl.errors) {
@@ -79,7 +80,7 @@ export class ValidationMessageComponent implements OnInit {
             for (const key in formControl.errors) {
                 if (maxmin === 'true') {
                     if (formControl.errors[key] === true) {
-                        const validator = formControl.errors[key];
+                        const validator = formControl.errors.requiredValue;
                         this.messages.push(this.getMessage(key, validator));
                     }
                 } else {
@@ -90,19 +91,26 @@ export class ValidationMessageComponent implements OnInit {
                 }
             }
         }
-    }
+    };
 
     private getMessage(key: any, validator: any): string {
-
         const message: string = this.validationMessages[key];
-
         const label = this.label;
+
         let length: any = -1;
+        let number: any = -1;
+
         if (validator.requiredLength) {
             length = validator.requiredLength;
         }
+
+        if (validator) {
+            number = validator;
+        }
+
         return message
             .replace('{label}', label)
-            .replace('{length}', length);
-    }
-}
+            .replace('{length}', length)
+            .replace('{number}', number);
+    };
+};

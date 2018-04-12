@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
@@ -20,6 +20,10 @@ import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions
 import { NgxQueryToolbarComponent } from './components/ngx-query-toolbar/ngx-query-toolbar.component';
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
 import { DropdownSelectionComponent } from './components/dropdown-selection/dropdown-selection.component';
+import { SelectSelectionComponent } from './components/select-selection/select-selection.component';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { InputTextComponent } from './components/input-text/input-text.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 
@@ -31,6 +35,7 @@ import { NgxDataTableDirective } from './directives/ngx-datatable.directive';
 import { ApplyPermissionDirective } from './directives/apply-permission.directive';
 import { BsDateValueDirective } from './directives/bs-date-value.directive';
 import { LaddaDirective } from './directives/ladda.directive';
+import { DatepickerDirective } from './directives/datepicker.directive';
 
 import { RmbPipe } from './pipes/rmb.pipe';
 
@@ -45,25 +50,33 @@ export function createDecimalPipe() {
         RouterModule,
         NgxDatatableModule,
         FileUploaderModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
 
     declarations: [
         LoaderComponent,
         HostComponent,
-        NgxDataTableDirective,
-        ApplyPermissionDirective,
         ValidationMessageComponent,
         FileUploadComponent,
         NgxDatatableFooterComponent,
         NgxDatatablePagerComponent,
         NgxDatatableActionsComponent,
-        RmbPipe,
-        BsDateValueDirective,
-        LaddaDirective,
         NgxQueryToolbarComponent,
         VehicleSelectionComponent,
-        DropdownSelectionComponent
+        DropdownSelectionComponent,
+        SelectSelectionComponent,
+        DatepickerComponent,
+        TabsComponent,
+        InputTextComponent,
+
+        NgxDataTableDirective,
+        ApplyPermissionDirective,
+        BsDateValueDirective,
+        LaddaDirective,
+        DatepickerDirective,
+
+        RmbPipe,
     ],
 
     exports: [
@@ -77,11 +90,18 @@ export function createDecimalPipe() {
         NgxDatatableActionsComponent,
         NgxQueryToolbarComponent,
         VehicleSelectionComponent,
+        SelectSelectionComponent,
+        DatepickerComponent,
+        TabsComponent,
+        InputTextComponent,
+
         NgxDataTableDirective,
         ApplyPermissionDirective,
         BsDateValueDirective,
-        RmbPipe,
-        LaddaDirective
+        LaddaDirective,
+        DatepickerDirective,
+
+        RmbPipe
     ],
 
     providers: [

@@ -15,14 +15,16 @@ import { ITreeOptions, IActionMapping } from 'angular-tree-component';
 export class TreeviewDemoComponent implements OnInit {
     log: Logger;
     nodes: Array<any> = [];
+    itemData: any;
 
+    // 配置tree选项
     options: ITreeOptions = {
-        allowDrag: true,
-        getChildren: this.getChildrenList.bind(this),
-        allowDrop: (element, { parent, index }) => {
+        allowDrag: true,  // 支持拖动位置
+        getChildren: this.getChildrenList.bind(this),  // 异步加载子节点
+        allowDrop: (element, { parent, index }) => { // 拖动选项
             return parent.hasChildren;
         },
-        getNodeClone: (item: any) => ({
+        getNodeClone: (item: any) => ({  // 拖动克隆对象
             id: item.node.id,
             name: item.node.name
         })
@@ -36,7 +38,7 @@ export class TreeviewDemoComponent implements OnInit {
     };
 
     ngOnInit() {
-        this.getRootList();
+        this.getRootList(); // 获取一级节点
     };
 
     // 处理数据
@@ -95,4 +97,18 @@ export class TreeviewDemoComponent implements OnInit {
         }, error => this.log.error('操作失败', error));
     };
 
+    // 获取item项数据
+    getItemData(event: any) {
+        const cacheArr: Array<any> = [];
+        this.itemData = JSON.stringify(event, (key: any, value: any) => {
+            if (typeof value === 'object' && value !== null) {
+                if (cacheArr.indexOf(value) !== -1) {
+                    return;
+                }
+                cacheArr.push(value);
+            }
+
+            return value;
+        });
+    };
 };

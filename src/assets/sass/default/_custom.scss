@@ -118,6 +118,7 @@ app-login {
   position: absolute;
   width: 100%;
   display: none;
+
   .progress-bar {
     width: 100%;
   }
@@ -130,6 +131,7 @@ app-login {
 }
 
 .m-dropdown {
+
   .m-dropdown__wrapper {
     width: 150px;
   }
@@ -155,15 +157,19 @@ app-login {
 
 .ngx-datatable.material {
   box-shadow: none;
+
   .datatable-header {
     border-bottom-color: #ebedf2;
     overflow: initial !important;
     position: relative !important;
     z-index: 11 !important;
+
     .datatable-header-inner {
       position: absolute;
+
       .datatable-header-cell {
         overflow: initial !important;
+
         .datatable-header-cell-label {
           font-weight: bold;
         }
@@ -172,6 +178,7 @@ app-login {
         padding-top: 3px;
         padding-bottom: 3px;
         vertical-align: top;
+
         .dropdown {
           position: relative;
         }
@@ -182,10 +189,13 @@ app-login {
     padding: 0;
   }
   .datatable-body {
+
     .datatable-body-row {
+
       .datatable-body-cell {
         padding-top: 10px;
         padding-bottom: 10px;
+
         .btn {
           margin-top: -4px;
         }
@@ -195,6 +205,7 @@ app-login {
   }
   div.dropdown {
     position: absolute;
+
     .dropdown-menu {
       position: 100;
     }
@@ -209,6 +220,7 @@ app-login {
 ngx-query.full-screen {
   .card {
     border: none;
+
     .card-body {
       border-bottom: 1px solid #ebedf2;
     }
@@ -232,4 +244,12 @@ ngx-query {
 .m-alert__text {
   font-size: 13px;
   padding: 0rem 0rem 0rem 1.75rem !important;
+}
+
+.lz-display-flex {
+  display: flex;
+}
+
+.lz-margin-auto {
+  margin: auto;
 }

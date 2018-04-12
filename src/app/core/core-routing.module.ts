@@ -12,22 +12,23 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../help/help.module#HelpModule' },
     { path: '', loadChildren: '../order-management/order-management.module#OrderManagementModule' },
     { path: '', loadChildren: '../messages/web-message.module#WebMessageModule' },
-    { path: '', loadChildren: '../ngx-bootstrap/ngx-bootstrap.module#NgxBootstrapModule' },
+    // { path: '', loadChildren: '../ngx-bootstrap/ngx-bootstrap.module#NgxBootstrapModule' },
     { path: '', loadChildren: '../form-validator-demo/form-validator-demo.module#FormValidatorDemoModule' },
     { path: '', loadChildren: '../vehicle-selection-demo/vehicle-management-demo.module#VehicleManagementDemoModule' },
     { path: '', loadChildren: '../file-upload-demo/file-upload.module#FileUploadModule' },
-    { path: '', loadChildren: '../chart/chart.module#ChartModule' },
-    { path: '', loadChildren: '../datepicker/datepicker.module#DatepickerModule' },
+    { path: '', loadChildren: '../chart-demo/chart-demo.module#ChartDemoModule' },
     { path: '', loadChildren: '../dropdown-demo/dropdown-demo.module#DropdownDemoModule' },
-    { path: '', loadChildren: '../form/form.module#FormModule' },
     { path: '', loadChildren: '../treeview-demo/treeview-demo.module#TreeviewDemoModule' },
+    { path: '', loadChildren: '../select-selection-demo/select-selection-demo.module#SelectSelectionDemoModule' },
+    { path: '', loadChildren: '../datepicker-demo/datepicker-demo.module#DatepickerDemoModule' },
+    { path: '', loadChildren: '../tabs-demo/tabs-demo.module#TabsDemoModule' },
+    { path: '', loadChildren: '../form-demo/form-demo.module#FormDemoModule' }
 ]);
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
-    providers: [
-    ]
+    providers: []
 })
 
-export class CoreRoutingModule { }
+export class CoreRoutingModule { };

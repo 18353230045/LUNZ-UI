@@ -1,0 +1,8 @@
+<div class="lz-select-selection">
+  <div class="lz-select-selection-select">
+    <select class="form-control m-input" [ngModel]="model" (ngModelChange)="select($event)" disabled="{{disabled}}">
+      <option *ngFor="let option of selects" [value]="option.value" [disabled]="option.disabled">{{option.text}}</option>
+    </select>
+    <i [hidden]="!clear||model==null" (click)="clearValue()" class="la la-times-circle"></i>
+  </div>
+</div>

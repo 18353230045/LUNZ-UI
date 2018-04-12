@@ -83,7 +83,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
                         this.orders.splice(this.orders.indexOf(row), 1);
                         this.datatable.count -= 1;
                         this.log.info('订单删除成功!', row);
-                    }, error => this.log.error('订单删除失败123。', error));
+                    }, error => this.log.error('订单删除失败。', error));
             }, () => this.log.debug('取消删除订单。'));
     }
 

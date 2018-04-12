@@ -59,7 +59,7 @@ export class QuickActionsComponent implements OnInit {
         if (modulelist === null) {
             for (let i = 0; i < 4; i++) {
                 const module = {
-                    name: 'add module',
+                    name: '添加模块',
                     icon: 'la la-plus',
                     isEmpty: true,
                     isEdit: false,
@@ -78,7 +78,7 @@ export class QuickActionsComponent implements OnInit {
 
                 for (let i = 0; i < 4 - count; i++) {
                     const module = {
-                        name: 'add module',
+                        name: '添加模块',
                         icon: 'la la-plus',
                         isEmpty: true,
                         isEdit: false,
@@ -97,7 +97,7 @@ export class QuickActionsComponent implements OnInit {
     editModuleOpen() {
         this.moduleList.forEach((item: any) => {
             if (!item.isEmpty) {
-                item.name = 'edit module';
+                item.name = '编辑模块';
                 item.icon = 'la la-plus';
             }
 

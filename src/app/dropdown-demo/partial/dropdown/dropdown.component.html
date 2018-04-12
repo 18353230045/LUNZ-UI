@@ -23,7 +23,12 @@
       <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-4">
           <h6>默认样式（btn模式），点击触发</h6>
-          <app-dropdown-selection [options]="options" [position]="'left'" [dropText]="'部门'" [class]="'btn-secondary'" (selected)="handle1($event)">
+          <app-dropdown-selection 
+            [options]="options" 
+            [position]="'left'" 
+            [dropText]="'部门'" 
+            [class]="'btn-secondary'" 
+            (selected)="handle1($event)">
           </app-dropdown-selection>
           <div>{{item1}}</div>
         </div>
@@ -36,7 +41,9 @@
             [dropText]="'人员列表'" 
             [class]="'btn-primary'"
             [multiselect]="true" 
-            (selected)="handle2($event)">
+            [separateCharacter]="','"
+            (selected)="handle2($event)"
+            (remove)="remove()">
           </app-dropdown-selection>
           <div>{{item2}}</div>
         </div>

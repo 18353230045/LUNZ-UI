@@ -15,13 +15,16 @@ export class DropdownSelectionComponent implements OnInit {
     @Input() itemIcon?: String = 'flaticon-share';
     @Input() class?: String;
     @Input() trigger?: String = 'click';
+    @Input() separateCharacter?: String = '/';
     @Input() multiselect?: Boolean = false;
 
     @Output() selected = new EventEmitter();
+    @Output() remove = new EventEmitter();
 
     openDropdown: Boolean = false;
     isEmpty: Boolean = true;
     recordBtnText: String;
+    multiselectArray: Array<any> = [];
 
     constructor() { };
 
@@ -39,9 +42,17 @@ export class DropdownSelectionComponent implements OnInit {
                 this.dropText = `${item.text}`;
                 this.isEmpty = false;
             } else {
-                this.dropText += `/${item.text}`;
+                for (let i = 0; i < this.multiselectArray.length; i++) {
+                    if (item.text === this.multiselectArray[i].text) {
+                        return;
+                    }
+                }
+
+                this.dropText += `${this.separateCharacter} ${item.text}`;
             }
-            this.selected.emit(item);
+
+            this.multiselectArray.push(item);
+            this.selected.emit(this.multiselectArray);
             return;
         } else if (this.type === 'btn') {
             this.dropText = `${item.text}`;
@@ -57,6 +68,8 @@ export class DropdownSelectionComponent implements OnInit {
     removeValue(): void {
         this.dropText = this.recordBtnText;
         this.isEmpty = true;
+        this.multiselectArray = [];
+        this.remove.emit();
     };
 
 };

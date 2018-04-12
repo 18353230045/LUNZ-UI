@@ -1,24 +1,24 @@
 <div class="m-section__content">
   <div id="dropdown" class="m-dropdown m-dropdown--inline m-dropdown--arrow" data-dropdown-toggle="click" data-dropdown-persistent="true"
     aria-expanded="true">
-    <a href="#" class="m-dropdown__toggle btn dropdown-toggle">{{outPutResult}}</a>
+    <a href="#" class="m-dropdown__toggle btn dropdown-toggle">{{showResult}}</a>
     <div class="m-dropdown__wrapper">
       <span class="m-dropdown__arrow m-dropdown__arrow--left"></span>
       <div class="m-dropdown__inner">
         <div class="m-dropdown__body">
           <div class="m-dropdown__content">
             <ul class="list-style list-inline clearfix lz-vehicle-selection-type">
-              <li class="float-left" (click)="carSeriesNav=true;carModelNav=true;carBrand=false;carSeries=true;carModels=true;filterString='';">
-                <a>品牌</a>
+              <li class="float-left" (click)="carSeriesNav=true;carModelNav=true;carBrand=false;carSeries=true;carModels=true;filterString='';outPutBrand='品牌'">
+                <a>{{outPutBrand}}</a>
               </li>
-              <li class="float-left" [hidden]="carSeriesNav" (click)="carModelNav=true;carModels=true;carSeries=false;filterString='';">
+              <li class="float-left" [hidden]="carSeriesNav" (click)="carModelNav=true;carModels=true;carSeries=false;carSeriesNav=true;filterString='';">
                 <span>&nbsp;&gt;</span>
-                <a>车系</a>
+                <a>{{outPutSeries}}</a>
               </li>
               <li class="float-left" [hidden]="carModelNav">
                 <span>&nbsp;&gt;</span>
-                <a>车型</a>
-              </li>
+                <a>{{outPutModel}}</a>
+              </li> 
             </ul>
             <div class="row lz-vehicle-selection-container" [hidden]="carBrand">
               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
