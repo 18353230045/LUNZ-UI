@@ -26,7 +26,7 @@ export class ChartComponent implements OnInit {
             this.set3DPieCharts();
             // spline
             this.setSplineCharts();
-        }, 1000);
+        }, 500);
     };
 
     // column
