@@ -24,7 +24,7 @@ export class FormDemoComponent implements OnInit {
         this.form = this.formBuilder.group({
             category: [null, [Validators.required]],
             whereUnderstand: [null, [Validators.required]],
-            price: [null, [Validators.required]],
+            price: [null, [Validators.required, CustomValidators.number]],
             email: [null, [CustomValidators.email]],
             abstract: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
             numberRange: [null, [Validators.required, CustomValidators.number, CustomValidators.min(1),

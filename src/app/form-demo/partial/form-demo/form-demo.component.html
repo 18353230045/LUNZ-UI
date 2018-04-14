@@ -155,7 +155,7 @@
                 <span>单价</span>
                 <span class="text-danger">*</span>
               </label>
-              <input type="number" class="form-control" [(ngModel)]="price" placeholder="单价" formControlName="price" />
+              <input type="text" class="form-control" [(ngModel)]="price" placeholder="单价" formControlName="price" />
               <app-validation-message [control]="form.controls['price']" label="单价"></app-validation-message>
             </div>
           </div>
@@ -165,7 +165,7 @@
                 <span>数量</span>
                 <span class="text-danger">*</span>
               </label>
-              <input type="number" class="form-control" [(ngModel)]="num" placeholder="数量" formControlName="numberRange" />
+              <input type="text" class="form-control" [(ngModel)]="num" placeholder="数量" formControlName="numberRange" />
               <app-validation-message [control]="form.controls['numberRange']" label="数量"></app-validation-message>
             </div>
           </div>
