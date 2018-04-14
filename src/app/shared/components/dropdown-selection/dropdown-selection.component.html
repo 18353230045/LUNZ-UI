@@ -1,8 +1,8 @@
 <!-- click -->
 <div *ngIf="trigger==='click'" class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-push m-dropdown--align-{{position}}"
   data-dropdown-toggle="click" aria-expanded="true">
-  <a href="#" [hidden]="type==='icon'" class="m-dropdown__toggle btn {{btnColor}} dropdown-toggle">{{dropText}}</a>
-  <a href="#" [hidden]="type==='btn'" class="m-portlet__nav-link m-dropdown__toggle btn m-btn {{iconClass}}">
+  <a href="javascript:void(0)" [hidden]="type==='icon'" class="m-dropdown__toggle btn {{btnColor}} dropdown-toggle">{{dropText}}</a>
+  <a href="javascript:void(0)" [hidden]="type==='btn'" class="m-portlet__nav-link m-dropdown__toggle btn m-btn {{iconClass}}">
     <i class="{{icon}}" *ngIf="type==='icon'"></i>
   </a>
   <i class="la la-times-circle-o dropdown-btn-remove-icon" *ngIf="type==='btn'&&!isEmpty&&multiselect" (click)="removeValue()"></i>
@@ -48,8 +48,8 @@
 <!-- hover -->
 <div *ngIf="trigger==='hover'" class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-push m-dropdown--align-{{position}}"
   data-dropdown-toggle="hover" aria-expanded="true">
-  <a href="#" [hidden]="type==='icon'" class="m-dropdown__toggle btn {{btnColor}} dropdown-toggle">{{dropText}}</a>
-  <a href="#" [hidden]="type==='btn'" class="m-portlet__nav-link m-dropdown__toggle btn m-btn {{iconClass}}">
+  <a href="javascript:void(0)" [hidden]="type==='icon'" class="m-dropdown__toggle btn {{btnColor}} dropdown-toggle">{{dropText}}</a>
+  <a href="javascript:void(0)" [hidden]="type==='btn'" class="m-portlet__nav-link m-dropdown__toggle btn m-btn {{iconClass}}">
     <i class="{{icon}}" *ngIf="type==='icon'"></i>
   </a>
   <i class="la la-times-circle-o dropdown-btn-remove-icon" *ngIf="type==='btn'&&!isEmpty&&multiselect" (click)="removeValue()"></i>
