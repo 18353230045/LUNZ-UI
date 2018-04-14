@@ -5,7 +5,7 @@
         <span class="m-portlet__head-icon">
           <i class="flaticon-interface-2"></i>
         </span>
-        <h3 class="m-portlet__head-text">tabs</h3>
+        <h3 class="m-portlet__head-text">select2</h3>
       </div>
     </div>
     <div class="m-portlet__head-tools">
@@ -21,9 +21,42 @@
   <div class="m-portlet__body">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-4">
-          <h6>line-tabs型 [默认]</h6>
-          <select2 [data]="exampleData" [cssImport]="true"></select2>
+        <div class="col-lg-6 col-md-6 col-sm-4 m-portlet__body">
+          <h6>非异步[单选]</h6>
+          <ngx-select-dropdown 
+            [config]="config"
+            [options]="dropdownOptions"
+            [(value)]="dataModel1"
+            (change)="selectionChanged($event)">
+          </ngx-select-dropdown>
+          <div>{{dataModel1 | json}}</div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-4 m-portlet__body">
+          <h6>非异步[多选]</h6>
+          <ngx-select-dropdown 
+            [config]="config"
+            [multiple]="true"
+            [options]="dropdownOptions"
+            [(value)]="dataModel2"
+            (change)="selectionChanged($event)">
+          </ngx-select-dropdown>
+          <div>{{dataModel2 | json}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-4 m-portlet__body">
+          <h6>异步</h6>
+          <div #customerInput class="input-group">
+            <ng-select 
+                [options]="customers"
+                [placeholder]="'请选择客户'"
+                [allowClear]="true"
+                [(ngModel)]="customer"
+                (selected)="handler($event)">
+            </ng-select>
+          </div>
+          <div>双向绑定：{{customer | json}}</div>
+          <div>选择：{{handlerCustomer | json}}</div>
         </div>
       </div>
     </div>
