@@ -21,9 +21,7 @@ import { NgxQueryToolbarComponent } from './components/ngx-query-toolbar/ngx-que
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
 import { DropdownSelectionComponent } from './components/dropdown-selection/dropdown-selection.component';
 import { SelectSelectionComponent } from './components/select-selection/select-selection.component';
-import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { TabsComponent } from './components/tabs/tabs.component';
-import { InputTextComponent } from './components/input-text/input-text.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 
@@ -66,9 +64,7 @@ export function createDecimalPipe() {
         VehicleSelectionComponent,
         DropdownSelectionComponent,
         SelectSelectionComponent,
-        DatepickerComponent,
         TabsComponent,
-        InputTextComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
@@ -91,9 +87,7 @@ export function createDecimalPipe() {
         NgxQueryToolbarComponent,
         VehicleSelectionComponent,
         SelectSelectionComponent,
-        DatepickerComponent,
         TabsComponent,
-        InputTextComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,

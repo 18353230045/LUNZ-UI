@@ -44,25 +44,25 @@ export class UsingDocumentsComponent implements OnInit {
                 defaultValue: '-'
             },
             {
-                name: 'class',
-                explain: '可选，为dropdown触发按钮添加样式',
-                type: 'String',
-                optionaValue: '—',
-                defaultValue: '-'
-            },
-            {
-                name: 'iconClass',
+                name: 'icon',
                 explain: '可选，为icon型可用，为dropdown触发按钮添加图标',
                 type: 'String',
                 optionaValue: '—',
                 defaultValue: 'la la-ellipsis-h'
             },
             {
-                name: 'itemIcon',
-                explain: '可选，为item添加图标',
+                name: 'iconClass',
+                explain: '可选，为icon型可用，为icon设计样式',
                 type: 'String',
                 optionaValue: '—',
-                defaultValue: 'flaticon-share'
+                defaultValue: '-'
+            },
+            {
+                name: 'btnColor',
+                explain: '可选，为btn型可用，更改按钮背景颜色',
+                type: 'String',
+                optionaValue: '—',
+                defaultValue: 'btn-secondary'
             },
             {
                 name: 'separateCharacter',
@@ -77,6 +77,13 @@ export class UsingDocumentsComponent implements OnInit {
                 type: 'String',
                 optionaValue: 'click,hover',
                 defaultValue: 'click'
+            },
+            {
+                name: 'selectParent',
+                explain: '可选，是否可以选择父级',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'false'
             },
             {
                 name: 'multiselect',

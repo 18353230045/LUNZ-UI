@@ -22,7 +22,8 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../select-selection-demo/select-selection-demo.module#SelectSelectionDemoModule' },
     { path: '', loadChildren: '../datepicker-demo/datepicker-demo.module#DatepickerDemoModule' },
     { path: '', loadChildren: '../tabs-demo/tabs-demo.module#TabsDemoModule' },
-    { path: '', loadChildren: '../form-demo/form-demo.module#FormDemoModule' }
+    { path: '', loadChildren: '../form-demo/form-demo.module#FormDemoModule' },
+    { path: '', loadChildren: '../select2-demo/select2-demo.module#Select2DemoModule' },
 ]);
 
 @NgModule({

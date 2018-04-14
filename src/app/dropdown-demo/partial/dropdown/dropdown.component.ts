@@ -17,12 +17,28 @@ export class DropdownComponent implements OnInit {
 
     ngOnInit() {
         this.options = [
-            { text: 'item1', id: '01' },
+            { text: 'item1', id: '01', icon: 'flaticon-share' },
             { text: 'item2', id: '02', disabled: true },
-            { text: 'item3', id: '03' },
+            {
+                text: 'item3',
+                id: '03',
+                childrenOpen: false,
+                children: [
+                    { text: 'item3-item4', id: '05' },
+                    { text: 'item3-item10', id: '04' }
+                ]
+            },
             { text: 'item4', id: '04' },
             { text: 'item5', id: '05' },
-            { text: 'item6', id: '06' }
+            {
+                text: 'item6',
+                id: '06',
+                childrenOpen: false,
+                children: [
+                    { text: 'item6-item23', id: '12', icon: 'flaticon-share' },
+                    { text: 'item6-item25', id: '04' }
+                ]
+            }
         ];
     };
 
