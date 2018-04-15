@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { SelectModule } from 'ng-select';
 
 import { SharedModule } from '../shared/shared.module';
@@ -18,7 +17,6 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
         CommonModule,
         FormsModule,
         SelectModule,
-        SelectDropDownModule,
         SharedModule,
         Select2DemoRoutingModule
     ],
