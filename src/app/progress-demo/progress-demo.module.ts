@@ -4,23 +4,24 @@ import { CommonModule } from '@angular/common';
 import { ElModule } from 'element-angular';
 
 import { SharedModule } from '../shared/shared.module';
-import { FileUploadRoutingModule } from './file-upload-routing.module';
+import { ProgressDemoRoutingModule } from './progress-demo-routing.module';
 
-import { FileUploadDemoComponent } from './partial/file-upload-demo/file-upload-demo.component';
+import { ProgressComponent } from './partial/progress/progress.component';
 import { UsingDocumentsComponent } from './partial/using-documents/using-documents.component';
 
 @NgModule({
     imports: [
         CommonModule,
         SharedModule,
-        FileUploadRoutingModule,
-        ElModule.forRoot(),
+        ProgressDemoRoutingModule,
+        ElModule.forRoot()
     ],
 
     declarations: [
-        FileUploadDemoComponent,
+        ProgressComponent,
         UsingDocumentsComponent
+
     ]
 })
 
-export class FileUploadModule { }
+export class ProgressDemoModule { };
