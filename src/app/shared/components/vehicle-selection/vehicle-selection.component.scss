@@ -37,7 +37,7 @@
 
 .lz-vehicle-selection-container {
   max-height: 260px;
-  overflow-y: auto;
+  overflow: auto;
 }
 
 .lz-vehicle-selection-container b {
@@ -45,11 +45,14 @@
 }
 
 .lz-vehicle-selection-item {
-  padding: 4px 0 4px 20px;
+  margin-left: 4px;
+  padding: 4px 0;
+  border-bottom: solid 1px #fff;
 }
 
 .lz-vehicle-selection-item:hover {
-  background: #ededed;
+  color: #716aca;
+  border-color: #e3e4e5;
   cursor: pointer;
 }
 
@@ -76,4 +79,8 @@
 
 .m-section__content .m-dropdown__toggle {
   display: block;
+}
+
+.lz-vehicle-filtering {
+  margin-bottom: 10px;
 }
