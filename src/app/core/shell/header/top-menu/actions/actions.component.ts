@@ -194,6 +194,7 @@ export class ActionsComponent implements OnInit {
 
         this.temporaryList = [];
         this.addModel = false;
+        this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
 
         this.log.info(`操作成功！`);
     };
