@@ -43,6 +43,7 @@ export class FileUploadDemoComponent implements OnInit {
 
     // 上传成功事件
     successHandle(event: any) {
+        console.log(event);
         this.log.info(`${event.commonFile.name} 上传成功!`);
 
         // do something

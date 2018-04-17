@@ -1,16 +1,24 @@
-<label ng2File2Drop ondragover="return false;"
-       [uploader]="uploader"
-       (fileAccepted)="setFiles($event)">
-    
-    <img imgPreview 
-        [image]="_lastFile$ | async"
-        [class.loaded]="fileLoaded"/>
-   
-    <input *ngIf="multiple" ng2File2Select type="file" name="file" multiple
-        [uploader]="uploader"
-        (fileAccepted)="setFiles($event)"/>
-     
-      <input *ngIf="!multiple" ng2File2Select type="file" name="file" 
-        [uploader]="uploader"
-        (fileAccepted)="setFiles($event)"/>
+<label ng2File2Drop ondragover="return false;" [uploader]="uploader" (fileAccepted)="setFiles($event)">
+  <span class="lz-upload-font">
+    <span class="el-icon-upload"></span>
+    <br />
+    <span>将文件拖到此处，或</span>
+    <span class="m--font-info">点击上传</span>
+  </span>
+  <input *ngIf="multiple" ng2File2Select type="file" name="file" multiple [uploader]="uploader" />
+  <input *ngIf="!multiple" ng2File2Select type="file" name="file" [uploader]="uploader" />
 </label>
+<div *ngIf="uploadResult.length>0" class="lz-file-upload-list">
+    <div class="lz-file-upload-list-item" *ngFor="let item of uploadResult" (mouseenter)="deleteItem=item.name" (mouseleave)="deleteItem=''">
+        <!-- <img imgPreview [image]="_lastFile$ | async" [class.loaded]="fileLoaded"/> -->
+        <span class="lz-file-upload-list-icon m--font-metal fa {{item.fileType}}"></span>
+        <span>{{item.name}}</span>
+        <span *ngIf="!(item.name===deleteItem)" class="lz-file-upload-status float-right fa fa-check-circle" 
+        [ngClass]="{'fa-check-circle m--font-success':item.success, 'fa-times-circle m--font-danger':!item.success}"></span>
+        <span *ngIf="item.name===deleteItem" class="lz-file-upload-status float-right fa fa-times-circle m--font-metal" (click)="deleteUpload(item)"></span>
+    </div>
+</div>
+
+<!-- <img imgPreview [image]="_lastFile$ | async" [class.loaded]="fileLoaded" /> -->
+<!-- <span *ngFor="let item of uploader.queue">{{ item?.file?.name }}</span> -->
+<!-- <button (click)="uploader.onComplete($event)">上传</button> -->
