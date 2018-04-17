@@ -24,22 +24,16 @@ export class FileUploadComponent implements OnInit {
     log: Logger;
     uploadResult: Array<any> = [];
     deleteItem: any;
+    fileLoaded: Boolean = false;
 
-    @Input()
-    public uploader: FileUploader;
-    @Input()
-    public ngValue: any;
-    @Input()
-    public multiple = true;
+    @Input() uploader: FileUploader;
+    @Input() ngValue: any;
+    @Input() multiple?= true;
 
-    @Output()
-    public success: EventEmitter<any> = new EventEmitter<any>();
-    @Output()
-    public error: EventEmitter<any> = new EventEmitter<any>();
-    @Output()
-    public ngValueChange: EventEmitter<any> = new EventEmitter<any>();
+    @Output() success = new EventEmitter<any>();
+    @Output() error = new EventEmitter<any>();
+    @Output() ngValueChange = new EventEmitter<any>();
 
-    public fileLoaded = false;
 
     _lastFile$: BehaviorSubject<FileManager> = new BehaviorSubject(null);
     private _files$: BehaviorSubject<FileManager[]> = new BehaviorSubject([]);
