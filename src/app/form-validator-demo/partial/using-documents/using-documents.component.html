@@ -83,13 +83,13 @@
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.form = this.formBuilder.group(&#123;
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;required: [null, [Validators.required]],
           <small>
-          //必填验证。</small>
+            //必填验证。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email: [null, [CustomValidators.email]],
           <small>
-          //邮箱验证。</small>
+            //邮箱验证。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number: [null, [CustomValidators.number]],
           <small>
-          //数字验证。</small>
+            //数字验证。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min: [null, [CustomValidators.number,
           CustomValidators.min(5)]],
           <small> //最小数字验证。</small>
@@ -101,31 +101,34 @@
           <small> //数字区间验证。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxLength: [null, [Validators.maxLength(5)]],
           <small>
-          //最大字符长度验证。</small>
+            //最大字符长度验证。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minLength: [null, [Validators.minLength(5)]],
           <small>
-          //最小字符长度验证。</small>
+            //最小字符长度验证。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lengthRange: [null, [Validators.minLength(5),
           Validators.maxLength(10)]],
           <small> //字符长度区间验证。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date: [null, [CustomValidators.date]],
           <small>
-          //日期验证。</small>
+            //日期验证(注意，对特殊字符不能正确验证)。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minDate: [null, [CustomValidators.minDate('2018-03-07')]],
           <small>
-          //最小日期验证。</small>
+            //最小日期验证(注意，对特殊字符不能正确验证)。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxDate: [null, [CustomValidators.maxDate('2018-03-07')]],
           <small>
-          //最大日期验证。</small>
+            //最大日期验证(注意，对特殊字符不能正确验证)。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dateRange: [null, [CustomValidators.minDate('2018-03-01'),
           CustomValidators.maxDate('2018-03-07')]],
-          <small> //日期区间验证。</small>
+          <small> //日期区间验证(注意，对特殊字符不能正确验证)。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;phone: [null, [Validators.pattern(/^((0\d&#123;2,3&#125;-\d&#123;7,8&#125;)|(1[3|4|5|6|7|8|9][0-9]\d&#123;8&#125;))$/)]],
           <small>
-          //自定义正则表达式验证电话号码。</small>
+            //自定义正则表达式验证电话号码。</small>
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bankCard: [null, [CustomValidators.number, Validators.pattern(/^\d&#123;16,19&#125;$/)]],
+          <small>
+            //银行卡号验证。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url: [null, [CustomValidators.url]],
           <small>
-          //网址验证。</small>
+            //网址验证。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password: password,
           <small> //值不相同验证。</small>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equalTo: certainPassword

@@ -199,6 +199,17 @@
               <app-validation-message [control]="form.controls['equalTo']"></app-validation-message>
             </div>
           </div>
+          <!-- 银行卡号验证 -->
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+            <div class="form-group">
+              <label for="equalTo">
+                银行卡号验证
+                <small>（16-19位数字）</small>
+              </label>
+              <input type="text" class="form-control" name="equabankCardlTo" formControlName="bankCard" />
+              <app-validation-message [control]="form.controls['bankCard']" [validationMessages]="{pattern:'银行卡号长度不正确'}"></app-validation-message>
+            </div>
+          </div>
         </div>
       </div>
     </form>
