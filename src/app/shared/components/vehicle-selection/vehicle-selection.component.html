@@ -3,66 +3,73 @@
     aria-expanded="true">
     <a href="#" class="m-dropdown__toggle btn dropdown-toggle">{{showResult}}</a>
     <div class="m-dropdown__wrapper">
-      <span class="m-dropdown__arrow m-dropdown__arrow--left"></span>
-      <div class="m-dropdown__inner">
-        <div class="m-dropdown__body">
-          <div class="m-dropdown__content">
-            <ul class="list-style list-inline clearfix lz-vehicle-selection-type">
-              <li class="float-left" (click)="carSeriesNav=true;carModelNav=true;carBrand=false;carSeries=true;carModels=true;filterString='';outPutBrand='品牌'">
-                <a>{{outPutBrand}}</a>
-              </li>
-              <li class="float-left" [hidden]="carSeriesNav" (click)="carModelNav=true;carModels=true;carSeries=false;carSeriesNav=true;filterString='';">
-                <span>&nbsp;&gt;</span>
-                <a>{{outPutSeries}}</a>
-              </li>
-              <li class="float-left" [hidden]="carModelNav">
-                <span>&nbsp;&gt;</span>
-                <a>{{outPutModel}}</a>
-              </li> 
-            </ul>
-            <div class="row lz-vehicle-selection-container" [hidden]="carBrand">
-              <div class="col-lg-1 col-md-1 col-sm-1">
-                <ul class="list-style list-unstyled lz-vehicle-selection-letter">
-                  <li *ngFor="let letter of letterList" [ngClass]="{'lz-vehicle-selection-letter-li-active':letterActive==letter}" (click)="letterActive=letter;getCarbrand(letter)">{{letter}}</li>
-                </ul>
-              </div>
-              <div class="col-lg-11 col-md-11 col-sm-11">
-                <ul class="list-style list-unstyled text-left">
-                  <li class="lz-vehicle-selection-item" *ngFor="let carbrand of carBrandList" (click)="getCarSeries(carbrand)">{{carbrand.tree.name}}</li>
-                </ul>
-              </div>
-            </div>
-            <div class="row " [hidden]="carSeries">
-              <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="lz-vehicle-filtering">
-                  <input type="text" class="form-control" placeholder="车系关键字" name="keyword" [(ngModel)]="filterString" (keyup)="filterCarSeriesData(carSeriesFilterList)"
-                    trim />
+      <div class="lz-vehicle-selection-wr">
+        <span class="m-dropdown__arrow m-dropdown__arrow--left"></span>
+        <div class="m-dropdown__inner">
+          <div class="m-dropdown__body">
+            <div class="m-dropdown__content">
+              <ul class="list-style list-inline clearfix lz-vehicle-selection-type">
+                <li class="float-left" (click)="carSeriesNav=true;carModelNav=true;carBrand=false;carSeries=true;carModels=true;filterString='';outPutBrand='品牌'">
+                  <a>{{outPutBrand}}</a>
+                </li>
+                <li class="float-left" [hidden]="carSeriesNav" (click)="carModelNav=true;carModels=true;carSeries=false;carSeriesNav=true;filterString='';">
+                  <span>&nbsp;&gt;</span>
+                  <a>{{outPutSeries}}</a>
+                </li>
+                <li class="float-left" [hidden]="carModelNav">
+                  <span>&nbsp;&gt;</span>
+                  <a>{{outPutModel}}</a>
+                </li>
+              </ul>
+              <div class="row lz-vehicle-selection-container" [hidden]="carBrand">
+                <div class="col-lg-1 col-md-1 col-sm-1">
+                  <ul class="list-style list-unstyled lz-vehicle-selection-letter">
+                    <li *ngFor="let letter of letterList" [ngClass]="{'lz-vehicle-selection-letter-li-active':letterActive==letter}" (click)="letterActive=letter;getCarbrand(letter)">{{letter}}</li>
+                  </ul>
                 </div>
-                <div class="lz-vehicle-selection-container">
+                <div class="col-lg-11 col-md-11 col-sm-11">
                   <ul class="list-style list-unstyled text-left">
-                    <li *ngFor="let carSeries of carSeriesList" class="lz-vehicle-selection-item" [ngClass]="{'lz-vehicle-selection-cartitle':carSeries.title}"
-                      (click)="getCarModels(carSeries)">{{carSeries.name}}</li>
+                    <li class="lz-vehicle-selection-item" *ngFor="let carbrand of carBrandList" (click)="getCarSeries(carbrand)">{{carbrand.tree.name}}</li>
                   </ul>
                 </div>
               </div>
-            </div>
-            <div class="row " [hidden]="carModels">
-              <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="lz-vehicle-filtering">
-                  <input type="text" class="form-control" placeholder="车型关键字" name="keywordtype" [(ngModel)]="filterString" (keyup)="filterCarModelsData(carModelFilterList)"
-                    trim />
+              <div class="row " [hidden]="carSeries">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="lz-vehicle-filtering">
+                    <input type="text" class="form-control" placeholder="车系关键字" name="keyword" [(ngModel)]="filterString" (keyup)="filterCarSeriesData(carSeriesFilterList)"
+                      trim />
+                  </div>
+                  <div class="lz-vehicle-selection-container">
+                    <ul class="list-style list-unstyled text-left">
+                      <li *ngFor="let carSeries of carSeriesList" class="lz-vehicle-selection-item" [ngClass]="{'lz-vehicle-selection-cartitle':carSeries.title}"
+                        (click)="getCarModels(carSeries)">{{carSeries.name}}</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="lz-vehicle-selection-container">
-                  <ul class="list-style list-unstyled text-left">
-                    <li *ngFor="let carModels of carModelList" class="lz-vehicle-selection-item" [ngClass]="{'lz-vehicle-selection-cartitle':carModels.title}"
-                      (click)="selectCarModels(carModels)">
-                      {{carModels.mosaicName}}
-                    </li>
-                  </ul>
+              </div>
+              <div class="row " [hidden]="carModels">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="lz-vehicle-filtering">
+                    <input type="text" class="form-control" placeholder="车型关键字" name="keywordtype" [(ngModel)]="filterString" (keyup)="filterCarModelsData(carModelFilterList)"
+                      trim />
+                  </div>
+                  <div class="lz-vehicle-selection-container">
+                    <ul class="list-style list-unstyled text-left">
+                      <li *ngFor="let carModels of carModelList" class="lz-vehicle-selection-item" [ngClass]="{'lz-vehicle-selection-cartitle':carModels.title}"
+                        (click)="selectCarModels(carModels)">
+                        {{carModels.mosaicName}}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="lz-vehicle-selection-modal">
+          <button type="button" class="btn btn-secondary m-loader m--font-metal m-loader--lg">
+            loading
+          </button>
         </div>
       </div>
     </div>
