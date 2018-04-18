@@ -82,8 +82,13 @@ $cubicBezier: 0.25,0.46,0.45,0.94;
   border-radius: 4px;
 
   .lz-file-upload-list-item {
+    display: block;
     padding: 4px 0;
     cursor: pointer;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .lz-file-upload-status {

@@ -52,9 +52,11 @@ export class FileUploadComponent implements OnInit {
         this.uploader = new FileUploader(this.getUploadOption());
 
         this.uploader.onSuccess = (_file: FileManager, _response: any, _status: number, _headers: any) => {
-            _file['fileType'] = this.fileType(_file);
-            this.uploadResult.push(_file);
-            const result: any = JSON.parse(_response);
+            _response = JSON.parse(_response);
+            _response['fileType'] = this.fileType(_response);
+            this.uploadResult.push(_response);
+
+            const result: any = _response;
             if (result.Success) {
                 this.onNgValueChange(result.Data);
                 this.success.emit(result.Data);
@@ -65,7 +67,9 @@ export class FileUploadComponent implements OnInit {
         };
 
         this.uploader.onError = (_file: FileManager, _response: any, _status: number, _headers: any) => {
-            this.uploadResult.push(_file);
+            _response = JSON.parse(_response);
+            _response['fileType'] = this.fileType(_response);
+            this.uploadResult.push(_response);
 
             if (_response === undefined || _status === undefined) {
                 this.error.emit(Observable.throw(_response));
@@ -119,16 +123,16 @@ export class FileUploadComponent implements OnInit {
     };
 
     private fileType(_file: any) {
-        const file = _file.type;
-        if (file.indexOf('mage') > 0) {
+        const file = _file.Data.FileType;
+        if (file.indexOf('png') > 0 || file.indexOf('jpeg') > 0) {
             return 'fa-file-image-o';
-        } else if (file.indexOf('word') > 0) {
+        } else if (file.indexOf('docx') > 0) {
             return 'fa-file-word-o';
-        } else if (file.indexOf('sheet') > 0) {
+        } else if (file.indexOf('xlsx') > 0) {
             return 'fa-file-excel-o';
         } else if (file.indexOf('pdf') > 0) {
             return 'fa-file-pdf-o';
-        } else if (file.indexOf('plain') > 0) {
+        } else if (file.indexOf('txt') > 0) {
             return 'fa-file-text-o';
         } else {
             return 'fa-file-o';
@@ -141,7 +145,7 @@ export class FileUploadComponent implements OnInit {
             authenticationService.credentials : null;
         const token: string = credentials == null ? null : credentials.token;
 
-        let url = environment.userCenter.serverUrl + 'ResourceItem/Add';
+        let url = environment.userCenter.serverUrl + 'ResourceItem/AddFile';
         let headers = {};
 
         if (environment.withHeaders) {
