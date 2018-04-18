@@ -82,13 +82,17 @@ input:-webkit-autofill {
 
 .lz-vehicle-selection-item {
   margin-left: 4px;
-  padding: 4px 0;
-  border-bottom: solid 1px #fff;
+
+  p {
+    margin: 0;
+    padding: 4px 0;
+    border-bottom: solid 1px #fff;
+  }
 }
 
-.lz-vehicle-selection-item:hover {
+.lz-vehicle-selection-hover:hover {
   color: #716aca;
-  border-color: #e3e4e5;
+  border-bottom-color: #dfe0e2 !important;
   cursor: pointer;
 }
 
@@ -122,7 +126,7 @@ input:-webkit-autofill {
 }
 
 .m-dropdown .m-dropdown__wrapper .m-dropdown__body {
-  padding: 10px 20px 20px 20px;
+  padding: 10px 20px 20px;
 }
 
 .lz-vehicle-selection-wr {
@@ -131,7 +135,6 @@ input:-webkit-autofill {
 }
 
 .lz-vehicle-selection-modal {
-  display: flex;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -140,9 +143,15 @@ input:-webkit-autofill {
   background: #000;
   opacity: 0.1;
   z-index: 2;
+}
 
-  button {
-    display: inline-block;
-    margin: auto;
-  }
+button {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -20px;
+  border: none;
+  background: none;
 }

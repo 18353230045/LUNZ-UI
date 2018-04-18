@@ -28,6 +28,7 @@ export class VehicleSelectionComponent implements OnInit {
     carSeries: Boolean = true;
     carModels: Boolean = true;
     isclose: Boolean = false;
+    loading: Boolean = false;
 
     letterList: Array<any>;
     carBrandList: Array<any>;
@@ -132,8 +133,10 @@ export class VehicleSelectionComponent implements OnInit {
 
     // get car brand
     getCarbrand(code: string) {
+        this.loading = true;
         this.vehicleService.getCarbrand(code).subscribe(Response => {
             this.carBrandList = Response;
+            this.loading = false;
         }, error => {
             this.log.error(`字母${code}类车获取失败`, error);
         });
@@ -175,6 +178,8 @@ export class VehicleSelectionComponent implements OnInit {
             };
         }
 
+        this.loading = true;
+
         this.vehicleService.getCarSeries(item.tree.id).subscribe(Response => {
             this.carSeriesList = this.handleCarSeriesData(Response);
             this.carSeriesFilterList = this.handleCarSeriesData(Response);
@@ -184,6 +189,7 @@ export class VehicleSelectionComponent implements OnInit {
             this.carBrand = true;
             this.carSeries = false;
             this.carModels = true;
+            this.loading = false;
         }, error => {
             this.log.error(`车系获取失败`, error);
         });
@@ -191,10 +197,6 @@ export class VehicleSelectionComponent implements OnInit {
 
     // get car model
     getCarModels(item: any) {
-        console.log(item);
-        if (item.title) {
-            return;
-        };
 
         if (this.outputType === `series`) {
             this.showResult = `${this.outPutBrand}${this.separateCharacter}${item.name}`;
@@ -222,6 +224,9 @@ export class VehicleSelectionComponent implements OnInit {
             this.outGoingList[`carSeriesId`] = item.id;
         }
 
+
+        this.loading = true;
+
         this.vehicleService.getCarModels(item.id).subscribe(Response => {
             this.carModelList = this.handleCarModelsData(Response);
             this.carModelFilterList = this.handleCarModelsData(Response);
@@ -230,6 +235,7 @@ export class VehicleSelectionComponent implements OnInit {
             this.carBrand = true;
             this.carSeries = true;
             this.carModels = false;
+            this.loading = false;
         }, error => {
             this.log.error(`车型获取失败`, error);
         });
@@ -237,10 +243,6 @@ export class VehicleSelectionComponent implements OnInit {
 
     // selection model
     selectCarModels(item: any) {
-        console.log(item);
-        if (item.title) {
-            return;
-        };
 
         this.showResult = `${this.outPutBrand}${this.separateCharacter}
                            ${this.outPutSeries}${this.separateCharacter}${item.mosaicName}`;

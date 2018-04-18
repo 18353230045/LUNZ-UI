@@ -24,25 +24,36 @@
               <div class="row lz-vehicle-selection-container" [hidden]="carBrand">
                 <div class="col-lg-1 col-md-1 col-sm-1">
                   <ul class="list-style list-unstyled lz-vehicle-selection-letter">
-                    <li *ngFor="let letter of letterList" [ngClass]="{'lz-vehicle-selection-letter-li-active':letterActive==letter}" (click)="letterActive=letter;getCarbrand(letter)">{{letter}}</li>
+                    <li *ngFor="let letter of letterList" 
+                        [ngClass]="{'lz-vehicle-selection-letter-li-active':letterActive==letter}"
+                        (click)="letterActive=letter;getCarbrand(letter)">{{letter}}</li>
                   </ul>
                 </div>
                 <div class="col-lg-11 col-md-11 col-sm-11">
                   <ul class="list-style list-unstyled text-left">
-                    <li class="lz-vehicle-selection-item" *ngFor="let carbrand of carBrandList" (click)="getCarSeries(carbrand)">{{carbrand.tree.name}}</li>
+                    <li class="lz-vehicle-selection-item"
+                        *ngFor="let carbrand of carBrandList"
+                        (click)="getCarSeries(carbrand)">
+                        <p class=" lz-vehicle-selection-hover">{{carbrand.tree.name}}</p>
+                    </li>
                   </ul>
                 </div>
               </div>
               <div class="row " [hidden]="carSeries">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="lz-vehicle-filtering">
-                    <input type="text" class="form-control" placeholder="车系关键字" name="keyword" [(ngModel)]="filterString" (keyup)="filterCarSeriesData(carSeriesFilterList)"
+                    <input type="text" class="form-control" placeholder="车系关键字" name="keyword"
+                        [(ngModel)]="filterString"
+                        (keyup)="filterCarSeriesData(carSeriesFilterList)"
                       trim />
                   </div>
                   <div class="lz-vehicle-selection-container">
                     <ul class="list-style list-unstyled text-left">
-                      <li *ngFor="let carSeries of carSeriesList" class="lz-vehicle-selection-item" [ngClass]="{'lz-vehicle-selection-cartitle':carSeries.title}"
-                        (click)="getCarModels(carSeries)">{{carSeries.name}}</li>
+                      <li class="lz-vehicle-selection-item"
+                        *ngFor="let carSeries of carSeriesList">
+                        <p *ngIf="carSeries.title" class="lz-vehicle-selection-cartitle">{{carSeries.name}}</p>
+                        <p *ngIf="!carSeries.title" (click)="getCarModels(carSeries)" class="lz-vehicle-selection-hover">{{carSeries.name}}</p>
+                    </li>
                     </ul>
                   </div>
                 </div>
@@ -50,14 +61,17 @@
               <div class="row " [hidden]="carModels">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="lz-vehicle-filtering">
-                    <input type="text" class="form-control" placeholder="车型关键字" name="keywordtype" [(ngModel)]="filterString" (keyup)="filterCarModelsData(carModelFilterList)"
+                    <input type="text" class="form-control" placeholder="车型关键字" name="keywordtype"
+                        [(ngModel)]="filterString"
+                        (keyup)="filterCarModelsData(carModelFilterList)"
                       trim />
                   </div>
                   <div class="lz-vehicle-selection-container">
                     <ul class="list-style list-unstyled text-left">
-                      <li *ngFor="let carModels of carModelList" class="lz-vehicle-selection-item" [ngClass]="{'lz-vehicle-selection-cartitle':carModels.title}"
-                        (click)="selectCarModels(carModels)">
-                        {{carModels.mosaicName}}
+                      <li class="lz-vehicle-selection-item"
+                        *ngFor="let carModels of carModelList">
+                        <p *ngIf="carModels.title" class="lz-vehicle-selection-cartitle">{{carModels.mosaicName}}</p>
+                        <p *ngIf="!carModels.title" (click)="selectCarModels(carModels)" class="lz-vehicle-selection-hover">{{carModels.mosaicName}}</p>
                       </li>
                     </ul>
                   </div>
@@ -66,11 +80,8 @@
             </div>
           </div>
         </div>
-        <div class="lz-vehicle-selection-modal">
-          <button type="button" class="btn btn-secondary m-loader m--font-metal m-loader--lg">
-            loading
-          </button>
-        </div>
+        <div *ngIf="loading" class="lz-vehicle-selection-modal"></div>
+        <button *ngIf="loading" type="button" class="btn btn-secondary m-loader m--font-light"></button>
       </div>
     </div>
   </div>
