@@ -22,11 +22,11 @@ declare var URI: any;
 
 export class FileUploadComponent implements OnInit {
     log: Logger;
+    uploader: FileUploader;
     uploadResult: Array<any> = [];
     deleteItem: any;
     fileLoaded: Boolean = false;
 
-    @Input() uploader: FileUploader;
     @Input() ngValue: any;
     @Input() multiple?= false;
     @Input() accept = '*';
@@ -34,7 +34,6 @@ export class FileUploadComponent implements OnInit {
     @Output() success = new EventEmitter<any>();
     @Output() error = new EventEmitter<any>();
     @Output() ngValueChange = new EventEmitter<any>();
-
 
     _lastFile$: BehaviorSubject<FileManager> = new BehaviorSubject(null);
     private _files$: BehaviorSubject<FileManager[]> = new BehaviorSubject([]);
