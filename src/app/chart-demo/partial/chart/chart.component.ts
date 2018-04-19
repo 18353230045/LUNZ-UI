@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
 
-import { ChartsService } from '../../shared/charts.service';
-
 declare const Highcharts: any;
 
 @Component({
@@ -15,14 +13,9 @@ declare const Highcharts: any;
 export class ChartComponent implements OnInit {
     log: Logger;
     theme: any;
-    selectValue1: any;
-    selectValue2: any;
-    selectValue3: any;
-    selectValue4: any;
 
     constructor(
         private loggerFactory: LoggerFactory,
-        private hartsService: ChartsService
     ) {
         this.log = this.loggerFactory.getLogger();
     };
@@ -37,6 +30,8 @@ export class ChartComponent implements OnInit {
             this.set3DPieCharts();
             // spline
             this.setSplineCharts();
+            // map
+            this.chinaMap();
         }, 500);
     };
 
@@ -327,5 +322,61 @@ export class ChartComponent implements OnInit {
             // spline
             this.setSplineCharts();
         }, 500);
+    };
+
+    // map
+    chinaMap() {
+        const _this = this;
+
+        const data = [
+            { name: '北京', value: 40 },
+            { name: '上海', value: 50 },
+            { name: '新疆', value: 23 },
+            { name: '云南', value: 67 },
+            { name: '湖北', value: 28 },
+            { name: '福建', value: 85 },
+            { name: '山东', value: 20 },
+            { name: '辽宁', value: 61 }
+        ];
+
+        Highcharts.Map('map', {
+            title: {
+                text: '城市空气污染指数'
+            },
+
+            mapNavigation: {
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
+                }
+            },
+
+            legend: {
+                enabled: true,
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    marker: {
+                        radius: 3
+                    },
+                    events: {
+                        click(e: any) {
+                            _this.log.info(`${e.point.name} 空气污染指数 ${e.point.value}`);
+                        }
+                    }
+                }
+            },
+
+            series: [{
+                data: data,
+                mapData: Highcharts.maps['cn/china'],
+                joinBy: 'name',
+                name: '空气指数'
+            }]
+        });
     };
 };

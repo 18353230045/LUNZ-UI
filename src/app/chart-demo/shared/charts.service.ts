@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
@@ -9,22 +9,13 @@ import 'rxjs/add/operator/map';
 import { WebApiResultResponse, PagingResponse } from '../../core/http/web-api-result-response';
 
 @Injectable()
-export class ChartsService extends WebApiResultResponse {
+export class ChartsService extends WebApiResultResponse implements OnInit {
 
     constructor(private http: Http) {
         super();
     }
 
+    ngOnInit() {
 
-    getChartsData(params: any): Observable<PagingResponse> {
-
-        const url = 'orders';
-
-        return this.http.get(url, {
-            params: params
-        })
-            .map(super.handleSuccess)
-            .catch(super.handleError);
-    }
-
-}
+    };
+};
