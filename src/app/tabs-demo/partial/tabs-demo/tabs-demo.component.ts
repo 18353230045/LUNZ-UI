@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class TabsDemoComponent implements OnInit {
     tabsArray1: Array<any> = [];
     tabsArray2: Array<any> = [];
+    panel: String = '1';
 
     // line-tabs
     efferentValue1: any;
@@ -56,6 +57,7 @@ export class TabsDemoComponent implements OnInit {
 
     // line-tabs
     getItem1(event: any) {
+        this.panel = event.id;
         this.efferentValue1 = JSON.stringify(event);
     };
 
