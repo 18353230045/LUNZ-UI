@@ -32,8 +32,13 @@ export const environment = {
     },
     // Data Center
     dataCenter: {
-        signalR: '',
         serverUrl: '',
         appKey: ''
-    }
+    },
+    // Customer Center
+    customerCenter: {
+        serverUrl: '',
+        appKey: '',
+        authUri: ''
+    },
 };
