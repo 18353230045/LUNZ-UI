@@ -28,7 +28,7 @@ export class FileUploadComponent implements OnInit {
 
     @Input() uploader: FileUploader;
     @Input() ngValue: any;
-    @Input() multiple?= true;
+    @Input() multiple?= false;
     @Input() accept = '*';
 
     @Output() success = new EventEmitter<any>();
@@ -125,7 +125,7 @@ export class FileUploadComponent implements OnInit {
 
     private fileType(_file: any) {
         const file = _file.Data.FileType;
-        if (file.indexOf('png') > 0 || file.indexOf('jpeg') > 0) {
+        if (file.indexOf('png') > 0 || file.indexOf('jpg') > 0) {
             return 'fa-file-image-o';
         } else if (file.indexOf('docx') > 0) {
             return 'fa-file-word-o';
