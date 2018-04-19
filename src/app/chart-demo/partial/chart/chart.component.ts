@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LoggerFactory } from '../../../core/logger-factory.service';
+import { Logger } from '../../../core/logger.service';
+
 import { ChartsService } from '../../shared/charts.service';
 
 declare const Highcharts: any;
@@ -10,11 +13,19 @@ declare const Highcharts: any;
     styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
+    log: Logger;
     theme: any;
+    selectValue1: any;
+    selectValue2: any;
+    selectValue3: any;
+    selectValue4: any;
 
     constructor(
+        private loggerFactory: LoggerFactory,
         private hartsService: ChartsService
-    ) { };
+    ) {
+        this.log = this.loggerFactory.getLogger();
+    };
 
     ngOnInit() {
         setTimeout(() => {
@@ -31,6 +42,7 @@ export class ChartComponent implements OnInit {
 
     // column
     setColumnCharts() {
+        const _this = this;
         Highcharts.chart('demo01', {
             chart: {
                 type: 'column'
@@ -67,6 +79,11 @@ export class ChartComponent implements OnInit {
                     animation: true,
                     dataLabels: {
                         enabled: true
+                    },
+                    events: {
+                        click(e: any) {
+                            _this.log.info(`${e.point.series.name} ${e.point.category}的月平均降雨量为： ${e.point.y}`);
+                        }
                     }
                 }
             },
@@ -88,6 +105,7 @@ export class ChartComponent implements OnInit {
 
     // 3DColumn
     set3DColumnCharts() {
+        const _this = this;
         Highcharts.chart('demo02', {
             chart: {
                 type: 'column',
@@ -131,6 +149,11 @@ export class ChartComponent implements OnInit {
                     animation: true,
                     dataLabels: {
                         enabled: true
+                    },
+                    events: {
+                        click(e: any) {
+                            _this.log.info(`${e.point.series.name} ${e.point.category}的月平均降雨量为： ${e.point.y}`);
+                        }
                     }
                 }
             },
@@ -153,6 +176,7 @@ export class ChartComponent implements OnInit {
 
     // 3DPie
     set3DPieCharts() {
+        const _this = this;
         Highcharts.chart('demo03', {
             chart: {
                 type: 'pie',
@@ -176,6 +200,11 @@ export class ChartComponent implements OnInit {
                     dataLabels: {
                         enabled: true,
                         format: '{point.name}'
+                    },
+                    events: {
+                        click(e: any) {
+                            _this.log.info(`${e.point.name} 浏览器访问量占比：${e.point.y}%`);
+                        }
                     }
                 },
             },
@@ -202,6 +231,7 @@ export class ChartComponent implements OnInit {
 
     // spline
     setSplineCharts() {
+        const _this = this;
         Highcharts.chart('demo04', {
             chart: {
                 type: 'spline'
@@ -242,6 +272,11 @@ export class ChartComponent implements OnInit {
                     animation: true,
                     dataLabels: {
                         enabled: true
+                    },
+                    events: {
+                        click(e: any) {
+                            _this.log.info(`${e.point.series.name} ${e.point.category}的平均温度：${e.point.y}`);
+                        }
                     }
                 }
             },
