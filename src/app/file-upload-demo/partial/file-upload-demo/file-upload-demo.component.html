@@ -37,6 +37,25 @@
         </app-file-upload>
         </div>
       </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>限定文件上传类型[图片]</h5>
+          <app-file-upload
+            [multiple]="false"
+            [accept]="'image/*'"
+            (success)="successHandle($event)"
+            (error)="errorHandle($event)">
+        </app-file-upload>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>限定文件上传类型[pdf]</h5>
+          <app-file-upload
+          (success)="successHandle($event)"
+          (error)="errorHandle($event)"
+          [accept]="'application/pdf'">
+        </app-file-upload>
+        </div>
+      </div>
     </div>
   </div>
 </div>

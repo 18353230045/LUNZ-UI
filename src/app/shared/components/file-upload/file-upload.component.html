@@ -5,8 +5,8 @@
     <span>将文件拖到此处，或</span>
     <span class="m--font-info">点击上传</span>
   </span>
-  <input *ngIf="multiple" ng2File2Select type="file" name="file" multiple [uploader]="uploader" />
-  <input *ngIf="!multiple" ng2File2Select type="file" name="file" [uploader]="uploader" />
+  <input *ngIf="!multiple" ng2File2Select type="file" accept="{{accept}}" name="file" [uploader]="uploader" />
+  <input *ngIf="multiple" ng2File2Select type="file" accept="{{accept}}" name="file" multiple [uploader]="uploader" />
 </label>
 <div *ngIf="uploadResult.length>0" class="lz-file-upload-list">
     <div *ngFor="let item of uploadResult" class="lz-file-upload-list-item"

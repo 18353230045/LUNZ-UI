@@ -29,6 +29,7 @@ export class FileUploadComponent implements OnInit {
     @Input() uploader: FileUploader;
     @Input() ngValue: any;
     @Input() multiple?= true;
+    @Input() accept = '*';
 
     @Output() success = new EventEmitter<any>();
     @Output() error = new EventEmitter<any>();
