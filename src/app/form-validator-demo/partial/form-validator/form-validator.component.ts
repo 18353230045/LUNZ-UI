@@ -31,7 +31,6 @@ export class FormValidatorComponent implements OnInit {
             date: [null, [CustomValidators.date]], // (注意，对特殊字符不能正确验证)
             minDate: [null, [CustomValidators.minDate('2018-03-07')]], // (注意，对特殊字符不能正确验证)
             maxDate: [null, [CustomValidators.maxDate('2018-03-07')]], // (注意，对特殊字符不能正确验证)
-            dateRange: [null, [CustomValidators.minDate('2018-03-01'), CustomValidators.maxDate('2018-03-07')]],
             phone: [null, [Validators.pattern(/^((0\d{2,3}-\d{7,8})|(1[3|4|5|6|7|8|9][0-9]\d{8}))$/)]],
             bankCard: [null, [CustomValidators.number, Validators.pattern(/^\d{16,19}$/)]],
             url: [null, [CustomValidators.url]],

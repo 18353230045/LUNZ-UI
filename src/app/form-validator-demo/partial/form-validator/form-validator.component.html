@@ -154,17 +154,6 @@
               <app-validation-message [control]="form.controls['maxDate']" label="2018-03-07"></app-validation-message>
             </div>
           </div>
-          <!-- 日期区间验证 -->
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-            <div class="form-group">
-              <label for="dateRange">
-                日期区间验证
-                <small>（不能小于2018-03-01，不能大于2018-03-07）</small>
-              </label>
-              <input type="text" class="form-control" name="dateRange" formControlName="dateRange" />
-              <app-validation-message [control]="form.controls['dateRange']" label="2018-03-07"></app-validation-message>
-            </div>
-          </div>
           <!-- phone验证 -->
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
             <div class="form-group">
@@ -187,6 +176,17 @@
               <app-validation-message [control]="form.controls['url']"></app-validation-message>
             </div>
           </div>
+          <!-- 银行卡号验证 -->
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+            <div class="form-group">
+              <label for="equalTo">
+                银行卡号验证
+                <small>（16-19位数字）</small>
+              </label>
+              <input type="text" class="form-control" name="equabankCardlTo" formControlName="bankCard" />
+              <app-validation-message [control]="form.controls['bankCard']" [validationMessages]="{pattern:'银行卡号长度不正确'}"></app-validation-message>
+            </div>
+          </div>
           <!-- 值相同验证 -->
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
             <div class="form-group">
@@ -197,17 +197,6 @@
               <input type="text" class="form-control" name="password" formControlName="password" />
               <input type="text" class="form-control" name="equalTo" formControlName="equalTo" />
               <app-validation-message [control]="form.controls['equalTo']"></app-validation-message>
-            </div>
-          </div>
-          <!-- 银行卡号验证 -->
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-            <div class="form-group">
-              <label for="equalTo">
-                银行卡号验证
-                <small>（16-19位数字）</small>
-              </label>
-              <input type="text" class="form-control" name="equabankCardlTo" formControlName="bankCard" />
-              <app-validation-message [control]="form.controls['bankCard']" [validationMessages]="{pattern:'银行卡号长度不正确'}"></app-validation-message>
             </div>
           </div>
         </div>

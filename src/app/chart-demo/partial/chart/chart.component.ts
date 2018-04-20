@@ -375,7 +375,7 @@ export class ChartComponent implements OnInit {
                 data: data,
                 mapData: Highcharts.maps['cn/china'],
                 joinBy: 'name',
-                name: '空气指数'
+                name: '一级污染'
             }]
         });
     };
