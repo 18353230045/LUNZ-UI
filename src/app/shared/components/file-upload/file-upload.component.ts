@@ -11,6 +11,7 @@ import { FileManager, FileUploader, Utils, Transfer } from '../../../lib/ngx-fil
 
 import { environment } from '../../../../environments/environment';
 import { AuthenticationService, Credentials } from '../../../core/authentication/authentication.service';
+import { element } from 'protractor';
 
 declare var URI: any;
 
@@ -53,6 +54,7 @@ export class FileUploadComponent implements OnInit {
 
         this.uploader.onSuccess = (_file: FileManager, _response: any, _status: number, _headers: any) => {
             _response = JSON.parse(_response);
+            console.log(_response);
             _response['fileType'] = this.fileType(_response);
             this.uploadResult.push(_response);
 
@@ -67,9 +69,10 @@ export class FileUploadComponent implements OnInit {
         };
 
         this.uploader.onError = (_file: FileManager, _response: any, _status: number, _headers: any) => {
-            _response = JSON.parse(_response);
-            _response['fileType'] = this.fileType(_response);
-            this.uploadResult.push(_response);
+            console.log(_file);
+            _file['fileType'] = this.fileType(_file);
+            _file['fileName'] = _file.element.name;
+            this.uploadResult.push(_file);
 
             if (_response === undefined || _status === undefined) {
                 this.error.emit(Observable.throw(_response));
@@ -77,7 +80,7 @@ export class FileUploadComponent implements OnInit {
                 this.error.emit(Observable.throw(new Error(`[${_status}]${_response}`)));
             }
 
-            this.log.info(`${_file.name} 上传失败！`);
+            this.log.error(`${_file.name} 上传失败！`);
         };
 
         this._files$.subscribe((data: FileManager[]) => {
@@ -123,7 +126,8 @@ export class FileUploadComponent implements OnInit {
     };
 
     private fileType(_file: any) {
-        const file = _file.Data.FileType;
+        const file = _file.Data ? _file.Data.FileType : _file.element ? _file.element.name : null;
+        // const file = _file.Data.FileType || _file.element.name;
         if (file.indexOf('png') > 0 || file.indexOf('jpg') > 0) {
             return 'fa-file-image-o';
         } else if (file.indexOf('docx') > 0) {
@@ -136,6 +140,14 @@ export class FileUploadComponent implements OnInit {
             return 'fa-file-text-o';
         } else {
             return 'fa-file-o';
+        }
+    };
+
+    private showDeleteIcon(row: any) {
+        if (row.Data) {
+            this.deleteItem = row.Data.Filename;
+        } else {
+            this.deleteItem = row.fileName;
         }
     };
 

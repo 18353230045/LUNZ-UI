@@ -9,13 +9,15 @@
   <input *ngIf="multiple" ng2File2Select type="file" accept="{{accept}}" name="file" multiple [uploader]="uploader" />
 </label>
 <div *ngIf="uploadResult.length>0" class="lz-file-upload-list">
-    <div *ngFor="let item of uploadResult" class="lz-file-upload-list-item"
-        (mouseenter)="deleteItem=item.Data.Filename"
-        (mouseleave)="deleteItem=''">
-        <span class="lz-file-upload-list-icon m--font-brand fa {{item.fileType}}"></span>
-        <a href="{{item.Data.Url}}" target="_blank">{{item.Data.Filename}}</a>
-        <span *ngIf="!(item.Data.Filename===deleteItem)" class="lz-file-upload-status float-right fa fa-check-circle" 
-        [ngClass]="{'fa-check-circle m--font-success':item.Success, 'fa-times-circle m--font-danger':!item.Success}"></span>
-        <span *ngIf="item.Data.Filename===deleteItem" (click)="deleteUpload(item)" class="lz-file-upload-status float-right fa fa-times-circle m--font-metal"></span>
+    <div *ngFor="let item of uploadResult" class="lz-file-upload-list-item" (mouseenter)="showDeleteIcon(item)" (mouseleave)="deleteItem=''">
+        <span class="lz-file-upload-list-icon m--font-brand fa {{item.fileType}}" [ngClass]="{'m--font-metal':item.element}"></span>
+        <a *ngIf="item.Success" href="{{item.Data.Url}}" target="_blank">{{item.Data.Filename}}</a>
+        <a *ngIf="!item.Success">{{item.fileName}}</a>
+        <span *ngIf="item.Data" (click)="deleteUpload(item)"
+            [ngClass]="{'fa-times-circle m--font-metal':deleteItem===item.Data.Filename,'fa-check-circle m--font-success':deleteItem!==item.Data.Filename}"
+            class="lz-file-upload-status fa float-right">
+        </span>
+        <span *ngIf="!item.Data" (click)="deleteUpload(item)" class="lz-file-upload-status float-right fa fa-times-circle"
+            [ngClass]="{'m--font-metal':deleteItem===item.fileName,'m--font-danger':deleteItem!==item.fileName}"></span>
     </div>
 </div>
