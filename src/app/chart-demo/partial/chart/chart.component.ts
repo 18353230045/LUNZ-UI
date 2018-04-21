@@ -72,6 +72,7 @@ export class ChartComponent implements OnInit {
                 },
                 series: {
                     animation: true,
+                    cursor: 'pointer',
                     dataLabels: {
                         enabled: true
                     },
@@ -142,6 +143,7 @@ export class ChartComponent implements OnInit {
                 },
                 series: {
                     animation: true,
+                    cursor: 'pointer',
                     dataLabels: {
                         enabled: true
                     },
@@ -265,6 +267,7 @@ export class ChartComponent implements OnInit {
                 },
                 series: {
                     animation: true,
+                    cursor: 'pointer',
                     dataLabels: {
                         enabled: true
                     },
@@ -358,8 +361,9 @@ export class ChartComponent implements OnInit {
             plotOptions: {
                 series: {
                     dataLabels: {
-                        enabled: false
+                        enabled: false,
                     },
+                    cursor: 'pointer',
                     marker: {
                         radius: 3
                     },
