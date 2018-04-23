@@ -26,6 +26,7 @@ export class FileUploadComponent implements OnInit {
     uploadResult: Array<any> = [];
     deleteItem: any;
     fileLoaded: Boolean = false;
+    showResultContent: Boolean = false;
 
     @Input() ngValue: any;
     @Input() multiple?= false;
@@ -53,21 +54,27 @@ export class FileUploadComponent implements OnInit {
 
         this.uploader.onSuccess = (_file: FileManager, _response: any, _status: number, _headers: any) => {
             _response = JSON.parse(_response);
-            _response['fileType'] = this.fileType(_response);
-            this.uploadResult.push(_response);
 
-            const result: any = _response;
-            if (result.Success) {
-                this.onNgValueChange(result.Data);
-                this.success.emit(result.Data);
-                this.log.info(`${_file.name} 上传成功！`);
+            if (_response.Success) {
+                _response['fileType'] = this.fileType(_response);
+                _response['progress'] = _file.progress;
+
+                this.uploadResult.push(_response);
+                const result: any = _response;
+                if (result.Success) {
+                    this.onNgValueChange(result.Data);
+                    this.success.emit(result.Data);
+                    this.log.info(`${_file.name} 上传成功！`);
+                } else {
+                    this.error.emit(Observable.throw(new Error(result.AllMessages)));
+                }
             } else {
-                this.error.emit(Observable.throw(new Error(result.AllMessages)));
+                this.log.warn(`文件大小不能超过5M！`);
             }
         };
 
         this.uploader.onError = (_file: FileManager, _response: any, _status: number, _headers: any) => {
-            _file['fileType'] = this.fileType(_file);
+            _file['fileType'] = 'fa-times';
             _file['fileName'] = _file.element.name;
             this.uploadResult.push(_file);
 
@@ -123,19 +130,21 @@ export class FileUploadComponent implements OnInit {
     };
 
     private fileType(_file: any) {
-        const file = _file.Data ? _file.Data.FileType : _file.element ? _file.element.name : null;
-        if (file.indexOf('png') > 0 || file.indexOf('jpg') > 0) {
-            return 'fa-file-image-o';
-        } else if (file.indexOf('docx') > 0) {
-            return 'fa-file-word-o';
-        } else if (file.indexOf('xlsx') > 0) {
-            return 'fa-file-excel-o';
-        } else if (file.indexOf('pdf') > 0) {
-            return 'fa-file-pdf-o';
-        } else if (file.indexOf('txt') > 0) {
-            return 'fa-file-text-o';
-        } else {
-            return 'fa-file-o';
+        if (_file.Success) {
+            const file = _file.Data ? _file.Data.FileType : _file.element ? _file.element.name : null;
+            if (file.indexOf('png') > 0 || file.indexOf('jpg') > 0) {
+                return 'fa-file-image-o';
+            } else if (file.indexOf('docx') > 0) {
+                return 'fa-file-word-o';
+            } else if (file.indexOf('xlsx') > 0) {
+                return 'fa-file-excel-o';
+            } else if (file.indexOf('pdf') > 0) {
+                return 'fa-file-pdf-o';
+            } else if (file.indexOf('txt') > 0) {
+                return 'fa-file-text-o';
+            } else {
+                return 'fa-file-o';
+            }
         }
     };
 

@@ -19,5 +19,11 @@
         </span>
         <span *ngIf="!item.Data" (click)="deleteUpload(item)" class="lz-file-upload-status float-right fa fa-times-circle"
             [ngClass]="{'m--font-metal':deleteItem===item.fileName,'m--font-danger':deleteItem!==item.fileName}"></span>
+        <div>
+            <div class="lz-file-upload-press-content">
+                <div class="progress-bar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+            </div>
+            <span class="float-right text-right lz-file-upload-press-text">{{item.progress}}%</span>
+        </div>
     </div>
 </div>
