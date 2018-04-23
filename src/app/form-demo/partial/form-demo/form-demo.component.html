@@ -100,13 +100,13 @@
                 <span class="text-danger">*</span>
               </label>
               <div class="input-group">
-                <input class="form-control" type="text" id="todayBtn" appDatepicker [clearBtn]="true" [(ngModel)]="date" formControlName="date"
-                />
+                <input class="form-control" type="text" id="todayBtn" appDatepicker [clearBtn]="true" [(ngModel)]="date" formControlName="date" 
+                placeholder="日期格式：0000-00-00"/>
                 <span class="input-group-addon default">
                   <i class="la la-calendar"></i>
                 </span>
               </div>
-              <app-validation-message [control]="form.controls['date']" label="日期"></app-validation-message>
+              <app-validation-message [control]="form.controls['date']" label="日期" [validationMessages]="{pattern:'日期格式不正确。'}" ></app-validation-message>
             </div>
           </div>
           <div class="col-md-6">

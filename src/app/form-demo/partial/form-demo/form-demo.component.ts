@@ -29,7 +29,7 @@ export class FormDemoComponent implements OnInit {
             abstract: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
             numberRange: [null, [Validators.required, CustomValidators.number, CustomValidators.min(1),
             CustomValidators.max(10)]],
-            date: [null, [Validators.required, CustomValidators.date]],
+            date: [null, [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
             phone: [null, [Validators.pattern(/^((0\d{2,3}-\d{7,8})|(1[3|4|5|6|7|8|9][0-9]\d{8}))$/)]],
         });
     };
