@@ -128,8 +128,8 @@
                 日期验证
                 <small>（日期）</small>
               </label>
-              <input type="text" class="form-control" name="date" formControlName="date" />
-              <app-validation-message [control]="form.controls['date']"></app-validation-message>
+              <input type="text" class="form-control" name="date" formControlName="date" placeholder="日期格式：0000-00-00" />
+              <app-validation-message [control]="form.controls['date']" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></app-validation-message>
             </div>
           </div>
           <!-- 最小日期验证 -->
@@ -139,8 +139,8 @@
                 最小日期验证
                 <small>（不能小于2018-03-07）</small>
               </label>
-              <input type="text" class="form-control" name="minDate" formControlName="minDate" />
-              <app-validation-message [control]="form.controls['minDate']" label="2018-03-07"></app-validation-message>
+              <input type="text" class="form-control" name="minDate" formControlName="minDate" placeholder="日期格式：0000-00-00" />
+              <app-validation-message [control]="form.controls['minDate']" label="2018-03-07" [validationMessages]="{pattern:'日期输入不合法 '}"></app-validation-message>
             </div>
           </div>
           <!-- 最大日期验证 -->
@@ -150,8 +150,8 @@
                 最大日期验证
                 <small>（不能大于2018-03-07）</small>
               </label>
-              <input type="text" class="form-control" name="maxDate" formControlName="maxDate" />
-              <app-validation-message [control]="form.controls['maxDate']" label="2018-03-07"></app-validation-message>
+              <input type="text" class="form-control" name="maxDate" formControlName="maxDate" placeholder="日期格式：0000-00-00" />
+              <app-validation-message [control]="form.controls['maxDate']" label="2018-03-07" [validationMessages]="{pattern:'日期输入不合法 '}"></app-validation-message>
             </div>
           </div>
           <!-- phone验证 -->
