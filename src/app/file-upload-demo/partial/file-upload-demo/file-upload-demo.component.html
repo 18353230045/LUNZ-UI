@@ -30,11 +30,10 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
           <h5>多文件上传</h5>
-          <app-file-upload
-            [multiple]="true" 
+          <app-file-upload [multiple]="true"
             (success)="successHandle($event)"
             (error)="errorHandle($event)">
-          </app-file-upload>
+        </app-file-upload>
         </div>
       </div>
       <div class="row">

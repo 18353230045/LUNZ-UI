@@ -105,19 +105,22 @@ $cubicBezier: 0.25,0.46,0.45,0.94;
 }
 
 .progress-bar {
-  display: inline-block;
   height: 2px;
 }
 
+
 .lz-file-upload-press-content {
-  display: inline-block;
   width: 94%;
+  height: 2px;
+  margin-top: 9px;
+
+  .lz-file-upload-press-bg {
+    background: #e0dede;
+  }
 }
 
 .lz-file-upload-press-text {
   display: inline-block;
   width: 6%;
-  padding-left: 8px;
-  line-height: 27px;
   font-size: 12px;
 }
