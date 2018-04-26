@@ -36,6 +36,7 @@ import { LaddaDirective } from './directives/ladda.directive';
 import { DatepickerDirective } from './directives/datepicker.directive';
 
 import { RmbPipe } from './pipes/rmb.pipe';
+import { RemoveSpacePipe } from './pipes/remove-space.pipe';
 
 
 export function createDecimalPipe() {
@@ -73,6 +74,7 @@ export function createDecimalPipe() {
         DatepickerDirective,
 
         RmbPipe,
+        RemoveSpacePipe,
     ],
 
     exports: [
