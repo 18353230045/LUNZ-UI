@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -11,7 +10,7 @@ import { WebApiResultResponse, PagingResponse } from '../../core/http/web-api-re
 @Injectable()
 export class OrdersService extends WebApiResultResponse {
 
-  constructor(private http: Http) {
+  constructor(private http: Http,) {
     super();
   }
 
