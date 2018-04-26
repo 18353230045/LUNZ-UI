@@ -10,7 +10,7 @@ import { WebApiResultResponse, PagingResponse } from '../../core/http/web-api-re
 @Injectable()
 export class OrdersService extends WebApiResultResponse {
 
-  constructor(private http: Http,) {
+  constructor(private http: Http) {
     super();
   }
 
