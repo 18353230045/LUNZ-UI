@@ -169,6 +169,7 @@ export class HttpService extends Http {
 
         if (response && response.status && response.status === 401) {
             this.log.debug('未认证，跳转登录页...');
+            localStorage.clear();
             this.router.navigate(['/login']);
         }
 

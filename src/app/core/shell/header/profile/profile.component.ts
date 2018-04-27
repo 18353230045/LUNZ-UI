@@ -57,7 +57,10 @@ export class ProfileComponent implements OnInit {
 
     this.authenticationService
       .logout()
-      .subscribe(() => this.router.navigate(['/login']));
+      .subscribe(() => {
+        localStorage.clear();
+        this.router.navigate(['/login']);
+      });
   }
 
   changePassword() {

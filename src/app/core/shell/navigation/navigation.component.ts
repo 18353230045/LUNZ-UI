@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BsModalService } from 'ngx-bootstrap';
@@ -17,7 +17,7 @@ declare const jQuery: any;
     styleUrls: ['./navigation.component.scss'],
     providers: [AuthenticationService, ProfileService]
 })
-export class NavigationComponent implements OnInit, AfterViewChecked, AfterViewInit {
+export class NavigationComponent implements OnInit, AfterViewChecked {
 
     log: Logger;
     isAuthenticated: boolean;
@@ -43,10 +43,6 @@ export class NavigationComponent implements OnInit, AfterViewChecked, AfterViewI
         if (this.isAuthenticated) {
             this.getMenuItems();
         }
-    };
-
-    ngAfterViewInit() {
-        jQuery('#m_aside_left_minimize_toggle').click();
     };
 
     ngAfterViewChecked() {
