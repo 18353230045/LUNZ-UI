@@ -12,6 +12,8 @@ import { OrdersService } from '../../shared/orders.service';
 
 import { EditOrderModalComponent } from '../edit-order-modal/edit-order-modal.component';
 
+declare const $: any;
+
 @Component({
     selector: 'app-orders',
     templateUrl: './orders.component.html',
@@ -47,18 +49,32 @@ export class OrdersComponent implements OnInit, AfterViewInit {
         private dialogs: Dialogs,
         private modalService: BsModalService) {
         this.log = this.loggerFactory.getLogger();
-    }
+    };
 
-    ngOnInit() { }
+    ngOnInit() {
+
+    };
 
     ngAfterViewInit() {
         this.changeDetectorRef.detectChanges();
         this.ngxDataTable.refreshData();
-    }
+        this.removeHeaderNull();
+    };
+
+    // 解决Edge浏览器下，ngx-datatable组件header处有'null'空值的现象
+    removeHeaderNull() {
+        $('.datatable-header-cell-label').each(function () {
+            if ($(this).text() === 'null') {
+                $(this).remove();
+            }
+        });
+    };
+
     onSelect(event: any) {
         this.selectedOrders.splice(0, this.selectedOrders.length);
         this.selectedOrders.push(event.selected);
-    }
+    };
+
     loadOrders(event: any) {
         const params: any = event.page;
         this.datatable = event.datatable;
@@ -73,7 +89,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
             }, error => {
                 this.log.error('订单获取失败。', error);
             });
-    }
+    };
 
     delete(row: any) {
         this.dialogs.confirm(`真的要删除 '${row.subject}' 吗？`).subscribe(
@@ -85,7 +101,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
                         this.log.info('订单删除成功!', row);
                     }, error => this.log.error('订单删除失败。', error));
             }, () => this.log.debug('取消删除订单。'));
-    }
+    };
 
     editByModal(row: any) {
         const onHidden = this.modalService.onHidden.subscribe((reason: string) => {
@@ -96,5 +112,5 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
         const modalRef: BsModalRef = this.modalService.show(EditOrderModalComponent);
         modalRef.content.data = row;
-    }
-}
+    };
+};
