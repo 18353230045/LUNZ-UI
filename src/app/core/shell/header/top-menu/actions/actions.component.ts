@@ -182,6 +182,11 @@ export class ActionsComponent implements OnInit {
     };
 
     submitCheckedModel(): void {
+        if (this.temporaryList.length === 0) {
+            this.log.warn(`至少选择 1 个模块！`);
+            return;
+        }
+
         if (this.temporaryList.length > 5) {
             this.log.warn(`最多添加5个模块！`);
             return;
