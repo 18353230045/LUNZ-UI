@@ -54,10 +54,11 @@ export class FileUploadComponent implements OnInit {
 
         this.uploader.onSuccess = (_file: FileManager, _response: any) => {
             _response = JSON.parse(_response);
-            _file['url'] = _response.Data.Url;
 
             if (_response.Success) {
                 const result: any = _response;
+                _file['url'] = result.Data.Url;
+                _file['isSuccess'] = '1';
 
                 if (result.Success) {
                     this.onNgValueChange(result.Data);
@@ -66,15 +67,26 @@ export class FileUploadComponent implements OnInit {
                     this.error.emit(Observable.throw(new Error(result.AllMessages)));
                 }
             } else {
-                this.log.warn(`文件大小不能超过5M！`);
+                _file['isSuccess'] = '2';
+                this.log.error(`文件大小不能超过5M！`);
+            }
+        };
+
+        this.uploader.onError = (_file: FileManager, _response: any, _status: number, _headers: any) => {
+            _file['isSuccess'] = '2';
+
+            if (_response === undefined || _status === undefined) {
+                this.error.emit(Observable.throw(_response));
+            } else {
+                this.error.emit(Observable.throw(new Error(`[${_status}]${_response}`)));
             }
 
+            this.log.error(`${_file.name} 上传失败！`);
         };
 
         this.uploader.queue$.subscribe((data: FileManager[]) => {
             this.cleanUp();
         });
-
     };
 
     private onNgValueChange(val: any) {
