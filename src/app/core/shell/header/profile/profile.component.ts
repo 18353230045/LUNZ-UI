@@ -58,9 +58,7 @@ export class ProfileComponent implements OnInit {
     this.authenticationService
       .logout()
       .subscribe(() => {
-        this.router.navigate(['/login']).then(() => {
-          window.location.reload();
-        });
+        this.router.navigate(['/login']);
       });
   };
 
