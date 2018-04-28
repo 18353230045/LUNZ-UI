@@ -15,7 +15,7 @@
     "no-empty-source": null,
     "selector-class-pattern": "[a-z-]+|>",
     "selector-id-pattern": "[a-z-]+|>",
-    "selector-no-id": true,
+    "selector-no-id": false,
     "selector-no-universal": true,
     "selector-pseudo-element-colon-notation": "single",
     "unit-whitelist": ["px", "%", "rem", "em", "vw", "vh", "deg", "s", "ms"],
