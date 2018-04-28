@@ -40,7 +40,8 @@ export class VehicleSelectionComponent implements OnInit {
     outGoingList: any;
 
     letterActive: String = 'A';
-    filterString: any = '';
+    filterSeriesString: any = '';
+    filterCarModelsString: any = '';
     outPutBrand: String = '品牌';
     outPutSeries: String = '车系';
     outPutModel: String = '车型';
@@ -263,7 +264,7 @@ export class VehicleSelectionComponent implements OnInit {
     // filter car series data
     filterCarSeriesData(array: Array<any>) {
         this.filterTemporaryList = array.filter((item: any) => {
-            const patt = new RegExp(`${this.filterString}`, `i`);
+            const patt = new RegExp(`${this.filterSeriesString}`, `i`);
             return patt.test(item.name);
         });
 
@@ -273,7 +274,7 @@ export class VehicleSelectionComponent implements OnInit {
     // filter car models data
     filterCarModelsData(array: Array<any>) {
         this.filterTemporaryList = array.filter((item: any) => {
-            const patt = new RegExp(`${this.filterString}`, `i`);
+            const patt = new RegExp(`${this.filterCarModelsString}`, `i`);
             return patt.test(item.mosaicName);
         });
 
