@@ -169,8 +169,9 @@ export class HttpService extends Http {
 
         if (response && response.status && response.status === 401) {
             this.log.debug('未认证，跳转登录页...');
-            localStorage.clear();
-            this.router.navigate(['/login']);
+            this.router.navigate(['/login']).then(() => {
+                window.location.reload();
+            });
         }
 
         let message = '服务器错误，请联系系统管理员。';
