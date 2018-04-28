@@ -35,6 +35,7 @@ export class DatepickerDirective implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.setDatePicker();
         this.setIconTrigger();
+        this.setBlur();
     };
 
     setDatePicker() {
@@ -65,6 +66,17 @@ export class DatepickerDirective implements OnInit, AfterViewInit {
                 this.ngModelChange.emit(ev.date);
             }
 
+        });
+    };
+
+    // set blur
+    setBlur() {
+        $(`#${this.el.nativeElement.id}`).blur((ev: any) => {
+            if (this.dateType === 'displayDate') {
+                this.ngModelChange.emit(ev.target.value);
+            } else if (this.dateType === 'originalDate') {
+                this.ngModelChange.emit(ev.date);
+            }
         });
     };
 
