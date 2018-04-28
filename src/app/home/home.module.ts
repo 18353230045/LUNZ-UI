@@ -4,6 +4,9 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
+
+import { ProfileService } from '../core/profile/profile.service';
+
 import { HomeComponent } from './home.component';
 
 @NgModule({
@@ -13,9 +16,15 @@ import { HomeComponent } from './home.component';
     SharedModule,
     HomeRoutingModule
   ],
+
   declarations: [
     HomeComponent
   ],
-  providers: []
+
+  providers: [
+    ProfileService
+  ]
+
 })
-export class HomeModule { }
+
+export class HomeModule { };
