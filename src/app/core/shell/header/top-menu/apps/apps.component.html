@@ -26,7 +26,7 @@
             <a [href]="item.website" target="_blank" class="m-menu__link ">
               <i *ngIf="!hasIcon(item.appIconUrl)" class="m-menu__link-icon flaticon-network"></i>
               <i *ngIf="hasIcon(item.appIconUrl)" class="m-menu__link-icon">
-                <img [src]="getIconUrl(item.appIconUrl)" width="24px" />
+                <img [src]="getIconUrl(item.appIconUrl)" [ngStyle]="{'display':'inline-block','width':'24px','height':'24px'}" />
               </i>
               <span class="m-menu__link-text">
                 {{item.name}}

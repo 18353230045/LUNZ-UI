@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { CustomValidators } from 'ng2-validation';
 
+declare const lengthStorageArea: any;
 
 @Component({
     selector: 'app-form-demo',
@@ -29,7 +30,7 @@ export class FormDemoComponent implements OnInit {
             abstract: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
             numberRange: [null, [Validators.required, CustomValidators.number, CustomValidators.min(1),
             CustomValidators.max(10)]],
-            date: [null, [Validators.required, CustomValidators.date]],
+            date: [null, [Validators.required, Validators.pattern(lengthStorageArea.dateValPattern)]],
             phone: [null, [Validators.pattern(/^((0\d{2,3}-\d{7,8})|(1[3|4|5|6|7|8|9][0-9]\d{8}))$/)]],
         });
     };

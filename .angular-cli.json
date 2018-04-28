@@ -57,7 +57,9 @@
       "assets/js/framework/components/plugins/Highcharts/china.js",
 
       "assets/js/default/base/layout.js",
-      "assets/js/snippets/custom/pages/user/login.js"
+      "assets/js/snippets/custom/pages/user/login.js",
+      
+      "assets/js/deposit/deposit.js"
     ],
     "environmentSource": "environments/environment.ts",
     "environments": {

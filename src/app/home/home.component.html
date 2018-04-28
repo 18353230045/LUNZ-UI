@@ -12,8 +12,8 @@
   <div class="m-portlet__body">
     <div class="container-fluid">
       <div class="row">
-        <div *ngFor="let module of moduleAllList" (click)="enterModule(module)" class="col-lg-1 col-md-1 col-sm-1 col-xs-4 text-center lz-home-module-item">
-          <a>
+        <div *ngFor="let module of menuLists" class="col-lg-1 col-md-1 col-sm-1 col-xs-4 text-center lz-home-module-item">
+          <a [routerLink]="[module.url]">
             <h6 class="{{module.icon}}"></h6>
             <p>{{module.name}}</p>
           </a>

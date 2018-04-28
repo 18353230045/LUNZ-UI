@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ElModule } from 'element-angular';
-
 import { SharedModule } from '../shared/shared.module';
 import { FileUploadRoutingModule } from './file-upload-routing.module';
 
@@ -14,7 +12,6 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
         CommonModule,
         SharedModule,
         FileUploadRoutingModule,
-        ElModule.forRoot(),
     ],
 
     declarations: [

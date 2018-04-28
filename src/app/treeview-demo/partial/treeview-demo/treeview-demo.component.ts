@@ -92,9 +92,9 @@ export class TreeviewDemoComponent implements OnInit {
 
     // 拖动节点
     onMoveNode($event: any) {
-        this.treeviewDemoService.moveNode($event).subscribe(response => {
-            this.log.info(`操作成功!`);
-        }, error => this.log.error('操作失败', error));
+        // this.treeviewDemoService.moveNode($event).subscribe(response => {
+        //     this.log.info(`操作成功!`);
+        // }, error => this.log.error('操作失败', error));
     };
 
     // 获取item项数据

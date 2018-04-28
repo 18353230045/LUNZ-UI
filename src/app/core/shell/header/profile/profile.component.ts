@@ -57,16 +57,18 @@ export class ProfileComponent implements OnInit {
 
     this.authenticationService
       .logout()
-      .subscribe(() => this.router.navigate(['/login']));
-  }
+      .subscribe(() => {
+        this.router.navigate(['/login']);
+      });
+  };
 
   changePassword() {
     const modalRef = this.modalService.show(ChangePasswordModalComponent, { backdrop: 'static' });
-  }
+  };
 
   viewMessages() {
     this.router.navigateByUrl('/messages/all');
-  }
+  };
 
   private getProfile(): void {
     this.profileService.getProfile()
@@ -75,5 +77,5 @@ export class ProfileComponent implements OnInit {
       }, error => {
         this.log.error(error);
       });
-  }
-}
+  };
+};

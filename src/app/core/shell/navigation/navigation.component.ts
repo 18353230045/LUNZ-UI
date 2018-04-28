@@ -17,13 +17,11 @@ declare const jQuery: any;
     styleUrls: ['./navigation.component.scss'],
     providers: [AuthenticationService, ProfileService]
 })
-export class NavigationComponent implements OnInit, AfterViewChecked {
 
+export class NavigationComponent implements OnInit, AfterViewChecked {
     log: Logger;
     isAuthenticated: boolean;
-    clickNum: any = 0;
     menuItems: any;
-    menuLists: Array<any> = [];
 
     private _loaded = false;
 
@@ -37,7 +35,6 @@ export class NavigationComponent implements OnInit, AfterViewChecked {
     };
 
     ngOnInit() {
-
         this.isAuthenticated = this.authenticationService.isAuthenticated();
 
         if (this.isAuthenticated) {
@@ -59,35 +56,10 @@ export class NavigationComponent implements OnInit, AfterViewChecked {
         }
     };
 
-    private arrangementMenu(menuList: Array<any>): void {
-        menuList.forEach((item: any) => {
-            if (item.ngUrl !== undefined && item.children.length === 0) {
-                this.menuLists.push({
-                    name: item.name,
-                    icon: item.icon,
-                    url: item.ngUrl,
-                    clickNum: this.clickNum += 1
-                });
-            } else {
-                item.children.forEach((itemt: any) => {
-                    this.menuLists.push({
-                        name: itemt.name,
-                        icon: itemt.icon,
-                        url: itemt.ngUrl,
-                        clickNum: this.clickNum += 1
-                    });
-                });
-            }
-        });
-
-        localStorage.setItem(`menuListAll`, JSON.stringify(this.menuLists));
-    };
-
     private getMenuItems(): void {
         this.profileService.getMenuItems()
             .subscribe(menuItems => {
                 this.menuItems = menuItems;
-                this.arrangementMenu(menuItems);
                 localStorage.setItem('moduleTree', JSON.stringify(menuItems));
             }, error => {
                 this.log.error(error);

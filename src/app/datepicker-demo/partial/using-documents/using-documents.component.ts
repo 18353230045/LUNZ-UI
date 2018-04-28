@@ -107,6 +107,13 @@ export class UsingDocumentsComponent implements OnInit {
                 defaultValue: 'false'
             },
             {
+                name: 'forceParse',
+                explain: '可选，输入时是否强制解析',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'true'
+            },
+            {
                 name: 'multidateSeparator',
                 explain: '可选， 当支持多选时，值于值之间的隔字符',
                 type: 'String',

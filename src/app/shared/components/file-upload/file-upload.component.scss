@@ -103,3 +103,23 @@ $cubicBezier: 0.25,0.46,0.45,0.94;
     font-size: 14px;
   }
 }
+
+.progress-bar {
+  height: 2px;
+}
+
+.lz-file-upload-press-content {
+  width: 94%;
+  height: 2px;
+  margin-top: 9px;
+
+  .lz-file-upload-press-bg {
+    background: #e0dede;
+  }
+}
+
+.lz-file-upload-press-text {
+  display: inline-block;
+  width: 6%;
+  font-size: 12px;
+}

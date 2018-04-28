@@ -5,8 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
-
-import { FileUploaderModule } from '../lib/ngx-file-uploader/public_api';
+import { FileUploaderModule } from '@uniprank/ng2-file-uploader';
 
 import { environment } from '../../environments/environment';
 
@@ -36,6 +35,7 @@ import { LaddaDirective } from './directives/ladda.directive';
 import { DatepickerDirective } from './directives/datepicker.directive';
 
 import { RmbPipe } from './pipes/rmb.pipe';
+import { RemoveSpacePipe } from './pipes/remove-space.pipe';
 
 
 export function createDecimalPipe() {
@@ -73,6 +73,7 @@ export function createDecimalPipe() {
         DatepickerDirective,
 
         RmbPipe,
+        RemoveSpacePipe,
     ],
 
     exports: [
