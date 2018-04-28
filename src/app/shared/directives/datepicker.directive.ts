@@ -22,6 +22,7 @@ export class DatepickerDirective implements OnInit, AfterViewInit {
     @Input() multidate?: Boolean = false; // multidate(default: false)
     @Input() multidateSeparator?: String = ','; // multidate multidateSeparator
     @Input() orientation?: String = 'bottom'; // position(default: auto)
+    @Input() forceParse?: Boolean = true; // whether the input is parsed
     @Input() startDate?: string; // set startDate
     @Input() endDate?: string; // set startDate
 
@@ -50,6 +51,7 @@ export class DatepickerDirective implements OnInit, AfterViewInit {
             minViewMode: this.minViewMode,   // min select view(days,months,years)
             maxViewMode: this.maxViewMode,   // max select view(days,months,years)
             assumeNearbyYear: true,   // auto assumeNearbyYear
+            forceParse: this.forceParse,   // whether the input is parsed
             orientation: this.orientation,   // position(default: auto)
             multidate: this.multidate,   // multidate(default: false)
             multidateSeparator: this.multidateSeparator,   // multidate multidateSeparator
