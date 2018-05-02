@@ -3,12 +3,12 @@ import { Routes, RouterModule, Route } from '@angular/router';
 
 import { RouteExtensions } from '../core/route.service';
 
-import { ProgressComponent } from './partial/progress/progress.component';
+import { ProgressDemoComponent } from './partial/progress-demo/progress-demo.component';
 import { UsingDocumentsComponent } from './partial/using-documents/using-documents.component';
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: 'progress', component: ProgressComponent, data: { title: '进度条' } },
+        { path: 'progress', component: ProgressDemoComponent, data: { title: '进度条' } },
         [
           { path: 'using-documents', component: UsingDocumentsComponent, data: { title: '进度条使用文档' } }
         ]);
