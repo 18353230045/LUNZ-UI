@@ -38,7 +38,7 @@
           <button type="button" (click)="cancelMoeuleEdit($event)" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
             <i class="la la-reply"></i>
           </button>
-          <div *ngIf="!modelOption" class="lz-model-add-wr">
+          <div class="lz-model-add-wr">
             <tree-root [nodes]="nodes" [options]="options">
               <ng-template #treeNodeTemplate let-node="node" let-index="index">
                 <i class="jstree-icon jstree-themeicon {{node.data.icon}} jstree-themeicon-custom"></i>
