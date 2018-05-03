@@ -36,10 +36,13 @@ export class AuthenticationService extends WebApiResultResponse {
 
   private _credentials: Credentials;
 
-  constructor(private http: Http, private sharedSessionStorage: SharedSessionStorageService) {
+  constructor(
+    private http: Http,
+    private sharedSessionStorage: SharedSessionStorageService
+  ) {
     super();
     this._credentials = JSON.parse(
-        this.sharedSessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey));
+      this.sharedSessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey));
   }
 
   /**
