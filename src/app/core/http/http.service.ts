@@ -157,7 +157,7 @@ export class HttpService extends Http {
 
     // Customize the default behavior for all http requests here if needed
     private httpRequest(request: string | Request, options: RequestOptionsArgs): Observable<Response> {
-        let req = super.request(request, options);
+        let req: any = super.request(request, options);
         if (!options.skipErrorHandler) {
             req = req.catch(this.errorHandler.bind(this));
         }
