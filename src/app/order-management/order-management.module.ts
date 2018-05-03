@@ -7,7 +7,6 @@ import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
-import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 import { SharedModule } from '../shared/shared.module';
 
 import { OrderManagementRoutingModule } from './order-management-routing.module';
@@ -38,7 +37,6 @@ import { EditOrderModalComponent } from './partial/edit-order-modal/edit-order-m
     OrderComponent
   ],
   providers: [
-    createBsDatepickerConfigProvider(),
     OrdersService
   ]
 })

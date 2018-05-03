@@ -17,7 +17,6 @@ import { SignalRModule, SignalRConfiguration, ConnectionTransports } from 'ng2-s
 import * as moment from 'moment';
 import { MomentModule } from 'angular2-moment/moment.module';
 // https://valor-software.com/ngx-bootstrap
-import { BsDatepickerModule, RatingModule, TypeaheadModule, DatepickerConfig } from 'ngx-bootstrap';
 
 import { environment } from '../environments/environment';
 
@@ -101,9 +100,6 @@ moment.locale(environment.localeId);
         NgxQueryModule.forRoot(ngxQuerySettings),
         SignalRModule.forRoot(getSignalrConfiguration),
         MomentModule,
-        BsDatepickerModule.forRoot(),
-        RatingModule.forRoot(),
-        TypeaheadModule.forRoot(),
         // core libraries
         CoreModule,
         SharedModule.forRoot(sweetAlertOptions),

@@ -31,7 +31,6 @@ import { VehicleService } from './services/vehicle.service';
 
 import { NgxDataTableDirective } from './directives/ngx-datatable.directive';
 import { ApplyPermissionDirective } from './directives/apply-permission.directive';
-import { BsDateValueDirective } from './directives/bs-date-value.directive';
 import { LaddaDirective } from './directives/ladda.directive';
 import { DatepickerDirective } from './directives/datepicker.directive';
 
@@ -70,7 +69,6 @@ export function createDecimalPipe() {
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
-        BsDateValueDirective,
         LaddaDirective,
         DatepickerDirective,
 
@@ -95,7 +93,6 @@ export function createDecimalPipe() {
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
-        BsDateValueDirective,
         LaddaDirective,
         DatepickerDirective,
 

@@ -12,7 +12,6 @@ import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { TreeModule } from 'angular-tree-component';
 
 import { environment } from '../../environments/environment';
-import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -139,7 +138,6 @@ export function createCurrencyPipe() {
             deps: [XHRBackend, RequestOptions, HttpCacheService, Router, LoggerFactory, Injector],
             useFactory: createHttpService
         },
-        createBsDatepickerConfigProvider(),
         Dialogs,
         LoggerFactory,
         SweetAlert2Service,
