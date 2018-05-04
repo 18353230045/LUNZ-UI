@@ -19,10 +19,9 @@
           <span class="text-danger">*</span>
         </label>
         <div class="input-group">
-          <input type="text" class="form-control" formControlName="date" placeholder="yyyy-mm-dd" bsDatepicker [(bsDateValue)]="data.date"
-            #d="bsDatepicker" />
+          <input type="text" class="form-control" formControlName="date" placeholder="yyyy-mm-dd" id="date" appDatepicker [clearBtn]="true" [(ngModel)]="data.date" />
           <span class="input-group-btn">
-            <button class="btn btn-default" (click)="d.toggle()" type="button">
+            <button class="btn btn-default" type="button">
               <i class="fa fa-calendar"></i>
             </button>
           </span>

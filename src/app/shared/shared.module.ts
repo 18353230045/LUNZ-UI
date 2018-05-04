@@ -21,6 +21,7 @@ import { VehicleSelectionComponent } from './components/vehicle-selection/vehicl
 import { DropdownSelectionComponent } from './components/dropdown-selection/dropdown-selection.component';
 import { SelectSelectionComponent } from './components/select-selection/select-selection.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { ProgressComponent } from './components/progress/progress.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 
@@ -30,7 +31,6 @@ import { VehicleService } from './services/vehicle.service';
 
 import { NgxDataTableDirective } from './directives/ngx-datatable.directive';
 import { ApplyPermissionDirective } from './directives/apply-permission.directive';
-import { BsDateValueDirective } from './directives/bs-date-value.directive';
 import { LaddaDirective } from './directives/ladda.directive';
 import { DatepickerDirective } from './directives/datepicker.directive';
 
@@ -65,10 +65,10 @@ export function createDecimalPipe() {
         DropdownSelectionComponent,
         SelectSelectionComponent,
         TabsComponent,
+        ProgressComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
-        BsDateValueDirective,
         LaddaDirective,
         DatepickerDirective,
 
@@ -89,10 +89,10 @@ export function createDecimalPipe() {
         VehicleSelectionComponent,
         SelectSelectionComponent,
         TabsComponent,
+        ProgressComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
-        BsDateValueDirective,
         LaddaDirective,
         DatepickerDirective,
 

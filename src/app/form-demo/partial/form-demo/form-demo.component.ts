@@ -14,9 +14,10 @@ declare const lengthStorageArea: any;
 
 export class FormDemoComponent implements OnInit {
     form: FormGroup;
-    price: Number;
-    num: Number;
+    price: any;
+    num: any;
     saving = false;
+    date: any;
 
     constructor(
         public location: Location,

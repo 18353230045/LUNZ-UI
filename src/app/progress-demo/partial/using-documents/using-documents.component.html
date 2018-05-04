@@ -24,25 +24,17 @@
   <div class="m-portlet__body">
     <ul>
       <li>
-        <h5>说明：</h5>
-        <span>
-          进度条组件使用了第三方组件
-          <a href="https://element-angular.faas.ele.me/data/progress" target="_blank">'element-angular'</a>。
-        </span>
-        <br/>
-      </li>
-      <li>
         <h5>使用方法：</h5>
         <span>1、在当前模块的.module.ts中引入:</span>
         <br/>
-        <code> import &#123; ElModule &#125; from 'element-angular';</code>
+        <code> import &#123; SharedModule &#125; from '../shared/shared.module';</code>
       </li>
       <li>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;添加到@NgModule装饰器中:</span>
         <br/>
         <code>@NgModule(&#123;
           <br/>&nbsp;&nbsp;&nbsp;&nbsp;imports: [
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ElModule.forRoot(),
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SharedModule,
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;]
           <br/>&#125;);</code>
       </li>
@@ -51,7 +43,7 @@
       </li>
       <li>
         <code>
-          &lt;el-progress [text-inside]="true" [stroke-width]="14" [percentage]="0"&gt;&lt;/el-progress&gt;
+          &lt;app-progress [progress]="0"&gt;&lt;/app-progress&gt;
         </code>
       </li>
       <li>

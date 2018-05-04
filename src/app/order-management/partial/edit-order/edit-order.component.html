@@ -52,15 +52,14 @@
               <span class="text-danger">*</span>
             </label>
             <div class="input-group">
-              <input type="text" class="form-control" formControlName="date" placeholder="yyyy-mm-dd" [(bsDateValue)]="order.date" bsDatepicker
-                #d="bsDatepicker" />
+              <input type="text" class="form-control" id="date" appDatepicker [clearBtn]="true" [(ngModel)]="order.date" formControlName="date" placeholder="yyyy-mm-dd" />
               <span class="input-group-btn">
-                <button class="btn btn-default" (click)="d.toggle()" type="button">
+                <button class="btn btn-default" type="button">
                   <i class="fa fa-calendar"></i>
                 </button>
               </span>
             </div>
-            <app-validation-message [formGroup]="form" for="date" label="日期"></app-validation-message>
+            <app-validation-message [formGroup]="form" for="date" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></app-validation-message>
           </div>
         </div>
         <div class="col-md-6">
