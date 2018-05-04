@@ -22,8 +22,8 @@ export class DatepickerDirective implements OnInit, AfterViewInit {
     @Input() multidate?: Boolean = false; // multidate(default: false)
     @Input() multidateSeparator?: String = ','; // multidate multidateSeparator
     @Input() orientation?: String = 'bottom'; // position(default: auto)
-    @Input() startDate?: string; // set startDate
-    @Input() endDate?: string; // set startDate
+    @Input() startDate?: any; // set startDate
+    @Input() endDate?: any; // set endDate
 
     @Output() ngModelChange = new EventEmitter();
 
@@ -54,8 +54,8 @@ export class DatepickerDirective implements OnInit, AfterViewInit {
             orientation: this.orientation,   // position(default: auto)
             multidate: this.multidate,   // multidate(default: false)
             multidateSeparator: this.multidateSeparator,   // multidate multidateSeparator
-            startDate: this.startDate ? new Date(this.startDate) : null,  // set startDate
-            endDate: this.startDate ? new Date(this.endDate) : null,   // set endDate
+            startDate: this.startDate,  // set startDate
+            endDate: this.endDate,   // set endDate
         }).on('changeDate', (ev: any) => {
 
             if (this.dateType === 'displayDate') {
