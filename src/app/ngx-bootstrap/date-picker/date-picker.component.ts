@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { listLocales } from 'ngx-bootstrap/bs-moment';
+// import { listLocales } from 'ngx-bootstrap/bs-moment';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class DatePickerComponent implements OnInit {
   public bsConfig: Partial<BsDatepickerConfig>;
 
   locale = 'en';
-  locales = listLocales();
+  // locales = listLocales();
   bsConfigLocale: Partial<BsDatepickerConfig>;
 
   minDateM: Date;
@@ -67,7 +67,7 @@ export class DatePickerComponent implements OnInit {
   applyLocale(pop: any) {
     // create new object on each property change
     // so Angular can catch object reference change
-    this.bsConfigLocale = Object.assign({}, { locale: this.locale });
+    // this.bsConfigLocale = Object.assign({}, { locale: this.locale });
     setTimeout(() => {
       pop.hide();
       pop.show();
