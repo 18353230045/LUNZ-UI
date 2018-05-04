@@ -59,7 +59,7 @@
                 </button>
               </span>
             </div>
-            <app-validation-message [formGroup]="form" for="date" label="日期"></app-validation-message>
+            <app-validation-message [formGroup]="form" for="date" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></app-validation-message>
           </div>
         </div>
         <div class="col-md-6">

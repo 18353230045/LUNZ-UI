@@ -10,6 +10,8 @@ import { ConvertService } from '../../../shared/converts/convert.service';
 
 import { OrdersService } from '../../shared/orders.service';
 
+declare const lengthStorageArea: any;
+
 @Component({
     selector: 'app-create-order',
     templateUrl: '../edit-order/edit-order.component.html',
@@ -72,7 +74,7 @@ export class CreateOrderComponent implements OnInit {
     private buildForm() {
         this.form = this.formBuilder.group({
             subject: [null, [Validators.required, Validators.maxLength(50)]],
-            date: [null, [Validators.required]],
+            date: [null, [Validators.pattern(lengthStorageArea.dateValPattern), Validators.required]],
             hearFrom: [null, [Validators.required]],
             price: [null, [Validators.required, Validators.pattern(/^[0-9]*$/)]],
             amount: [null, [Validators.required, Validators.pattern(/^[0-9]*$/)]],
