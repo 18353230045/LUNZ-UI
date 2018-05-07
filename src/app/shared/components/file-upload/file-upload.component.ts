@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import {
     FileManager, FileManagerOptions, FileUploader,
     Utils, Transfer, TransferOptions
-} from '@uniprank/ng2-file-uploader';
+} from '../../../lib/@uniprank/ng2-file-uploader';
 
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
