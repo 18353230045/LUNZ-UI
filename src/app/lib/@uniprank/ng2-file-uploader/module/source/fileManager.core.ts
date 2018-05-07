@@ -39,7 +39,7 @@ export class FileObject {
     }
 
     private _createFromObject(object: any) {
-        this.lastModifiedDate = new Date(object.lastModifiedDate.getTime());
+        this.lastModifiedDate = new Date(object.lastModified);
         this.size = object.size;
         this.type = object.type;
         this.name = object.name;
