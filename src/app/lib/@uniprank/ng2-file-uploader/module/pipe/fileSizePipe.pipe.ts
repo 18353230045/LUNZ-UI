@@ -9,7 +9,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  *   {{ 1024 |  fileSize}}
  *   formats to: 1 KB
 */
-@Pipe({name: 'fileSize'})
+@Pipe({ name: 'fileSize' })
 export class FileSizePipe implements PipeTransform {
 
     private units = [
@@ -21,16 +21,16 @@ export class FileSizePipe implements PipeTransform {
         'PB'
     ];
 
-    transform(bytes = 0, precision = 2): string {
-        if (!isFinite( bytes ) ) {
+    transform(bytes: any = 0, precision: any = 2): string {
+        if (!isFinite(bytes)) {
             return '?';
         }
         let unit = 0;
-        while ( bytes >= 1024 ) {
+        while (bytes >= 1024) {
             bytes /= 1024;
-            unit ++;
+            unit++;
         }
 
-        return bytes.toFixed( + precision ) + ' ' + this.units[ unit ];
+        return bytes.toFixed(+ precision) + ' ' + this.units[unit];
     }
 }

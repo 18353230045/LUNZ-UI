@@ -16,11 +16,11 @@ export enum hookType {
 }
 
 export class UploaderHook {
-    public get type (): hookType | null {
+    public get type(): hookType | null {
         return this._type;
     }
 
-    public get priority (): number | null {
+    public get priority(): number | null {
         return this._priority;
     }
 
@@ -32,7 +32,7 @@ export class UploaderHook {
     private _callback: Function | null = null;
     private _priority: number | null = null;
 
-    constructor (_hookType: hookType, _callback: Function, _priority = 0) {
+    constructor(_hookType: hookType, _callback: Function, _priority: any = 0) {
         this._type = _hookType;
         this._callback = _callback;
         this._priority = +_priority;

@@ -13,7 +13,7 @@ export class FileUploader extends Transfer {
             this._setProtocol( new ProtocolXHR() );
 
             this._getProtocol()._progress.subscribe((obj: any) => {
-                let {
+                const {
                     _file,
                     _data
                 } = obj;
@@ -24,44 +24,44 @@ export class FileUploader extends Transfer {
             });
 
             this._getProtocol()._load.subscribe((obj: any) => {
-                let {
+                const {
                     _file,
                     response,
                     status,
                     headers
                 } = obj;
                 if (_file instanceof FileManager) {
-                    let uploader: Transfer = _file.getUploader();
-                    let gist = this._isSuccessCode(status);
-                    let method = (g: boolean, f: FileManager, r: any, s: number, h: any) => { if (g) { uploader._onSuccessFile(f, r, s, h); } else { uploader._onErrorFile(f, r, s, h); } };
+                    const uploader: Transfer = _file.getUploader();
+                    const gist = this._isSuccessCode(status);
+                    const method = (g: boolean, f: FileManager, r: any, s: number, h: any) => { if (g) { uploader._onSuccessFile(f, r, s, h); } else { uploader._onErrorFile(f, r, s, h); } };
                     method(gist, _file, response, status, headers);
                     uploader._onCompleteFile(_file, response, status, headers);
                 }
             });
 
             this._getProtocol()._error.subscribe((obj: any) => {
-                let {
+                const {
                     _file,
                     response,
                     status,
                     headers
                 } = obj;
                 if (_file instanceof FileManager) {
-                    let uploader: Transfer = _file.getUploader();
+                    const uploader: Transfer = _file.getUploader();
                     uploader._onErrorFile(_file, response, status, headers);
                     uploader._onCompleteFile(_file, response, status, headers);
                 }
             });
 
             this._getProtocol()._abort.subscribe((obj: any) => {
-                let {
+                const {
                     _file,
                     response,
                     status,
                     headers
                 } = obj;
                 if (_file instanceof FileManager) {
-                    let uploader: Transfer = _file.getUploader();
+                    const uploader: Transfer = _file.getUploader();
                     uploader._onErrorFile(_file, response, status, headers);
                     uploader._onCompleteFile(_file, response, status, headers);
                 }
