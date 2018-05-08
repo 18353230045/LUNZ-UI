@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 
 import { WebApiResultResponse } from '../http/web-api-result-response';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { AuthenticationOAuth2Service } from "../authentication/authentication-oauth2.service";
 
 export interface Profile {
   displayName: string;
@@ -22,6 +23,7 @@ export class ProfileService extends WebApiResultResponse {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private authenticationOAuth2Service: AuthenticationOAuth2Service,
     private http: Http) {
     super();
   }
@@ -36,11 +38,22 @@ export class ProfileService extends WebApiResultResponse {
       return Observable.of(this._profile);
     }
 
-    const url = 'membership/getUserInfo';
+    if (this.authenticationOAuth2Service.isUsing()) {
+      const claims = this.authenticationOAuth2Service.claims;
+      this._profile = {
+        displayName: claims.name,
+        username: claims.username
+      };
+      return Observable.of(this._profile);
+    }
 
-    return this.http.get(url)
-      .map(super.handleSuccess)
-      .catch(super.handleError);
+    if (this.authenticationService.isUsing()) {
+      const url = 'membership/getUserInfo';
+
+      return this.http.get(url)
+        .map(super.handleSuccess)
+        .catch(super.handleError);
+    }
   }
 
   /**
