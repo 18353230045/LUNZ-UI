@@ -172,7 +172,7 @@ export class HttpService extends Http {
     private errorHandler(response: Response): Observable<Response> {
 
         const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
-        
+
         if (authenticationService.isUsing()) {
             if (response && response.status && response.status === 401) {
                 this.log.debug('未认证，跳转登录页...');
@@ -208,7 +208,7 @@ export class HttpService extends Http {
             options.headers = new Headers({});
         }
 
-        if (!options.headers.has('Authorization')) {
+        if (!options.headers.has('Authorization') && authorization !== null && authorization !== '') {
             options.headers.append('Authorization', authorization);
         }
 

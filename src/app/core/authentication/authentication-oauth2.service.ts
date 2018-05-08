@@ -57,7 +57,7 @@ export class AuthenticationOAuth2Service {
   }
 
   getAuthorizationHeaderValue(): string {
-    return `${this._credentials.token_type} ${this._credentials.access_token}`;
+    return this._credentials ? `${this._credentials.token_type} ${this._credentials.access_token}` : null;
   }
 
   /**
