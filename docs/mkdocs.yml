@@ -1,13 +1,20 @@
 site_name: LUNZ+
 pages:
     - '简介': index.md
-    - '应用程序':
-        - '响应结果': application/response-result.md
-        - '数据校验': application/validation.md
+    - 'Angular1.x和Angular4内置指令区别': difference/difference.md
+    - 'Angular4的使用':
+        - '开发环境': angular4/environment.md
+        - 'Angular-cli': angular4/Angular-cli/Angular-cli.md
+        - '应用模型': angular4/Angular4-application-model/application-model.md
+        - '应用目录': angular4/Angular4-catalog/catalog.md
+        - '模块': angular4/Angular4-model/Angular4-model.md
+        - '组件': angular4/Angular4-component/Angular4-component.md
+        - '服务': angular4/Angular4-service.md
+        - '指令': angular4/Angular4-directive/Angular4-directive.md
+        - '管道': angular4/Angular4-pipe/Angular4-pipe.md
+    - 'LUNZ+框架的使用': Lunz+/Lunz+.md
+    - '组件库': component/component.md
         
 theme:
   name: 'material'
   language: 'zh'
-  palette:
-    primary: 'blue'
-    accent: 'blue'
