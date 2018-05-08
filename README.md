@@ -1,4 +1,4 @@
-# Lunz+
+# LUNZ+
 
 这个项目是使用 [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)
 version 1.3.1 生成的。

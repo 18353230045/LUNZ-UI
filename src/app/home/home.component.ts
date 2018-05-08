@@ -28,6 +28,11 @@ export class HomeComponent implements OnInit {
         this.getMenuItems();
     };
 
+    test() {
+        this.profileService.test()
+            .subscribe(data => console.log(data));
+    }
+
     private getMenuItems(): void {
         this.profileService.getMenuItems()
             .subscribe(menuItems => {

@@ -26,6 +26,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
+import { AuthenticationModule } from "./authentication/authentication.module";
 import { ChangePasswordModule } from './change-password/change-password.module';
 
 const sweetAlertOptions: SweetAlertOptions = {
@@ -104,6 +105,7 @@ moment.locale(environment.localeId);
         CoreModule,
         SharedModule.forRoot(sweetAlertOptions),
         LoginModule,
+        AuthenticationModule,
         HomeModule,
         ChangePasswordModule,
         // !!!MUST BE LAST ONE!!!

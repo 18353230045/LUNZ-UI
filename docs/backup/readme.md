@@ -1,4 +1,4 @@
-# Lunz+
+# LUNZ+
 
 Welcome to the project documentation!
 

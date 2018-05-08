@@ -13,12 +13,26 @@ export const environment = {
         'en-US',
         'fr-FR'
     ],
+    authentication: {
+        // oauth2 / usercenter
+        type: 'usercenter',
+        useServiceV1: true
+    },
+    odic: {
+        config: {
+            authority: 'http://{identity-server-domain}',
+            client_id: '',
+            redirect_uri: 'http://{domain}/authentication/callback',
+            response_type: 'id_token token',
+            scope: 'openid profile',
+            post_logout_redirect_uri: 'http://{domain}'
+        }
+    },
     // Web Api
-    // serverUrl: '//localhost:38544/api/',
     serverUrl: '',
     appKey: '',
-    withHeaders: true,
-    // User Centertech
+    withHeaders: false,
+    // User Center
     userCenter: {
         serverUrl: '',
         appKey: '',
@@ -40,5 +54,5 @@ export const environment = {
         serverUrl: '',
         appKey: '',
         authUri: ''
-    },
+    }
 };

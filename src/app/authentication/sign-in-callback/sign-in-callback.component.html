@@ -1,0 +1,10 @@
+<div [hidden]="!loading">
+  <h1>正在认证...</h1>
+</div>
+<div [hidden]="loading || !success">
+  <h1>认证成功，正在转向<a [routerLink]="'/dashboard'">起始页</a>...</h1>
+</div>
+<div [hidden]="loading || success">
+  <h1>认证失败，点击<a [routerLink]="'/'">这里</a>重新登录。</h1>
+</div>
+

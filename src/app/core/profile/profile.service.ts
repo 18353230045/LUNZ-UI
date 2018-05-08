@@ -68,6 +68,13 @@ export class ProfileService extends WebApiResultResponse {
     }).catch(super.handleError);
   }
 
+  test(): Observable<any> {
+    const url = 'http://localhost:5101/identity';
+    return this.http.get(url)
+      .map(super.handleSuccess)
+      .catch(super.handleError);
+  }
+
   getApps(): Observable<any> {
     const url = environment.userCenter.serverUrl + 'membership/getUserApps';
 
