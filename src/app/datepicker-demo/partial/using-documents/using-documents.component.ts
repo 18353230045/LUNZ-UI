@@ -41,7 +41,7 @@ export class UsingDocumentsComponent implements OnInit {
                 explain: `可选，日期格式化，当需要传出原始时间格式时，format需传入空字符串，如：[format]=""`,
                 type: 'String',
                 optionaValue: '可通过d，dd，D，DD，m，mm，M，MM，yy，yyyy任意组合',
-                defaultValue: 'yyyy年mm月dd日'
+                defaultValue: 'yyyy-mm-dd'
             },
             {
                 name: 'todayHighlight',
