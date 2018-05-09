@@ -16,14 +16,7 @@ import { Select2Service } from '../../shared/select2.service';
 export class Select2Component implements OnInit, AfterViewInit {
     log: Logger;
 
-    dropdownOptions: Array<any> = [];
     customers: Array<IOption> = [];
-
-    dataModel1: any;
-    dataModel2: any;
-    dataModel3: any;
-
-    customer: any;
     handlerCustomer: any;
 
     config = {
@@ -48,21 +41,11 @@ export class Select2Component implements OnInit, AfterViewInit {
     };
 
     ngOnInit() {
-        this.dropdownOptions = [
-            { '_id': '5a66d', 'index': 0, 'name': 'Burns Dalton' },
-            { '_id': '5a66d6', 'index': 1, 'name': 'Acintyre Lawson' },
-            { '_id': '5a66ds', 'index': 2, 'name': 'Dcintyre Ujojson' },
-            { '_id': '5a66d6c', 'index': 3, 'name': 'Pcintyre Ejkwson' }
-        ];
 
     };
 
     ngAfterViewInit() {
         this.asynGetData();
-    };
-
-    selectionChanged(event: any) {
-        this.log.debug(event);
     };
 
     // asynGetData
