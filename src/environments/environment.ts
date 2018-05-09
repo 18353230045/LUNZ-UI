@@ -15,44 +15,48 @@ export const environment = {
     ],
     authentication: {
         // oauth2 / usercenter
-        type: 'usercenter',
+        type: 'oauth2',
         useServiceV1: true
     },
     odic: {
         config: {
-            authority: 'http://{identity-server-domain}',
-            client_id: '',
-            redirect_uri: 'http://{domain}/authentication/callback',
+            authority: 'http://localhost:5000',
+            client_id: 'lunz-ui',
+            redirect_uri: 'http://localhost:9200/authentication/callback',
             response_type: 'id_token token',
-            scope: 'openid profile',
-            post_logout_redirect_uri: 'http://{domain}'
+            scope: 'openid profile api1',
+            post_logout_redirect_uri: 'http://localhost:9200'
         }
     },
     // Web Api
-    serverUrl: '',
-    appKey: '',
-    withHeaders: false,
+    serverUrl: '//lunz-sharp.lunztech.cn/api/',
+    appKey: 'a9ee8aaa-9c5b-4f56-9cb0-3a840b6e27f9',
+    withHeaders: true,
     // User Center
     userCenter: {
-        serverUrl: '',
-        appKey: '',
-        authUri: ''
+        serverUrl: '//usercenter2015.lunztech.cn/api/',
+        appKey: '4f500000-4c4f-0200-903a-08d4ccde1e74',
+        authUri: '//usercenter2015.lunztech.cn/'
     },
     // Message Center
     msgCenter: {
-        signalR: '',
-        serverUrl: '',
-        appKey: ''
+        signalR: '//messagecenter.lunztech.cn/',
+        serverUrl: '//messagecenter.lunztech.cn/api/',
+        appKey: '53cdc9ab-4c9f-420b-b727-fe0602a7387c'
     },
     // Data Center
     dataCenter: {
-        serverUrl: '',
-        appKey: ''
+        serverUrl: '//datacenter.lunztech.cn/api/',
+        appKey: '536babcc-dd54-42fb-b43e-31c80b7afa74'
     },
     // Customer Center
     customerCenter: {
-        serverUrl: '',
-        appKey: '',
-        authUri: ''
+        serverUrl: '//customercenter.lunztech.cn/api/',
+        appKey: 'cc9065db-9b87-43b9-9917-0c4b5b4fc9d3',
+        authUri: '//customercenter.lunztech.cn/'
+    },
+    // Customer Center
+    microservice: {
+        serverUrl: '//localhost:53708/api/v1/'
     }
 };
