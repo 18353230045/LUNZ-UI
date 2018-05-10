@@ -9,65 +9,61 @@ import { WebApiResultResponse, PagingResponse } from '../../core/http/web-api-re
 import { environment } from '../../../environments/environment';
 
 @Injectable()
-export class HearFromsService extends WebApiResultResponse {
+export class OrdersService extends WebApiResultResponse {
 
   constructor(private http: Http) {
     super();
   }
 
-  getHearFroms(params: any): Observable<PagingResponse> {
+  getOrders(params: any): Observable<PagingResponse> {
 
-    const url = environment.microservice.serverUrl + 'hear-froms';
+    const url = environment.microservice.serverUrl + 'orders';
 
     return this.http.get(url, {
       params: params
     })
-    .map(super.handleSuccess)
+      .map(super.handleSuccess)
       .catch(super.handleError);
   }
 
-  getHearFrom(hearFromId: any): Observable<any> {
+  getOrder(orderId: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + `hear-from/${hearFromId}`;
+    const url = environment.microservice.serverUrl + `order/${orderId}`;
 
     return this.http.get(url)
       .map(super.handleSuccess)
       .catch(super.handleError);
   }
 
-  createHearFrom(entity: any): Observable<any> {
+  createOrder(entity: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + 'hear-from';
+    const url = environment.microservice.serverUrl + 'order';
 
     return this.http.post(url, entity)
       .map(super.handleSuccess)
       .catch(super.handleError);
   }
 
-  updateHearFrom(entity: any): Observable<any> {
+  updateOrder(entity: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + `hear-from/${entity.id}`;
+    const url = environment.microservice.serverUrl + `order/${entity.id}`;
 
     return this.http.put(url, entity)
       .map(super.handleSuccess)
       .catch(super.handleError);
   }
 
-  deleteHearFrom(entity: any): Observable<any> {
+  deleteOrder(entity: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + `hear-from/${entity.id}`;
+    const url = environment.microservice.serverUrl + `order/${entity.id}`;
 
     return this.http.delete(url)
       .map(super.handleSuccess)
       .catch(super.handleError);
   }
-
-  getHearFromList(): Observable<any> {
-
-    const url = environment.microservice.serverUrl + 'hearfroms';
-
-    return this.http.get(url)
-    .map(super.handleSuccess)
-      .catch(super.handleError);
+  
+  hasValue(str: any): boolean {
+    return str && str !== null && str !== '' && str !== undefined;
   }
+
 }

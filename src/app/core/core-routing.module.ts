@@ -26,6 +26,7 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../select2-demo/select2-demo.module#Select2DemoModule' },
     { path: '', loadChildren: '../progress-demo/progress-demo.module#ProgressDemoModule' },
     { path: '', loadChildren: '../hear-from/hear-from.module#HearFromModule' },
+    { path: '', loadChildren: '../order/order.module#OrderModule' },
 ]);
 
 @NgModule({
