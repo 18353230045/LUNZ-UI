@@ -32,7 +32,7 @@ export const environment = {
         default: 'v1',
         // WebAPI for V2 - Microservice
         v2: {
-            baseUrl: '//localhost:53708/api/v1/'
+            baseUrl: '//localhost:5100/api/v1/'
         },
         // WebAPI for V1
         v1: {
