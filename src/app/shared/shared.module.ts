@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
-import { FileUploaderModule } from '@uniprank/ng2-file-uploader';
+import { FileUploaderModule } from '../../app/lib/@uniprank/ng2-file-uploader';
 
 import { environment } from '../../environments/environment';
 
