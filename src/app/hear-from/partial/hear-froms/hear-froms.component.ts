@@ -10,6 +10,7 @@ import { Dialogs } from '../../../core/dialogs.service';
 import { NgxDataTableDirective } from '../../../shared/directives/ngx-datatable.directive';
 
 import { HearFromsService } from '../../shared/hear-froms.service';
+import { IQueryGroup, IHearFromDetails } from '../../../shared/models/microservice-template';
 
 declare const $: any;
 
@@ -22,7 +23,7 @@ export class HearFromsComponent implements OnInit, AfterViewInit {
 
   log: Logger;
   loading = false;
-  hearfroms: Array<any>;
+  hearfroms: Array<IHearFromDetails>;
   queryTemplates: any = [{
     name: 'Default',
     template: {
@@ -64,7 +65,7 @@ export class HearFromsComponent implements OnInit, AfterViewInit {
   };
 
   loadHearfroms(event: any) {
-    const params: any = event.page;
+    const params: IQueryGroup = event.page;
     this.datatable = event.datatable;
 
     this.loading = true;
@@ -73,13 +74,13 @@ export class HearFromsComponent implements OnInit, AfterViewInit {
       .subscribe(response => {
         this.datatable.count = response.count;
         this.hearfroms = response.data;
-        this.log.debug('从哪里听说列表', this.hearfroms);
+        this.log.debug('从哪里听说列表', response);
       }, error => {
         this.log.error('从哪里听说获取失败。', error);
       });
   };
 
-  delete(row: any) {
+  delete(row: IHearFromDetails) {
     this.dialogs.confirm(`真的要删除 '${row.name}' 吗？`).subscribe(
       () => {
         this.hearFromsService.deleteHearFrom(row)

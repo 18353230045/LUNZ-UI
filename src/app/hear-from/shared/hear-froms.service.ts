@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 
 import { WebApiResultResponse, PagingResponse } from '../../core/http/web-api-result-response';
 import { environment } from '../../../environments/environment';
+import { IResponse2, IQueryGroup, IHearFromDetails } from '../../shared/models/microservice-template';
 
 @Injectable()
 export class HearFromsService extends WebApiResultResponse {
@@ -15,18 +16,18 @@ export class HearFromsService extends WebApiResultResponse {
     super();
   }
 
-  getHearFroms(params: any): Observable<PagingResponse> {
+  getHearFroms(params: IQueryGroup): Observable<IResponse2> {
 
     const url = environment.microservice.serverUrl + 'hear-froms';
 
     return this.http.get(url, {
       params: params
     })
-    .map(super.handleSuccess)
+      .map(super.handleSuccess)
       .catch(super.handleError);
   }
 
-  getHearFrom(hearFromId: any): Observable<any> {
+  getHearFrom(hearFromId: string): Observable<IHearFromDetails> {
 
     const url = environment.microservice.serverUrl + `hear-from/${hearFromId}`;
 
@@ -35,7 +36,7 @@ export class HearFromsService extends WebApiResultResponse {
       .catch(super.handleError);
   }
 
-  createHearFrom(entity: any): Observable<any> {
+  createHearFrom(entity: IHearFromDetails): Observable<IHearFromDetails> {
 
     const url = environment.microservice.serverUrl + 'hear-from';
 
@@ -44,7 +45,7 @@ export class HearFromsService extends WebApiResultResponse {
       .catch(super.handleError);
   }
 
-  updateHearFrom(entity: any): Observable<any> {
+  updateHearFrom(entity: IHearFromDetails) {
 
     const url = environment.microservice.serverUrl + `hear-from/${entity.id}`;
 
@@ -53,7 +54,7 @@ export class HearFromsService extends WebApiResultResponse {
       .catch(super.handleError);
   }
 
-  deleteHearFrom(entity: any): Observable<any> {
+  deleteHearFrom(entity: IHearFromDetails) {
 
     const url = environment.microservice.serverUrl + `hear-from/${entity.id}`;
 
@@ -62,12 +63,12 @@ export class HearFromsService extends WebApiResultResponse {
       .catch(super.handleError);
   }
 
-  getHearFromList(): Observable<any> {
+  getHearFromList(): Observable<Array<IHearFromDetails>> {
 
     const url = environment.microservice.serverUrl + 'hearfroms';
 
     return this.http.get(url)
-    .map(super.handleSuccess)
+      .map(super.handleSuccess)
       .catch(super.handleError);
   }
 }
