@@ -69,9 +69,9 @@ export class TreeviewDemoService extends WebApiResultResponse {
 
     private initRequest(action: any) {
         return {
-            url: `${environment.userCenter.serverUrl}${action}`,
+            url: `${environment.api.userCenter.baseUrl}${action}`,
             requestHeader: new Headers({
-                'AppKey': environment.userCenter.appKey,
+                'AppKey': environment.api.userCenter.appKey,
                 'AuthToken': this.authenticationService.credentials.token
             })
         };

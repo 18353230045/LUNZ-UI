@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import {
     FileManager, FileManagerOptions, FileUploader,
     Utils, Transfer, TransferOptions
-} from '@uniprank/ng2-file-uploader';
+} from '../../../lib/@uniprank/ng2-file-uploader';
 
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
@@ -140,18 +140,18 @@ export class FileUploadComponent implements OnInit {
             authenticationService.credentials : null;
         const token: string = credentials == null ? null : credentials.token;
 
-        let url = environment.userCenter.serverUrl + 'ResourceItem/AddFile';
+        let url = environment.api.userCenter.baseUrl + 'ResourceItem/AddFile';
         let headers = {};
 
-        if (environment.withHeaders) {
+        if (environment.api.v1.withHeaders) {
             headers = {
-                'AppKey': environment.userCenter.appKey,
+                'AppKey': environment.api.userCenter.appKey,
                 'AuthToken': token
             };
         } else {
             const urlParser: any = URI(url);
             if (!urlParser.hasQuery('AppKey')) {
-                urlParser.addSearch('AppKey', environment.userCenter.appKey);
+                urlParser.addSearch('AppKey', environment.api.userCenter.appKey);
             }
             if (!urlParser.hasQuery('AuthToken')) {
                 urlParser.addSearch('AuthToken', token);

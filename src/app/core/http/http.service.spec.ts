@@ -54,24 +54,24 @@ describe('HttpService', () => {
   });
 
   describe('request', () => {
-    it('should prepend environment.serverUrl to the request url', fakeAsync(() => {
+    it('should prepend environment.api.v1.baseUrl to the request url', fakeAsync(() => {
       // Act
       httpService.request('/toto');
       lastConnection.mockRespond(new Response(new ResponseOptions()));
       tick();
 
       // Assert
-      expect(lastConnection.request.url).toEqual(environment.serverUrl + '/toto');
+      expect(lastConnection.request.url).toEqual(environment.api.v1.baseUrl + '/toto');
     }));
 
-    it('should prepend environment.serverUrl to the request object url property', fakeAsync(() => {
+    it('should prepend environment.api.v1.baseUrl to the request object url property', fakeAsync(() => {
       // Act
       httpService.request(new Request(new RequestOptions({ url: '/toto' })));
       lastConnection.mockRespond(new Response(new ResponseOptions()));
       tick();
 
       // Assert
-      expect(lastConnection.request.url).toEqual(environment.serverUrl + '/toto');
+      expect(lastConnection.request.url).toEqual(environment.api.v1.baseUrl + '/toto');
     }));
 
     it('should go through default error handler and rethrow an error', fakeAsync(() => {

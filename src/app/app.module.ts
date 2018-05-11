@@ -76,7 +76,7 @@ export function getSignalrConfiguration(): SignalRConfiguration {
     const signalrConfiguration = new SignalRConfiguration();
     signalrConfiguration.hubName = 'WebHub';
     signalrConfiguration.logging = true;
-    signalrConfiguration.url = environment.msgCenter.signalR;
+    signalrConfiguration.url = environment.api.messageCenter.signalR;
     signalrConfiguration.transport = ConnectionTransports.longPolling;
     return signalrConfiguration;
 }

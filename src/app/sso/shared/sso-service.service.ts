@@ -17,6 +17,6 @@ export class SsoServiceService {
   }
 
   get ssoCheckUrl(): string {
-    return environment.userCenter.authUri + 'Auth/Check?returnUrl=' + encodeURI(window.location.href);
+    return environment.api.userCenter.authUri + 'Auth/Check?returnUrl=' + encodeURI(window.location.href);
   }
 }

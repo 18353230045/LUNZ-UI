@@ -40,11 +40,11 @@ export class MessageService extends WebApiResultResponse {
 
     getUnreadMessages(): Observable<any> {
 
-        const url = environment.msgCenter.serverUrl + 'Message/GetUnReadWebMsg';
+        const url = environment.api.messageCenter.baseUrl + 'Message/GetUnReadWebMsg';
 
         return this.http.get(url, {
             headers: new Headers({
-                'AppKey': environment.msgCenter.appKey,
+                'AppKey': environment.api.messageCenter.appKey,
                 'X-XSS-Protection': '1',
                 'X-Content-Type-Options': 'nosniff'
             }),
@@ -59,11 +59,11 @@ export class MessageService extends WebApiResultResponse {
 
     getMessages(paging: any): Observable<PagingResponse> {
 
-        const url = environment.msgCenter.serverUrl + 'Message/GetWebMsg';
+        const url = environment.api.messageCenter.baseUrl + 'Message/GetWebMsg';
 
         return this.http.get(url, {
             headers: new Headers({
-                'AppKey': environment.msgCenter.appKey,
+                'AppKey': environment.api.messageCenter.appKey,
                 'X-XSS-Protection': '1',
                 'X-Content-Type-Options': 'nosniff'
             }),
@@ -76,11 +76,11 @@ export class MessageService extends WebApiResultResponse {
     }
 
     setReadMessage(msgId: any): Observable<any> {
-        const url = environment.msgCenter.serverUrl + 'Message/SetRead';
+        const url = environment.api.messageCenter.baseUrl + 'Message/SetRead';
 
         return this.http.get(url, {
             headers: new Headers({
-                'AppKey': environment.msgCenter.appKey,
+                'AppKey': environment.api.messageCenter.appKey,
                 'X-XSS-Protection': '1',
                 'X-Content-Type-Options': 'nosniff'
             }),

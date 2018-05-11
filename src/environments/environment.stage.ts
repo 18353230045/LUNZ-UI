@@ -28,31 +28,39 @@ export const environment = {
             post_logout_redirect_uri: 'http://{domain}'
         }
     },
-    // Web Api
-    serverUrl: '',
-    appKey: '',
-    withHeaders: true,
-    // User Center
-    userCenter: {
-        serverUrl: '',
-        appKey: '',
-        authUri: ''
-    },
-    // Message Center
-    msgCenter: {
-        signalR: '',
-        serverUrl: '',
-        appKey: ''
-    },
-    // Data Center
-    dataCenter: {
-        serverUrl: '',
-        appKey: ''
-    },
-    // Customer Center
-    customerCenter: {
-        serverUrl: '',
-        appKey: '',
-        authUri: ''
-    },
+    api: {
+        default: 'v1',
+        // WebAPI for V2 - Microservice
+        v2: {
+            baseUrl: ''
+        },
+        // WebAPI for V1
+        v1: {
+            baseUrl: '',
+            appKey: '',
+            withHeaders: true
+        },
+        // User Center
+        userCenter: {
+            baseUrl: '',
+            appKey: '',
+            authUri: ''
+        },
+        // Message Center
+        messageCenter: {
+            signalR: '',
+            baseUrl: '',
+            appKey: ''
+        },
+        // Data Center
+        dataCenter: {
+            baseUrl: '',
+            appKey: ''
+        },
+        // Customer Center
+        customerCenter: {
+            baseUrl: '',
+            appKey: ''
+        }
+    }
 };

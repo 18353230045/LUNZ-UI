@@ -18,7 +18,7 @@ export class OrdersService extends WebApiResultResponse {
 
   getOrders(params: IQueryGroup): Observable<IResponse> {
 
-    const url = environment.microservice.serverUrl + 'orders';
+    const url = super.resolveV2Url('orders');
 
     return this.http.get(url, {
       params: params
@@ -29,7 +29,7 @@ export class OrdersService extends WebApiResultResponse {
 
   getOrder(orderId: string): Observable<IOrderDetails> {
 
-    const url = environment.microservice.serverUrl + `order/${orderId}`;
+    const url = super.resolveV2Url(`order/${orderId}`);
 
     return this.http.get(url)
       .map(super.handleSuccess)
@@ -38,7 +38,7 @@ export class OrdersService extends WebApiResultResponse {
 
   createOrder(entity: IOrderDetails): Observable<IOrderDetails> {
 
-    const url = environment.microservice.serverUrl + 'order';
+    const url = super.resolveV2Url('order');
 
     return this.http.post(url, entity)
       .map(super.handleSuccess)
@@ -47,7 +47,7 @@ export class OrdersService extends WebApiResultResponse {
 
   updateOrder(entity: IOrderDetails) {
 
-    const url = environment.microservice.serverUrl + `order/${entity.id}`;
+    const url = super.resolveV2Url(`order/${entity.id}`);
 
     return this.http.put(url, entity)
       .map(super.handleSuccess)
@@ -56,7 +56,7 @@ export class OrdersService extends WebApiResultResponse {
 
   deleteOrder(entity: IOrderDetails) {
 
-    const url = environment.microservice.serverUrl + `order/${entity.id}`;
+    const url = super.resolveV2Url(`order/${entity.id}`);
 
     return this.http.delete(url)
       .map(super.handleSuccess)
