@@ -7,8 +7,8 @@
 
 [Angular1.x和Angular4内置指令区别](/difference/difference/)
 
-[Angular4的使用](/angular4/angular4)
+[Angular4的使用](/angular4/angular4-index/)
 
-[LUNZ+框架的使用](/Lunz+/Lunz+)
+[LUNZ+框架的使用](/Lunz+/technological-process/technological-process/)
 
-[组件库](/component/component)
+[组件库](/component/self-components/form/form/)
