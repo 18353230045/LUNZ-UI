@@ -9,6 +9,7 @@ import { Dialogs } from '../../../core/dialogs.service';
 import { NgxDataTableDirective } from '../../../shared/directives/ngx-datatable.directive';
 
 import { OrdersService } from '../../shared/orders.service';
+import { IQueryGroup, IOrderDetails } from '../../../shared/models/microservice-template';
 
 declare const $: any;
 
@@ -21,7 +22,7 @@ export class OrdersComponent implements OnInit {
 
   log: Logger;
   loading = false;
-  orders: Array<any>;
+  orders: Array<IOrderDetails>;
   queryTemplates: any = [{
     name: 'Default',
     template: {
@@ -66,7 +67,7 @@ export class OrdersComponent implements OnInit {
   };
 
   loadOrders(event: any) {
-    const params: any = event.page;
+    const params: IQueryGroup = event.page;
     this.datatable = event.datatable;
 
     this.loading = true;
@@ -75,13 +76,13 @@ export class OrdersComponent implements OnInit {
       .subscribe(response => {
         this.datatable.count = response.count;
         this.orders = response.data;
-        this.log.debug('订单列表', this.orders);
+        this.log.debug('订单列表', response);
       }, error => {
         this.log.error('订单获取失败。', error);
       });
   };
 
-  delete(row: any) {
+  delete(row: IOrderDetails) {
     this.dialogs.confirm(`真的要删除 '${row.subject}' 吗？`).subscribe(
       () => {
         this.ordersService.deleteOrder(row)

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 
 import { WebApiResultResponse, PagingResponse } from '../../core/http/web-api-result-response';
 import { environment } from '../../../environments/environment';
+import { IResponse, IQueryGroup, IOrderDetails } from '../../shared/models/microservice-template';
 
 @Injectable()
 export class OrdersService extends WebApiResultResponse {
@@ -15,7 +16,7 @@ export class OrdersService extends WebApiResultResponse {
     super();
   }
 
-  getOrders(params: any): Observable<PagingResponse> {
+  getOrders(params: IQueryGroup): Observable<IResponse> {
 
     const url = super.resolveV2Url('orders');
 
@@ -26,7 +27,7 @@ export class OrdersService extends WebApiResultResponse {
       .catch(super.handleError);
   }
 
-  getOrder(orderId: any): Observable<any> {
+  getOrder(orderId: string): Observable<IOrderDetails> {
 
     const url = super.resolveV2Url(`order/${orderId}`);
 
@@ -35,7 +36,7 @@ export class OrdersService extends WebApiResultResponse {
       .catch(super.handleError);
   }
 
-  createOrder(entity: any): Observable<any> {
+  createOrder(entity: IOrderDetails): Observable<IOrderDetails> {
 
     const url = super.resolveV2Url('order');
 
@@ -44,7 +45,7 @@ export class OrdersService extends WebApiResultResponse {
       .catch(super.handleError);
   }
 
-  updateOrder(entity: any): Observable<any> {
+  updateOrder(entity: IOrderDetails) {
 
     const url = super.resolveV2Url(`order/${entity.id}`);
 
@@ -53,7 +54,7 @@ export class OrdersService extends WebApiResultResponse {
       .catch(super.handleError);
   }
 
-  deleteOrder(entity: any): Observable<any> {
+  deleteOrder(entity: IOrderDetails) {
 
     const url = super.resolveV2Url(`order/${entity.id}`);
 

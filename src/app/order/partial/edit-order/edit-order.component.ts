@@ -82,9 +82,9 @@ export class EditOrderComponent implements OnInit {
     this.route.params.map(params => params.id).subscribe(id => {
       if (id) {
         this.ordersService.getOrder(id)
-          .subscribe((order: any) => {
+          .subscribe(order => {
             this.order = order;
-            this.order.date = this.dateFormat.transform(this.order.date, 'YYYY-MM-DD');
+            this.order.date = this.dateFormat.transform(order.date, 'YYYY-MM-DD');
             this.log.debug('成功获取订单！', order);
           }, error => this.log.error('订单获取失败。', error));
       }

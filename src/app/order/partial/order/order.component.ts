@@ -36,7 +36,7 @@ export class OrderComponent implements OnInit {
         this.ordersService.getOrder(id)
           .subscribe(order => {
             this.order = order;
-            this.itemHaving = this.order.items.length > 0;
+            this.itemHaving = order.items.length > 0;
             this.log.debug('成功获取订单！', order);
           }, error => this.log.error('订单获取失败。', error));
       }

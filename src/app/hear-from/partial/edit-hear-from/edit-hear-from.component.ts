@@ -63,7 +63,7 @@ export class EditHearFromComponent implements OnInit {
     this.route.params.map(params => params.id).subscribe(id => {
       if (id) {
         this.hearFromsService.getHearFrom(id)
-          .subscribe((hearFrom: any) => {
+          .subscribe(hearFrom => {
             this.hearFrom = hearFrom;
             this.log.debug('成功获取从哪里听说！', hearFrom);
           }, error => this.log.error('从哪里听说获取失败。', error));
