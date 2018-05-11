@@ -4,7 +4,15 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2018-05-02</lastmod>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/difference/difference/</loc>
+     <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,14 +20,132 @@
     
         
     <url>
-     <loc>/application/response-result/</loc>
-     <lastmod>2018-05-02</lastmod>
+     <loc>/angular4/angular4-index/</loc>
+     <lastmod>2018-05-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/application/validation/</loc>
-     <lastmod>2018-05-02</lastmod>
+     <loc>/angular4/angular4-environment/angular4-environment/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/angular4/Angular-cli/Angular-cli/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/angular4/Angular4-application-model/application-model/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/angular4/Angular4-catalog/catalog/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/angular4/Angular4-model/Angular4-model/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/angular4/Angular4-component/Angular4-component/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/angular4/Angular4-service/Angular4-service/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/angular4/Angular4-directive/Angular4-directive/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/angular4/Angular4-pipe/Angular4-pipe/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Lunz+/technological-process/technological-process/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Lunz+/step 1/step 1/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Lunz+/step 2/step 2/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Lunz+/step 3/step 3/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Lunz+/step 4/step 4/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Lunz+/step 5/step 5/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Lunz+/release/release/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+    <url>
+     <loc>/plugins-use/plugins-use/</loc>
+     <lastmod>2018-05-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc></loc>
+     <lastmod></lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc></loc>
+     <lastmod></lastmod>
      <changefreq>daily</changefreq>
     </url>
         

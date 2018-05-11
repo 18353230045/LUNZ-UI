@@ -1,7 +1,12 @@
 {
-  "name": "angular",
-  "version": "1.0.0",
+  "name": "LUNZ-UI",
+  "version": "2.0.0",
   "private": true,
+  "description": "这个项目是使用 [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)\r version 1.3.1 生成的。",
+  "main": "karma.conf.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
     "ng": "ng",
     "build": "npm run env && ng build --aot --prod",
@@ -35,7 +40,7 @@
     "@toverux/ngx-sweetalert2": "^3.0.1",
     "@zhongruigroup/ngx-query": "^1.0.0",
     "angular-tree-component": "7.0.2-beta1",
-    "angular2-moment": "^1.7.0",
+    "angular2-moment": "^1.9.0",
     "animate.css": "^3.5.2",
     "bootstrap": "^4.0.0-beta.2",
     "bootstrap-datepicker": "1.7.1",
@@ -52,10 +57,10 @@
     "malihu-custom-scrollbar-plugin": "^3.1.5",
     "ng-select": "^1.0.0-rc.3",
     "ng2-signalr": "^2.1.0",
-    "ng2-trim-directive": "^2.1.2",
+    "ng2-trim-directive": "^2.1.4",
     "ng2-validation": "^4.2.0",
     "ngx-bootstrap": "^2.0.3",
-    "ngx-pipes": "^2.1.2",
+    "ngx-pipes": "^2.1.7",
     "ngx-select-dropdown": "^0.2.1",
     "ngx-toastr": "^6.5.0",
     "popper.js": "^1.12.6",
@@ -94,5 +99,16 @@
     "ts-node": "~3.0.2",
     "tslint": "~4.5.1",
     "typescript": "2.3.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZhongruiGroup/LUNZ-UI.git"
+  },
+  "keywords": [],
+  "author": "ZhongruiGroup",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZhongruiGroup/LUNZ-UI/issues"
+  },
+  "homepage": "https://github.com/ZhongruiGroup/LUNZ-UI#readme"
 }

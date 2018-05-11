@@ -29,6 +29,13 @@ pages:
             - '表单验证器': component/self-components/validator/validator.md
             - 'select选择器': component/self-components/select/select.md
             - 'select2选择器': component/self-components/select2/select2.md
+            - 'dropdown': component/self-components/dropdown/dropdown.md
+            - '文件上传': component/self-components/upload/upload.md
+            - '进度条': component/self-components/progress/progress.md
+            - '车型选择': component/self-components/vehicle-select/vehicle-select.md
+            - '树形结构': component/self-components/treeview/treeview.md
+            - 'tabs切换': component/self-components/tabs/tabs.md
+            - '图表': component/self-components/chart/chart.md
         - '第三方组件': 
             - 'npmjs': component/third-party-components/npmjs/npmjs.md
         
