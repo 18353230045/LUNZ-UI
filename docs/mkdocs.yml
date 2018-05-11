@@ -1,0 +1,37 @@
+site_name: LUNZ+
+pages:
+    - '简介': index.md
+    - 'Angular1.x和Angular4内置指令区别': difference/difference.md
+    - 'Angular4的使用':
+        - '开始': angular4/angular4-index.md
+        - '开发环境': angular4/angular4-environment/angular4-environment.md
+        - 'Angular-cli': angular4/Angular-cli/Angular-cli.md
+        - '应用模型': angular4/Angular4-application-model/application-model.md
+        - '应用目录': angular4/Angular4-catalog/catalog.md
+        - '模块': angular4/Angular4-model/Angular4-model.md
+        - '组件': angular4/Angular4-component/Angular4-component.md
+        - '服务': angular4/Angular4-service/Angular4-service.md
+        - '指令': angular4/Angular4-directive/Angular4-directive.md
+        - '管道': angular4/Angular4-pipe/Angular4-pipe.md
+    - 'LUNZ+框架的使用': 
+        - '流程': Lunz+/technological-process/technological-process.md
+        - '获取源码，运行项目': Lunz+/step 1/step 1.md
+        - '创建模块，配置路由': Lunz+/step 2/step 2.md
+        - '创建服务': Lunz+/step 3/step 3.md
+        - '创建订单列表组件': Lunz+/step 4/step 4.md
+        - '创建新建/编辑订单组件': Lunz+/step 5/step 5.md
+        - '发布': Lunz+/release/release.md
+    - '第三方插件的使用': plugins-use/plugins-use.md
+    - '组件库': 
+        - '框架自身组件': 
+            - 'form表单': component/self-components/form/form.md
+            - '时间选择器': component/self-components/datepicker/datepicker.md
+            - '表单验证器': component/self-components/validator/validator.md
+            - 'select选择器': component/self-components/select/select.md
+            - 'select2选择器': component/self-components/select2/select2.md
+        - '第三方组件': 
+            - 'npmjs': component/third-party-components/npmjs/npmjs.md
+        
+theme:
+  name: 'material'
+  language: 'zh'
