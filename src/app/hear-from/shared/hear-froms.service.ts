@@ -17,18 +17,18 @@ export class HearFromsService extends WebApiResultResponse {
 
   getHearFroms(params: any): Observable<PagingResponse> {
 
-    const url = environment.microservice.serverUrl + 'hear-froms';
+    const url = super.resolveV2Url('hear-froms');
 
     return this.http.get(url, {
       params: params
     })
-    .map(super.handleSuccess)
+      .map(super.handleSuccess)
       .catch(super.handleError);
   }
 
   getHearFrom(hearFromId: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + `hear-from/${hearFromId}`;
+    const url = super.resolveV2Url(`hear-from/${hearFromId}`);
 
     return this.http.get(url)
       .map(super.handleSuccess)
@@ -37,7 +37,7 @@ export class HearFromsService extends WebApiResultResponse {
 
   createHearFrom(entity: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + 'hear-from';
+    const url = super.resolveV2Url('hear-from');
 
     return this.http.post(url, entity)
       .map(super.handleSuccess)
@@ -46,7 +46,7 @@ export class HearFromsService extends WebApiResultResponse {
 
   updateHearFrom(entity: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + `hear-from/${entity.id}`;
+    const url = super.resolveV2Url(`hear-from/${entity.id}`);
 
     return this.http.put(url, entity)
       .map(super.handleSuccess)
@@ -55,7 +55,7 @@ export class HearFromsService extends WebApiResultResponse {
 
   deleteHearFrom(entity: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + `hear-from/${entity.id}`;
+    const url = super.resolveV2Url(`hear-from/${entity.id}`);
 
     return this.http.delete(url)
       .map(super.handleSuccess)
@@ -64,10 +64,10 @@ export class HearFromsService extends WebApiResultResponse {
 
   getHearFromList(): Observable<any> {
 
-    const url = environment.microservice.serverUrl + 'hearfroms';
+    const url = super.resolveV2Url('hearfroms');
 
     return this.http.get(url)
-    .map(super.handleSuccess)
+      .map(super.handleSuccess)
       .catch(super.handleError);
   }
 }

@@ -33,6 +33,8 @@ export class HttpService extends Http {
 
     log: Logger;
 
+    private _apiSettings: any;
+
     constructor(backend: ConnectionBackend,
         private defaultOptions: RequestOptions,
         private httpCacheService: HttpCacheService,
@@ -43,6 +45,7 @@ export class HttpService extends Http {
         super(backend, defaultOptions);
 
         this.log = this.loggerFactory.getLogger(environment.production ? undefined : 'HttpService');
+        this._apiSettings = environment.api[environment.api.default];
     }
 
     /**
@@ -67,17 +70,17 @@ export class HttpService extends Http {
             }
         }
 
-        // DON'T add 'environment.serverUrl' if 'request.url' starts with 'http://', 'https://' or '//'.
+        // DON'T add 'environment.api.v1.baseUrl' if 'request.url' starts with 'http://', 'https://' or '//'.        
         const regex = new RegExp('^(http://|https://|//)');
         if (typeof request === 'string') {
             url = request;
             if (!regex.test(url)) {
-                request = environment.serverUrl + url;
+                request = this._apiSettings.baseUrl + url;
             }
         } else {
             url = request.url;
             if (!regex.test(url)) {
-                request.url = environment.serverUrl + url;
+                request.url = this._apiSettings.baseUrl + url;
             }
         }
 
@@ -212,10 +215,10 @@ export class HttpService extends Http {
             options.headers.append('Authorization', authorization);
         }
 
-        if (environment.withHeaders) {
+        if (this._apiSettings.withHeaders) {
             // Add custom params to 'headers'
             if (!options.headers.has('AppKey')) {
-                options.headers.append('AppKey', environment.appKey);
+                options.headers.append('AppKey', this._apiSettings.appKey);
             }
             if (!options.headers.has('AuthToken')) {
                 options.headers.append('AuthToken', token);
@@ -231,7 +234,7 @@ export class HttpService extends Http {
 
             const urlParser: any = URI(url);
             if (!urlParser.hasQuery('AppKey')) {
-                urlParser.addSearch('AppKey', environment.appKey);
+                urlParser.addSearch('AppKey', this._apiSettings.appKey);
             }
             if (!urlParser.hasQuery('AuthToken')) {
                 urlParser.addSearch('AuthToken', token);

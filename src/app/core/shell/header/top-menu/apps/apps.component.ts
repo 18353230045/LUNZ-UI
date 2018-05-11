@@ -41,7 +41,7 @@ export class AppsComponent implements OnInit {
     };
 
     getIconUrl(url: string): string {
-        return this.hasIcon(url) ? url.replace('~/', environment.userCenter.authUri) : url;
+        return this.hasIcon(url) ? url.replace('~/', environment.api.userCenter.authUri) : url;
     };
 
     private getApps() {

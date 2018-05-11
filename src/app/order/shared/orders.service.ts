@@ -17,7 +17,7 @@ export class OrdersService extends WebApiResultResponse {
 
   getOrders(params: any): Observable<PagingResponse> {
 
-    const url = environment.microservice.serverUrl + 'orders';
+    const url = super.resolveV2Url('orders');
 
     return this.http.get(url, {
       params: params
@@ -28,7 +28,7 @@ export class OrdersService extends WebApiResultResponse {
 
   getOrder(orderId: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + `order/${orderId}`;
+    const url = super.resolveV2Url(`order/${orderId}`);
 
     return this.http.get(url)
       .map(super.handleSuccess)
@@ -37,7 +37,7 @@ export class OrdersService extends WebApiResultResponse {
 
   createOrder(entity: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + 'order';
+    const url = super.resolveV2Url('order');
 
     return this.http.post(url, entity)
       .map(super.handleSuccess)
@@ -46,7 +46,7 @@ export class OrdersService extends WebApiResultResponse {
 
   updateOrder(entity: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + `order/${entity.id}`;
+    const url = super.resolveV2Url(`order/${entity.id}`);
 
     return this.http.put(url, entity)
       .map(super.handleSuccess)
@@ -55,13 +55,13 @@ export class OrdersService extends WebApiResultResponse {
 
   deleteOrder(entity: any): Observable<any> {
 
-    const url = environment.microservice.serverUrl + `order/${entity.id}`;
+    const url = super.resolveV2Url(`order/${entity.id}`);
 
     return this.http.delete(url)
       .map(super.handleSuccess)
       .catch(super.handleError);
   }
-  
+
   hasValue(str: any): boolean {
     return str && str !== null && str !== '' && str !== undefined;
   }

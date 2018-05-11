@@ -62,12 +62,12 @@ export class ProfileService extends WebApiResultResponse {
    */
   getMenuItems(): Observable<any> {
 
-    const url = environment.userCenter.serverUrl + 'membership/getCurrentUserMenuItems';
+    const url = environment.api.userCenter.baseUrl + 'membership/getCurrentUserMenuItems';
 
     return this.http.get(url, {
       cache: true,
       headers: new Headers({
-        'appKey': environment.userCenter.appKey,
+        'appKey': environment.api.userCenter.appKey,
         'authToken': this.authenticationService.credentials.token,
         'X-XSS-Protection': '1',
         'X-Content-Type-Options': 'nosniff'
@@ -82,13 +82,13 @@ export class ProfileService extends WebApiResultResponse {
   }
 
   getApps(): Observable<any> {
-    const url = environment.userCenter.serverUrl + 'membership/getUserApps';
+    const url = environment.api.userCenter.baseUrl + 'membership/getUserApps';
 
     const username = this.authenticationService.credentials.username;
 
     return this.http.get(url, {
       headers: new Headers({
-        'AppKey': environment.userCenter.appKey,
+        'AppKey': environment.api.userCenter.appKey,
         'X-XSS-Protection': '1',
         'X-Content-Type-Options': 'nosniff'
       }),

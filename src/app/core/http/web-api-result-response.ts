@@ -2,6 +2,8 @@ import { Http, Response, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
+import { environment } from "../../../environments/environment";
+
 import { camelCaseObject } from './http-helper';
 
 declare var walk: any;
@@ -55,5 +57,25 @@ export class WebApiResultResponse {
       }
       return Observable.throw(error);
     }
+  }
+
+  resolveUrl(url: string, version?: string): string {
+    var settings: any;
+
+    if (version) {
+      settings = environment.api[version];
+    } else {
+      settings = environment.api[environment.api.default];
+    }
+
+    return settings.baseUrl + url;
+  }
+
+  resolveV1Url(url: string): string {
+    return this.resolveUrl(url, 'v1');
+  }
+
+  resolveV2Url(url: string): string {
+    return this.resolveUrl(url, 'v2');
   }
 }
