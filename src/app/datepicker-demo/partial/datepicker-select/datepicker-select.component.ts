@@ -21,8 +21,8 @@ export class DatepickerSelectComponent implements OnInit {
     date12: String;
     date13: String;
     date14: String;
-    startDate: any = new Date(2018, 4, 9);
-    endDate: any = new Date(2018, 4, 15);
+    startDate: any = new Date(2018, 3, 9);
+    endDate: any = new Date(2018, 3, 15);
 
     constructor( ) { };
 

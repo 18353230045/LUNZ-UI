@@ -14,13 +14,13 @@ pages:
         - '指令': angular4/Angular4-directive/Angular4-directive.md
         - '管道': angular4/Angular4-pipe/Angular4-pipe.md
     - 'LUNZ+框架的使用': 
-        - '流程': Lunz+/technological-process/technological-process.md
-        - '获取源码，运行项目': Lunz+/step 1/step 1.md
-        - '创建模块，配置路由': Lunz+/step 2/step 2.md
-        - '创建服务': Lunz+/step 3/step 3.md
-        - '创建订单列表组件': Lunz+/step 4/step 4.md
-        - '创建新建/编辑订单组件': Lunz+/step 5/step 5.md
-        - '发布': Lunz+/release/release.md
+        - '流程': Lunz/technological-process/technological-process.md
+        - '获取源码，运行项目': Lunz/step1/step1.md
+        - '创建模块，配置路由': Lunz/step2/step2.md
+        - '创建服务': Lunz/step3/step3.md
+        - '创建订单列表组件': Lunz/step4/step4.md
+        - '创建新建/编辑订单组件': Lunz/step5/step5.md
+        - '发布': Lunz/release/release.md
     - '第三方插件的使用': plugins-use/plugins-use.md
     - '组件库': 
         - '框架自身组件': 
