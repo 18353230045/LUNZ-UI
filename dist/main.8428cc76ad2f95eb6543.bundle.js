@@ -9199,7 +9199,7 @@ var environment = {
             client_id: 'lunz-ui-stage',
             redirect_uri: 'http://template.m.lunztech.cn/authentication/callback',
             response_type: 'id_token token',
-            scope: 'openid profile api1',
+            scope: 'openid profile lunz-sharp-template',
             post_logout_redirect_uri: 'http://template.m.lunztech.cn'
         }
     },
@@ -9207,7 +9207,7 @@ var environment = {
         default: 'v1',
         // WebAPI for V2 - Microservice
         v2: {
-            baseUrl: '//apigwtemplate.m.lunztech.cn/api/v1/'
+            baseUrl: '//template-api.m.lunztech.cn/api/v1/'
         },
         // WebAPI for V1
         v1: {
@@ -9545,4 +9545,4 @@ module.exports = __webpack_require__("../../../../../src/main.ts");
 /***/ })
 
 },[0]);
-//# sourceMappingURL=main.7cdc24615dac36ffb41f.bundle.js.map
+//# sourceMappingURL=main.8428cc76ad2f95eb6543.bundle.js.map
