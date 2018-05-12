@@ -9199,7 +9199,7 @@ var environment = {
             client_id: 'lunz-ui-stage',
             redirect_uri: 'http://template.m.lunztech.cn/authentication/callback',
             response_type: 'id_token token',
-            scope: 'openid profile',
+            scope: 'openid profile api1',
             post_logout_redirect_uri: 'http://template.m.lunztech.cn'
         }
     },
@@ -9545,4 +9545,4 @@ module.exports = __webpack_require__("../../../../../src/main.ts");
 /***/ })
 
 },[0]);
-//# sourceMappingURL=main.7b5ac05129f799ffd8f9.bundle.js.map
+//# sourceMappingURL=main.7cdc24615dac36ffb41f.bundle.js.map
