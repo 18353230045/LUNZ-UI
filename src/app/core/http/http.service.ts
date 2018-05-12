@@ -18,7 +18,7 @@ import { HttpCacheService } from './http-cache.service';
 import { HttpCachePolicy } from './request-options-args';
 
 import { AuthenticationService, Credentials } from '../authentication/authentication.service';
-import { AuthenticationOAuth2Service } from "../authentication/authentication-oauth2.service";
+import { AuthenticationOAuth2Service } from '../authentication/authentication-oauth2.service';
 
 import { toURLSearchParams } from './http-helper';
 
@@ -70,7 +70,7 @@ export class HttpService extends Http {
             }
         }
 
-        // DON'T add 'environment.api.v1.baseUrl' if 'request.url' starts with 'http://', 'https://' or '//'.        
+        // DON'T add 'environment.api.v1.baseUrl' if 'request.url' starts with 'http://', 'https://' or '//'.
         const regex = new RegExp('^(http://|https://|//)');
         if (typeof request === 'string') {
             url = request;
@@ -206,7 +206,8 @@ export class HttpService extends Http {
         return Observable.throw(response);
     }
 
-    private addCustomParams(request: string | Request, options: RequestOptionsArgs, token: string, authorization: string): string | Request {
+    private addCustomParams(request: string | Request, options: RequestOptionsArgs,
+        token: string, authorization: string): string | Request {
         if (options.headers === undefined) {
             options.headers = new Headers({});
         }

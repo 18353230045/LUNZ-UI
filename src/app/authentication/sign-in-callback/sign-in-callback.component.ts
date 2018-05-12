@@ -3,8 +3,8 @@ import { Router, CanActivate } from '@angular/router';
 
 import { environment } from '../../../environments/environment';
 
-import { AuthenticationService } from "../../core/authentication/authentication.service";
-import { AuthenticationOAuth2Service } from "../../core/authentication/authentication-oauth2.service";
+import { AuthenticationService } from '../../core/authentication/authentication.service';
+import { AuthenticationOAuth2Service } from '../../core/authentication/authentication-oauth2.service';
 
 @Component({
   selector: 'app-sign-in-callback',

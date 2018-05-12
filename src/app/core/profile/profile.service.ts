@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 
 import { WebApiResultResponse } from '../http/web-api-result-response';
 import { AuthenticationService } from '../authentication/authentication.service';
-import { AuthenticationOAuth2Service } from "../authentication/authentication-oauth2.service";
+import { AuthenticationOAuth2Service } from '../authentication/authentication-oauth2.service';
 
 export interface Profile {
   displayName: string;

@@ -5,7 +5,7 @@ import { Logger } from '../logger.service';
 import { LoggerFactory } from '../logger-factory.service';
 import { AuthenticationService } from './authentication.service';
 import { SsoServiceService } from '../../sso/shared/sso-service.service';
-import { AuthenticationOAuth2Service } from "../authentication/authentication-oauth2.service";
+import { AuthenticationOAuth2Service } from '../authentication/authentication-oauth2.service';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {

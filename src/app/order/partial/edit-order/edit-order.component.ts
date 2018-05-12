@@ -63,7 +63,7 @@ export class EditOrderComponent implements OnInit {
 
   selectHearFrom(id: string) {
     const item = this.hearFromItems.filter(h => {
-      return h.id == id
+      return h.id === id;
     });
     this.order.hearFromName = item[0].name;
   }

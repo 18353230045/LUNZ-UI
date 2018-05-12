@@ -64,7 +64,7 @@ export class CreateOrderComponent implements OnInit {
           this.ordersService.hasValue(item.price) &&
           this.ordersService.hasValue(item.amount) &&
           item.price > 0 && item.amount > 0) {
-          continue
+          continue;
         } else {
           this.log.error('订单项目数据不完整，请检查。');
           return;
@@ -99,7 +99,7 @@ export class CreateOrderComponent implements OnInit {
 
   selectHearFrom(id: string) {
     const item = this.hearFromItems.filter(h => {
-      return h.id == id
+      return h.id === id;
     });
     this.order.hearFromName = item[0].name;
   }

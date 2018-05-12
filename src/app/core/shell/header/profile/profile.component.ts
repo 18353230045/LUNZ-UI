@@ -7,7 +7,7 @@ import { environment } from '../../../../../environments/environment';
 import { Logger } from '../../../logger.service';
 import { LoggerFactory } from '../../../logger-factory.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
-import { AuthenticationOAuth2Service } from "../../../authentication/authentication-oauth2.service";
+import { AuthenticationOAuth2Service } from '../../../authentication/authentication-oauth2.service';
 import { ProfileService, Profile } from '../../../profile/profile.service';
 import {
   ChangePasswordModalComponent

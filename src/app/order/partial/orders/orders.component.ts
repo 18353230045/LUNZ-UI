@@ -18,7 +18,7 @@ declare const $: any;
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, AfterViewInit {
 
   log: Logger;
   loading = false;

@@ -2,7 +2,7 @@ import { Http, Response, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
-import { environment } from "../../../environments/environment";
+import { environment } from '../../../environments/environment';
 
 import { camelCaseObject } from './http-helper';
 
@@ -60,7 +60,7 @@ export class WebApiResultResponse {
   }
 
   resolveUrl(url: string, version?: string): string {
-    var settings: any;
+    let settings: any;
 
     if (version) {
       settings = environment.api[version];
