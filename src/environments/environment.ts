@@ -24,7 +24,7 @@ export const environment = {
             client_id: 'lunz-ui-dev',
             redirect_uri: 'http://localhost:9200/authentication/callback',
             response_type: 'id_token token',
-            scope: 'openid profile api1',
+            scope: 'openid profile lunz-sharp-template',
             post_logout_redirect_uri: 'http://localhost:9200'
         }
     },
