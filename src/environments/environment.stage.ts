@@ -24,7 +24,7 @@ export const environment = {
             client_id: 'lunz-ui-stage',
             redirect_uri: 'http://template.m.lunztech.cn/authentication/callback',
             response_type: 'id_token token',
-            scope: 'openid profile',
+            scope: 'openid profile api1',
             post_logout_redirect_uri: 'http://template.m.lunztech.cn'
         }
     },
