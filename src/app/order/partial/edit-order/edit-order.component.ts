@@ -8,8 +8,9 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
 
+import { ReferenceDataService } from '../../../shared/services/reference-data.service';
+
 import { OrdersService } from '../../shared/orders.service';
-import { HearFromsService } from '../../../hear-from/shared/hear-froms.service';
 
 declare const lengthStorageArea: any;
 
@@ -28,7 +29,7 @@ export class EditOrderComponent implements OnInit {
   hearFromItems: Array<any>;
 
   constructor(private ordersService: OrdersService,
-    private hearFromsService: HearFromsService,
+    private referenceDataService: ReferenceDataService,
     private loggerFactory: LoggerFactory, private router: Router,
     private route: ActivatedRoute, public location: Location,
     private formBuilder: FormBuilder, private dateFormat: DateFormatPipe) {
@@ -92,7 +93,7 @@ export class EditOrderComponent implements OnInit {
   }
 
   private getHearFroms() {
-    this.hearFromsService.getHearFromList()
+    this.referenceDataService.getHearFroms()
       .subscribe(response => {
         this.hearFromItems = response;
         this.hearFromItems.unshift({ id: null, name: '---请选择---' });

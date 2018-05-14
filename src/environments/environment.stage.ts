@@ -20,11 +20,11 @@ export const environment = {
     },
     odic: {
         config: {
-            authority: 'https://identityauth.lunz.cn',
-            client_id: 'lunz-ui',
+            authority: 'https://identity-stage.lunz.cn',
+            client_id: 'lunz-ui-stage',
             redirect_uri: 'http://template.m.lunztech.cn/authentication/callback',
             response_type: 'id_token token',
-            scope: 'openid profile',
+            scope: 'openid profile lunz-sharp-template',
             post_logout_redirect_uri: 'http://template.m.lunztech.cn'
         }
     },
@@ -32,7 +32,7 @@ export const environment = {
         default: 'v1',
         // WebAPI for V2 - Microservice
         v2: {
-            baseUrl: '//apigwtemplate.m.lunztech.cn/api/v1/'
+            baseUrl: '//template-api.m.lunztech.cn/api/v1/'
         },
         // WebAPI for V1
         v1: {
