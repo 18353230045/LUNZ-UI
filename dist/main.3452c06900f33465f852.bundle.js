@@ -9195,7 +9195,7 @@ var environment = {
     },
     odic: {
         config: {
-            authority: 'https://identityauth.lunz.cn',
+            authority: 'https://identity-stage.lunz.cn',
             client_id: 'lunz-ui-stage',
             redirect_uri: 'http://template.m.lunztech.cn/authentication/callback',
             response_type: 'id_token token',
@@ -9545,4 +9545,4 @@ module.exports = __webpack_require__("../../../../../src/main.ts");
 /***/ })
 
 },[0]);
-//# sourceMappingURL=main.8428cc76ad2f95eb6543.bundle.js.map
+//# sourceMappingURL=main.3452c06900f33465f852.bundle.js.map
