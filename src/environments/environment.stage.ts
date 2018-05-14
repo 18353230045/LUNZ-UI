@@ -20,7 +20,7 @@ export const environment = {
     },
     odic: {
         config: {
-            authority: 'https://identityauth.lunz.cn',
+            authority: 'https://identity-stage.lunz.cn',
             client_id: 'lunz-ui-stage',
             redirect_uri: 'http://template.m.lunztech.cn/authentication/callback',
             response_type: 'id_token token',
