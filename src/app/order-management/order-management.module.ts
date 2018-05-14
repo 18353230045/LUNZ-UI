@@ -16,7 +16,6 @@ import { OrdersComponent } from './partial/orders/orders.component';
 import { EditOrderComponent } from './partial/edit-order/edit-order.component';
 import { CreateOrderComponent } from './partial/create-order/create-order.component';
 import { OrderComponent } from './partial/order/order.component';
-import { EditOrderModalComponent } from './partial/edit-order-modal/edit-order-modal.component';
 
 @NgModule({
   imports: [
