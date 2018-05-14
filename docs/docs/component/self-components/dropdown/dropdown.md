@@ -20,37 +20,37 @@
 > component.ts中声明传入组件的数据源变量，如：
 
     export class DropdownComponent implements OnInit { 
-    options: Array<any> = []; 
+        options: Array<any> = []; 
 
-    constructor() { }; 
+        constructor() { }; 
 
-    ngOnInit() { 
-        this.options = [ 
-            { text: 'item1', id: '01' }, 
-            { text: 'item2', id: '02', disabled: true }, 
-            { 
-                text: 'item3', 
-                id: '03', 
-                childrenOpen: false, 
-                children: [ 
-                    { text: 'item3-item4', id: '05' }, 
-                    { text: 'item3-item10', id: '04' } 
-                ] 
-            } 
-            { text: 'item4', id: '04' }, 
-            { text: 'item5', id: '05' }, 
-            { 
-                text: 'item6', 
-                id: '06', 
-                childrenOpen: false, 
-                children: [ 
-                    { text: 'item6-item4', id: '05' }, 
-                    { text: 'item6-item10', id: '04' } 
-                ] 
-            } 
-        ]; 
+        ngOnInit() { 
+            this.options = [ 
+                { text: 'item1', id: '01' }, 
+                { text: 'item2', id: '02', disabled: true }, 
+                { 
+                    text: 'item3', 
+                    id: '03', 
+                    childrenOpen: false, 
+                    children: [ 
+                        { text: 'item3-item4', id: '05' }, 
+                        { text: 'item3-item10', id: '04' } 
+                    ] 
+                } 
+                { text: 'item4', id: '04' }, 
+                { text: 'item5', id: '05' }, 
+                { 
+                    text: 'item6', 
+                    id: '06', 
+                    childrenOpen: false, 
+                    children: [ 
+                        { text: 'item6-item4', id: '05' }, 
+                        { text: 'item6-item10', id: '04' } 
+                    ] 
+                } 
+            ]; 
+        }; 
     }; 
-}; 
 
 ###组件参数说明
 参数|说明|类型|可选值|默认值

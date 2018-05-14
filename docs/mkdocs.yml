@@ -36,9 +36,10 @@ pages:
             - '树形结构': component/self-components/treeview/treeview.md
             - 'tabs切换': component/self-components/tabs/tabs.md
             - '图表': component/self-components/chart/chart.md
-        - '第三方组件': 
-            - 'npmjs': component/third-party-components/npmjs/npmjs.md
-        
+        - '第三方组件': component/third-party-components/third-party-components.md
+    - '部署': 
+        - 'Windows下': deploy/deploy-windows.md
+        - 'Linux下': deploy/deploy-linux.md
 theme:
   name: 'material'
   language: 'zh'
