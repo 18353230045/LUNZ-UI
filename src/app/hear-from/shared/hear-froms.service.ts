@@ -62,13 +62,4 @@ export class HearFromsService extends WebApiResultResponse {
       .map(super.handleSuccess)
       .catch(super.handleError);
   }
-
-  getHearFromList(): Observable<Array<IHearFromDetails>> {
-
-    const url = super.resolveV2Url('hearfroms');
-
-    return this.http.get(url)
-      .map(super.handleSuccess)
-      .catch(super.handleError);
-  }
 }
