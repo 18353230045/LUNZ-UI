@@ -28,7 +28,7 @@ import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 import { ConvertService } from './converts/convert.service';
 import { SharedSessionStorageService } from './services/shared-session-storage.service';
 import { VehicleService } from './services/vehicle.service';
-import { ReferenceDataService } from "./services/reference-data.service";
+import { ReferenceDataService } from './services/reference-data.service';
 
 import { NgxDataTableDirective } from './directives/ngx-datatable.directive';
 import { ApplyPermissionDirective } from './directives/apply-permission.directive';
