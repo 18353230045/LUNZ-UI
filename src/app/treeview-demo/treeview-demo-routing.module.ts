@@ -8,7 +8,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: 'treeview', component: TreeviewDemoComponent, data: { title: '树结构' } },
+        { path: '', component: TreeviewDemoComponent, data: { title: '树结构' } },
         [
             { path: 'using-documents', component: UsingDocumentsComponent, data: { title: '树结构使用文档' } }
         ]);
