@@ -21,7 +21,7 @@
     "docs": "hads ./docs -o",
     "env": "env2json npm_package_version -o src/environments/.env.json",
     "generate": "ng generate",
-    "stage": "npm run lint && git checkout stage && git merge master --no-edit --no-ff && npm run build:stage && git add . && git commit -m \"release stage\" && git push && git checkout master",
+    "stage": "npm run lint && git checkout lunzsharp && git merge lunz# --no-edit --no-ff && npm run build:stage && git add . && git commit -m \"release lunzsharp\" && git push && git checkout lunz#",
     "live": "npm run lint && git checkout live && git merge master --no-edit --no-ff && npm run build && git add . && git commit -m \"release live\" && git push && git checkout master",
     "clean": "del-cli dist"
   },
@@ -63,6 +63,7 @@
     "ngx-pipes": "^2.1.7",
     "ngx-select-dropdown": "^0.2.1",
     "ngx-toastr": "^6.5.0",
+    "oidc-client": "^1.5.0-beta.2",
     "popper.js": "^1.12.6",
     "rxjs": "^5.4.3",
     "signalr": "^2.2.2",

@@ -41,7 +41,8 @@ function buildParams(prefix: string, params: any, add: any) {
   } else if (typeof params === 'object') {
     for (const prop in params) {
       if (prop) {
-        buildParams(prefix + '[' + prop + ']', params[prop], add);
+        // buildParams(prefix + '[' + prop + ']', params[prop], add);
+        buildParams(prefix + '.' + prop, params[prop], add);
       }
     }
   } else {

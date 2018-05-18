@@ -18,6 +18,7 @@ import { HttpCacheService } from './http-cache.service';
 import { HttpCachePolicy } from './request-options-args';
 
 import { AuthenticationService, Credentials } from '../authentication/authentication.service';
+import { AuthenticationOAuth2Service } from '../authentication/authentication-oauth2.service';
 
 import { toURLSearchParams } from './http-helper';
 
@@ -32,6 +33,8 @@ export class HttpService extends Http {
 
     log: Logger;
 
+    private _apiSettings: any;
+
     constructor(backend: ConnectionBackend,
         private defaultOptions: RequestOptions,
         private httpCacheService: HttpCacheService,
@@ -42,6 +45,7 @@ export class HttpService extends Http {
         super(backend, defaultOptions);
 
         this.log = this.loggerFactory.getLogger(environment.production ? undefined : 'HttpService');
+        this._apiSettings = environment.api[environment.api.default];
     }
 
     /**
@@ -57,28 +61,31 @@ export class HttpService extends Http {
             authenticationService.isAuthenticated() ? authenticationService.credentials : null;
         const token: string = credentials == null ? null : credentials.token;
 
+        const authenticationOAuth2Service: AuthenticationOAuth2Service = this.injector.get(AuthenticationOAuth2Service);
+        const authorization = authenticationOAuth2Service.getAuthorizationHeaderValue();
+
         if (options && options != null && options.params && options.params != null) {
             if (options.params['paramsMap'] === undefined) {
                 options.params = toURLSearchParams(options.params);
             }
         }
 
-        // DON'T add 'environment.serverUrl' if 'request.url' starts with 'http://', 'https://' or '//'.
+        // DON'T add 'environment.api.v1.baseUrl' if 'request.url' starts with 'http://', 'https://' or '//'.
         const regex = new RegExp('^(http://|https://|//)');
         if (typeof request === 'string') {
             url = request;
             if (!regex.test(url)) {
-                request = environment.serverUrl + url;
+                request = this._apiSettings.baseUrl + url;
             }
         } else {
             url = request.url;
             if (!regex.test(url)) {
-                request.url = environment.serverUrl + url;
+                request.url = this._apiSettings.baseUrl + url;
             }
         }
 
         // Add custom params
-        request = this.addCustomParams(request, options, token);
+        request = this.addCustomParams(request, options, token, authorization);
 
         if (!options.cache) {
             // Do not use cache
@@ -167,11 +174,15 @@ export class HttpService extends Http {
     // Customize the default error handler here if needed
     private errorHandler(response: Response): Observable<Response> {
 
-        if (response && response.status && response.status === 401) {
-            this.log.debug('未认证，跳转登录页...');
-            this.router.navigate(['/login']).then(() => {
-                window.location.reload();
-            });
+        const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
+
+        if (authenticationService.isUsing()) {
+            if (response && response.status && response.status === 401) {
+                this.log.debug('未认证，跳转登录页...');
+                this.router.navigate(['/login']).then(() => {
+                    window.location.reload();
+                });
+            }
         }
 
         let message = '服务器错误，请联系系统管理员。';
@@ -195,23 +206,23 @@ export class HttpService extends Http {
         return Observable.throw(response);
     }
 
-    private addCustomParams(request: string | Request, options: RequestOptionsArgs, token: string): string | Request {
-        if (environment.withHeaders) {
+    private addCustomParams(request: string | Request, options: RequestOptionsArgs,
+        token: string, authorization: string): string | Request {
+        if (options.headers === undefined) {
+            options.headers = new Headers({});
+        }
+
+        if (!options.headers.has('Authorization') && authorization !== null && authorization !== '') {
+            options.headers.append('Authorization', authorization);
+        }
+
+        if (this._apiSettings.withHeaders) {
             // Add custom params to 'headers'
-            if (options.headers === undefined) {
-                options.headers = new Headers({
-                    'AppKey': environment.appKey,
-                    'AuthToken': token,
-                    'X-XSS-Protection': '1',
-                    'X-Content-Type-Options': 'nosniff'
-                });
-            } else {
-                if (!options.headers.has('AppKey')) {
-                    options.headers.append('AppKey', environment.appKey);
-                }
-                if (!options.headers.has('AuthToken')) {
-                    options.headers.append('AuthToken', token);
-                }
+            if (!options.headers.has('AppKey')) {
+                options.headers.append('AppKey', this._apiSettings.appKey);
+            }
+            if (!options.headers.has('AuthToken')) {
+                options.headers.append('AuthToken', token);
             }
         } else {
             // Add custom params to 'query string'
@@ -224,7 +235,7 @@ export class HttpService extends Http {
 
             const urlParser: any = URI(url);
             if (!urlParser.hasQuery('AppKey')) {
-                urlParser.addSearch('AppKey', environment.appKey);
+                urlParser.addSearch('AppKey', this._apiSettings.appKey);
             }
             if (!urlParser.hasQuery('AuthToken')) {
                 urlParser.addSearch('AuthToken', token);

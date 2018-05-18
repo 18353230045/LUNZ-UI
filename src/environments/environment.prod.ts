@@ -11,31 +11,54 @@ export const environment = {
         'en-US',
         'fr-FR'
     ],
-    // Web Api
-    serverUrl: '',
-    appKey: '',
-    withHeaders: false,
-    // User Center
-    userCenter: {
-        serverUrl: '',
-        appKey: '',
-        authUri: ''
+    authentication: {
+        // oauth2 / usercenter
+        type: 'usercenter',
+        useServiceV1: true
     },
-    // Message Center
-    msgCenter: {
-        signalR: '',
-        serverUrl: '',
-        appKey: ''
+    odic: {
+        config: {
+            authority: 'http://{identity-server-domain}',
+            client_id: '',
+            redirect_uri: 'http://{domain}/authentication/callback',
+            response_type: 'id_token token',
+            scope: 'openid profile',
+            post_logout_redirect_uri: 'http://{domain}'
+        }
     },
-    // Data Center
-    dataCenter: {
-        serverUrl: '',
-        appKey: ''
-    },
-    // Customer Center
-    customerCenter: {
-        serverUrl: '',
-        appKey: '',
-        authUri: ''
+    api: {
+        default: 'v1',
+        // WebAPI for V2 - Microservice
+        v2: {
+            baseUrl: ''
+        },
+        // WebAPI for V1
+        v1: {
+            baseUrl: '',
+            appKey: '',
+            withHeaders: true
+        },
+        // User Center
+        userCenter: {
+            baseUrl: '',
+            appKey: '',
+            authUri: ''
+        },
+        // Message Center
+        messageCenter: {
+            signalR: '',
+            baseUrl: '',
+            appKey: ''
+        },
+        // Data Center
+        dataCenter: {
+            baseUrl: '',
+            appKey: ''
+        },
+        // Customer Center
+        customerCenter: {
+            baseUrl: '',
+            appKey: ''
+        }
     }
 };
