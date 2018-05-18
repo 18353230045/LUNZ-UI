@@ -3,6 +3,8 @@ import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from '
 import { Subscription } from 'rxjs/Subscription';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
 import { Dialogs } from '../../../core/dialogs.service';
@@ -20,11 +22,11 @@ declare const $: any;
     styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit, AfterViewInit {
-
     log: Logger;
     loading = false;
     orders: Array<any>;
     selectedOrders: Array<any> = [];
+
     queryTemplates: any = [{
         name: 'Default',
         template: {
@@ -43,12 +45,14 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     private datatable: any;
 
     constructor(
+        private localeService: BsLocaleService,
         private ordersService: OrdersService,
         private changeDetectorRef: ChangeDetectorRef,
         private loggerFactory: LoggerFactory,
         private dialogs: Dialogs,
         private modalService: BsModalService) {
         this.log = this.loggerFactory.getLogger();
+        this.localeService.use('zh-cn');
     };
 
     ngOnInit() {
