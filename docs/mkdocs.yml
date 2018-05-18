@@ -1,13 +1,53 @@
 site_name: LUNZ+
 pages:
     - '简介': index.md
-    - '应用程序':
-        - '响应结果': application/response-result.md
-        - '数据校验': application/validation.md
-        
+    - 'Angular1.x和Angular4内置指令区别': difference/difference.md
+    - 'Angular4的使用':
+        - '开始': angular4/angular4-index.md
+        - '开发环境': angular4/angular4-environment/angular4-environment.md
+        - 'Angular-cli': angular4/Angular-cli/Angular-cli.md
+        - '应用模型': angular4/Angular4-application-model/application-model.md
+        - '应用目录': angular4/Angular4-catalog/catalog.md
+        - '模块': angular4/Angular4-model/Angular4-model.md
+        - '组件': angular4/Angular4-component/Angular4-component.md
+        - '服务': angular4/Angular4-service/Angular4-service.md
+        - '指令': angular4/Angular4-directive/Angular4-directive.md
+        - '管道': angular4/Angular4-pipe/Angular4-pipe.md
+    - 'LUNZ+框架的使用': 
+        - '流程': Lunz/technological-process/technological-process.md
+        - '获取源码，运行项目': Lunz/step1/step1.md
+        - '创建模块，配置路由': Lunz/step2/step2.md
+        - '创建服务': Lunz/step3/step3.md
+        - '创建订单列表组件': Lunz/step4/step4.md
+        - '创建新建/编辑订单组件': Lunz/step5/step5.md
+        - '发布': Lunz/release/release.md
+        - '常用命令': Lunz/common-commands/common-commands.md
+    - '组件': 
+        - '表单form': component/form/form.md
+        - '数据列表展示ngx-datatable': component/ngx-datatable/ngx-datatable.md
+        - '查询过滤ngx-query': component/ngx-query/ngx-query.md
+        - '表单验证反馈validation-message': component/validation-message/validation-message.md
+        - '时间选择器': component/datepicker/datepicker.md
+        - '表单验证器': component/validator/validator.md
+        - '选择器select': component/select/select.md
+        - '选择器select2': component/select2/select2.md
+        - '下拉dropdown': component/dropdown/dropdown.md
+        - '文件上传': component/upload/upload.md
+        - '进度条': component/progress/progress.md
+        - '车型选择': component/vehicle-select/vehicle-select.md
+        - '树形结构': component/treeview/treeview.md
+        - '切换tabs': component/tabs/tabs.md
+        - '图表': component/chart/chart.md
+        - '对话框dialogs': component/dialogs/dialogs.md
+        - '按钮处理状态': component/angular2-ladda/angular2-ladda.md
+        - '信息提示logger': component/logger/logger.md
+        - '第三方组件库': component/third-party-components/third-party-components.md
+    - '第三方样式表和JS插件的使用': plugins-use/plugins-use.md
+    - '部署': 
+        - 'Windows下': deploy/deploy-windows.md
+        - 'Linux下': deploy/deploy-linux.md
+        - '自动部署': deploy/auto-deploy.md
+    - 'NPM 包管理': NPM/NPM-admin.md
 theme:
   name: 'material'
   language: 'zh'
-  palette:
-    primary: 'blue'
-    accent: 'blue'

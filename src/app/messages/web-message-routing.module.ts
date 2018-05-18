@@ -7,7 +7,7 @@ import { WebMessageComponent } from './web-message/web-message.component';
 
 const routes: Routes =
   RouteExtensions.withHost(
-    { path: 'messages/:unreadmsgid', component: WebMessageComponent, data: { title: '我的消息' } },
+    { path: '', component: WebMessageComponent, data: { title: '我的消息' } },
     []);
 
 @NgModule({

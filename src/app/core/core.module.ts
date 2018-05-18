@@ -5,6 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, XHRBackend, ConnectionBackend, RequestOptions } from '@angular/http';
 
 import { ModalModule, BsDatepickerModule, TabsModule } from 'ngx-bootstrap';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { zhCnLocale } from 'ngx-bootstrap/locale';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
 import { MomentModule } from 'angular2-moment/moment.module';
@@ -12,7 +15,6 @@ import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { TreeModule } from 'angular-tree-component';
 
 import { environment } from '../../environments/environment';
-
 import { SharedModule } from '../shared/shared.module';
 
 import { CoreRoutingModule } from './core-routing.module';
@@ -53,6 +55,8 @@ import { TopMenuComponent } from './shell/header/top-menu/top-menu.component';
 import { ActionsComponent } from './shell/header/top-menu/actions/actions.component';
 import { ReportsComponent } from './shell/header/top-menu/reports/reports.component';
 import { AppsComponent } from './shell/header/top-menu/apps/apps.component';
+
+defineLocale(environment.localeId, zhCnLocale);
 
 export function createHttpService(
     backend: ConnectionBackend,
@@ -149,6 +153,7 @@ export function createCurrencyPipe() {
         OperationService
     ]
 })
+
 export class CoreModule {
 
     constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

@@ -1,17 +1,14 @@
-# Welcome to MkDocs
+# 欢迎来到 LUNZ+
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+##说明
+主要说明LUNZ+框架介绍、Angular1.x和Angular4内置指令区别、Angular4框架介绍、如何使用LUNZ+框架及常用组件的使用。
 
-## Commands
+## 开始
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+[Angular1.x和Angular4内置指令区别](/difference/difference/)
 
-## Project layout
+[Angular4的使用](/angular4/angular4-index/)
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+[LUNZ+框架的使用](/Lunz+/technological-process/technological-process/)
+
+[组件](/component/form/form/)
