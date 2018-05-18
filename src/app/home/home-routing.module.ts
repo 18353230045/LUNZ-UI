@@ -5,8 +5,8 @@ import { RouteExtensions } from '../core/route.service';
 import { HomeComponent } from './home.component';
 
 const routes: Routes = [
-    { path: 'dashboard', redirectTo: '/dashboard', pathMatch: 'full' },
-    { path: '', component: HomeComponent, data: { title: '组件库', breadcrumb: false } }
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+    { path: 'dashboard', component: HomeComponent, data: { title: '组件库', breadcrumb: false } }
 ];
 
 @NgModule({
