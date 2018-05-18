@@ -15,52 +15,52 @@ export const environment = {
     ],
     authentication: {
         // oauth2 / usercenter
-        type: 'oauth2',
+        type: 'usercenter',
         useServiceV1: true
     },
     odic: {
         config: {
-            authority: 'https://identity-stage.lunz.cn',
-            client_id: 'lunz-ui-dev',
-            redirect_uri: 'http://localhost:9200/authentication/callback',
+            authority: 'http://{identity-server-domain}',
+            client_id: '',
+            redirect_uri: 'http://{domain}/authentication/callback',
             response_type: 'id_token token',
-            scope: 'openid profile lunz-sharp-template',
-            post_logout_redirect_uri: 'http://localhost:9200'
+            scope: 'openid profile',
+            post_logout_redirect_uri: 'http://{domain}'
         }
     },
     api: {
         default: 'v1',
         // WebAPI for V2 - Microservice
         v2: {
-            baseUrl: '//localhost:5100/api/v1/'
+            baseUrl: ''
         },
         // WebAPI for V1
         v1: {
-            baseUrl: '//lunz-sharp.lunztech.cn/api/',
-            appKey: 'a9ee8aaa-9c5b-4f56-9cb0-3a840b6e27f9',
+            baseUrl: '',
+            appKey: '',
             withHeaders: true
         },
         // User Center
         userCenter: {
-            baseUrl: '//usercenter2015.lunztech.cn/api/',
-            appKey: '4f500000-4c4f-0200-903a-08d4ccde1e74',
-            authUri: '//usercenter2015.lunztech.cn/'
+            baseUrl: '',
+            appKey: '',
+            authUri: ''
         },
         // Message Center
         messageCenter: {
-            signalR: '//messagecenter.lunztech.cn/',
-            baseUrl: '//messagecenter.lunztech.cn/api/',
-            appKey: '53cdc9ab-4c9f-420b-b727-fe0602a7387c'
+            signalR: '',
+            baseUrl: '',
+            appKey: ''
         },
         // Data Center
         dataCenter: {
-            baseUrl: '//datacenter.lunztech.cn/api/',
-            appKey: '536babcc-dd54-42fb-b43e-31c80b7afa74'
+            baseUrl: '',
+            appKey: ''
         },
         // Customer Center
         customerCenter: {
-            baseUrl: '//customercenter.lunztech.cn/api/',
-            appKey: 'cc9065db-9b87-43b9-9917-0c4b5b4fc9d3'
+            baseUrl: '',
+            appKey: ''
         }
     }
 };
