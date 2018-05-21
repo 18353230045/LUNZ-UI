@@ -34,6 +34,7 @@ import { NgxDataTableDirective } from './directives/ngx-datatable.directive';
 import { ApplyPermissionDirective } from './directives/apply-permission.directive';
 import { LaddaDirective } from './directives/ladda.directive';
 import { DatepickerDirective } from './directives/datepicker.directive';
+import { AutoFocusDirective } from './directives/auto-focus.directive';
 
 import { RmbPipe } from './pipes/rmb.pipe';
 import { RemoveSpacePipe } from './pipes/remove-space.pipe';
@@ -72,6 +73,7 @@ export function createDecimalPipe() {
         ApplyPermissionDirective,
         LaddaDirective,
         DatepickerDirective,
+        AutoFocusDirective,
 
         RmbPipe,
         RemoveSpacePipe,
@@ -96,6 +98,7 @@ export function createDecimalPipe() {
         ApplyPermissionDirective,
         LaddaDirective,
         DatepickerDirective,
+        AutoFocusDirective,
 
         RmbPipe
     ],
