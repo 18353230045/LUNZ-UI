@@ -17,6 +17,10 @@ export class SsoCheckComponent implements OnInit {
     private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    if (!this.authenticationService.isUsing()) {
+      return;
+    }
+
     let returnUrl = '/';
     const uri = new URI(window.location.href);
     const queryString = uri.query();

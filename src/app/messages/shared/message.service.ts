@@ -14,7 +14,8 @@ import { LoggerFactory } from '../../core/logger-factory.service';
 import { Logger } from '../../core/logger.service';
 
 import { environment } from '../../../environments/environment';
-import { AuthenticationService } from '../../core/authentication/authentication.service';
+import { AuthenticationService, Credentials } from '../../core/authentication/authentication.service';
+import { AuthenticationOAuth2Service } from '../../core/authentication/authentication-oauth2.service';
 
 import { WebMessage } from './web-message';
 
@@ -27,15 +28,29 @@ export class MessageService extends WebApiResultResponse {
 
     private _connection: SignalRConnection;
     private _subscription: Subscription;
+    private _credentials: Credentials;
 
     constructor(private http: Http,
         private _signalR: SignalR,
         private router: Router,
         private authenticationService: AuthenticationService,
+        private authenticationOAuth2Service: AuthenticationOAuth2Service,
         private loggerFactory: LoggerFactory) {
         super();
         this._connection = this._signalR.createConnection();
         this.log = this.loggerFactory.getLogger();
+
+        if (this.authenticationService.isUsing()) {
+            this._credentials = this.authenticationService.credentials;
+        }
+
+        if (this.authenticationOAuth2Service.isUsing()) {
+            const claims = this.authenticationOAuth2Service.claims;
+            this._credentials = {
+                username: claims.username,
+                token: claims.authToken
+            };
+        }
     }
 
     getUnreadMessages(): Observable<any> {
@@ -49,7 +64,7 @@ export class MessageService extends WebApiResultResponse {
                 'X-Content-Type-Options': 'nosniff'
             }),
             params: {
-                'username': this.authenticationService.credentials.username
+                'username': this._credentials.username
             }
         }).map(response => {
             const result = super.handleSuccess(response);
@@ -69,7 +84,7 @@ export class MessageService extends WebApiResultResponse {
             }),
             params: {
                 'paging': paging,
-                'username': this.authenticationService.credentials.username
+                'username': this._credentials.username
             }
         }).map(super.handleSuccess)
             .catch(super.handleError);
@@ -96,7 +111,7 @@ export class MessageService extends WebApiResultResponse {
     }
 
     initSignalR() {
-        const username = this.authenticationService.credentials.username;
+        const username = this._credentials.username;
         if (this.hasValue(username)) {
             this._connection.start().then((c) => {
                 this._connection.invoke('JoinConversation', {

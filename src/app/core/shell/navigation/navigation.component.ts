@@ -6,6 +6,7 @@ import { BsModalService } from 'ngx-bootstrap';
 import { Logger } from '../../logger.service';
 import { LoggerFactory } from '../../logger-factory.service';
 import { AuthenticationService } from '../../authentication/authentication.service';
+import { AuthenticationOAuth2Service } from '../../authentication/authentication-oauth2.service';
 import { ProfileService, Profile } from '../../profile/profile.service';
 
 declare const mLayout: any;
@@ -27,6 +28,7 @@ export class NavigationComponent implements OnInit, AfterViewChecked {
 
     constructor(
         private authenticationService: AuthenticationService,
+        private authenticationOAuth2Service: AuthenticationOAuth2Service,
         private profileService: ProfileService,
         private loggerFactory: LoggerFactory,
         private router: Router,
@@ -35,7 +37,13 @@ export class NavigationComponent implements OnInit, AfterViewChecked {
     };
 
     ngOnInit() {
-        this.isAuthenticated = this.authenticationService.isAuthenticated();
+        if (this.authenticationService.isUsing()) {
+            this.isAuthenticated = this.authenticationService.isAuthenticated();
+        }
+
+        if (this.authenticationOAuth2Service.isUsing()) {
+            this.isAuthenticated = this.authenticationOAuth2Service.isAuthenticated();
+        }
 
         if (this.isAuthenticated) {
             this.getMenuItems();

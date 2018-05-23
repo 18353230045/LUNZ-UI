@@ -4,6 +4,7 @@ import { environment } from '../../../../../../environments/environment';
 import { Logger } from '../../../../../core/logger.service';
 import { LoggerFactory } from '../../../../../core/logger-factory.service';
 import { AuthenticationService } from '../../../../../core/authentication/authentication.service';
+import { AuthenticationOAuth2Service } from '../../../../../core/authentication/authentication-oauth2.service';
 import { ProfileService } from '../../../../profile/profile.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class AppsComponent implements OnInit {
 
     constructor(
         private authenticationService: AuthenticationService,
+        private authenticationOAuth2Service: AuthenticationOAuth2Service,
         private profileService: ProfileService,
         private loggerFactory: LoggerFactory) {
 
@@ -29,7 +31,15 @@ export class AppsComponent implements OnInit {
     };
 
     ngOnInit() {
-        const isAuthenticated: boolean = this.authenticationService.isAuthenticated();
+        let isAuthenticated: boolean;
+
+        if (this.authenticationService.isUsing()) {
+            isAuthenticated = this.authenticationService.isAuthenticated();
+        }
+
+        if (this.authenticationOAuth2Service.isUsing()) {
+            isAuthenticated = this.authenticationOAuth2Service.isAuthenticated();
+        }
 
         if (isAuthenticated) {
             this.getApps();
