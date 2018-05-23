@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment';
 
 import { WebApiResultResponse } from '../http/web-api-result-response';
-import { AuthenticationService } from '../authentication/authentication.service';
+import { AuthenticationService, Credentials } from '../authentication/authentication.service';
 import { AuthenticationOAuth2Service } from '../authentication/authentication-oauth2.service';
 
 export interface Profile {
@@ -20,12 +20,25 @@ export interface Profile {
 export class ProfileService extends WebApiResultResponse {
 
   private _profile: Profile;
+  private _credentials: Credentials;
 
   constructor(
     private authenticationService: AuthenticationService,
     private authenticationOAuth2Service: AuthenticationOAuth2Service,
     private http: Http) {
     super();
+
+    if (this.authenticationService.isUsing()) {
+      this._credentials = this.authenticationService.credentials;
+    }
+
+    if (this.authenticationOAuth2Service.isUsing()) {
+      const claims = this.authenticationOAuth2Service.claims;
+      this._credentials = {
+        username: claims.username,
+        token: claims.authToken
+      };
+    }
   }
 
   /**
@@ -68,7 +81,7 @@ export class ProfileService extends WebApiResultResponse {
       cache: true,
       headers: new Headers({
         'appKey': environment.api.userCenter.appKey,
-        'authToken': this.authenticationService.credentials.token,
+        'authToken': this._credentials.token,
         'X-XSS-Protection': '1',
         'X-Content-Type-Options': 'nosniff'
       })
@@ -84,7 +97,7 @@ export class ProfileService extends WebApiResultResponse {
   getApps(): Observable<any> {
     const url = environment.api.userCenter.baseUrl + 'membership/getUserApps';
 
-    const username = this.authenticationService.credentials.username;
+    const username = this._credentials.username;
 
     return this.http.get(url, {
       headers: new Headers({

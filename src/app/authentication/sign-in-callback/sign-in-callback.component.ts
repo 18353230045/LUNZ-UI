@@ -35,7 +35,7 @@ export class SignInCallbackComponent implements OnInit {
       const claims: any = this.authenticationOAuth2Service.claims;
       const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
 
-      if (claims.authToken &&
+      if (environment.authentication.useServiceV1 && claims.authToken &&
         (!authenticationService.isAuthenticated() || authenticationService.credentials.token !== claims.authToken)) {
         authenticationService.loginByAuthToken(claims.authToken)
           .subscribe(() => {

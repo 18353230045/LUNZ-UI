@@ -42,7 +42,13 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    this.isAuthenticated = this.authenticationService.isAuthenticated();
+    if (this.authenticationService.isUsing()) {
+      this.isAuthenticated = this.authenticationService.isAuthenticated();
+    }
+
+    if (this.authenticationOAuth2Service.isUsing()) {
+      this.isAuthenticated = this.authenticationOAuth2Service.isAuthenticated();
+    }
 
     if (this.isAuthenticated) {
       this.getProfile();
