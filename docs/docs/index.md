@@ -11,4 +11,4 @@
 
 [LUNZ+框架的使用](/Lunz+/technological-process/technological-process/)
 
-[组件库](/component/self-components/form/form/)
+[组件](/component/form/form/)

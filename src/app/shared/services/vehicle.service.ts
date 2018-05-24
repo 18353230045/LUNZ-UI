@@ -28,12 +28,12 @@ export class VehicleService extends WebApiResultResponse {
 
     // 获取车品牌
     getCarbrand(code: string): Observable<any> {
-        const url = environment.dataCenter.serverUrl + 'vehicle/Brand/TreeList';
+        const url = environment.api.dataCenter.baseUrl + 'vehicle/Brand/TreeList';
 
         return this.http.get(url, {
             cache: false,
             params: {
-                'appKey': environment.dataCenter.appKey,
+                'appKey': environment.api.dataCenter.appKey,
                 'authToken': this.authenticationService.credentials.token,
                 'query': '',
                 'code': code
@@ -44,12 +44,12 @@ export class VehicleService extends WebApiResultResponse {
 
     // 获取车系列
     getCarSeries(parentId: string): Observable<any> {
-        const url = environment.dataCenter.serverUrl + 'vehicle/Brand/GetChildListByParentId';
+        const url = environment.api.dataCenter.baseUrl + 'vehicle/Brand/GetChildListByParentId';
 
         return this.http.get(url, {
             cache: false,
             params: {
-                'appKey': environment.dataCenter.appKey,
+                'appKey': environment.api.dataCenter.appKey,
                 'authToken': this.authenticationService.credentials.token,
                 'parentId': parentId
             }
@@ -59,12 +59,12 @@ export class VehicleService extends WebApiResultResponse {
 
     // 获取车型号
     getCarModels(seriesId: string): Observable<any> {
-        const url = environment.dataCenter.serverUrl + 'vehicle/Info/YearInfoListBySeriesID';
+        const url = environment.api.dataCenter.baseUrl + 'vehicle/Info/YearInfoListBySeriesID';
 
         return this.http.get(url, {
             cache: false,
             params: {
-                'appKey': environment.dataCenter.appKey,
+                'appKey': environment.api.dataCenter.appKey,
                 'authToken': this.authenticationService.credentials.token,
                 'seriesId': seriesId
             }

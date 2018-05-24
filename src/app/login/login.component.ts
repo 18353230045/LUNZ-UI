@@ -42,19 +42,14 @@ export class LoginComponent implements OnInit {
 
     this.log = this.loggerFactory.getLogger('登录');
     this.createForm();
-  }
+  };
 
   ngOnInit() {
-    $(`body`).on(`keydown`, function (event: any) {
-      if (event.keyCode === 13) {
-        $(`#m_login_signin_submit`).trigger(`click`);
-      }
-    });
-  }
+  };
 
   showForgetPassword() {
     this.forgetPassword = !this.forgetPassword;
-  }
+  };
 
   login() {
     this.isLoading = true;
@@ -85,19 +80,19 @@ export class LoginComponent implements OnInit {
         this.error = error.message;
         this.log.debug(this.error);
       });
-  }
+  };
 
   setLanguage(language: string) {
     this.i18nService.language = language;
-  }
+  };
 
   get currentLanguage(): string {
     return this.i18nService.language;
-  }
+  };
 
   get languages(): string[] {
     return this.i18nService.supportedLanguages;
-  }
+  };
 
   private createForm() {
     this.loginForm = this.formBuilder.group({
@@ -105,6 +100,6 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
       remember: false
     });
-  }
+  };
 
-}
+};

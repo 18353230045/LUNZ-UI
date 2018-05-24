@@ -5,6 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, XHRBackend, ConnectionBackend, RequestOptions } from '@angular/http';
 
 import { ModalModule, BsDatepickerModule, TabsModule } from 'ngx-bootstrap';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { zhCnLocale } from 'ngx-bootstrap/locale';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
 import { MomentModule } from 'angular2-moment/moment.module';
@@ -12,7 +15,6 @@ import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { TreeModule } from 'angular-tree-component';
 
 import { environment } from '../../environments/environment';
-
 import { SharedModule } from '../shared/shared.module';
 
 import { CoreRoutingModule } from './core-routing.module';
@@ -21,6 +23,7 @@ import { SsoModule } from '../sso/sso.module';
 import { WebMessageModule } from '../messages/web-message.module';
 
 import { AuthenticationService } from './authentication/authentication.service';
+import { AuthenticationOAuth2Service } from './authentication/authentication-oauth2.service';
 import { AuthenticationGuard } from './authentication/authentication.guard';
 import { I18nService } from './i18n.service';
 import { HttpService } from './http/http.service';
@@ -52,6 +55,8 @@ import { TopMenuComponent } from './shell/header/top-menu/top-menu.component';
 import { ActionsComponent } from './shell/header/top-menu/actions/actions.component';
 import { ReportsComponent } from './shell/header/top-menu/reports/reports.component';
 import { AppsComponent } from './shell/header/top-menu/apps/apps.component';
+
+defineLocale('zh-cn', zhCnLocale);
 
 export function createHttpService(
     backend: ConnectionBackend,
@@ -130,6 +135,7 @@ export function createCurrencyPipe() {
             useFactory: createCurrencyPipe
         },
         AuthenticationService,
+        AuthenticationOAuth2Service,
         AuthenticationGuard,
         I18nService,
         HttpCacheService,
@@ -147,9 +153,10 @@ export function createCurrencyPipe() {
         OperationService
     ]
 })
+
 export class CoreModule {
 
-    constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
+    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
         // Import guard
         if (parentModule) {
             throw new Error(`${parentModule} has already been loaded. Import Core module in the AppModule only.`);

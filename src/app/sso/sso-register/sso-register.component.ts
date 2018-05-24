@@ -19,10 +19,14 @@ export class SsoRegisterComponent implements OnInit {
     private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    if (!this.authenticationService.isUsing()) {
+      return;
+    }
+
     const token = this.authenticationService.credentials.token;
     if (token && token !== undefined && token !== '') {
       this.isCookie = true;
-      const url = environment.userCenter.authUri + 'Auth/CreateAuthToken?authToken=' + token;
+      const url = environment.api.userCenter.authUri + 'Auth/CreateAuthToken?authToken=' + token;
       this.srcUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
   }

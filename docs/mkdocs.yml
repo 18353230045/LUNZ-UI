@@ -21,24 +21,33 @@ pages:
         - '创建订单列表组件': Lunz/step4/step4.md
         - '创建新建/编辑订单组件': Lunz/step5/step5.md
         - '发布': Lunz/release/release.md
-    - '第三方插件的使用': plugins-use/plugins-use.md
-    - '组件库': 
-        - '框架自身组件': 
-            - 'form表单': component/self-components/form/form.md
-            - '时间选择器': component/self-components/datepicker/datepicker.md
-            - '表单验证器': component/self-components/validator/validator.md
-            - 'select选择器': component/self-components/select/select.md
-            - 'select2选择器': component/self-components/select2/select2.md
-            - 'dropdown': component/self-components/dropdown/dropdown.md
-            - '文件上传': component/self-components/upload/upload.md
-            - '进度条': component/self-components/progress/progress.md
-            - '车型选择': component/self-components/vehicle-select/vehicle-select.md
-            - '树形结构': component/self-components/treeview/treeview.md
-            - 'tabs切换': component/self-components/tabs/tabs.md
-            - '图表': component/self-components/chart/chart.md
-        - '第三方组件': 
-            - 'npmjs': component/third-party-components/npmjs/npmjs.md
-        
+        - '常用命令': Lunz/common-commands/common-commands.md
+    - '组件': 
+        - '表单form': component/form/form.md
+        - '数据列表展示ngx-datatable': component/ngx-datatable/ngx-datatable.md
+        - '查询过滤ngx-query': component/ngx-query/ngx-query.md
+        - '表单验证反馈validation-message': component/validation-message/validation-message.md
+        - '时间选择器': component/datepicker/datepicker.md
+        - '表单验证器': component/validator/validator.md
+        - '选择器select': component/select/select.md
+        - '选择器select2': component/select2/select2.md
+        - '下拉dropdown': component/dropdown/dropdown.md
+        - '文件上传': component/upload/upload.md
+        - '进度条': component/progress/progress.md
+        - '车型选择': component/vehicle-select/vehicle-select.md
+        - '树形结构': component/treeview/treeview.md
+        - '切换tabs': component/tabs/tabs.md
+        - '图表': component/chart/chart.md
+        - '对话框dialogs': component/dialogs/dialogs.md
+        - '按钮处理状态': component/angular2-ladda/angular2-ladda.md
+        - '信息提示logger': component/logger/logger.md
+        - '第三方组件库': component/third-party-components/third-party-components.md
+    - '第三方样式表和JS插件的使用': plugins-use/plugins-use.md
+    - '部署': 
+        - 'Windows下': deploy/deploy-windows.md
+        - 'Linux下': deploy/deploy-linux.md
+        - '自动部署': deploy/auto-deploy.md
+    - 'NPM 包管理': NPM/NPM-admin.md
 theme:
   name: 'material'
   language: 'zh'

@@ -5,7 +5,7 @@ import { RouteExtensions } from '../core/route.service';
 import { ContactUsComponent } from './contact-us.component';
 
 const routes: Routes = [
-  { path: 'contact-us', component: ContactUsComponent, data: { title: '联系我们' } }
+  { path: '', component: ContactUsComponent, data: { title: '联系我们' } }
 ];
 
 @NgModule({

@@ -28,11 +28,13 @@ import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 import { ConvertService } from './converts/convert.service';
 import { SharedSessionStorageService } from './services/shared-session-storage.service';
 import { VehicleService } from './services/vehicle.service';
+import { ReferenceDataService } from './services/reference-data.service';
 
 import { NgxDataTableDirective } from './directives/ngx-datatable.directive';
 import { ApplyPermissionDirective } from './directives/apply-permission.directive';
 import { LaddaDirective } from './directives/ladda.directive';
 import { DatepickerDirective } from './directives/datepicker.directive';
+import { AutoFocusDirective } from './directives/auto-focus.directive';
 
 import { RmbPipe } from './pipes/rmb.pipe';
 import { RemoveSpacePipe } from './pipes/remove-space.pipe';
@@ -71,6 +73,7 @@ export function createDecimalPipe() {
         ApplyPermissionDirective,
         LaddaDirective,
         DatepickerDirective,
+        AutoFocusDirective,
 
         RmbPipe,
         RemoveSpacePipe,
@@ -95,6 +98,7 @@ export function createDecimalPipe() {
         ApplyPermissionDirective,
         LaddaDirective,
         DatepickerDirective,
+        AutoFocusDirective,
 
         RmbPipe
     ],
@@ -102,7 +106,8 @@ export function createDecimalPipe() {
     providers: [
         ConvertService,
         SharedSessionStorageService,
-        VehicleService
+        VehicleService,
+        ReferenceDataService
     ]
 })
 

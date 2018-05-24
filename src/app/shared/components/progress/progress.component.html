@@ -8,7 +8,7 @@
   </div>
   <div *ngIf="textInside==='outside'" [ngStyle]="{'color':'#5a5e66'}" class="lz-progress__text">
     <span *ngIf="progress!==100&&textShow===true">{{progress}}%</span>
-    <i *ngIf="progress===100" [ngStyle]="{'color':'#67C23A'}" class="el-icon-circle-check"></i>
+    <i *ngIf="progress===100" [ngStyle]="{'color':'#67C23A'}" class="la la-check-circle"></i>
   </div>
 </div>
 
@@ -21,7 +21,7 @@
   </svg>
   <div class="lz-circle-progress__text">
       <span *ngIf="progress!==100&&status!=='exception'">{{progress}}%</span>
-      <i *ngIf="progress===100" [ngStyle]="{'color':'#67C23A'}" class="el-icon-check"></i>
-      <i *ngIf="status==='exception'" [ngStyle]="{'color':'#FF4949'}" class="el-icon-close"></i>
+      <i *ngIf="progress===100" [ngStyle]="{'color':'#67C23A'}" class="la la-check"></i>
+      <i *ngIf="status==='exception'" [ngStyle]="{'color':'#FF4949'}" class="la la-close"></i>
   </div>
 </div>

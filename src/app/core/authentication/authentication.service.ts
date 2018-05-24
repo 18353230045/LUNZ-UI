@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { environment } from '../../../environments/environment';
+
 import { SharedSessionStorageService } from '../../shared/services/shared-session-storage.service';
 import { WebApiResultResponse } from '../http/web-api-result-response';
 
@@ -43,6 +45,10 @@ export class AuthenticationService extends WebApiResultResponse {
     super();
     this._credentials = JSON.parse(
       this.sharedSessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey));
+  }
+
+  isUsing(): boolean {
+    return environment.authentication.type === 'usercenter';
   }
 
   /**

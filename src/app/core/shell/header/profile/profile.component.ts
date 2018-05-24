@@ -3,9 +3,11 @@ import { Router } from '@angular/router';
 
 import { BsModalService } from 'ngx-bootstrap';
 
+import { environment } from '../../../../../environments/environment';
 import { Logger } from '../../../logger.service';
 import { LoggerFactory } from '../../../logger-factory.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
+import { AuthenticationOAuth2Service } from '../../../authentication/authentication-oauth2.service';
 import { ProfileService, Profile } from '../../../profile/profile.service';
 import {
   ChangePasswordModalComponent
@@ -28,7 +30,9 @@ export class ProfileComponent implements OnInit {
     username: ''
   };
 
-  constructor(private authenticationService: AuthenticationService,
+  constructor(
+    private authenticationService: AuthenticationService,
+    private authenticationOAuth2Service: AuthenticationOAuth2Service,
     private profileService: ProfileService,
     private loggerFactory: LoggerFactory,
     private router: Router,
@@ -38,7 +42,13 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    this.isAuthenticated = this.authenticationService.isAuthenticated();
+    if (this.authenticationService.isUsing()) {
+      this.isAuthenticated = this.authenticationService.isAuthenticated();
+    }
+
+    if (this.authenticationOAuth2Service.isUsing()) {
+      this.isAuthenticated = this.authenticationOAuth2Service.isAuthenticated();
+    }
 
     if (this.isAuthenticated) {
       this.getProfile();
@@ -55,11 +65,28 @@ export class ProfileComponent implements OnInit {
       $('#m_aside_left_minimize_toggle').trigger('click');
     }
 
-    this.authenticationService
-      .logout()
-      .subscribe(() => {
-        this.router.navigate(['/login']);
-      });
+    if (this.authenticationService.isUsing()) {
+      this.authenticationService
+        .logout()
+        .subscribe(() => {
+          this.router.navigate(['/login']);
+        });
+    }
+
+    if (this.authenticationOAuth2Service.isUsing()) {
+
+      if (environment.authentication.useServiceV1) {
+        this.authenticationService
+          .logout()
+          .subscribe(() => { });
+      }
+
+      this.authenticationOAuth2Service
+        .signout()
+        .then(() => {
+          this.router.navigate(['/']);
+        });
+    }
   };
 
   changePassword() {
