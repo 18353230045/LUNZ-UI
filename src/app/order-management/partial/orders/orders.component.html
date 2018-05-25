@@ -67,7 +67,7 @@
     </div>
   </div>
   <div class="m-portlet__body p-0">
-    <ngx-query [hidden]="!ngxQueryToolbar.visible" class="full-screen no-header" #ngxQuery [queryTemplates]="queryTemplates">
+    <ngx-query [hidden]="!ngxQueryToolbar.visible" [datePickerReadonly]="true" class="full-screen no-header" #ngxQuery [queryTemplates]="queryTemplates">
       <ngx-query-field [name]="'subject'" [label]="'订单摘要'" [type]="'string'"></ngx-query-field>
       <ngx-query-field name="Date" label="日期" type="date"></ngx-query-field>
       <ngx-query-field [name]="'Amount'" [label]="'数量'" [type]="'number'"></ngx-query-field>
