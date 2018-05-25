@@ -1,14 +1,34 @@
 # 欢迎来到 LUNZ+
 
-##说明
-主要说明LUNZ+框架介绍、Angular1.x和Angular4内置指令区别、Angular4框架介绍、如何使用LUNZ+框架及常用组件的使用。
+LUNZ+ 是一套使用 [Angular](https://angular.io/) 框架用来解决基于浏览器的应用程序的前端应用程序框架模板，提供了应用程序需要的基本功能，实现前端开发工作与服务端开发的完全分离。
 
-## 开始
+LUNZ+ 集成了以下功能：
 
-[Angular1.x和Angular4内置指令区别](/difference/difference/)
+1. 身份认证
+2. 菜单模块    
+(继续添加...)
 
-[Angular4的使用](/angular4/angular4-index/)
+本文档将介绍 LUNZ+ 框架、Angular1.x 和 Angular4 内置指令区别、Angular4 框架介绍、如何使用 LUNZ+ 框架及常用组件的使用。
 
-[LUNZ+框架的使用](/Lunz+/technological-process/technological-process/)
+# ** 调整 **
+## 大纲/目录
 
-[组件](/component/form/form/)
+* 简介
+* 快速开始
+* 开发环境
+* 开始 LUNZ+ （= LUNZ+框架的使用）
+* LUNZ+ 组件 （= 组件）
+* 部署
+* LUNZ+ 其它
+    - 环境变量
+    - 配置路由
+    - 常用命令
+    - 管理样式和 js 文件
+* 构建私有项目 （介绍如何构建自己的项目，如项目名，版本号，端口号等）
+* 强类型化API接口 (NSwagStudio)
+* 使用 Angular4
+* 从 AngularJs 转 Angular4 (= Angular1.x和Angular4内置指令区别)
+* NPM 包管理
+* 编码规范
+* 这个模板包含什么？
+
