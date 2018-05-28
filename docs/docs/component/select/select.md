@@ -1,9 +1,9 @@
 ###引入SharedModule
-> 在当前模块的.module.ts中引入SharedModule
+在当前模块的.module.ts中引入SharedModule
 
 `import { SharedModule } from '../shared/shared.module';`
 
-> 添加到@NgModule装饰器中
+添加到@NgModule装饰器中
 
     @NgModule({ 
         imports: [ 
@@ -12,14 +12,14 @@
     });
 
 ###.component.html中
-> 直接引用组件标签，传入需要的配置字段，如
+直接引用组件标签，传入需要的配置字段，如
 
 `<app-select-selection [label]="'年级'" [selects]="selects1" [(model)]="selectValue1" [clear]="true"></app-select-selection>`
 
 ###.component.ts中
-> 声明组件需要的数据和与组件实现双向数据绑定的变量，如
+声明组件需要的数据和与组件实现双向数据绑定的变量，如
 
-    selects1: Array<any> = []; 
+    selects1: Array<any= []; 
     selectValue1: any; 
     ngOnInit() { 
         this.selects1 = [ 
@@ -35,7 +35,7 @@
 ###组件参数说明
 参数|说明|类型|可选值|默认值
 -|-|-|-|-
-selects | 必选，数据源 | Array<{text:String,value:String,disabled?:Boolean}> | — | -
+selects | 必选，数据源 | Array<{text:String,value:String,disabled?:Boolean}| — | -
 model | 组件交互的入口，可使用[(model)]='selectValue1'实现双向数据绑定 | — | — | -
 disabled | 可选，对组件进行禁用 | Boolean | true,false | false
 clear | 可选，配置可清除功能 | Boolean | true,false | false

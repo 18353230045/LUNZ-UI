@@ -1,10 +1,10 @@
 ###说明
-> 提供了自定查询界面组件，包括简单查询和复杂查询。
+提供了自定查询界面组件，包括简单查询和复杂查询。
 
-github文档地址： [https://github.com/xuemingfeng/ngx-query](https://github.com/xuemingfeng/ngx-query)
+github地址： [https://github.com/xuemingfeng/ngx-query](https://github.com/xuemingfeng/ngx-query)
 
 ### 如何使用？简单用例
-> 在模块.module.ts 引入 `NgxQueryModule` 
+在模块.module.ts 引入 `NgxQueryModule` 
 
     import { Component, NgModule } from '@angular/core';
     import { NgxQueryModule } from 'ngx-query';
@@ -17,7 +17,7 @@ github文档地址： [https://github.com/xuemingfeng/ngx-query](https://github.
 
     export class MyModule {}
 
-> 在组件.component.ts 中
+在组件.component.ts 中
 
     import { Component, OnInit, ViewChild } from '@angular/core';
     import { QueryComponent } from 'ngx-query/query.component';
@@ -42,7 +42,7 @@ github文档地址： [https://github.com/xuemingfeng/ngx-query](https://github.
         }];
     }
 
-> 在模板.html 中
+在模板.html 中
 
     <div class="col-lg-12">
         <ngx-query #ngxQuery [title]="'订单管理'" [queryTemplates]="queryTemplates" [showModeButtons]="true">

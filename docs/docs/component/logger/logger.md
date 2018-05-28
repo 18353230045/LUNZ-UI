@@ -1,9 +1,9 @@
 ###说明
-> logger提供信息提示服务
+logger提供信息提示服务
 
 ###如何使用？
 
-> 在的 组件.component.ts 中引入 `Logger` 和 `LoggerFactory` 服务
+在的 组件.component.ts 中引入 `Logger` 和 `LoggerFactory` 服务
 
     import { Logger } from '../../core/logger.service';
     import { LoggerFactory } from '../../core/logger-factory.service';

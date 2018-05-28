@@ -5,30 +5,13 @@ LUNZ+ 是一套使用 [Angular](https://angular.io/) 框架用来解决基于浏
 LUNZ+ 集成了以下功能：
 
 1. 身份认证
-2. 菜单模块    
-(继续添加...)
+2. 菜单模块
+3. 常用开发组件
+4. 基于[Metronic主题](http://admin-theme.lunztech.cn/v5/)的样式表
+5. 集成了Angular4和Bootstrap4前端框架
+
+    ......
 
 本文档将介绍 LUNZ+ 框架、Angular1.x 和 Angular4 内置指令区别、Angular4 框架介绍、如何使用 LUNZ+ 框架及常用组件的使用。
 
-# ** 调整 **
-## 大纲/目录
-
-* 简介
-* 快速开始
-* 开发环境
-* 开始 LUNZ+ （= LUNZ+框架的使用）
-* LUNZ+ 组件 （= 组件）
-* 部署
-* LUNZ+ 其它
-    - 环境变量
-    - 配置路由
-    - 常用命令
-    - 管理样式和 js 文件
-* 构建私有项目 （介绍如何构建自己的项目，如项目名，版本号，端口号等）
-* 强类型化API接口 (NSwagStudio)
-* 使用 Angular4
-* 从 AngularJs 转 Angular4 (= Angular1.x和Angular4内置指令区别)
-* NPM 包管理
-* 编码规范
-* 这个模板包含什么？
 

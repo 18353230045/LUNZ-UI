@@ -1,9 +1,9 @@
 ###引入SharedModule
-> 在当前模块的.module.ts中引入
+在当前模块的.module.ts中引入
 
     import { SharedModule } from '../shared/shared.module';
 
-> 添加到@NgModule装饰器中
+添加到@NgModule装饰器中
 
     @NgModule({ 
         imports: [ 
@@ -12,15 +12,15 @@
     });
 
 ###引用组件标签
-> .component.html中，直接引用组件标签，如：
+.component.html中，直接引用组件标签，如：
 
-    <app-dropdown-selection [options]="options" [position]="'left'" [dropText]="'部门'" (selected)="handle1($event)"></app-dropdown-selection>
+    <app-dropdown-selection [options]="options" [position]="'left'" [dropText]="'部门'" (selected)="handle($event)"></app-dropdown-selection>
 
 ###传入数据源变量
-> component.ts中声明传入组件的数据源变量，如：
+component.ts中声明传入组件的数据源变量，如：
 
     export class DropdownComponent implements OnInit { 
-        options: Array<any> = []; 
+        options: Array<any= []; 
 
         constructor() { }; 
 
@@ -49,13 +49,17 @@
                     ] 
                 } 
             ]; 
+        };
+
+        handle(event:any){
+            // some code
         }; 
     }; 
 
 ###组件参数说明
 参数|说明|类型|可选值|默认值
 -|-|-|-|-
-options | 必选，数据源 | Array<{text:String,id:String,disabled?:Boolean}> | — | -
+options | 必选，数据源 | Array<{text:String,id:String,disabled?:Boolean}| — | -
 type | 可选，组件类型（btn,icon） | String | btn,icon | btn
 position | 可选，组件展开位置 | String | center,right,left | center
 dropText | 可选，为btn型时可用，显示列表title，为icon型时不可用 | String | — | -
