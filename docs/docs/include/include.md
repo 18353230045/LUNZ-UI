@@ -28,4 +28,4 @@
 - [Lodash](https://lodash.com)
 
 #### Coding guides
-- [管道](angular/)
+- [angular](./coding/angular)
