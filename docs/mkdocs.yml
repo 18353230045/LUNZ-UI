@@ -4,13 +4,13 @@ pages:
     - '快速开始': quick-start/quick-start.md
     - '开发环境': development-environment/development-environment.md
     - '开始 LUNZ+':
-        - '开发流程': Lunz/technological-process/technological-process.md
-        - '获取源码，运行项目': Lunz/step1/step1.md
-        - '创建模块，配置路由': Lunz/step2/step2.md
-        - '创建服务': Lunz/step3/step3.md
-        - '创建订单列表组件': Lunz/step4/step4.md
-        - '创建新建/编辑订单组件': Lunz/step5/step5.md
-        - '发布': Lunz/release/release.md
+        - '开发流程': lunz/technological-process/technological-process.md
+        - '获取源码，运行项目': lunz/step1/step1.md
+        - '创建模块，配置路由': lunz/step2/step2.md
+        - '创建服务': lunz/step3/step3.md
+        - '创建订单列表组件': lunz/step4/step4.md
+        - '创建新建/编辑订单组件': lunz/step5/step5.md
+        - '发布': lunz/release/release.md
     - 'LUNZ+ 组件':
         - '表单Form': component/form/form.md
         - '数据列表展示ngx-datatable': component/ngx-datatable/ngx-datatable.md
@@ -36,26 +36,26 @@ pages:
         - 'Linux': deployment/deploy-linux.md
         - '自动部署': deployment/auto-deploy.md
     - 'LUNZ+ 其它':
-        - '环境变量': LUNZ-others/environment/environment.md
-        - '配置路由': LUNZ-others/config-route/config-route.md
-        - '常用命令': LUNZ-others/common-commands/common-commands.md
-        - '管理样式和js文件': LUNZ-others/styles-js/styles-js.md
+        - '环境变量': lunz-others/environment/environment.md
+        - '配置路由': lunz-others/config-route/config-route.md
+        - '常用命令': lunz-others/common-commands/common-commands.md
+        - '管理样式和js文件': lunz-others/styles-js/styles-js.md
     - '构建私有项目': build-private-project/build-private-project.md
     - '强类型化API接口 (NSwagStudio)': strongly-typed-interface/strongly-typed-interface.md
     - '使用 Angular4':
         - '开始': angular4/angular4-index.md
-        - 'Angular-cli': angular4/Angular-cli/Angular-cli.md
-        - '应用模型': angular4/Angular4-application-model/application-model.md
-        - '应用目录': angular4/Angular4-catalog/catalog.md
-        - '模块': angular4/Angular4-model/Angular4-model.md
-        - '组件': angular4/Angular4-component/Angular4-component.md
-        - '服务': angular4/Angular4-service/Angular4-service.md
-        - '指令': angular4/Angular4-directive/Angular4-directive.md
-        - '管道': angular4/Angular4-pipe/Angular4-pipe.md
+        - 'Angular-cli': angular4/angular-cli/angular-cli.md
+        - '应用模型': angular4/angular-application-model/angular-application-model.md
+        - '应用目录': angular4/angular-catalog/angular-catalog.md
+        - '模块': angular4/angular-model/angular-model.md
+        - '组件': angular4/angular-component/angular-component.md
+        - '服务': angular4/angular-service/angular-service.md
+        - '指令': angular4/angular-directive/angular-directive.md
+        - '管道': angular4/angular-pipe/angular-pipe.md
     - '从 AngularJs 转 Angular4': difference/difference.md
     - 'NPM 包管理': npm/npm-admin.md
     - '编码规范': coding-standards/coding-standards.md
-    # - '这个模板包含什么？': lunz-other/others.md
+    - '这个模板包含什么？': include-other/include-other.md
 theme:
   name: 'material'
   language: 'zh'
