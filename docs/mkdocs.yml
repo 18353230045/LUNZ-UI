@@ -55,7 +55,19 @@ pages:
     - '从 AngularJs 转 Angular4': difference/difference.md
     - 'NPM 包管理': npm/npm-admin.md
     - '编码规范': coding-standards/coding-standards.md
-    - '这个模板包含什么？': template-include/template-include.md
+    - '这个模板包含什么？': 
+        - '这个模板包含什么？': template-include/template-include.md
+        - 'angular': template-include/coding-guides/angular.md
+        - 'backend-proxy': template-include/coding-guides/backend-proxy.md
+        - 'corporate-proxy': template-include/coding-guides/corporate-proxy.md
+        - 'e2e-tests': template-include/coding-guides/e2e-tests.md
+        - 'html': template-include/coding-guides/html.md
+        - 'i18n': template-include/coding-guides/i18n.md
+        - 'routing': template-include/coding-guides/routing.md
+        - 'sass': template-include/coding-guides/sass.md
+        - 'typescript': template-include/coding-guides/typescript.md
+        - 'unit-tests': template-include/coding-guides/unit-tests.md
+        - 'updating': template-include/coding-guides/updating.md
 theme:
   name: 'material'
   language: 'zh'

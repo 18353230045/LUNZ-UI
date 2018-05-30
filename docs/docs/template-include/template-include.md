@@ -28,4 +28,14 @@
 - [Lodash](https://lodash.com)
 
 #### Coding guides
-- [angular](./coding/angular/)
+- [angular](./coding-guides/angular)
+- [backend-proxy](./coding-guides/backend-proxy)
+- [corporate-proxy](./coding-guides/corporate-proxy)
+- [e2e-tests](./coding-guides/e2e-tests)
+- [html](./coding-guides/html)
+- [i18n](./coding-guides/i18n)
+- [routing](./coding-guides/routing)
+- [sass](./coding-guides/sass)
+- [typescript](./coding-guides/typescript)
+- [unit-tests](./coding-guides/unit-tests)
+- [updating](./coding-guides/updating)
