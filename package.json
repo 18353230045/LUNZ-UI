@@ -37,7 +37,7 @@
     "@angular/router": "^4.4.6",
     "@ngx-translate/core": "^6.0.0",
     "@swimlane/ngx-datatable": "10.0.5",
-    "@toverux/ngx-sweetalert2": "^3.0.1",
+    "@toverux/ngx-sweetalert2": "3.0.0",
     "@zhongruigroup/ngx-query": "^1.0.1",
     "angular-tree-component": "7.0.2-beta1",
     "angular2-moment": "^1.9.0",
