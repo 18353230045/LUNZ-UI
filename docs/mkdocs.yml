@@ -55,7 +55,7 @@ pages:
     - '从 AngularJs 转 Angular4': difference/difference.md
     - 'NPM 包管理': npm/npm-admin.md
     - '编码规范': coding-standards/coding-standards.md
-    - '这个模板包含什么？': include/include.md
+    - '这个模板包含什么？': template-include/template-include.md
 theme:
   name: 'material'
   language: 'zh'
