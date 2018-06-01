@@ -8,7 +8,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: '', component: VehicleSelectionDemoComponent, data: { title: '车型选择器' } },
+        { path: 'vehicle-select', component: VehicleSelectionDemoComponent, data: { title: '车型选择器' } },
         [{ path: 'using-documents', component: UsingDocumentsComponent, data: { title: '车型选择器使用文档' } }]);
 
 @NgModule({

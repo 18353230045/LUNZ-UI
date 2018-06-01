@@ -5,7 +5,7 @@ import { RouteExtensions } from '../core/route.service';
 import { HelpComponent } from './help.component';
 
 const routes: Routes = [
-  { path: '', component: HelpComponent, data: { title: '帮助中心' } }
+  { path: 'help', component: HelpComponent, data: { title: '帮助中心' } }
 ];
 
 @NgModule({

@@ -8,7 +8,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: '', component: SelectDemoComponent, data: { title: 'select选择器' } },
+        { path: 'selected', component: SelectDemoComponent, data: { title: 'select选择器' } },
         [
             { path: 'using-documents', component: UsingDocumentsComponent, data: { title: 'select选择器使用文档' } }
         ]);
