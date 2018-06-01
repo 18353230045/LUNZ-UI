@@ -1,9 +1,9 @@
 ###引入SharedModule
-> 在当前模块的.module.ts中引入
+在当前模块的.module.ts中引入
 
     import { SharedModule } from '../shared/shared.module';
 
-> 添加到@NgModule装饰器中
+添加到@NgModule装饰器中
 
     @NgModule({ 
         imports: [ 
@@ -12,9 +12,9 @@
     });
 
 ###引用组件标签
-> .component.html中，直接引用组件标签，如：
+.component.html中，直接引用组件标签，如：
 
-    <app-file-upload [multiple]="true" [accept]="'image/*'" (success)="successHandle($event)" (error)="errorHandle($event)"> </app-file-upload>
+    <app-file-upload [multiple]="true" [accept]="'image/*'" (success)="successHandle($event)" (error)="errorHandle($event)"</app-file-upload>
 
 ###定义接收上传和失败时事件
 

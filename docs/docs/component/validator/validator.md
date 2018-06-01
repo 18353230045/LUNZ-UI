@@ -1,5 +1,5 @@
 ###说明
-> 验证器视觉反馈组件“app-validation-message”,集成了第三方验证器 “ng2-validation”,此验证器， 包括常见的必填验证、数字验证、最小/大值验证、字符长度验证、日期验证、最小/大日期验证、 邮箱验证、 网址验证、字段相同验证等。需要特别说明的是最大/小字符长度验证，不能反馈限制值，用传值label来代替反馈值。 各种验证方法详见demo，更多不常见信息验证请查看 [第三方文档](https://www.npmjs.com/package/ng2-validation)。
+验证器视觉反馈组件“app-validation-message”,集成了第三方验证器 “ng2-validation”,此验证器， 包括常见的必填验证、数字验证、最小/大值验证、字符长度验证、日期验证、最小/大日期验证、 邮箱验证、 网址验证、字段相同验证等。需要特别说明的是最大/小字符长度验证，不能反馈限制值，用传值label来代替反馈值。 各种验证方法详见demo，更多不常见信息验证请查看 [第三方文档](https://www.npmjs.com/package/ng2-validation)。
 
 ###使用方法
 #####引入模块
@@ -15,14 +15,19 @@
     });
 
 #####.html中
-    <form [formGroup]="form"> 
-        <input type="text" class="form-control" name="email" formControlName="email" /> 
-        <app-validation-message [control]="form.controls['email']"></app-validation-message> 
+    <form [formGroup]="form"
+        <input type="text" class="form-control" name="email" formControlName="email" /
+        <app-validation-message [control]="form.controls['email']"></app-validation-message
     </form>
 
 #####.component.ts中
     import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'; 
     import { CustomValidators } from 'ng2-validation';
+
+    declare const lengthStorageArea: any;
+
+    const password = new FormControl('', CustomValidators.required);
+    const certainPassword = new FormControl('', CustomValidators.equalTo(password));
 
     export class FormValidatorComponent implements OnInit { 
         form: FormGroup; 
@@ -40,9 +45,9 @@
                 maxLength: [null, [Validators.maxLength(5)]], //最大字符长度验证。 
                 minLength: [null, [Validators.minLength(5)]], //最小字符长度验证。 
                 lengthRange: [null, [Validators.minLength(5), Validators.maxLength(10)]], //字符长度区间验证。 
-                date: [null, [CustomValidators.date]], //日期验证(注意，对特殊字符不能正确验证)。 
-                minDate: [null, [CustomValidators.minDate('2018-03-07')]], //最小日期验证(注意，对特殊字符不能正确验证)。 
-                maxDate: [null, [CustomValidators.maxDate('2018-03-07')]], //最大日期验证(注意，对特殊字符不能正确验证)。 
+                date: [null, [Validators.pattern(lengthStorageArea.dateValPattern)]], //日期验证(注意，对特殊字符不能正确验证)。 
+                minDate: [null, [Validators.pattern(lengthStorageArea.dateValPattern), CustomValidators.minDate('2018-03-07')]], //最小日期验证(注意，对特殊字符不能正确验证)。 
+                maxDate: [null, [Validators.pattern(lengthStorageArea.dateValPattern), CustomValidators.maxDate('2018-03-07')]], //最大日期验证(注意，对特殊字符不能正确验证)。 
                 phone: [null, [Validators.pattern(/^((0\d{2,3}-\d{7,8})|(1[3|4|5|6|7|8|9][0-9]\d{8}))$/)]], //自定义正则表达式验证电话号码。 
                 bankCard: [null, [CustomValidators.number, Validators.pattern(/^\d{16,19}$/)]], //银行卡号验证。 
                 url: [null, [CustomValidators.url]], //网址验证。 

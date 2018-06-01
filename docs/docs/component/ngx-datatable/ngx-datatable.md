@@ -1,14 +1,14 @@
 ###说明
-> ngx-datatable提供数据列表显示功能，更详细文档：
+ngx-datatable提供数据列表显示功能，更详细文档：
 
-> [https://github.com/swimlane/ngx-datatable](https://github.com/swimlane/ngx-datatable)
+[https://github.com/swimlane/ngx-datatable](https://github.com/swimlane/ngx-datatable)
 
-> [https://swimlane.gitbook.io/ngx-datatable/api](https://swimlane.gitbook.io/ngx-datatable/api)
+[https://swimlane.gitbook.io/ngx-datatable/api](https://swimlane.gitbook.io/ngx-datatable/api)
 
-> [更多DEMO](http://swimlane.github.io/ngx-datatable/)
+[更多DEMO](http://swimlane.github.io/ngx-datatable/)
 
 ###如何使用？ 简单用例
-> 在模块.module.ts中 引入
+在模块.module.ts中 引入
 
     import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     import { NgxDataTableDirective } from './directives/ngx-datatable.directive';
@@ -31,14 +31,14 @@
 
     export class MyModule {}
 
-> 在组件.component.ts中定义
+在组件.component.ts中定义
 
     export class OrdersComponent implements OnInit {
         orders: Array<any>;  
         private datatable: any; 
     }
 
-> 在组件.html中
+在组件.html中
 
     <div class="col-lg-12">
         <ngx-datatable #dt class="material" [scrollbarH]="true" [rows]="orders" [loadingIndicator]="loading" 

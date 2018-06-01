@@ -1,9 +1,9 @@
 ###引入SharedModule
-> 在当前模块的.module.ts中引入
+在当前模块的.module.ts中引入
 
     import { SharedModule } from '../shared/shared.module';
 
-> 添加到@NgModule装饰器中
+添加到@NgModule装饰器中
 
     @NgModule({ 
         imports: [ 
@@ -12,13 +12,13 @@
     });
 
 ###引用组件标签
-> .component.html中，直接引用组件标签，如：
-> 在使用车型选择组件的视图（.component.html）中，直接引用组件标签即可， 传入需要组件传出的值的类型[‘brand’：车品牌（id/name），‘series’：车品牌(id/name)+车系列(id/name)， ‘model’：车品牌(id/name)+车系列(id/name)+车型所有信息]和与组件进行通信的变量，此两项必传。例如：
+.component.html中，直接引用组件标签，如：
+在使用车型选择组件的视图（.component.html）中，直接引用组件标签即可， 传入需要组件传出的值的类型[‘brand’：车品牌（id/name），‘series’：车品牌(id/name)+车系列(id/name)， ‘model’：车品牌(id/name)+车系列(id/name)+车型所有信息]和与组件进行通信的变量，此两项必传。例如：
 
     <app-vehicle-selection [outputType]="'brand'" [(outPutResult)]="brand"></app-vehicle-selection>
 
 ###声明变量 
-> 声明用于和组件通讯的变量，例如：
+声明用于和组件通讯的变量，例如：
 
     export class VehicleSelectionDemoComponent implements OnInit { 
         brand: any; 

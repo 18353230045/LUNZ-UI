@@ -1,5 +1,4 @@
 ###指令对照表
->
 名称|AngularJS|Angular4|说明
 -|-|-|
 应用启动引导 |`ng-app`|`platformBrowserDynamic().bootstrapModule(AppModule)`

@@ -1,9 +1,9 @@
 ###引入SharedModule
-> 在当前模块的.module.ts中引入: 
+在当前模块的.module.ts中引入: 
 
 `import { SharedModule } from '../shared/shared.module';`
 
-> 添加到@NgModule装饰器中: 
+添加到@NgModule装饰器中: 
 
     @NgModule({
         imports: [ 
@@ -12,12 +12,12 @@
     });
 
 ###添加时间选择器指令
-> .component.html中，直接在input标签上添加‘appDatepicker’指令，给input标签传入id（必须），如：
+.component.html中，直接在input标签上添加‘appDatepicker’指令，给input标签传入id（必须），如：
 
 `<input class="form-control" type="text" id="default" appDatepicker [(ngModel)]="date" />`
 
 ###定义变量
-> .component.ts中声明用于与组件实现双向数据绑定的变量，如：
+.component.ts中声明用于与组件实现双向数据绑定的变量，如：
 
     export class DatepickerSelectComponent implements OnInit { 
         date:String; 

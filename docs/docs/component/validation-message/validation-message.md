@@ -1,7 +1,7 @@
 ###说明
-> validation-message为表单验证信息反馈组件
-###如何使用？
-> 在模块.module.ts 中引入组件 `ValidationMessageComponent`：
+validation-message为表单验证信息提供反馈组件
+###如何使用？简单用例
+在模块.module.ts 中引入组件 `ValidationMessageComponent`：
 
     import { Component, NgModule } from '@angular/core';
     import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,7 +19,7 @@
     })
     export class MyModule {}
 
-> 在组件.component.ts 中：
+在组件.component.ts 中：
 
     import { Component, OnInit } from '@angular/core';
     import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -39,7 +39,7 @@
         };
     };
 
-> 在模板.html 中：
+在模板.html 中：
 
     <form [formGroup]="form">
         <div class="form-group">

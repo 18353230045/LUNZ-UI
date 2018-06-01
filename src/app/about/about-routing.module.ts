@@ -7,7 +7,7 @@ import { RouteExtensions } from '../core/route.service';
 import { AboutComponent } from './about.component';
 
 const routes: Routes = [
-  { path: '', component: AboutComponent, data: { title: '关于' + environment.appName } }
+  { path: 'about', component: AboutComponent, data: { title: '关于' + environment.appName } }
 ];
 
 @NgModule({

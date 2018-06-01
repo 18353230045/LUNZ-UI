@@ -1,5 +1,5 @@
 ###说明
-> 使用 [NPM](https://www.npmjs.com/) 管理依赖的包, 可以在 [www.npmjs.com](https://www.npmjs.com/) 上查找更多的包。查看[这里](https://docs.npmjs.com/)关于 NPM 包更多的使用帮助。
+使用 [NPM](https://www.npmjs.com/) 管理依赖的包, 可以在 [www.npmjs.com](https://www.npmjs.com/) 上查找更多的包。查看[这里](https://docs.npmjs.com/)关于 NPM 包更多的使用帮助。
 
 ###常用命令
 命令                                   | 说明

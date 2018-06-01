@@ -5,7 +5,7 @@ import { RouteExtensions } from '../core/route.service';
 import { PrivacyComponent } from './privacy.component';
 
 const routes: Routes = [
-  { path: '', component: PrivacyComponent, data: { title: '隐私与Cookies' } }
+  { path: 'privacy', component: PrivacyComponent, data: { title: '隐私与Cookies' } }
 ];
 
 @NgModule({

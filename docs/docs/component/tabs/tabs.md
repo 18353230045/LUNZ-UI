@@ -1,11 +1,11 @@
 ###说明
-> tabs组件有三种类型，分别是：'line-tabs'，'bootstrap-line-tabs'，'bootstrap-btn-tabs'，默认是'line-tabs'，每种类型对应的样式请查看demo。
+tabs组件有三种类型，分别是：'line-tabs'，'bootstrap-line-tabs'，'bootstrap-btn-tabs'，默认是'line-tabs'，每种类型对应的样式请查看demo。
 
 ###引入SharedModule 
 
     import { SharedModule } from '../shared/shared.module';
 
-> 添加到@NgModule装饰器中: 
+添加到@NgModule装饰器中: 
 
     @NgModule({ 
         imports: [ 
@@ -14,7 +14,7 @@
     });
 
 ###引用组件标签
-> .component.html中，直接引用组件标签，传入需要类型对应的参数即可，如：
+.component.html中，直接引用组件标签，传入需要类型对应的参数即可，如：
 
  line-tabs类型:
  
@@ -31,7 +31,7 @@ bootstrap-btn-tabs类型:
 ###定义数据源变量和方法
 
     export class TabsDemoComponent implements OnInit { 
-        tabsArray1: Array<any> = []; 
+        tabsArray1: Array<any= []; 
 
         constructor() { }; 
 

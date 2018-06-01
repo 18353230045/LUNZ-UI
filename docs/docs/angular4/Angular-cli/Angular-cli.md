@@ -1,14 +1,13 @@
 ##说明
-> Angular框架的脚手架工具，用于快速创建基于Angular框架下的应用、模块、服务、管道、组件等，并集成了内置服务器
+Angular框架的脚手架工具，用于快速创建基于Angular框架下的应用、模块、服务、管道、组件等，并集成了内置服务器
 
 ##官方地址
-> [https://cli.angular.io](https://cli.angular.io), 版本不要太高及太低，存在兼容，推荐：1.4.9
+[https://cli.angular.io](https://cli.angular.io), 版本不要太高及太低，存在兼容，推荐：1.4.9
 
 ##安装
-> `npm install –g @angular/cli`
+`npm install –g @angular/cli`
 
 ##常用命令
->
 名称|命令|缩写|说明
 -|-|-|
 新建模块 |`ng generate module my-module`|`ng g  m my-module`

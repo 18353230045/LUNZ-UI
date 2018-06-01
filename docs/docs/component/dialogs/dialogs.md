@@ -1,7 +1,7 @@
 ###说明
 dialogs 是一个对话框组件集合，使用了 [ngx-toastr](https://github.com/scttcper/ngx-toastr) 和 [ngsweetalert2](https://github.com/toverux/ngsweetalert2) 两个组件。
 ###如何使用？
-> model中引用'Dialogs'服务
+model中引用'Dialogs'服务
 
         import { Dialogs } from '../core/dialogs.service';
 
@@ -19,7 +19,7 @@ dialogs 是一个对话框组件集合，使用了 [ngx-toastr](https://github.c
         }
 
 ###简单用例
-> 组件中.component.ts
+组件中.component.ts
 
     this.dialogs.alert('This is a test.', 'Title');
 

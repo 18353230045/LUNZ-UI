@@ -8,7 +8,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: '', component: TabsDemoComponent, data: { title: 'tabs组件' } },
+        { path: 'tabs', component: TabsDemoComponent, data: { title: 'tabs组件' } },
         [
             { path: 'using-documents', component: UsingDocumentsComponent, data: { title: 'tabs组件使用文档' } }
         ]);

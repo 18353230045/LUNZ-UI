@@ -1,29 +1,18 @@
 site_name: LUNZ+
 pages:
     - '简介': index.md
-    - 'Angular1.x和Angular4内置指令区别': difference/difference.md
-    - 'Angular4的使用':
-        - '开始': angular4/angular4-index.md
-        - '开发环境': angular4/angular4-environment/angular4-environment.md
-        - 'Angular-cli': angular4/Angular-cli/Angular-cli.md
-        - '应用模型': angular4/Angular4-application-model/application-model.md
-        - '应用目录': angular4/Angular4-catalog/catalog.md
-        - '模块': angular4/Angular4-model/Angular4-model.md
-        - '组件': angular4/Angular4-component/Angular4-component.md
-        - '服务': angular4/Angular4-service/Angular4-service.md
-        - '指令': angular4/Angular4-directive/Angular4-directive.md
-        - '管道': angular4/Angular4-pipe/Angular4-pipe.md
-    - 'LUNZ+框架的使用': 
-        - '流程': Lunz/technological-process/technological-process.md
-        - '获取源码，运行项目': Lunz/step1/step1.md
-        - '创建模块，配置路由': Lunz/step2/step2.md
-        - '创建服务': Lunz/step3/step3.md
-        - '创建订单列表组件': Lunz/step4/step4.md
-        - '创建新建/编辑订单组件': Lunz/step5/step5.md
-        - '发布': Lunz/release/release.md
-        - '常用命令': Lunz/common-commands/common-commands.md
-    - '组件': 
-        - '表单form': component/form/form.md
+    - '快速开始': quick-start/quick-start.md
+    - '开发环境': development-environment/development-environment.md
+    - '开始 LUNZ+':
+        - '开发流程': lunz/technological-process/technological-process.md
+        - '获取源码，运行项目': lunz/step1/step1.md
+        - '创建模块，配置路由': lunz/step2/step2.md
+        - '创建服务': lunz/step3/step3.md
+        - '创建订单列表组件': lunz/step4/step4.md
+        - '创建新建/编辑订单组件': lunz/step5/step5.md
+        - '发布': lunz/release/release.md
+    - 'LUNZ+ 组件':
+        - '表单Form': component/form/form.md
         - '数据列表展示ngx-datatable': component/ngx-datatable/ngx-datatable.md
         - '查询过滤ngx-query': component/ngx-query/ngx-query.md
         - '表单验证反馈validation-message': component/validation-message/validation-message.md
@@ -42,12 +31,43 @@ pages:
         - '按钮处理状态': component/angular2-ladda/angular2-ladda.md
         - '信息提示logger': component/logger/logger.md
         - '第三方组件库': component/third-party-components/third-party-components.md
-    - '第三方样式表和JS插件的使用': plugins-use/plugins-use.md
-    - '部署': 
-        - 'Windows下': deploy/deploy-windows.md
-        - 'Linux下': deploy/deploy-linux.md
-        - '自动部署': deploy/auto-deploy.md
-    - 'NPM 包管理': NPM/NPM-admin.md
+    - '部署':
+        - 'Windows': deployment/deploy-windows.md
+        - 'Linux': deployment/deploy-linux.md
+        - '自动部署': deployment/auto-deploy.md
+    - 'LUNZ+ 其它':
+        - '环境变量': lunz-others/environment/environment.md
+        - '配置路由': lunz-others/config-route/config-route.md
+        - '常用命令': lunz-others/common-commands/common-commands.md
+        - '管理样式和js文件': lunz-others/styles-js/styles-js.md
+    - '构建私有项目': build-private-project/build-private-project.md
+    - '强类型化API接口 (NSwagStudio)': strongly-typed-interface/strongly-typed-interface.md
+    - '使用 Angular4':
+        - '开始': angular4/angular4-index.md
+        - 'Angular-cli': angular4/angular-cli/angular-cli.md
+        - '应用模型': angular4/angular-application-model/angular-application-model.md
+        - '应用目录': angular4/angular-catalog/angular-catalog.md
+        - '模块': angular4/angular-model/angular-model.md
+        - '组件': angular4/angular-component/angular-component.md
+        - '服务': angular4/angular-service/angular-service.md
+        - '指令': angular4/angular-directive/angular-directive.md
+        - '管道': angular4/angular-pipe/angular-pipe.md
+    - '从 AngularJs 转 Angular4': difference/difference.md
+    - 'NPM 包管理': npm/npm-admin.md
+    - '编码规范': coding-standards/coding-standards.md
+    - '这个模板包含什么？': 
+        - '这个模板包含什么？': template-include/template-include.md
+        - 'angular': template-include/coding-guides/angular.md
+        - 'backend-proxy': template-include/coding-guides/backend-proxy.md
+        - 'corporate-proxy': template-include/coding-guides/corporate-proxy.md
+        - 'e2e-tests': template-include/coding-guides/e2e-tests.md
+        - 'html': template-include/coding-guides/html.md
+        - 'i18n': template-include/coding-guides/i18n.md
+        - 'routing': template-include/coding-guides/routing.md
+        - 'sass': template-include/coding-guides/sass.md
+        - 'typescript': template-include/coding-guides/typescript.md
+        - 'unit-tests': template-include/coding-guides/unit-tests.md
+        - 'updating': template-include/coding-guides/updating.md
 theme:
   name: 'material'
   language: 'zh'
