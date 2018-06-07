@@ -8,7 +8,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: 'datepicker', component: DatepickerSelectComponent, data: { title: '时间选择器' } },
+        { path: '', component: DatepickerSelectComponent, data: { title: '时间选择器' } },
         [
             { path: 'using-documents', component: UsingDocumentsComponent, data: { title: '时间选择器使用文档' } }
         ]);

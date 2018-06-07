@@ -9,7 +9,7 @@ import { CreateHearFromComponent } from './partial/create-hear-from/create-hear-
 
 const routes: Routes =
   RouteExtensions.withHost(
-      { path: 'hearFroms', component: HearFromsComponent, data: { title: '从哪里听说' } },
+      { path: '', component: HearFromsComponent, data: { title: '从哪里听说' } },
       [
         { path: 'new', component: CreateHearFromComponent, data: { title: '新建' } },
         { path: ':id/edit', component: EditHearFromComponent, data: { title: '编辑' } }

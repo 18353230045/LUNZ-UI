@@ -10,7 +10,7 @@ import { OrderComponent } from './partial/order/order.component';
 
 const routes: Routes =
   RouteExtensions.withHost(
-      { path: 'orderlist', component: OrdersComponent, data: { title: '订单管理' } },
+      { path: '', component: OrdersComponent, data: { title: '订单管理' } },
       [
         { path: 'new', component: CreateOrderComponent, data: { title: '新建订单' } },
         { path: ':id/edit', component: EditOrderComponent, data: { title: '编辑订单' } },

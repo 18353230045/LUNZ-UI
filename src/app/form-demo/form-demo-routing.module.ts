@@ -8,7 +8,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: 'form', component: FormDemoComponent, data: { title: 'form表单' } },
+        { path: '', component: FormDemoComponent, data: { title: 'form表单' } },
         [
             { path: 'using-documents', component: UsingDocumentsComponent, data: { title: 'form表单使用文档' } }
         ]);
