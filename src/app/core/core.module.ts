@@ -1,4 +1,4 @@
-import { NgModule, Optional, SkipSelf, Injector, LOCALE_ID } from '@angular/core';
+import { NgModule, Optional, SkipSelf, Injector } from '@angular/core';
 import { CommonModule, DatePipe, CurrencyPipe } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Route } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { RouteExtensions } from '../core/route.service';
 
@@ -10,7 +10,7 @@ const routes: Routes =
     RouteExtensions.withHost(
         { path: '', component: FormValidatorComponent, data: { title: '表单验证器' } },
         [
-          { path: 'using-documents', component: UsingDocumentsComponent, data: { title: '表单验证器使用文档' } }
+            { path: 'using-documents', component: UsingDocumentsComponent, data: { title: '表单验证器使用文档' } }
         ]);
 
 @NgModule({

@@ -1,6 +1,6 @@
 import {
-    Component, Directive, EventEmitter, ElementRef, Renderer,
-    HostListener, Output, Input, OnInit, OnDestroy, ChangeDetectionStrategy, Injector
+    Component, EventEmitter, ElementRef, Renderer,
+    Output, Input, OnInit, Injector
 } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';

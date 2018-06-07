@@ -1,8 +1,4 @@
-import {
-  Http, ConnectionBackend, RequestOptions, Headers,
-  Request, Response, RequestOptionsArgs, RequestMethod,
-  ResponseOptions, URLSearchParams, QueryEncoder
-} from '@angular/http';
+import { URLSearchParams, QueryEncoder } from '@angular/http';
 
 export function toURLSearchParams(params: any, queryEncoder: QueryEncoder = new QueryEncoder()): URLSearchParams {
   const result = new URLSearchParams('', queryEncoder);

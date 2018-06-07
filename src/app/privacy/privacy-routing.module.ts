@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RouteExtensions } from '../core/route.service';
 import { PrivacyComponent } from './privacy.component';
 
 const routes: Routes = [

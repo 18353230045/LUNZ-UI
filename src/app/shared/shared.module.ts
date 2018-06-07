@@ -1,10 +1,10 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
+import { SweetAlertOptions } from 'sweetalert2';
 import { FileUploaderModule } from '../../app/lib/@uniprank/ng2-file-uploader';
 
 import { environment } from '../../environments/environment';

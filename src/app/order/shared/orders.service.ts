@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { WebApiResultResponse, PagingResponse } from '../../core/http/web-api-result-response';
-import { environment } from '../../../environments/environment';
+import { WebApiResultResponse } from '../../core/http/web-api-result-response';
 import { IResponse, IQueryGroup, IOrderDetails } from '../../shared/models/microservice-template';
 
 @Injectable()

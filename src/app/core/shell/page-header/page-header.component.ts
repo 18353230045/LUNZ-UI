@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { LocationStrategy } from '@angular/common';
 
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
-
-import { environment } from '../../../../environments/environment';
-import { I18nService } from '../../i18n.service';
 
 @Component({
   selector: 'app-page-header',
@@ -20,8 +16,7 @@ export class PageHeaderComponent implements OnInit {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private translateService: TranslateService,
-    private i18nService: I18nService) {
+    private translateService: TranslateService) {
     this.init();
   }
 

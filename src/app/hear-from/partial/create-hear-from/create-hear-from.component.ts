@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
@@ -21,9 +21,11 @@ export class CreateHearFromComponent implements OnInit {
   form: FormGroup;
   hearFrom: any = {};
 
-  constructor(private hearFromsService: HearFromsService,
-    private loggerFactory: LoggerFactory, private router: Router,
-    private route: ActivatedRoute, public location: Location,
+  constructor(
+    public location: Location,
+    private hearFromsService: HearFromsService,
+    private loggerFactory: LoggerFactory,
+    private router: Router,
     private formBuilder: FormBuilder) {
     this.log = this.loggerFactory.getLogger();
     this.buildForm();

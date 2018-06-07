@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Router } from '@angular/router';
 import { SignalR, SignalRConnection, BroadcastEventListener } from 'ng2-signalr';
 
@@ -32,7 +32,6 @@ export class MessageService extends WebApiResultResponse {
 
     constructor(private http: Http,
         private _signalR: SignalR,
-        private router: Router,
         private authenticationService: AuthenticationService,
         private authenticationOAuth2Service: AuthenticationOAuth2Service,
         private loggerFactory: LoggerFactory) {

@@ -1,12 +1,10 @@
-import { Http, Response, RequestOptions } from '@angular/http';
+import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../../environments/environment';
 
 import { camelCaseObject } from './http-helper';
-
-declare var walk: any;
 
 export interface PagingResponse {
   count: number;

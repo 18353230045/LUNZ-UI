@@ -1,7 +1,7 @@
 import 'rxjs/add/observable/throw';
 
 import { Injectable, Injector } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { Router } from '@angular/router';
 import {
     Http, ConnectionBackend, RequestOptions, Headers,
     Request, Response, RequestOptionsArgs, RequestMethod, ResponseOptions
