@@ -8,7 +8,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: '', component: FormValidatorComponent, data: { title: '表单验证器' } },
+        { path: 'validator', component: FormValidatorComponent, data: { title: '表单验证器' } },
         [
             { path: 'using-documents', component: UsingDocumentsComponent, data: { title: '表单验证器使用文档' } }
         ]);

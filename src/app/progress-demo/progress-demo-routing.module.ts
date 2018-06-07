@@ -8,7 +8,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: '', component: ProgressDemoComponent, data: { title: '进度条' } },
+        { path: 'progress', component: ProgressDemoComponent, data: { title: '进度条' } },
         [
             { path: 'using-documents', component: UsingDocumentsComponent, data: { title: '进度条使用文档' } }
         ]);

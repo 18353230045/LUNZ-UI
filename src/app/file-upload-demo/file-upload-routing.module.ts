@@ -8,7 +8,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: '', component: FileUploadDemoComponent, data: { title: '文件上传' } },
+        { path: 'upload', component: FileUploadDemoComponent, data: { title: '文件上传' } },
         [
             { path: 'using-documents', component: UsingDocumentsComponent, data: { title: '文件上传使用文档' } }
         ]);

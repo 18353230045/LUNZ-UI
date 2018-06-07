@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TermsComponent } from './terms.component';
 
 const routes: Routes = [
-  { path: '', component: TermsComponent, data: { title: '使用条款' } }
+  { path: 'terms', component: TermsComponent, data: { title: '使用条款' } }
 ];
 
 @NgModule({

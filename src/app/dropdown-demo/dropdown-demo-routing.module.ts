@@ -8,7 +8,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 const routes: Routes =
     RouteExtensions.withHost(
-        { path: '', component: DropdownComponent, data: { title: '下拉选择器' } },
+        { path: 'dropdown', component: DropdownComponent, data: { title: '下拉选择器' } },
         [
             { path: 'using-documents', component: UsingDocumentsComponent, data: { title: '下拉选择器使用文档' } }
         ]);
