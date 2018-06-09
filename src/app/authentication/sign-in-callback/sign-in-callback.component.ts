@@ -11,8 +11,8 @@ import { AuthenticationOAuth2Service } from '../../core/authentication/authentic
   templateUrl: './sign-in-callback.component.html',
   styleUrls: ['./sign-in-callback.component.scss']
 })
-export class SignInCallbackComponent implements OnInit {
 
+export class SignInCallbackComponent implements OnInit {
   loading: boolean;
   success: boolean;
 
@@ -21,32 +21,39 @@ export class SignInCallbackComponent implements OnInit {
     private router: Router,
     private injector: Injector) {
     this.loading = true;
-  }
+  };
 
   ngOnInit() {
-    this.authenticationOAuth2Service.signinCallback().then(() => {
-      this.loading = false;
-      this.success = true;
 
-      if (!environment.authentication.useServiceV1) {
-        this.router.navigateByUrl('/');
-      }
+    setTimeout(() => {
+      this.authenticationOAuth2Service.signinCallback().then(() => {
+        this.loading = false;
+        this.success = true;
+      }).then(() => {
+        setTimeout(() => {
+          const claims: any = this.authenticationOAuth2Service.claims;
+          const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
 
-      const claims: any = this.authenticationOAuth2Service.claims;
-      const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
-
-      if (environment.authentication.useServiceV1 && claims.authToken &&
-        (!authenticationService.isAuthenticated() || authenticationService.credentials.token !== claims.authToken)) {
-        authenticationService.loginByAuthToken(claims.authToken)
-          .subscribe(() => {
+          if (environment.authentication.useServiceV1 && claims.authToken &&
+            (!authenticationService.isAuthenticated() ||
+              authenticationService.credentials.token !== claims.authToken)) {
+            authenticationService.loginByAuthToken(claims.authToken)
+              .subscribe(() => {
+                this.router.navigateByUrl('/');
+              });
+          } else {
             this.router.navigateByUrl('/');
-          });
-      } else {
-        this.router.navigateByUrl('/');
-      }
-    }).catch(error => {
-      this.loading = false;
-      this.success = false;
-    });
-  }
-}
+          }
+        }, 1500);
+
+        if (!environment.authentication.useServiceV1) {
+          this.router.navigateByUrl('/');
+        }
+
+      }).catch(error => {
+        this.loading = false;
+        this.success = false;
+      });
+    }, 2000);
+  };
+};

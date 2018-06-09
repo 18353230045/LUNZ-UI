@@ -35,7 +35,6 @@ app-login {
 }
 
 .m-dropdown {
-
   .m-dropdown__wrapper {
     width: 150px;
   }
@@ -70,4 +69,10 @@ app-login {
 
 .lz-margin-auto {
   margin: auto;
+}
+
+app-sign-in-callback {
+  display: grid;
+  height: 100%;
+  background: #fff;
 }
