@@ -13,7 +13,7 @@ import {
   ChangePasswordModalComponent
 } from '../../../../change-password/change-password-modal/change-password-modal.component';
 
-declare var $: any;
+declare const $: any;
 
 @Component({
   selector: 'app-profile, [app-profile]',

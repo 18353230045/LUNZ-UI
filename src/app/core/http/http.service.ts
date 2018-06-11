@@ -22,7 +22,7 @@ import { AuthenticationOAuth2Service } from '../authentication/authentication-oa
 
 import { toURLSearchParams } from './http-helper';
 
-declare var URI: any;
+declare const URI: any;
 
 /**
  * Provides a base framework for http service extension.

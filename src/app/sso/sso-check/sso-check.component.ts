@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthenticationService } from '../../core/authentication/authentication.service';
 
-declare var URI: any;
+declare const URI: any;
 
 @Component({
   selector: 'app-sso-check',

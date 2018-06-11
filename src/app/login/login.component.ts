@@ -12,7 +12,7 @@ import { I18nService } from '../core/i18n.service';
 import { Dialogs } from '../core/dialogs.service';
 import { AuthenticationService } from '../core/authentication/authentication.service';
 
-declare var URI: any;
+declare const URI: any;
 
 @Component({
   selector: 'app-login',

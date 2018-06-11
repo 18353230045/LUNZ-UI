@@ -5,7 +5,7 @@ import { AuthenticationService } from '../../authentication/authentication.servi
 import { I18nService } from '../../i18n.service';
 
 declare const mLayout: any;
-declare var $: any;
+declare const $: any;
 
 @Component({
   selector: 'app-header',
