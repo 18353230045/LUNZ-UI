@@ -30,24 +30,22 @@ export class SignInCallbackComponent implements OnInit {
         this.loading = false;
         this.success = true;
       }).then(() => {
-        setTimeout(() => {
-          const claims: any = this.authenticationOAuth2Service.claims;
-          const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
+        const claims: any = this.authenticationOAuth2Service.claims;
+        const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
 
-          if (environment.authentication.useServiceV1 && claims.authToken &&
-            (!authenticationService.isAuthenticated() ||
-              authenticationService.credentials.token !== claims.authToken)) {
-            authenticationService.loginByAuthToken(claims.authToken)
-              .subscribe(() => {
-                this.router.navigateByUrl('/');
-              });
-          } else {
-            this.router.navigateByUrl('/');
-          }
-        }, 1500);
+        if (environment.authentication.useServiceV1 && claims.authToken &&
+          (!authenticationService.isAuthenticated() ||
+            authenticationService.credentials.token !== claims.authToken)) {
+          authenticationService.loginByAuthToken(claims.authToken)
+            .subscribe(() => {
+              this.router.navigateByUrl('/dashboard');
+            });
+        } else {
+          this.router.navigateByUrl('/dashboard');
+        }
 
         if (!environment.authentication.useServiceV1) {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/dashboard');
         }
 
       }).catch(error => {
