@@ -32,26 +32,39 @@ export class SignInCallbackComponent implements OnInit {
       }).then(() => {
         const claims: any = this.authenticationOAuth2Service.claims;
         const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
+        const currentRouting: string = sessionStorage.getItem('currentRouting');
 
         if (environment.authentication.useServiceV1 && claims.authToken &&
           (!authenticationService.isAuthenticated() ||
             authenticationService.credentials.token !== claims.authToken)) {
           authenticationService.loginByAuthToken(claims.authToken)
             .subscribe(() => {
-              this.router.navigateByUrl('/dashboard');
+              if (currentRouting !== null) {
+                this.router.navigateByUrl(`/${currentRouting}`);
+              } else {
+                this.router.navigateByUrl(`/dashboard`);
+              }
             });
         } else {
-          this.router.navigateByUrl('/dashboard');
+          if (currentRouting !== null) {
+            this.router.navigateByUrl(`/${currentRouting}`);
+          } else {
+            this.router.navigateByUrl(`/dashboard`);
+          }
         }
 
         if (!environment.authentication.useServiceV1) {
-          this.router.navigateByUrl('/dashboard');
+          if (currentRouting !== null) {
+            this.router.navigateByUrl(`/${currentRouting}`);
+          } else {
+            this.router.navigateByUrl(`/dashboard`);
+          }
         }
 
       }).catch(error => {
         this.loading = false;
         this.success = false;
       });
-    }, 2000);
+    }, 1000);
   };
 };

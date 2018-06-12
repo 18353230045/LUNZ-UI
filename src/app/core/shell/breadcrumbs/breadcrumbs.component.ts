@@ -38,8 +38,13 @@ export class BreadcrumbsComponent implements OnInit {
       // set breadcrumbs
       const root: ActivatedRoute = this.activatedRoute.root;
       this.breadcrumbs = this.getBreadcrumbs(root);
+      // A page that jumps to a refresh at a refresh
+      if (this.breadcrumbs.length > 0) {
+        const lastOne = this.breadcrumbs.length - 1;
+        const currentRouting = this.breadcrumbs[lastOne].url;
+        sessionStorage.setItem('currentRouting', currentRouting);
+      }
     });
-
   }
 
   /**
