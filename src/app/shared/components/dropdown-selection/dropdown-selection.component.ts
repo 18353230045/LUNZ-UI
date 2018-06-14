@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-declare const $: any;
-
 @Component({
     selector: 'app-dropdown-selection',
     templateUrl: './dropdown-selection.component.html',
@@ -24,7 +22,7 @@ export class DropdownSelectionComponent implements OnInit {
     @Output() selected = new EventEmitter();
     @Output() remove = new EventEmitter();
 
-    openDropdown: Boolean = false;
+    openDropdown: Boolean = true;
     isEmpty: Boolean = true;
     recordBtnText: String;
     multiselectArray: Array<any> = [];
@@ -46,6 +44,12 @@ export class DropdownSelectionComponent implements OnInit {
         if (row.childrenOpen) {
             row.childrenOpen = false;
         }
+    };
+
+    toggleDropdown() {
+        if (!this.openDropdown) {
+            this.openDropdown = true;
+        };
     };
 
     onSelected(event: any, item: any) {
@@ -76,12 +80,12 @@ export class DropdownSelectionComponent implements OnInit {
                 this.isEmpty = false;
             } else {
                 // 不为空时，查看是否已经选择过，是则返回
-                for (let i = 0; i < this.multiselectArray.length; i++) {
-                    if (item.text === this.multiselectArray[i].text) {
+                for(const m of this.multiselectArray){
+                    if (item.text === m.text) {
                         event.stopPropagation();
                         return;
                     }
-                }
+                };
                 if (item.children) {
                     // 不能选中父级
                     if (!this.selectParent) {
@@ -103,7 +107,7 @@ export class DropdownSelectionComponent implements OnInit {
             this.multiselectArray.push(item);
             this.dropText = `${item.text}`;
             this.selected.emit(this.multiselectArray);
-            $('.m-dropdown__toggle').trigger('click');
+            this.openDropdown = true;
         } else {  // icon型时
             this.multiselectArray = [];
             if (item.children) {
@@ -114,7 +118,7 @@ export class DropdownSelectionComponent implements OnInit {
             }
             this.multiselectArray.push(item);
             this.selected.emit(this.multiselectArray);
-            $('.m-dropdown__toggle').trigger('click');
+            this.openDropdown = true;
         }
     };
 
