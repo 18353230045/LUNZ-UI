@@ -4,8 +4,6 @@ import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
 import { VehicleService } from '../../services/vehicle.service';
 
-declare const $: any;
-
 @Component({
     selector: 'app-vehicle-selection',
     templateUrl: './vehicle-selection.component.html',
@@ -22,6 +20,7 @@ export class VehicleSelectionComponent implements OnInit {
 
     log: Logger;
 
+    openPanel: Boolean = true;
     carSeriesNav: Boolean = true;
     carModelNav: Boolean = true;
     carBrand: Boolean = false;
@@ -73,20 +72,21 @@ export class VehicleSelectionComponent implements OnInit {
         };
 
         obj.forEach((item: any) => {
-            let itemAssemble: Array<any> = [];
+            let itemAssemble: any[] = [];
             for (const i in item) {
                 if (i === `vehicle_Series`) {
-                    for (let m = 0; m < item[i].length; m++) {
-                        itemAssemble.push(item[i][m]);
+                    for (const m of item[i]) {
+                        itemAssemble.push(m);
                     }
                 } else {
                     assembleObj[i] = item[i];
                 }
             }
             itemAssemble.unshift(assembleObj);
-            for (let n = 0; n < itemAssemble.length; n++) {
-                arr.push(itemAssemble[n]);
-            }
+            for (const n of itemAssemble) {
+                arr.push(n);
+
+            };
             assembleObj = { title: true };
             itemAssemble = [];
         });
@@ -102,15 +102,15 @@ export class VehicleSelectionComponent implements OnInit {
         };
 
         obj.forEach((item: any) => {
-            let itemAssemble: Array<any> = [];
+            let itemAssemble: any[] = [];
             for (const i in item) {
                 if (i === `infolist`) {
-                    for (let m = 0; m < item[i].length; m++) {
-                        item[i][m]['mosaicName'] = `${item[i][m].vehicleName}
-                         ${item[i][m].driveName} 排量：
-                         ${item[i][m].displacement}`;
-                        itemAssemble.push(item[i][m]);
-                    }
+                    for (const m of item[i]) {
+                        m['mosaicName'] = `${m.vehicleName}
+                         ${m.driveName} 排量：
+                         ${m.displacement}`;
+                        itemAssemble.push(m);
+                    };
                 } else {
                     assembleObj[i] = item[i];
                     if (i === 'year') {
@@ -118,13 +118,11 @@ export class VehicleSelectionComponent implements OnInit {
                     }
                 }
             }
-
             itemAssemble.unshift(assembleObj);
+            for (const n of itemAssemble) {
+                arr.push(n);
 
-            for (let n = 0; n < itemAssemble.length; n++) {
-                arr.push(itemAssemble[n]);
-            }
-
+            };
             assembleObj = { title: true };
             itemAssemble = [];
         });
@@ -157,10 +155,7 @@ export class VehicleSelectionComponent implements OnInit {
 
             this.outPutResultChange.emit(this.outGoingList);
 
-            $('.m-dropdown.m-dropdown--open').each(function () {
-                $(this).mDropdown().hide();
-            });
-
+            this.openPanel = true;
             return;
 
         } else if (this.outputType === `series`) {
@@ -211,10 +206,7 @@ export class VehicleSelectionComponent implements OnInit {
 
             this.outPutResultChange.emit(this.outGoingList);
 
-            $('.m-dropdown.m-dropdown--open').each(function () {
-                $(this).mDropdown().hide();
-            });
-
+            this.openPanel = true;
             return;
 
         } else if (this.outputType === `model`) {
@@ -255,10 +247,8 @@ export class VehicleSelectionComponent implements OnInit {
         this.carModelNav = false;
 
         this.outPutResultChange.emit(this.outGoingList);
-        $('.m-dropdown.m-dropdown--open').each(function () {
-            $(this).mDropdown().hide();
-        });
 
+        this.openPanel = true;
     };
 
     // filter car series data

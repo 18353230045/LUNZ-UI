@@ -14,9 +14,12 @@ export class TabsComponent implements OnInit {
     @Input() bootomBorder2X?: Boolean = false;
     // when'line-tabs'is available, set the font color of item
     @Input() colorThemeStyle?: String = 'm-tabs-line--primary';
-    @Input() btnColor?: String = 'nav-pills--success';  // when'bootstrap-btn-tabs'is available, set the color of btn.
-    @Input() iconColor?: String = 'm--font-brand';  // when'bootstrap-tabs'is available, set the color of Icon
-    @Input() choice?: Number = 0;  // setting the default load to activate the number of tab
+    // when'bootstrap-btn-tabs'is available, set the color of btn.
+    @Input() btnColor?: String = 'nav-pills--success';
+    // when'bootstrap-tabs'is available, set the color of Icon
+    @Input() iconColor?: String = 'm--font-brand';
+    // setting the default load to activate the number of tab
+    @Input() choice?: Number = 0;
 
     @Output() selected = new EventEmitter();
 
