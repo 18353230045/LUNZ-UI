@@ -14,7 +14,6 @@ import { HostComponent } from './components/host.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { NgxDatatableFooterComponent } from './components/ngx-datatable-footer/ngx-datatable-footer.component';
 import { NgxDatatablePagerComponent } from './components/ngx-datatable-pager/ngx-datatable-pager.component';
-import { NgxQueryToolbarComponent } from './components/ngx-query-toolbar/ngx-query-toolbar.component';
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
@@ -54,7 +53,6 @@ export function createDecimalPipe() {
         FileUploadComponent,
         NgxDatatableFooterComponent,
         NgxDatatablePagerComponent,
-        NgxQueryToolbarComponent,
         VehicleSelectionComponent,
 
         NgxDataTableDirective,
@@ -73,7 +71,6 @@ export function createDecimalPipe() {
         FileUploadComponent,
         NgxDatatableFooterComponent,
         NgxDatatablePagerComponent,
-        NgxQueryToolbarComponent,
         VehicleSelectionComponent,
 
         NgxDataTableDirective,

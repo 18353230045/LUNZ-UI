@@ -21,7 +21,7 @@
           </a>
         </li>
         <li class="m-portlet__nav-item">
-          <app-ngx-query-toolbar #ngxQueryToolbar [ngxQuery]="ngxQuery"></app-ngx-query-toolbar>
+          <component-ngx-query-toolbar #ngxQueryToolbar [ngxQuery]="ngxQuery"></component-ngx-query-toolbar>
         </li>
         <li class="m-portlet__nav-item">
           <button (click)="appNgxDataTable.refreshData()" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
@@ -104,7 +104,7 @@
       </ngx-datatable-column>
       <ngx-datatable-column maxWidth="120" headerClass="datatable-header-cell-acitons">
         <ng-template let-column="column" ngx-datatable-header-template>
-          <app-ngx-datatable-actions [datatable]="dt" class="pull-right"></app-ngx-datatable-actions>
+          <!-- <component-ngx-datatable-actions [datatable]="dt" class="pull-right"></component-ngx-datatable-actions> -->
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
           <a [routerLink]="['./', row.id]" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="查看订单">
