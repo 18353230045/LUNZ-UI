@@ -15,11 +15,8 @@ import { ValidationMessageComponent } from './components/validation-message/vali
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { NgxDatatableFooterComponent } from './components/ngx-datatable-footer/ngx-datatable-footer.component';
 import { NgxDatatablePagerComponent } from './components/ngx-datatable-pager/ngx-datatable-pager.component';
-import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions/ngx-datatable-actions.component';
 import { NgxQueryToolbarComponent } from './components/ngx-query-toolbar/ngx-query-toolbar.component';
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
-import { DropdownSelectionComponent } from './components/dropdown-selection/dropdown-selection.component';
-import { SelectSelectionComponent } from './components/select-selection/select-selection.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 
@@ -59,11 +56,8 @@ export function createDecimalPipe() {
         FileUploadComponent,
         NgxDatatableFooterComponent,
         NgxDatatablePagerComponent,
-        NgxDatatableActionsComponent,
         NgxQueryToolbarComponent,
         VehicleSelectionComponent,
-        DropdownSelectionComponent,
-        SelectSelectionComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
@@ -79,14 +73,11 @@ export function createDecimalPipe() {
         LoaderComponent,
         HostComponent,
         ValidationMessageComponent,
-        DropdownSelectionComponent,
         FileUploadComponent,
         NgxDatatableFooterComponent,
         NgxDatatablePagerComponent,
-        NgxDatatableActionsComponent,
         NgxQueryToolbarComponent,
         VehicleSelectionComponent,
-        SelectSelectionComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
