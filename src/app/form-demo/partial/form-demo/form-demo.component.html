@@ -46,7 +46,7 @@
                 <span class="text-danger">*</span>
               </label>
               <input type="text" class="form-control" formControlName="abstract" placeholder="摘要" />
-              <app-validation-message [control]="form.controls['abstract']" label="摘要"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['abstract']" label="摘要"></component-zr-validation-message>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
                   <span></span>
                 </label>
               </div>
-              <app-validation-message [control]="form.controls['category']" label="类别"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['category']" label="类别"></component-zr-validation-message>
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm6">
@@ -106,7 +106,7 @@
                   <i class="la la-calendar"></i>
                 </span>
               </div>
-              <app-validation-message [control]="form.controls['date']" label="日期" [validationMessages]="{pattern:'日期格式不正确。'}" ></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['date']" label="日期" [validationMessages]="{pattern:'日期格式不正确。'}" ></component-zr-validation-message>
             </div>
           </div>
           <div class="col-md-6">
@@ -120,7 +120,7 @@
                 <option value="2">朋友介绍</option>
                 <option value="3">其他</option>
               </select>
-              <app-validation-message [control]="form.controls['whereUnderstand']" label="从何处了解本站"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['whereUnderstand']" label="从何处了解本站"></component-zr-validation-message>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@
               <div class="input-group">
                 <input class="form-control" type="text" formControlName="phone" />
               </div>
-              <app-validation-message [control]="form.controls['phone']" label="电话" [validationMessages]="{pattern:'请输入11位手机号或固定电话号([区号]-[电话号])。'}"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['phone']" label="电话" [validationMessages]="{pattern:'请输入11位手机号或固定电话号([区号]-[电话号])。'}"></component-zr-validation-message>
             </div>
           </div>
           <div class="col-md-6">
@@ -144,7 +144,7 @@
               <div class="input-group">
                 <input class="form-control" type="text" formControlName="email" />
               </div>
-              <app-validation-message [control]="form.controls['email']" label="邮箱"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['email']" label="邮箱"></component-zr-validation-message>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@
                 <span class="text-danger">*</span>
               </label>
               <input type="text" class="form-control" [(ngModel)]="price" placeholder="单价" formControlName="price" />
-              <app-validation-message [control]="form.controls['price']" label="单价"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['price']" label="单价"></component-zr-validation-message>
             </div>
           </div>
           <div class="col-md-4">
@@ -166,7 +166,7 @@
                 <span class="text-danger">*</span>
               </label>
               <input type="text" class="form-control" [(ngModel)]="num" placeholder="数量" formControlName="numberRange" />
-              <app-validation-message [control]="form.controls['numberRange']" label="'数量'"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['numberRange']" label="'数量'"></component-zr-validation-message>
             </div>
           </div>
           <div class="col-md-4">

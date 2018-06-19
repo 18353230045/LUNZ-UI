@@ -30,7 +30,7 @@
                 <small>（必填）</small>
               </label>
               <input type="text" class="form-control" name="required" formControlName="required" />
-              <app-validation-message [control]="form.controls['required']" label="此项"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['required']" label="此项"></component-zr-validation-message>
             </div>
           </div>
           <!-- email验证 -->
@@ -41,7 +41,7 @@
                 <small>（邮箱）</small>
               </label>
               <input type="text" class="form-control" name="email" formControlName="email" />
-              <app-validation-message [control]="form.controls['email']"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['email']"></component-zr-validation-message>
             </div>
           </div>
           <!-- number验证 -->
@@ -52,7 +52,7 @@
                 <small>（数字）</small>
               </label>
               <input type="text" class="form-control" name="number" formControlName="number" />
-              <app-validation-message [control]="form.controls['number']"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['number']"></component-zr-validation-message>
             </div>
           </div>
           <!-- 最小值（number）验证 -->
@@ -63,7 +63,7 @@
                 <small>（不能小于5）</small>
               </label>
               <input type="text" class="form-control" name="min" formControlName="min" />
-              <app-validation-message [control]="form.controls['min']" label="最小值数字验证"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['min']" label="最小值数字验证"></component-zr-validation-message>
             </div>
           </div>
           <!-- 最大值（number）验证 -->
@@ -74,7 +74,7 @@
                 <small>（不能大于5）</small>
               </label>
               <input type="text" class="form-control" name="max" formControlName="max" />
-              <app-validation-message [control]="form.controls['max']" label="最大值数字验证"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['max']" label="最大值数字验证"></component-zr-validation-message>
             </div>
           </div>
           <!-- 数字区间验证 -->
@@ -85,7 +85,7 @@
                 <small>（不能小于5，大于10）</small>
               </label>
               <input type="text" class="form-control" name="numberRange" formControlName="numberRange" />
-              <app-validation-message [control]="form.controls['numberRange']" label="数字区间验证"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['numberRange']" label="数字区间验证"></component-zr-validation-message>
             </div>
           </div>
           <!-- 最大字符长度验证 -->
@@ -96,7 +96,7 @@
                 <small>（最长5个字符）</small>
               </label>
               <input type="text" class="form-control" name="rangeLength" formControlName="maxLength" />
-              <app-validation-message [control]="form.controls['maxLength']" label="最大字符长度验证"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['maxLength']" label="最大字符长度验证"></component-zr-validation-message>
             </div>
           </div>
           <!-- 最小字符长度验证 -->
@@ -107,7 +107,7 @@
                 <small>（最小5个字符）</small>
               </label>
               <input type="text" class="form-control" name="rangeLength" formControlName="minLength" />
-              <app-validation-message [control]="form.controls['minLength']" label="最小字符长度验证"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['minLength']" label="最小字符长度验证"></component-zr-validation-message>
             </div>
           </div>
           <!-- 字符长度区间验证 -->
@@ -118,7 +118,7 @@
                 <small>（最小5个字符，最大10个字符）</small>
               </label>
               <input type="text" class="form-control" name="lengthRange" formControlName="lengthRange" />
-              <app-validation-message [control]="form.controls['lengthRange']" label="字符长度区间验证"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['lengthRange']" label="字符长度区间验证"></component-zr-validation-message>
             </div>
           </div>
           <!-- 日期验证 -->
@@ -129,7 +129,7 @@
                 <small>（日期）</small>
               </label>
               <input type="text" class="form-control" name="date" formControlName="date" placeholder="日期格式：0000-00-00" />
-              <app-validation-message [control]="form.controls['date']" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['date']" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></component-zr-validation-message>
             </div>
           </div>
           <!-- 最小日期验证 -->
@@ -140,7 +140,7 @@
                 <small>（不能小于2018-03-07）</small>
               </label>
               <input type="text" class="form-control" name="minDate" formControlName="minDate" placeholder="日期格式：0000-00-00" />
-              <app-validation-message [control]="form.controls['minDate']" label="2018-03-07" [validationMessages]="{pattern:'日期输入不合法 '}"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['minDate']" label="2018-03-07" [validationMessages]="{pattern:'日期输入不合法 '}"></component-zr-validation-message>
             </div>
           </div>
           <!-- 最大日期验证 -->
@@ -151,7 +151,7 @@
                 <small>（不能大于2018-03-07）</small>
               </label>
               <input type="text" class="form-control" name="maxDate" formControlName="maxDate" placeholder="日期格式：0000-00-00" />
-              <app-validation-message [control]="form.controls['maxDate']" label="2018-03-07" [validationMessages]="{pattern:'日期输入不合法 '}"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['maxDate']" label="2018-03-07" [validationMessages]="{pattern:'日期输入不合法 '}"></component-zr-validation-message>
             </div>
           </div>
           <!-- phone验证 -->
@@ -162,7 +162,7 @@
                 <small>电话号码（通过自定义正则表达式实现）</small>
               </label>
               <input type="text" class="form-control" formControlName="phone" placeholder="联系电话" />
-              <app-validation-message [control]="form.controls['phone']" label="联系电话" [validationMessages]="{pattern:'请输入11位手机号或固定电话号([区号]-[电话号])。'}"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['phone']" label="联系电话" [validationMessages]="{pattern:'请输入11位手机号或固定电话号([区号]-[电话号])。'}"></component-zr-validation-message>
             </div>
           </div>
           <!-- url验证 -->
@@ -173,7 +173,7 @@
                 <small>（网址）</small>
               </label>
               <input type="text" class="form-control" name="url" formControlName="url" />
-              <app-validation-message [control]="form.controls['url']"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['url']"></component-zr-validation-message>
             </div>
           </div>
           <!-- 银行卡号验证 -->
@@ -184,7 +184,7 @@
                 <small>（16-19位数字）</small>
               </label>
               <input type="text" class="form-control" name="equabankCardlTo" formControlName="bankCard" />
-              <app-validation-message [control]="form.controls['bankCard']" [validationMessages]="{pattern:'银行卡号长度不正确'}"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['bankCard']" [validationMessages]="{pattern:'银行卡号长度不正确'}"></component-zr-validation-message>
             </div>
           </div>
           <!-- 值相同验证 -->
@@ -196,7 +196,7 @@
               </label>
               <input type="text" class="form-control" name="password" formControlName="password" />
               <input type="text" class="form-control" name="equalTo" formControlName="equalTo" />
-              <app-validation-message [control]="form.controls['equalTo']"></app-validation-message>
+              <component-zr-validation-message [control]="form.controls['equalTo']"></component-zr-validation-message>
             </div>
           </div>
         </div>

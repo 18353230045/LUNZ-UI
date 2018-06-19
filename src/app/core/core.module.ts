@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { TreeModule } from 'angular-tree-component';
+import { ZrValidationMessageModule } from 'zr-validation-message';
 
 import { environment } from '../../environments/environment';
 import { SharedModule } from '../shared/shared.module';
@@ -88,6 +89,7 @@ export function createCurrencyPipe() {
         ModalModule.forRoot(),
         BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
+        ZrValidationMessageModule.forRoot(),
         ToastrModule,
         MomentModule,
         SharedModule,

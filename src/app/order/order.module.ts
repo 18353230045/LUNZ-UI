@@ -7,6 +7,7 @@ import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { DateFormatPipe } from 'angular2-moment';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ZrValidationMessageModule } from 'zr-validation-message';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -27,6 +28,7 @@ import { HearFromsService } from '../hear-from/shared/hear-froms.service';
     NgxDatatableModule,
     NgxQueryModule,
     BsDatepickerModule,
+    ZrValidationMessageModule.forRoot(),
     MomentModule,
     SharedModule,
     OrderRoutingModule

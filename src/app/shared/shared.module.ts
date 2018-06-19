@@ -11,7 +11,6 @@ import { environment } from '../../environments/environment';
 
 import { LoaderComponent } from './loader/loader.component';
 import { HostComponent } from './components/host.component';
-import { ValidationMessageComponent } from './components/validation-message/validation-message.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { NgxDatatableFooterComponent } from './components/ngx-datatable-footer/ngx-datatable-footer.component';
 import { NgxDatatablePagerComponent } from './components/ngx-datatable-pager/ngx-datatable-pager.component';
@@ -52,7 +51,6 @@ export function createDecimalPipe() {
     declarations: [
         LoaderComponent,
         HostComponent,
-        ValidationMessageComponent,
         FileUploadComponent,
         NgxDatatableFooterComponent,
         NgxDatatablePagerComponent,
@@ -72,7 +70,6 @@ export function createDecimalPipe() {
     exports: [
         LoaderComponent,
         HostComponent,
-        ValidationMessageComponent,
         FileUploadComponent,
         NgxDatatableFooterComponent,
         NgxDatatablePagerComponent,
