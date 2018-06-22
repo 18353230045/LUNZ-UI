@@ -33,6 +33,7 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../progress-demo/progress-demo.module#ProgressDemoModule' },
     { path: '', loadChildren: '../hear-from/hear-from.module#HearFromModule' },
     { path: '', loadChildren: '../order/order.module#OrderModule' },
+    { path: '', loadChildren: '../file-upload-oss-demo/file-upload-oss-demo.module#FileUploadOssDemoModule' },
 ]);
 
 @NgModule({
