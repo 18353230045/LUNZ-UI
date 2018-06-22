@@ -31,6 +31,7 @@ pages:
         - '按钮处理状态': component/angular2-ladda/angular2-ladda.md
         - '信息提示logger': component/logger/logger.md
         - '第三方组件库': component/third-party-components/third-party-components.md
+        - '编写自定义组件': component/edit-component/edit-component.md
     - '部署':
         - 'Windows': deployment/deploy-windows.md
         - 'Linux': deployment/deploy-linux.md
