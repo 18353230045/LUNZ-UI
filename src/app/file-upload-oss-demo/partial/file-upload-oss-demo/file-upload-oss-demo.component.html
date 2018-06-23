@@ -22,11 +22,11 @@
     <div class="container-fluid">
       <div class="row form-group m-form__group">
         <div class="col-lg-6 col-md-6 col-sm-12 m-portlet__body">
-          <app-file-upload-oss [accessid]="accessid" [accesskey]="accesskey" [host]="host"></app-file-upload-oss>
+          <app-file-upload-oss [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
         </div>
-        <!-- <div class="col-lg-6 col-md-6 col-sm-12 m-portlet__body">
-          <app-file-upload-oss [showType]="false"></app-file-upload-oss>
-        </div> -->
+        <div class="col-lg-6 col-md-6 col-sm-12 m-portlet__body">
+          <app-file-upload-oss [type]="'button'" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
+        </div>
       </div>
     </div>
   </div>

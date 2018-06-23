@@ -6,16 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-upload-oss-demo.component.scss']
 })
 export class FileUploadOssDemoComponent implements OnInit {
-  accessid: string;
+  region: string;
+  accessKeyId: string;
   accesskey: string;
-  host: string;
+  bucket: string;
 
   constructor() { }
 
   ngOnInit() {
-    this.accessid = '6MKOqxGiGU4AUk44';
+    this.region = 'oss-cn-qingdao';
+    this.accessKeyId = '6MKOqxGiGU4AUk44';
     this.accesskey = 'ufu7nS8kS59awNihtjSonMETLI0KLy';
-    this.host = 'http://post-test.oss-cn-hangzhou.aliyuncs.com';
+    this.bucket = 'lunz-test';
   }
 
 }

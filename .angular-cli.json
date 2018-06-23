@@ -36,7 +36,8 @@
       "../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
       "../node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js",
       "../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js",
-      
+      "../node_modules/ali-oss/dist/aliyun-oss-sdk.min.js",
+
       "assets/js/framework/base/app.js",
       "assets/js/framework/base/util.js",
       "assets/js/framework/components/general/animate.js",
@@ -54,7 +55,7 @@
 
       "assets/js/default/base/layout.js",
       "assets/js/snippets/custom/pages/user/login.js",
-      
+
       "assets/js/deposit/deposit.js"
     ],
     "environmentSource": "environments/environment.ts",

@@ -1,8 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-declare const Base64: any;
-declare const Crypto: any;
-declare const ossUpload: any;
+declare const OSS: any;
 
 @Component({
   selector: 'app-file-upload-oss',
@@ -11,35 +9,80 @@ declare const ossUpload: any;
 })
 
 export class FileUploadOssComponent implements OnInit {
-  @Input() showType: Boolean = true;
 
-  // 配置上传参数
-  @Input() accessid: string;
+  // configuration parameter
+  @Input() type?: String = 'rectangle';
+  @Input() region: string;
+  @Input() accessKeyId: string;
   @Input() accesskey: string;
-  @Input() host: string;
-  @Input() fileLenth?: Number = 1048576000;
-  @Input() expiration?: String = '9020-01-01T12:00:00.000Z';
 
-  // 设置上传的文件夹地址
   @Input()
-  set g_dirname(val: string) {
+  set bucket(val: string) {
     if (val !== '' && val.indexOf('/') !== val.length - 1) {
       val = val + '/';
     }
-    this._g_dirname = val;
+    this._bucket = val;
   };
-  get g_dirname(): string {
-    return this._g_dirname;
+  get bucket(): string {
+    return this._bucket;
   };
 
-  _g_dirname: string;
-  testasdk: any;
+  @Output() uploadStatus = new EventEmitter();
+
+  _bucket: string;
+  filesList: any[] = [];
+
+  // select files
+  selectFiles($event: any) {
+    this.filesList.length = 0;
+
+    for (const file of $event.target.files) {
+      file['loading'] = false;
+      file['remove'] = false;
+      file['percent'] = 0;
+    }
+
+    this.filesList.push(...$event.target.files);
+    console.log(this.filesList);
+  };
+
+  // remove files
+  removeFile(index: number) {
+    this.filesList[index]['removeAnimation'] = 'fadeOutRight';
+    setTimeout(() => {
+      this.filesList.splice(index, 1);
+    }, 300);
+  };
+
+  // upload files
+  uploadFile() {
+    const files = this.filesList;
+    const key = 'object';
+
+    const client = new OSS.Wrapper({
+      region: this.region,
+      accessKeyId: this.accessKeyId,
+      accessKeySecret: this.accesskey,
+      bucket: this.bucket
+    });
+
+    client.multipartUpload(key, files, {
+      progress: this.progress
+    }).then(function (res: any) {
+      alert(`${res}`);
+      console.log('upload success');
+      this.uploadStatus.emit(res);
+    });
+  };
+
+  // upload progress
+  progress(p: any) {
+    console.log(`进度${p}`);
+  };
 
   constructor() { }
 
   ngOnInit() {
-    ossUpload.g_dirname = '3213';
-    this.testasdk = ossUpload;
   }
 
 }
