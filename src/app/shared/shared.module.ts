@@ -33,6 +33,7 @@ import { AutoFocusDirective } from './directives/auto-focus.directive';
 
 import { RmbPipe } from './pipes/rmb.pipe';
 import { RemoveSpacePipe } from './pipes/remove-space.pipe';
+import { ToFixedPipe } from './pipes/to-fixed.pipe';
 
 
 export function createDecimalPipe() {
@@ -67,6 +68,7 @@ export function createDecimalPipe() {
 
         RmbPipe,
         RemoveSpacePipe,
+        ToFixedPipe,
     ],
 
     exports: [
@@ -85,7 +87,8 @@ export function createDecimalPipe() {
         DatepickerDirective,
         AutoFocusDirective,
 
-        RmbPipe
+        RmbPipe,
+        ToFixedPipe
     ],
 
     providers: [

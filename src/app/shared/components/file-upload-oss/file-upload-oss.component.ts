@@ -65,7 +65,7 @@ export class FileUploadOssComponent implements OnInit {
       accessKeySecret: this.accesskey,
       bucket: this.bucket
     });
-
+    alert(typeof client);
     client.multipartUpload(key, files, {
       progress: this.progress
     }).then(function (res: any) {
