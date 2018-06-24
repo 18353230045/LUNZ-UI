@@ -32,18 +32,39 @@ export class FileUploadOssComponent implements OnInit {
   _bucket: string;
   filesList: any[] = [];
 
-  // select files
-  selectFiles($event: any) {
+  // Handle files
+  handleFiles(files: any[]) {
+    return new Promise((resolve) => {
+      for (const file of files) {
+        file['loading'] = false;
+        file['remove'] = false;
+        file['percent'] = 0;
+      };
+      resolve(files);
+    });
+  };
+
+  // click select files
+  clickSelectFiles($event: any) {
     this.filesList.length = 0;
 
-    for (const file of $event.target.files) {
-      file['loading'] = false;
-      file['remove'] = false;
-      file['percent'] = 0;
-    }
+    this.handleFiles($event.target.files).then((files: any[]) => {
+      this.filesList.push(...files);
+    });
+  };
 
-    this.filesList.push(...$event.target.files);
-    console.log(this.filesList);
+  // dragover preventDefault
+  dragover($event: any) {
+    $event.preventDefault();
+  };
+
+  // drop select files
+  dropSelectFiles($event: any) {
+    $event.preventDefault();
+
+    this.handleFiles($event.dataTransfer.files).then((files: any[]) => {
+      this.filesList.push(...files);
+    });
   };
 
   // remove files

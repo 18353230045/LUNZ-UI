@@ -1,16 +1,17 @@
 <!-- rectangle button type -->
-<label *ngIf="type==='rectangle'" class="drop-area" for="fileSele">
+<label *ngIf="type==='rectangle'" class="drop-area" for="fileSele" (dragover)="dragover($event)" (drop)="dropSelectFiles($event)">
   <span class="lz-upload-font">
     <span class="la la-cloud-upload"></span>
     <br />
-    <span class="m--font-info">选择上传文件</span>
-    <input type="file" name="file" id="fileSele" multiple (change)="selectFiles($event)" />
+    <span>将文件拖到此处，或</span>
+    <span class="m--font-info">点击上传</span>
+    <input type="file" name="file" id="fileSele" multiple (change)="clickSelectFiles($event)"/>
   </span>
 </label>
 <!-- button type -->
 <span *ngIf="type==='button'">
-  <label class="btn btn-success" for="btn">
-    <input type="file" id="btn" multiple hidden (change)="selectFiles($event)" />选择上传文件
+  <label class="btn btn-success" for="btn" (dragover)="dragover($event)" (drop)="dropSelectFiles($event)">
+    <input type="file" id="btn" multiple hidden (change)="clickSelectFiles($event)" />拖动文件到此处或点击选择上传文件
   </label>
 </span>
 
