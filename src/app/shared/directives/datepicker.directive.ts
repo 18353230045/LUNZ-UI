@@ -70,6 +70,12 @@ export class DatepickerDirective implements OnInit, AfterViewInit {
     // set blur
     setBlur() {
         $(`#${this.el.nativeElement.id}`).blur((ev: any) => {
+            if (this.ngModel) {
+                this.ngModelChange.emit(this.ngModel);
+                $(`#${this.el.nativeElement.id}`).val(this.ngModel);
+                return;
+            };
+
             if (this.dateType === 'displayDate') {
                 this.ngModelChange.emit(ev.target.value);
             } else if (this.dateType === 'originalDate') {
