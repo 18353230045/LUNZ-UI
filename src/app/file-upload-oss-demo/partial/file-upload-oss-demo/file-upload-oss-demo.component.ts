@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './file-upload-oss-demo.component.html',
   styleUrls: ['./file-upload-oss-demo.component.scss']
 })
+
 export class FileUploadOssDemoComponent implements OnInit {
   region: string;
   accessKeyId: string;
