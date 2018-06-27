@@ -1,0 +1,15 @@
+<div class="lz-tabs-continer">
+  <div class="lz-tabs-content" id="lz-tabs-content">
+    <ul class="list-inline clearfix" id="lz-tabs-continer-ul" [ngStyle]="{'position':'relative','height':'30px','width':'auto'}">
+      <li class="float-left lz-tabs-item" *ngFor="let tab of tabs;let i = index" [ngClass]="{'lz-tabs-item-active':tabActive===tab.name}">
+        <i class="m-menu__link-icon {{tab.icon}}"></i>
+        <a (click)="activeTab(tab)">{{tab.name}}</a>
+        <i class="fa fa-times" [hidden]="tabs.length===1" (click)="removeTab(tab,i)"></i>
+      </li>
+    </ul>
+  </div>
+  <div [hidden]="showMoveIcon()" class="lz-tabs-move-icon">
+    <button class="fa fa-caret-left" [disabled]="disableLeftMoveIcon()" (click)="moveTab('left')"></button>
+    <button class="fa fa-caret-right" [disabled]="disableRightMoveIcon()" (click)="moveTab('right')"></button>
+  </div>
+</div>
