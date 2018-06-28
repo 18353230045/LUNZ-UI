@@ -188,11 +188,11 @@ export class TabsComponent implements OnInit {
       const marginLeft = Number(tabContinerDom.css('margin-left').replace('px', ''));
 
       if (direction === 'left') { // to left
-        const afterMarginRight = marginLeft - 150;
+        const afterMarginRight = marginLeft - 300;
         tabContinerDom.animate({ 'margin-left': afterMarginRight + 'px' }, 500);
       } else if (direction === 'right') { // to right
         if (marginLeft !== 0) {
-          const afterMarginLeft = marginLeft + 150;
+          const afterMarginLeft = marginLeft + 300;
           if (afterMarginLeft >= 0) {
             tabContinerDom.animate({ 'margin-left': '0px' }, 500);
           } else {
