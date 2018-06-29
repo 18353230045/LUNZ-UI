@@ -256,6 +256,21 @@ export class TabsComponent implements OnInit {
   // is disable left move icon
   isDisableLeftMoveIcon() {
     return new Promise((resolve) => {
+      setTimeout(() => {
+        const marginLeft = Number($('#lz-tabs-continer-ul').css('margin-left').replace('px', ''));
+        if (marginLeft >= 0) {
+          this.disableLeftMoveIcon = true;
+        } else {
+          this.disableLeftMoveIcon = false;
+        }
+        resolve();
+      }, 400);
+    });
+  };
+
+  // is disable right move icon
+  isDisableRightMoveIcon() {
+    return new Promise((resolve) => {
       const tabCcontentDomWidth = $('#lz-tabs-content').outerWidth();
       const marginLeft = Number($('#lz-tabs-continer-ul').css('margin-left').replace('px', ''));
       let allTabWidth = 0;
@@ -268,27 +283,12 @@ export class TabsComponent implements OnInit {
         });
         minMoveMarginLeft = tabCcontentDomWidth - allTabWidth;
         if (Math.floor(marginLeft) === Math.floor(minMoveMarginLeft)) {
-          this.disableLeftMoveIcon = true;
-        } else {
-          this.disableLeftMoveIcon = false;
-        }
-        resolve();
-      });
-    });
-  };
-
-  // is disable right move icon
-  isDisableRightMoveIcon() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const marginLeft = Number($('#lz-tabs-continer-ul').css('margin-left').replace('px', ''));
-        if (marginLeft >= 0) {
           this.disableRightMoveIcon = true;
         } else {
           this.disableRightMoveIcon = false;
         }
         resolve();
-      }, 400);
+      });
     });
   };
 
@@ -321,8 +321,30 @@ export class TabsComponent implements OnInit {
     });
   };
 
-  // show dele others
-  showDeleOthers($event: any, i: number) {
-    $event.preventDefault();
+  // remove all tabs
+  removeAllTabs() {
+    let activeItem: any;
+    this.tabs.forEach((item) => {
+      if (item.name === this.tabActive) {
+        activeItem = item;
+      }
+    });
+    this.tabs.length = 0;
+    this.tabs.push(activeItem);
+
+    const timer = setInterval(() => {
+      const modeDomLength = $('.lz-tabs-item-lhg').length;
+      if (modeDomLength === 1) {
+        clearInterval(timer);
+        this.isShowMoveTabIcon().then(() => {
+          this.isDisableLeftMoveIcon();
+        }).then(() => {
+          this.isDisableRightMoveIcon();
+        }).then(() => {
+          $('#lz-tabs-continer-ul').css('margin-left', '0px');
+        });
+      }
+    }, 200);
   };
+
 };

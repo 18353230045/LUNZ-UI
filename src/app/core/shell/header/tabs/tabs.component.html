@@ -1,15 +1,18 @@
 <div class="lz-tabs-continer">
   <div class="lz-tabs-content" id="lz-tabs-content">
     <ul class="list-inline clearfix" id="lz-tabs-continer-ul" [ngStyle]="{'position':'relative','height':'30px','width':'auto'}">
-      <li class="float-left lz-tabs-item-lhg" *ngFor="let tab of tabs;let i = index" [ngClass]="{'lz-tabs-item-active':tabActive===tab.name}">
+      <li class="float-left lz-tabs-item-lhg animated {{tab.removeAnimation}}" *ngFor="let tab of tabs;let i = index" [ngClass]="{'lz-tabs-item-active':tabActive===tab.name}">
         <i class="m-menu__link-icon {{tab.icon}}"></i>
         <a (click)="activeTab(tab)">{{tab.name}}</a>
         <i class="fa fa-times" [hidden]="tabs.length===1" (click)="removeTab(tab,i)"></i>
       </li>
     </ul>
   </div>
+  <div class="lz-tabs-remove-all">
+    <i class="la la-ellipsis-h" title="关闭选项卡" [hidden]="tabs.length < 2" (click)="removeAllTabs()"></i>
+  </div>
   <div [hidden]="showMoveIcon" class="lz-tabs-move-icon">
-    <button class="fa fa-caret-left" [disabled]="disableLeftMoveIcon" (click)="moveTab('left')"></button>
-    <button class="fa fa-caret-right" [disabled]="disableRightMoveIcon" (click)="moveTab('right')"></button>
+    <button class="fa fa-caret-left" title="向右移动" [disabled]="disableLeftMoveIcon" (click)="moveTab('right')"></button>
+    <button class="fa fa-caret-right" title="向左移动" [disabled]="disableRightMoveIcon" (click)="moveTab('left')"></button>
   </div>
 </div>

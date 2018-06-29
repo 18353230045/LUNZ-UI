@@ -1,8 +1,7 @@
 .lz-tabs-continer {
   height: 100%;
-  padding: 0 10px;
+  padding: 0 20px 0 10px;
   background: #fff;
-  border-bottom: solid 1px #b8b8ba;
 
   .lz-tabs-move-icon {
     width: 30px;
@@ -29,11 +28,28 @@
     }
   }
 
+  .lz-tabs-remove-all {
+    float: right;
+    width: 30px;
+
+    i {
+      display: inline-block;
+      padding: 0;
+      width: 30px;
+      border: none;
+      background: none;
+      font-size: 28px;
+      color: #616370;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+
   .lz-tabs-content {
-    width: calc(100% - 30px);
-    width: -webkit-calc(100% - 30px);
-    width: -moz-calc(100% - 30px);
-    width: -o-calc(100% - 30px);
+    width: calc(100% - 60px);
+    width: -webkit-calc(100% - 60px);
+    width: -moz-calc(100% - 60px);
+    width: -o-calc(100% - 60px);
     height: 100%;
     float: left;
     overflow: hidden;
@@ -55,7 +71,7 @@
 }
 
 .lz-tabs-item-lhg {
-  padding: 4px 10px;
+  padding: 5px 10px;
   font-size: 14px;
   background-color: none;
   color: #676c7b;
@@ -86,4 +102,8 @@
   a {
     color: #fff;
   }
+}
+
+.lz-tabs-remove-all {
+  position: relative;
 }
