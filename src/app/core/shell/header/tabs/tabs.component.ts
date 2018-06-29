@@ -105,18 +105,16 @@ export class TabsComponent implements OnInit {
   // remove tab encapsulation
   removeTabEncapsulation(tab: any, index: number) {
     return new Promise(() => {
-      if (this.tabs.length === 1) {
-        return;
-      } else {
+      if (this.tabs.length !== 1) {
         if (tab.name === this.tabActive) {
-          for (let i = 0; i < this.tabs.length; i++) {
-            if (tab.name === this.tabs[i].name && index !== 0) {
-              this.router.navigate([`${this.tabs[i - 1].url}`]);
-            };
-          };
+          if (index === 0) {
+            this.router.navigate([`${this.tabs[index + 1].url}`]);
+          } else {
+            this.router.navigate([`${this.tabs[index - 1].url}`]);
+          }
         };
         this.tabs.splice(index, 1);
-      }
+      };
     });
   };
 
@@ -185,22 +183,41 @@ export class TabsComponent implements OnInit {
   moveTabEncapsulation(direction: string) {
     return new Promise((resolve) => {
       const tabContinerDom = $('#lz-tabs-continer-ul');
+      const tabCcontentDomWidth = $('#lz-tabs-content').outerWidth();
       const marginLeft = Number(tabContinerDom.css('margin-left').replace('px', ''));
+      let allTabWidth = 0;
+      let minMarginLeft = 0;
+
+      $('.lz-tabs-item-lhg').each(function () {
+        const thisMarginRight = Number($(this).css('margin-right').replace('px', ''));
+        allTabWidth += ($(this).outerWidth() + thisMarginRight);
+      });
+
+      minMarginLeft = tabCcontentDomWidth - allTabWidth;
 
       if (direction === 'left') { // to left
         const afterMarginRight = marginLeft - 300;
-        tabContinerDom.animate({ 'margin-left': afterMarginRight + 'px' }, 500);
+        if (afterMarginRight <= minMarginLeft) {
+          tabContinerDom.animate({ 'margin-left': `${minMarginLeft}px` }, 400, () => {
+            resolve();
+          });
+        } else {
+          tabContinerDom.animate({ 'margin-left': `${afterMarginRight}px` }, 400, () => {
+            resolve();
+          });
+        }
       } else if (direction === 'right') { // to right
-        if (marginLeft !== 0) {
-          const afterMarginLeft = marginLeft + 300;
-          if (afterMarginLeft >= 0) {
-            tabContinerDom.animate({ 'margin-left': '0px' }, 500);
-          } else {
-            tabContinerDom.animate({ 'margin-left': afterMarginLeft + 'px' }, 500);
-          }
+        const afterMarginLeft = marginLeft + 300;
+        if (afterMarginLeft >= 0 || afterMarginLeft > -50) {
+          tabContinerDom.animate({ 'margin-left': '0px' }, 400, () => {
+            resolve();
+          });
+        } else {
+          tabContinerDom.animate({ 'margin-left': afterMarginLeft + 'px' }, 400, () => {
+            resolve();
+          });
         }
       }
-      resolve();
     });
   };
 
@@ -209,9 +226,9 @@ export class TabsComponent implements OnInit {
     this.moveTabEncapsulation(direction).then(() => {
       this.isShowMoveTabIcon();
     }).then(() => {
-      this.isDisableLeftMoveIcon();
-    }).then(() => {
       this.isDisableRightMoveIcon();
+    }).then(() => {
+      this.isDisableLeftMoveIcon();
     });
   };
 
@@ -250,7 +267,7 @@ export class TabsComponent implements OnInit {
           allTabWidth += ($(this).outerWidth() + thisMarginRight);
         });
         minMoveMarginLeft = tabCcontentDomWidth - allTabWidth;
-        if (marginLeft <= minMoveMarginLeft) {
+        if (Math.floor(marginLeft) === Math.floor(minMoveMarginLeft)) {
           this.disableLeftMoveIcon = true;
         } else {
           this.disableLeftMoveIcon = false;
@@ -304,4 +321,8 @@ export class TabsComponent implements OnInit {
     });
   };
 
+  // show dele others
+  showDeleOthers($event: any, i: number) {
+    $event.preventDefault();
+  };
 };
