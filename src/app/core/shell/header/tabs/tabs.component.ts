@@ -322,6 +322,70 @@ export class TabsComponent implements OnInit {
     });
   };
 
+  // remove right tabs
+  removeRightTabs() {
+    const tabsArray: any[] = [];
+    let activeIndex: number;
+    let activeUrl: string;
+    this.tabs.forEach((item, index) => {
+      if (item.name !== this.tabActive && activeIndex === undefined) {
+        tabsArray.push(item);
+      } else if (item.name === this.tabActive) {
+        activeIndex = index;
+        activeUrl = item.url;
+        tabsArray.push(item);
+      }
+    });
+    this.tabs.length = 0;
+    this.tabs = tabsArray;
+    $('#lz-tabs-continer-ul').css('margin-left', '0px');
+    const timer = setInterval(() => {
+      const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
+      if (marginLeft === '0px') {
+        clearInterval(timer);
+        this.isShowMoveTabIcon().then(() => {
+          this.isDisableLeftMoveIcon();
+        }).then(() => {
+          this.isDisableRightMoveIcon();
+        }).then(() => {
+          this.movingTabToVisualArea(activeUrl);
+        });
+      };
+    }, 200);
+  };
+
+  // remove left tabs
+  removeLeftTabs() {
+    const tabsArray: any[] = [];
+    let activeIndex: number;
+    let activeUrl: string;
+    this.tabs.forEach((item, index) => {
+      if (item.name === this.tabActive && activeIndex === undefined) {
+        tabsArray.push(item);
+        activeIndex = index;
+        activeUrl = item.url;
+      } else if (index > activeIndex) {
+        tabsArray.push(item);
+      }
+    });
+    this.tabs.length = 0;
+    this.tabs = tabsArray;
+    $('#lz-tabs-continer-ul').css('margin-left', '0px');
+    const timer = setInterval(() => {
+      const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
+      if (marginLeft === '0px') {
+        clearInterval(timer);
+        this.isShowMoveTabIcon().then(() => {
+          this.isDisableLeftMoveIcon();
+        }).then(() => {
+          this.isDisableRightMoveIcon();
+        }).then(() => {
+          this.movingTabToVisualArea(activeUrl);
+        });
+      };
+    }, 200);
+  };
+
   // remove all tabs
   removeAllTabs() {
     let activeItem: any;
@@ -345,34 +409,6 @@ export class TabsComponent implements OnInit {
           $('#lz-tabs-continer-ul').css('margin-left', '0px');
         });
       }
-    }, 200);
-  };
-
-  // remove right tabs
-  removeRightTabs() {
-    const tabsArray: any[] = [];
-    let activeIndex: number;
-    this.tabs.forEach((item, index) => {
-      if (item.name !== this.tabActive && activeIndex === undefined) {
-        tabsArray.push(item);
-      } else if (item.name === this.tabActive) {
-        activeIndex = index;
-        tabsArray.push(item);
-      }
-    });
-    this.tabs.length = 0;
-    this.tabs = tabsArray;
-    $('#lz-tabs-continer-ul').css('margin-left', '0px');
-    const timer = setInterval(() => {
-      const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
-      if (marginLeft === '0px') {
-        clearInterval(timer);
-        this.isShowMoveTabIcon().then(() => {
-          this.isDisableLeftMoveIcon();
-        }).then(() => {
-          this.isDisableRightMoveIcon();
-        });
-      };
     }, 200);
   };
 
