@@ -15,22 +15,24 @@ export class FileUploadOssComponent implements OnInit {
   @Input() region: string;
   @Input() accessKeyId: string;
   @Input() accesskey: string;
-
-  @Input()
-  set bucket(val: string) {
-    if (val !== '' && val.indexOf('/') !== val.length - 1) {
-      val = val + '/';
-    }
-    this._bucket = val;
-  };
-  get bucket(): string {
-    return this._bucket;
-  };
+  @Input() bucket: string;
 
   @Output() uploadStatus = new EventEmitter();
 
-  _bucket: string;
+  client: any;
   filesList: any[] = [];
+
+  constructor() {
+  };
+
+  ngOnInit() {
+    this.client = new OSS.Wrapper({
+      region: this.region,
+      accessKeyId: this.accessKeyId,
+      accessKeySecret: this.accesskey,
+      bucket: this.bucket
+    });
+  };
 
   // Handle files
   handleFiles(files: any[]) {
@@ -47,7 +49,6 @@ export class FileUploadOssComponent implements OnInit {
   // click select files
   clickSelectFiles($event: any) {
     this.filesList.length = 0;
-
     this.handleFiles($event.target.files).then((files: any[]) => {
       this.filesList.push(...files);
     });
@@ -61,7 +62,6 @@ export class FileUploadOssComponent implements OnInit {
   // drop select files
   dropSelectFiles($event: any) {
     $event.preventDefault();
-
     this.handleFiles($event.dataTransfer.files).then((files: any[]) => {
       this.filesList.push(...files);
     });
@@ -77,34 +77,20 @@ export class FileUploadOssComponent implements OnInit {
 
   // upload files
   uploadFile() {
-    const files = this.filesList;
-    const key = 'object';
+    for (const file of this.filesList) {
+      const index = file.name.lastIndexOf('.');
+      const key = `${file.name.substring(0, index)}`;
+      const progress = function (pro: any) {
+        file['percent'] = pro * 100;
+      };
 
-    const client = new OSS.Wrapper({
-      region: this.region,
-      accessKeyId: this.accessKeyId,
-      accessKeySecret: this.accesskey,
-      bucket: this.bucket
-    });
-
-    client.multipartUpload(key, files, {
-      progress: this.progress
-    }).then(((res: any) => {
-      alert(`${res}`);
-      console.log('upload success');
-      this.uploadStatus.emit(res);
-    }));
-
+      this.client.multipartUpload(key, file, {
+        progress: progress
+      }).then(((res: any) => {
+        console.log('upload success');
+        // this.uploadStatus.emit(res);
+      }));
+    };
   };
-
-  // upload progress
-  progress(p: any) {
-    console.log(`进度${p}`);
-  };
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }
