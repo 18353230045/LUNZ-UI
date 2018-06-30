@@ -30,26 +30,26 @@
 
   .lz-tabs-remove-all {
     float: right;
-    width: 30px;
+    width: 26px;
 
     i {
       display: inline-block;
-      padding: 0;
-      width: 30px;
+      padding: 3px;
+      width: 26px;
       border: none;
       background: none;
-      font-size: 28px;
-      color: #616370;
+      font-size: 24px;
+      color: #2c2e3e;
       outline: none;
       cursor: pointer;
     }
   }
 
   .lz-tabs-content {
-    width: calc(100% - 60px);
-    width: -webkit-calc(100% - 60px);
-    width: -moz-calc(100% - 60px);
-    width: -o-calc(100% - 60px);
+    width: calc(100% - 56px);
+    width: -webkit-calc(100% - 56px);
+    width: -moz-calc(100% - 56px);
+    width: -o-calc(100% - 56px);
     height: 100%;
     float: left;
     overflow: hidden;
