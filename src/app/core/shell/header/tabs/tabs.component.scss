@@ -29,6 +29,7 @@
   }
 
   .lz-tabs-remove-all {
+    position: relative;
     float: right;
     width: 26px;
 
@@ -102,8 +103,4 @@
   a {
     color: #fff;
   }
-}
-
-.lz-tabs-remove-all {
-  position: relative;
 }

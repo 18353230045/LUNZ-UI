@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { resolve } from 'q';
 
 declare const $: any;
 
@@ -344,6 +345,34 @@ export class TabsComponent implements OnInit {
           $('#lz-tabs-continer-ul').css('margin-left', '0px');
         });
       }
+    }, 200);
+  };
+
+  // remove right tabs
+  removeRightTabs() {
+    const tabsArray: any[] = [];
+    let activeIndex: number;
+    this.tabs.forEach((item, index) => {
+      if (item.name !== this.tabActive && activeIndex === undefined) {
+        tabsArray.push(item);
+      } else if (item.name === this.tabActive) {
+        activeIndex = index;
+        tabsArray.push(item);
+      }
+    });
+    this.tabs.length = 0;
+    this.tabs = tabsArray;
+    $('#lz-tabs-continer-ul').css('margin-left', '0px');
+    const timer = setInterval(() => {
+      const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
+      if (marginLeft === '0px') {
+        clearInterval(timer);
+        this.isShowMoveTabIcon().then(() => {
+          this.isDisableLeftMoveIcon();
+        }).then(() => {
+          this.isDisableRightMoveIcon();
+        });
+      };
     }, 200);
   };
 

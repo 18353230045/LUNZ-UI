@@ -1,6 +1,6 @@
 <div class="lz-tabs-continer">
   <div class="lz-tabs-content" id="lz-tabs-content">
-    <ul class="list-inline clearfix" id="lz-tabs-continer-ul" [ngStyle]="{'position':'relative','height':'30px','width':'auto'}">
+    <ul class="list-inline clearfix" id="lz-tabs-continer-ul" [ngStyle]="{'height':'30px','width':'300000px'}">
       <li class="float-left lz-tabs-item-lhg animated {{tab.removeAnimation}}" *ngFor="let tab of tabs;let i = index" [ngClass]="{'lz-tabs-item-active':tabActive===tab.name}">
         <i class="m-menu__link-icon {{tab.icon}}"></i>
         <a (click)="activeTab(tab)">{{tab.name}}</a>
@@ -9,7 +9,38 @@
     </ul>
   </div>
   <div class="lz-tabs-remove-all">
-    <i class="la la-ellipsis-h" title="关闭选项卡" [hidden]="tabs.length < 2" (click)="removeAllTabs()"></i>
+    <div [hidden]="tabs.length < 2" class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
+      data-dropdown-toggle="click">
+      <a class="m-portlet__nav-link m-btn--pill m-dropdown__toggle">
+        <i class="la la-ellipsis-h"></i>
+        <div class="m-dropdown__wrapper">
+          <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 21.6px;"></span>
+          <div class="m-dropdown__inner">
+            <div class="m-dropdown__body">
+              <div class="m-dropdown__content">
+                <ul class="m-nav">
+                  <li class="m-nav__item" (click)="removeRightTabs()">
+                    <a class="m-nav__link">
+                      <span class="m-nav__link-text">关闭右侧选项卡</span>
+                    </a>
+                  </li>
+                  <li class="m-nav__item" (click)="removeLeftTabs()">
+                    <a class="m-nav__link">
+                      <span class="m-nav__link-text">关闭左侧选项卡</span>
+                    </a>
+                  </li>
+                  <li class="m-nav__item" (click)="removeAllTabs()">
+                    <a class="m-nav__link">
+                      <span class="m-nav__link-text">关闭其他选项卡</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
   <div [hidden]="showMoveIcon" class="lz-tabs-move-icon">
     <button class="fa fa-caret-left" title="向右移动" [disabled]="disableLeftMoveIcon" (click)="moveTab('right')"></button>
