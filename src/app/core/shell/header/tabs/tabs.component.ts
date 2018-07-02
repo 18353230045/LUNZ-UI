@@ -282,8 +282,8 @@ export class TabsComponent implements OnInit {
           const thisMarginRight = Number($(this).css('margin-right').replace('px', ''));
           allTabWidth += ($(this).outerWidth() + thisMarginRight);
         });
-        minMoveMarginLeft = tabCcontentDomWidth - allTabWidth;
-        if (Math.floor(marginLeft) === Math.floor(minMoveMarginLeft)) {
+        minMoveMarginLeft = allTabWidth - tabCcontentDomWidth;
+        if (Math.floor(marginLeft) >= Math.floor(minMoveMarginLeft) && marginLeft !== 0) {
           this.disableRightMoveIcon = true;
         } else {
           this.disableRightMoveIcon = false;
