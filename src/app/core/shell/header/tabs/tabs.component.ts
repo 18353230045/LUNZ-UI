@@ -282,7 +282,7 @@ export class TabsComponent implements OnInit {
           const thisMarginRight = Number($(this).css('margin-right').replace('px', ''));
           allTabWidth += ($(this).outerWidth() + thisMarginRight);
         });
-        minMoveMarginLeft = allTabWidth - tabCcontentDomWidth;
+        minMoveMarginLeft = tabCcontentDomWidth - allTabWidth;
         if (Math.floor(marginLeft) >= Math.floor(minMoveMarginLeft) && marginLeft !== 0) {
           this.disableRightMoveIcon = true;
         } else {
@@ -343,12 +343,12 @@ export class TabsComponent implements OnInit {
       const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
       if (marginLeft === '0px') {
         clearInterval(timer);
-        this.isShowMoveTabIcon().then(() => {
-          this.isDisableLeftMoveIcon();
-        }).then(() => {
-          this.isDisableRightMoveIcon();
-        }).then(() => {
-          this.movingTabToVisualArea(activeUrl);
+        this.movingTabToVisualArea(activeUrl).then(() => {
+          this.isShowMoveTabIcon().then(() => {
+            this.isDisableLeftMoveIcon();
+          }).then(() => {
+            this.isDisableRightMoveIcon();
+          });
         });
       };
     }, 200);
@@ -375,12 +375,12 @@ export class TabsComponent implements OnInit {
       const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
       if (marginLeft === '0px') {
         clearInterval(timer);
-        this.isShowMoveTabIcon().then(() => {
-          this.isDisableLeftMoveIcon();
-        }).then(() => {
-          this.isDisableRightMoveIcon();
-        }).then(() => {
-          this.movingTabToVisualArea(activeUrl);
+        this.movingTabToVisualArea(activeUrl).then(() => {
+          this.isShowMoveTabIcon().then(() => {
+            this.isDisableLeftMoveIcon();
+          }).then(() => {
+            this.isDisableRightMoveIcon();
+          });
         });
       };
     }, 200);
