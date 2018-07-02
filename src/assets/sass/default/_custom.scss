@@ -22,7 +22,6 @@ app-login {
   position: absolute;
   width: 100%;
   display: none;
-
   .progress-bar {
     width: 100%;
   }
@@ -75,4 +74,8 @@ app-sign-in-callback {
   display: grid;
   height: 100%;
   background: #fff;
+}
+
+.input-group .input-group-addon {
+  padding-top: 10px;
 }
