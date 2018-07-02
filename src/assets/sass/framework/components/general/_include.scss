@@ -6,7 +6,7 @@
 @import "toggler/mixins";
 
 //== Datatable
-@import "datatable/default";
+// @import "datatable/default";
 
 //== Navigation menu
 @import "nav/nav";
@@ -22,11 +22,11 @@
 @import "tabs/line";
 
 //== Typography
-// @import "typography/badge";
-// @import "typography/link";
-// @import "typography/section";
-// @import "typography/separator";
-// @import "typography/code";
+@import "typography/badge";
+@import "typography/link";
+@import "typography/section";
+@import "typography/separator";
+@import "typography/code";
 
 //== Buttons
 @import "buttons/buttons";
@@ -36,16 +36,16 @@
 @import "spinners/loader";
 
 //== Lists
-// @import "lists/search";
-// @import "lists/timeline";
-// @import "lists/settings";
+@import "lists/search";
+@import "lists/timeline";
+@import "lists/settings";
 
 //== Cards
-// @import "cards/user";
-// @import "cards/profile";
+@import "cards/user";
+@import "cards/profile";
 
 //== Messenger
-// @import "messenger/messenger";
+@import "messenger/messenger";
 
 //== Portlets
 @import "portlets/portlets";
@@ -87,7 +87,7 @@
 //== Forms
 @import "forms/checkbox-radio";
 @import "forms/input";
-// @import "forms/switch";
+@import "forms/switch";
 @import "forms/layout";
 
 //== Table
