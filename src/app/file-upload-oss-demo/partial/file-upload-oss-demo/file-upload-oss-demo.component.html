@@ -54,7 +54,7 @@
           <app-file-upload-oss [accept]="fileType" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
-          <h5>demo六[限制文件大小{{fileSizekb}}]</h5>
+          <h5>demo六[限制文件大小{{fileSize}}kb]</h5>
           <input type="text" class="form-control m-input" placeholder="输入文件大小" [(ngModel)]="fileSize" />
           <app-file-upload-oss [type]="'button'" [fileSize]="fileSize" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey"
             [bucket]="bucket"></app-file-upload-oss>
