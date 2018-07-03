@@ -20,12 +20,42 @@
   </div>
   <div class="m-portlet__body">
     <div class="container-fluid">
-      <div class="row form-group m-form__group">
-        <div class="col-lg-6 col-md-6 col-sm-12 m-portlet__body">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>demo一[默认]</h5>
           <app-file-upload-oss [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 m-portlet__body">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>demo二[button型]</h5>
           <app-file-upload-oss [type]="'button'" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>demo三[有上传按钮]</h5>
+          <app-file-upload-oss [uploadButton]="true" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>demo四[有上传按钮，button型]</h5>
+          <app-file-upload-oss [type]="'button'" [uploadButton]="true" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey"
+            [bucket]="bucket"></app-file-upload-oss>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>demo五[限制文件类型]</h5>
+          <select [(ngModel)]="fileType" class="form-control m-input m-input--square">
+            <option value="jpg">图片</option>
+            <option value="xlsx">EXCEL表</option>
+            <option value="docx">WORD文档</option>
+            <option value="pdf">PDF文档</option>
+            <option value="pptx">PPT文档</option>
+          </select>
+          <app-file-upload-oss [accept]="fileType" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>demo六[限制文件大小]</h5>
+          <app-file-upload-oss [type]="'button'" [uploadButton]="true" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
         </div>
       </div>
     </div>

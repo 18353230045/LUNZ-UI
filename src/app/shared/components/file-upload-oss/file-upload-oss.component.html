@@ -1,17 +1,17 @@
 <!-- rectangle button type -->
-<label *ngIf="type==='rectangle'" class="drop-area" for="fileSele" (dragover)="dragover($event)" (drop)="dropSelectFiles($event)">
+<label *ngIf="type==='rectangle'" class="drop-area" for="{{randomId}}" (dragover)="dragover($event)" (drop)="dropSelectFiles($event)">
   <span class="lz-upload-font">
     <span class="la la-cloud-upload"></span>
     <br />
     <span>将文件拖到此处，或</span>
     <span class="m--font-info">点击上传</span>
-    <input type="file" name="file" multiple id="fileSele" (change)="clickSelectFiles($event)"/>
+    <input type="file" name="file" multiple id="{{randomId}}" (change)="clickSelectFiles($event)"/>
   </span>
 </label>
 <!-- button type -->
 <span *ngIf="type==='button'">
-  <label class="btn btn-success" for="btn" (dragover)="dragover($event)" (drop)="dropSelectFiles($event)">
-    <input type="file" id="btn" multiple hidden (change)="clickSelectFiles($event)" />拖动文件到此处或点击选择上传文件
+  <label class="btn btn-success" for="{{randomId}}" (dragover)="dragover($event)" (drop)="dropSelectFiles($event)">
+    <input type="file" id="{{randomId}}" multiple hidden (change)="clickSelectFiles($event)" />拖动文件到此处或点击选择上传文件
   </label>
 </span>
 
@@ -27,7 +27,7 @@
       <!-- file upload loading -->
       <span *ngIf="file?.percent > 0 && file?.percent < 100" [ngStyle]="{'width':'13px','height':'20px'}" class="lz-file-upload-status float-right m-loader m-loader--sm m-loader--brand"></span>
       <!-- file remove button -->
-      <span *ngIf="file?.percent === 0 && file?.remove" (click)="removeFile(i)" [ngStyle]="{'width':'13px','height':'20px','cursor':'pointer'}" class="lz-file-upload-status float-right fa fa-times-circle m-loader--brand"></span>
+      <span *ngIf="(file?.percent === 0 || file?.percent === 100) && file?.remove" (click)="removeFile(i)" [ngStyle]="{'width':'13px','height':'20px','cursor':'pointer'}" class="lz-file-upload-status float-right fa fa-times-circle m-loader--brand"></span>
       <!-- file upload progress -->
       <div>
         <div class="lz-file-upload-press-content float-left">
@@ -43,6 +43,6 @@
 </div>
 
 <!-- file upload button -->
-<div [ngStyle]="{'margin-top':'4px'}">
-  <button type="button" class="btn btn-success" (click)="uploadFile()" [disabled]="filesList.length < 1">上传</button>
+<div *ngIf="uploadButton" [ngStyle]="{'margin-top':'4px'}">
+  <button type="button" class="btn btn-success" (click)="uploadFile()" [disabled]="isDisabledUploadButton">上传</button>
 </div>

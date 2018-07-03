@@ -11,6 +11,7 @@ export class FileUploadOssDemoComponent implements OnInit {
   accessKeyId: string;
   accesskey: string;
   bucket: string;
+  fileType: any;
 
   constructor() { }
 

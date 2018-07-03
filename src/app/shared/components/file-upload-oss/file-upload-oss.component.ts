@@ -11,18 +11,23 @@ declare const OSS: any;
 export class FileUploadOssComponent implements OnInit {
 
   // configuration parameter
-  @Input() type?: String = 'rectangle';
   @Input() region: string;
   @Input() accessKeyId: string;
   @Input() accesskey: string;
   @Input() bucket: string;
+  @Input() type?: String = 'rectangle';
+  @Input() uploadButton?: Boolean;
+  @Input() accept?: String = '*';
+  @Input() fileSize?: String;
 
   @Output() uploadStatus = new EventEmitter();
 
   client: any;
   filesList: any[] = [];
-
+  randomId: any;
+  isDisabledUploadButton: Boolean = true;
   constructor() {
+    this.randomId = Math.random();
   };
 
   ngOnInit() {
@@ -31,6 +36,41 @@ export class FileUploadOssComponent implements OnInit {
       accessKeyId: this.accessKeyId,
       accessKeySecret: this.accesskey,
       bucket: this.bucket
+    });
+    console.log(this.fileSize);
+  };
+
+  // isDisabledUploadButton
+  isDisabled() {
+    if (this.filesList.length === 0) {
+      this.isDisabledUploadButton = true;
+    } else {
+      for (const file of this.filesList) {
+        if (!file.isLoad) {
+          this.isDisabledUploadButton = false;
+          return;
+        };
+      };
+      this.isDisabledUploadButton = true;
+    }
+  };
+
+  // file filter
+  fileFilter(files: any[]) {
+    return new Promise((resolve) => {
+      const filesFiler: any[] = [];
+      if (this.accept === '*') {
+        resolve(files);
+      } else {
+        for (const file of files) {
+          const fileName = file.name;
+          const pattern = new RegExp(`${this.accept}`);
+          if (pattern.test(fileName)) {
+            filesFiler.push(file);
+          };
+        };
+        resolve(filesFiler);
+      }
     });
   };
 
@@ -41,6 +81,7 @@ export class FileUploadOssComponent implements OnInit {
         file['loading'] = false;
         file['remove'] = false;
         file['percent'] = 0;
+        file['isLoad'] = false;
       };
       resolve(files);
     });
@@ -48,23 +89,39 @@ export class FileUploadOssComponent implements OnInit {
 
   // click select files
   clickSelectFiles($event: any) {
-    this.filesList.length = 0;
-    this.handleFiles($event.target.files).then((files: any[]) => {
-      this.filesList.push(...files);
+    this.fileFilter($event.target.files).then((files: any[]) => {
+      this.handleFiles(files).then((file: any[]) => {
+        this.filesList.push(...file);
+      }).then(() => {
+        this.isDisabled();
+      }).then(() => {
+        if (!this.uploadButton) {
+          this.uploadFile();
+        };
+      });
+    });
+
+  };
+
+  // drop select files
+  dropSelectFiles($event: any) {
+    $event.preventDefault();
+    this.fileFilter($event.dataTransfer.files).then((files: any[]) => {
+      this.handleFiles(files).then((file: any[]) => {
+        this.filesList.push(...file);
+      }).then(() => {
+        this.isDisabled();
+      }).then(() => {
+        if (!this.uploadButton) {
+          this.uploadFile();
+        };
+      });
     });
   };
 
   // dragover preventDefault
   dragover($event: any) {
     $event.preventDefault();
-  };
-
-  // drop select files
-  dropSelectFiles($event: any) {
-    $event.preventDefault();
-    this.handleFiles($event.dataTransfer.files).then((files: any[]) => {
-      this.filesList.push(...files);
-    });
   };
 
   // remove files
@@ -78,19 +135,26 @@ export class FileUploadOssComponent implements OnInit {
   // upload files
   uploadFile() {
     for (const file of this.filesList) {
+      if (file.isLoad) {
+        continue;
+      };
       const index = file.name.lastIndexOf('.');
       const key = `${file.name.substring(0, index)}`;
       const progress = function (pro: any) {
-        file['percent'] = pro * 100;
+        return function (done: any) {
+          file['percent'] = pro * 100;
+          done();
+        };
       };
-
       this.client.multipartUpload(key, file, {
         progress: progress
       }).then(((res: any) => {
-        console.log('upload success');
-        // this.uploadStatus.emit(res);
-      }));
+        file['href'] = res.res.requestUrls[0];
+        file['isLoad'] = true;
+        this.uploadStatus.emit(res);
+      })).then(() => {
+        this.isDisabled();
+      });
     };
   };
-
 }
