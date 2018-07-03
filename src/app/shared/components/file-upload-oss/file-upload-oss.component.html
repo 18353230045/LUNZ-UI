@@ -5,7 +5,7 @@
     <br />
     <span>将文件拖到此处，或</span>
     <span class="m--font-info">点击上传</span>
-    <input type="file" name="file" multiple id="{{randomId}}" (change)="clickSelectFiles($event)"/>
+    <input type="file" name="file" multiple id="{{randomId}}" (change)="clickSelectFiles($event)" />
   </span>
 </label>
 <!-- button type -->
@@ -27,7 +27,8 @@
       <!-- file upload loading -->
       <span *ngIf="file?.percent > 0 && file?.percent < 100" [ngStyle]="{'width':'13px','height':'20px'}" class="lz-file-upload-status float-right m-loader m-loader--sm m-loader--brand"></span>
       <!-- file remove button -->
-      <span *ngIf="(file?.percent === 0 || file?.percent === 100) && file?.remove" (click)="removeFile(i)" [ngStyle]="{'width':'13px','height':'20px','cursor':'pointer'}" class="lz-file-upload-status float-right fa fa-times-circle m-loader--brand"></span>
+      <span *ngIf="(file?.percent === 0 || file?.percent === 100) && file?.remove" (click)="removeFile(i)" [ngStyle]="{'width':'13px','height':'20px','cursor':'pointer'}"
+        class="lz-file-upload-status float-right fa fa-times-circle m-loader--brand"></span>
       <!-- file upload progress -->
       <div>
         <div class="lz-file-upload-press-content float-left">

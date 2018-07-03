@@ -18,7 +18,8 @@ export class FileUploadOssComponent implements OnInit {
   @Input() type?: String = 'rectangle';
   @Input() uploadButton?: Boolean;
   @Input() accept?: String = '*';
-  @Input() fileSize?: String;
+  @Input() fileSize?: Number;
+  @Input() fileNumber?: Number = 10;
 
   @Output() uploadStatus = new EventEmitter();
 
@@ -26,6 +27,7 @@ export class FileUploadOssComponent implements OnInit {
   filesList: any[] = [];
   randomId: any;
   isDisabledUploadButton: Boolean = true;
+
   constructor() {
     this.randomId = Math.random();
   };
@@ -37,7 +39,6 @@ export class FileUploadOssComponent implements OnInit {
       accessKeySecret: this.accesskey,
       bucket: this.bucket
     });
-    console.log(this.fileSize);
   };
 
   // isDisabledUploadButton
@@ -55,10 +56,10 @@ export class FileUploadOssComponent implements OnInit {
     }
   };
 
-  // file filter
-  fileFilter(files: any[]) {
+  // filter file type
+  filterFileType(files: any[]) {
     return new Promise((resolve) => {
-      const filesFiler: any[] = [];
+      const filesFilter: any[] = [];
       if (this.accept === '*') {
         resolve(files);
       } else {
@@ -66,56 +67,86 @@ export class FileUploadOssComponent implements OnInit {
           const fileName = file.name;
           const pattern = new RegExp(`${this.accept}`);
           if (pattern.test(fileName)) {
-            filesFiler.push(file);
+            filesFilter.push(file);
           };
         };
-        resolve(filesFiler);
+        resolve(filesFilter);
       }
+    });
+  };
+
+  // filter file size
+  filterFileSize(files: any[]) {
+    const filesFilter: any[] = [];
+    return new Promise((resolve) => {
+      if (!this.fileSize) {
+        resolve(files);
+      } else {
+        for (const file of files) {
+          const fileSize = file.size / 1024;
+          if (fileSize <= this.fileSize) {
+            filesFilter.push(file);
+          };
+        };
+        resolve(filesFilter);
+      };
+    });
+  };
+
+  // filter file number
+  filterFileNumber(files: any[]) {
+    return new Promise((resolve) => {
+      if (files.length > this.fileNumber) {
+        return;
+      } else {
+        resolve(files);
+      };
     });
   };
 
   // Handle files
   handleFiles(files: any[]) {
     return new Promise((resolve) => {
-      for (const file of files) {
-        file['loading'] = false;
-        file['remove'] = false;
-        file['percent'] = 0;
-        file['isLoad'] = false;
-      };
-      resolve(files);
+      this.filterFileType(files).then((file: any[]) => {
+        this.filterFileNumber(file).then((fil: any[]) => {
+          this.filterFileSize(fil).then((filesArr: any[]) => {
+            for (const filesA of filesArr) {
+              filesA['loading'] = false;
+              filesA['remove'] = false;
+              filesA['percent'] = 0;
+              filesA['isLoad'] = false;
+            };
+            resolve(filesArr);
+          });
+        });
+      });
     });
   };
 
   // click select files
   clickSelectFiles($event: any) {
-    this.fileFilter($event.target.files).then((files: any[]) => {
-      this.handleFiles(files).then((file: any[]) => {
-        this.filesList.push(...file);
-      }).then(() => {
-        this.isDisabled();
-      }).then(() => {
-        if (!this.uploadButton) {
-          this.uploadFile();
-        };
-      });
+    this.handleFiles($event.target.files).then((file: any[]) => {
+      this.filesList.push(...file);
+    }).then(() => {
+      this.isDisabled();
+    }).then(() => {
+      if (!this.uploadButton) {
+        this.uploadFile();
+      };
     });
-
   };
 
   // drop select files
   dropSelectFiles($event: any) {
     $event.preventDefault();
-    this.fileFilter($event.dataTransfer.files).then((files: any[]) => {
-      this.handleFiles(files).then((file: any[]) => {
-        this.filesList.push(...file);
-      }).then(() => {
-        this.isDisabled();
-      }).then(() => {
-        if (!this.uploadButton) {
-          this.uploadFile();
-        };
-      });
+    this.handleFiles($event.dataTransfer.files).then((file: any[]) => {
+      this.filesList.push(...file);
+    }).then(() => {
+      this.isDisabled();
+    }).then(() => {
+      if (!this.uploadButton) {
+        this.uploadFile();
+      };
     });
   };
 

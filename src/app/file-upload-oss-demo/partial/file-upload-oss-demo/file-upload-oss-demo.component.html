@@ -43,9 +43,9 @@
       </div>
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
-          <h5>demo五[限制文件类型]</h5>
+          <h5>demo五[限制文件类型{{fileType}}]</h5>
           <select [(ngModel)]="fileType" class="form-control m-input m-input--square">
-            <option value="jpg">图片</option>
+            <option value="jpg">图片（jpg）</option>
             <option value="xlsx">EXCEL表</option>
             <option value="docx">WORD文档</option>
             <option value="pdf">PDF文档</option>
@@ -54,8 +54,17 @@
           <app-file-upload-oss [accept]="fileType" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
-          <h5>demo六[限制文件大小]</h5>
-          <app-file-upload-oss [type]="'button'" [uploadButton]="true" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
+          <h5>demo六[限制文件大小{{fileSizekb}}]</h5>
+          <input type="text" class="form-control m-input" placeholder="输入文件大小" [(ngModel)]="fileSize" />
+          <app-file-upload-oss [type]="'button'" [fileSize]="fileSize" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey"
+            [bucket]="bucket"></app-file-upload-oss>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>demo七[限制文件数量{{fileNumber}}个文件]</h5>
+          <input type="text" class="form-control m-input" placeholder="输入文件数量，默认10" [(ngModel)]="fileNumber" />
+          <app-file-upload-oss [fileNumber]="fileNumber" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
         </div>
       </div>
     </div>
