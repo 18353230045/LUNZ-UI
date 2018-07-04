@@ -111,6 +111,7 @@ export class FileUploadOssComponent implements OnInit {
         this.filterFileNumber(file).then((fil: any[]) => {
           this.filterFileSize(fil).then((filesArr: any[]) => {
             for (const filesA of filesArr) {
+              filesA['fileSize'] = filesA['size'];
               filesA['loading'] = false;
               filesA['remove'] = false;
               filesA['percent'] = 0;
