@@ -56,13 +56,13 @@ export class TabsComponent implements OnInit {
       this.addTab(activeUrl).then(() => {
         this.isFill();
       }).then(() => {
-        this.movingTabToVisualArea(activeUrl);
-      }).then(() => {
-        this.isShowMoveTabIcon();
-      }).then(() => {
-        this.isDisableLeftMoveIcon();
-      }).then(() => {
-        this.isDisableRightMoveIcon();
+        this.movingTabToVisualArea(activeUrl).then(() => {
+          this.isShowMoveTabIcon().then(() => {
+            this.isDisableLeftMoveIcon().then(() => {
+              this.isDisableRightMoveIcon();
+            });
+          });
+        });
       });
     });
   };
@@ -76,11 +76,11 @@ export class TabsComponent implements OnInit {
           clearInterval(timer);
           if (this.isHave(activeUrl)) {
             this.movingTabToVisualArea(activeUrl).then(() => {
-              this.isShowMoveTabIcon();
-            }).then(() => {
-              this.isDisableLeftMoveIcon();
-            }).then(() => {
-              this.isDisableRightMoveIcon();
+              this.isShowMoveTabIcon().then(() => {
+                this.isDisableLeftMoveIcon().then(() => {
+                  this.isDisableRightMoveIcon();
+                });
+              });
             });
           } else {
             for (const module of allModule) {
@@ -125,11 +125,11 @@ export class TabsComponent implements OnInit {
   // remove tab
   removeTab(tab: any, index: number) {
     this.removeTabEncapsulation(tab, index).then(() => {
-      this.isShowMoveTabIcon();
-    }).then(() => {
-      this.isDisableLeftMoveIcon();
-    }).then(() => {
-      this.isDisableRightMoveIcon();
+      this.isShowMoveTabIcon().then(() => {
+        this.isDisableLeftMoveIcon().then(() => {
+          this.isDisableRightMoveIcon();
+        });
+      });
     });
   };
 
@@ -228,11 +228,11 @@ export class TabsComponent implements OnInit {
   // move to tab
   moveTab(direction: string) {
     this.moveTabEncapsulation(direction).then(() => {
-      this.isShowMoveTabIcon();
-    }).then(() => {
-      this.isDisableRightMoveIcon();
-    }).then(() => {
-      this.isDisableLeftMoveIcon();
+      this.isShowMoveTabIcon().then(() => {
+        this.isDisableRightMoveIcon().then(() => {
+          this.isDisableLeftMoveIcon();
+        });
+      });
     });
   };
 
@@ -348,9 +348,9 @@ export class TabsComponent implements OnInit {
         clearInterval(timer);
         this.movingTabToVisualArea(activeUrl).then(() => {
           this.isShowMoveTabIcon().then(() => {
-            this.isDisableLeftMoveIcon();
-          }).then(() => {
-            this.isDisableRightMoveIcon();
+            this.isDisableLeftMoveIcon().then(() => {
+              this.isDisableRightMoveIcon();
+            });
           });
         });
       };
@@ -380,9 +380,9 @@ export class TabsComponent implements OnInit {
         clearInterval(timer);
         this.movingTabToVisualArea(activeUrl).then(() => {
           this.isShowMoveTabIcon().then(() => {
-            this.isDisableLeftMoveIcon();
-          }).then(() => {
-            this.isDisableRightMoveIcon();
+            this.isDisableLeftMoveIcon().then(() => {
+              this.isDisableRightMoveIcon();
+            });
           });
         });
       };
@@ -400,19 +400,17 @@ export class TabsComponent implements OnInit {
     this.tabs.length = 0;
     this.tabs.push(activeItem);
 
+    $('#lz-tabs-continer-ul').css('margin-left', '0px');
     const timer = setInterval(() => {
       const modeDomLength = $('.lz-tabs-item-lhg').length;
-      if (modeDomLength === 1) {
+      if (modeDomLength === 1 && $('#lz-tabs-continer-ul').css('margin-left') === '0px') {
         clearInterval(timer);
         this.isShowMoveTabIcon().then(() => {
-          this.isDisableLeftMoveIcon();
-        }).then(() => {
-          this.isDisableRightMoveIcon();
-        }).then(() => {
-          $('#lz-tabs-continer-ul').css('margin-left', '0px');
+          this.isDisableLeftMoveIcon().then(() => {
+            this.isDisableRightMoveIcon();
+          });
         });
       }
     }, 200);
   };
-
 };
