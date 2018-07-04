@@ -25,16 +25,16 @@ export class TabsComponent implements OnInit {
 
   ngOnInit() {
     $(window).resize(() => {
-      this.isFill().then(() => {
-      }).then(() => {
-        this.isShowMoveTabIcon();
-      }).then(() => {
-        this.isDisableLeftMoveIcon();
-      }).then(() => {
-        this.isDisableRightMoveIcon().then(() => {
-          $('#lz-tabs-continer-ul').css('margin-left', '0px');
+      setTimeout(() => {
+        const activeUrl = sessionStorage.getItem('activeUrl');
+        this.movingTabToVisualArea(activeUrl).then(() => {
+          this.isShowMoveTabIcon().then(() => {
+            this.isDisableLeftMoveIcon().then(() => {
+              this.isDisableRightMoveIcon();
+            });
+          });
         });
-      });
+      }, 500);
     });
   };
 
@@ -52,6 +52,7 @@ export class TabsComponent implements OnInit {
   init() {
     this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
       const activeUrl = event['urlAfterRedirects'];
+      sessionStorage.setItem('activeUrl', activeUrl);
       this.addTab(activeUrl).then(() => {
         this.isFill();
       }).then(() => {
