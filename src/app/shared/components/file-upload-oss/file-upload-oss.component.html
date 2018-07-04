@@ -10,8 +10,8 @@
 </label>
 <!-- button type -->
 <span *ngIf="type==='button'">
-  <label class="btn btn-success" for="{{randomId}}" (dragover)="dragover($event)" (drop)="dropSelectFiles($event)">
-    <input type="file" id="{{randomId}}" multiple hidden (change)="clickSelectFiles($event)" />拖动文件到此处或点击选择上传文件
+  <label class="btn btn-success" for="{{randomId}}{{randomId}}" (dragover)="dragover($event)" (drop)="dropSelectFiles($event)">
+    <input type="file" id="{{randomId}}{{randomId}}" multiple hidden (change)="clickSelectFiles($event)" />拖动文件到此处或点击选择上传文件
   </label>
 </span>
 
@@ -25,7 +25,7 @@
       <!-- file size -->
       <span class="lz-file-upload-file-size">{{file.size | toFixed}}kb</span>
       <!-- file upload loading -->
-      <span *ngIf="file?.percent > 0 && file?.percent < 100" [ngStyle]="{'width':'13px','height':'20px'}" class="lz-file-upload-status float-right m-loader m-loader--sm m-loader--brand"></span>
+      <span *ngIf="(file?.percent > 0 && file?.percent < 100 && uploadButton) || (file?.percent >= 0 && file?.percent < 100 && !uploadButton)" [ngStyle]="{'width':'13px','height':'20px'}" class="lz-file-upload-status float-right m-loader m-loader--sm m-loader--brand"></span>
       <!-- file remove button -->
       <span *ngIf="(file?.percent === 0 || file?.percent === 100) && file?.remove" (click)="removeFile(i)" [ngStyle]="{'width':'13px','height':'20px','cursor':'pointer'}"
         class="lz-file-upload-status float-right fa fa-times-circle m-loader--brand"></span>

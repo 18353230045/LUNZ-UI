@@ -180,7 +180,12 @@ export class FileUploadOssComponent implements OnInit {
       this.client.multipartUpload(key, file, {
         progress: progress
       }).then(((res: any) => {
-        file['href'] = res.res.requestUrls[0];
+        const href = res.res.requestUrls[0];
+        if (/\?uploadId/.test(href)) {
+          file['href'] = href.substring(0, href.indexOf('?'));
+        } else {
+          file['href'] = href;
+        }
         file['isLoad'] = true;
         this.uploadStatus.emit(res);
       })).then(() => {
