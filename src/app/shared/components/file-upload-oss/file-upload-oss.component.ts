@@ -173,10 +173,12 @@ export class FileUploadOssComponent implements OnInit {
       const key = `${file.name.substring(0, index)}`;
       const progress = function (pro: any) {
         return function (done: any) {
-          file['percent'] = pro * 100;
+          file['percent'] = Number((pro * 100).toFixed(2));
           done();
         };
       };
+      file['isLoad'] = true;
+      this.isDisabled();
       this.client.multipartUpload(key, file, {
         progress: progress
       }).then(((res: any) => {
@@ -186,10 +188,11 @@ export class FileUploadOssComponent implements OnInit {
         } else {
           file['href'] = href;
         }
-        file['isLoad'] = true;
+        file['status'] = 'success';
         this.uploadStatus.emit(res);
-      })).then(() => {
-        this.isDisabled();
+      })).catch((reason: any) => {
+        file['status'] = 'error';
+        this.uploadStatus.emit(reason);
       });
     };
   };
