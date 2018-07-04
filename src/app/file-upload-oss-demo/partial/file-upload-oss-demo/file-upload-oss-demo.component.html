@@ -44,13 +44,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
           <h5>demo五[限制文件类型{{fileType}}]</h5>
-          <select [(ngModel)]="fileType" class="form-control m-input m-input--square">
-            <option value="jpg">图片（jpg）</option>
-            <option value="xlsx">EXCEL表</option>
-            <option value="docx">WORD文档</option>
-            <option value="pdf">PDF文档</option>
-            <option value="pptx">PPT文档</option>
-          </select>
+          <input type="text" class="form-control m-input" placeholder="输入文件类型扩展名" [(ngModel)]="fileType" />
           <app-file-upload-oss [accept]="fileType" [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"></app-file-upload-oss>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
