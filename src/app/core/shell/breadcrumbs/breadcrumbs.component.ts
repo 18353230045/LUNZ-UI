@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, Params } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
-import { environment } from '../../../../environments/environment';
 import { I18nService } from '../../i18n.service';
 
 interface IBreadcrumb {
@@ -24,9 +22,7 @@ export class BreadcrumbsComponent implements OnInit {
   public breadcrumbs: IBreadcrumb[];
 
   constructor(private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private translateService: TranslateService,
-    private i18nService: I18nService) {
+    private activatedRoute: ActivatedRoute) {
     this.breadcrumbs = [];
     this.init();
   }
@@ -42,8 +38,13 @@ export class BreadcrumbsComponent implements OnInit {
       // set breadcrumbs
       const root: ActivatedRoute = this.activatedRoute.root;
       this.breadcrumbs = this.getBreadcrumbs(root);
+      // A page that jumps to a refresh at a refresh
+      if (this.breadcrumbs.length > 0) {
+        const lastOne = this.breadcrumbs.length - 1;
+        const currentRouting = this.breadcrumbs[lastOne].url;
+        sessionStorage.setItem('currentRouting', currentRouting);
+      }
     });
-
   }
 
   /**

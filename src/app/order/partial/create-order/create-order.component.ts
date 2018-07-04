@@ -9,8 +9,6 @@ import { ReferenceDataService } from '../../../shared/services/reference-data.se
 
 import { OrdersService } from '../../shared/orders.service';
 
-declare const lengthStorageArea: any;
-
 @Component({
   selector: 'app-create-order',
   templateUrl: './create-order.component.html',

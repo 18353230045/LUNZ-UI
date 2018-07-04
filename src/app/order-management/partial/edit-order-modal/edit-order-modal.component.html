@@ -12,7 +12,7 @@
           <span class="text-danger">*</span>
         </label>
         <input type="text" formControlName="subject" placeholder="订单摘要" class="form-control" [(ngModel)]="data.subject" />
-        <app-validation-message [control]="form.controls['subject']" label="订单摘要"></app-validation-message>
+        <component-zr-validation-message [control]="form.controls['subject']" label="订单摘要"></component-zr-validation-message>
       </div>
       <div class="form-group">
         <label>日期
@@ -26,14 +26,14 @@
             </button>
           </span>
         </div>
-        <app-validation-message [formGroup]="form" for="date" label="日期"></app-validation-message>
+        <component-zr-validation-message [formGroup]="form" for="date" label="日期"></component-zr-validation-message>
       </div>
       <div class="form-group">
         <label>单价
           <span class="text-danger">*</span>
         </label>
         <input type="number" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="data.price" />
-        <app-validation-message [control]="form.controls['price']" label="单价"></app-validation-message>
+        <component-zr-validation-message [control]="form.controls['price']" label="单价"></component-zr-validation-message>
       </div>
       <div class="form-group">
         <label>从何处了解本站？
@@ -42,14 +42,14 @@
         <select formControlName="hearFrom" [(ngModel)]="data.hearFrom" class="form-control">
           <option *ngFor="let item of hearFromItems" [ngValue]="item.key">{{item.text}}</option>
         </select>
-        <app-validation-message [control]="form.controls['hearFrom']" label="从何处了解本站"></app-validation-message>
+        <component-zr-validation-message [control]="form.controls['hearFrom']" label="从何处了解本站"></component-zr-validation-message>
       </div>
       <div class="form-group">
         <label>数量
           <span class="text-danger">*</span>
         </label>
         <input type="number" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="data.amount" />
-        <app-validation-message [control]="form.controls['amount']" label="数量"></app-validation-message>
+        <component-zr-validation-message [control]="form.controls['amount']" label="数量"></component-zr-validation-message>
       </div>
       <div class="form-group">
         <label>金额</label>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, TemplateRef, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
 
 import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
 

@@ -1,7 +1,7 @@
 import 'rxjs/add/observable/throw';
 
 import { Injectable, Injector } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { Router } from '@angular/router';
 import {
     Http, ConnectionBackend, RequestOptions, Headers,
     Request, Response, RequestOptionsArgs, RequestMethod, ResponseOptions
@@ -22,7 +22,7 @@ import { AuthenticationOAuth2Service } from '../authentication/authentication-oa
 
 import { toURLSearchParams } from './http-helper';
 
-declare var URI: any;
+declare const URI: any;
 
 /**
  * Provides a base framework for http service extension.

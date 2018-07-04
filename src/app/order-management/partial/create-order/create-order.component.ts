@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
-import { Dialogs } from '../../../core/dialogs.service';
 import { ConvertService } from '../../../shared/converts/convert.service';
 
 import { OrdersService } from '../../shared/orders.service';

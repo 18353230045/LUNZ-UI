@@ -1,6 +1,6 @@
 import {
-    Component, Directive, EventEmitter, ElementRef, Renderer,
-    HostListener, Output, Input, OnInit, OnDestroy, ChangeDetectionStrategy, Injector
+    Component, EventEmitter, ElementRef, Renderer,
+    Output, Input, OnInit, Injector
 } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
@@ -17,7 +17,7 @@ import { Logger } from '../../../core/logger.service';
 import { environment } from '../../../../environments/environment';
 import { AuthenticationService, Credentials } from '../../../core/authentication/authentication.service';
 
-declare var URI: any;
+declare const URI: any;
 
 @Component({
     selector: 'app-file-upload',

@@ -12,9 +12,7 @@ import { I18nService } from '../core/i18n.service';
 import { Dialogs } from '../core/dialogs.service';
 import { AuthenticationService } from '../core/authentication/authentication.service';
 
-declare var URI: any;
-declare var SnippetLogin: any;
-declare var $: any;
+declare const URI: any;
 
 @Component({
   selector: 'app-login',
@@ -32,11 +30,9 @@ export class LoginComponent implements OnInit {
   forgetPassword: Boolean = true;
 
   constructor(
-    private location: Location,
     private router: Router,
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
-    private dialogs: Dialogs,
     private loggerFactory: LoggerFactory,
     private authenticationService: AuthenticationService) {
 

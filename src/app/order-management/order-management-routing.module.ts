@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Route } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { RouteExtensions } from '../core/route.service';
 
@@ -10,12 +10,12 @@ import { OrderComponent } from './partial/order/order.component';
 
 const routes: Routes =
   RouteExtensions.withHost(
-      { path: 'orders', component: OrdersComponent, data: { title: '订单管理' } },
-      [
-        { path: 'new', component: CreateOrderComponent, data: { title: '新建订单' } },
-        { path: ':id/edit', component: EditOrderComponent, data: { title: '编辑订单' } },
-        { path: ':id', component: OrderComponent, data: { title: '订单详细' } },
-      ]);
+    { path: 'orders', component: OrdersComponent, data: { title: '订单管理' } },
+    [
+      { path: 'new', component: CreateOrderComponent, data: { title: '新建订单' } },
+      { path: ':id/edit', component: EditOrderComponent, data: { title: '编辑订单' } },
+      { path: ':id', component: OrderComponent, data: { title: '订单详细' } },
+    ]);
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

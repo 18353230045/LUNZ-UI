@@ -6,7 +6,7 @@ import { LoggerFactory } from '../../../../logger-factory.service';
 import { Logger } from '../../../../logger.service';
 import { OperationService } from '../../quick-actions/shared/operation.service';
 
-declare var $: any;
+declare const $: any;
 
 @Component({
     selector: 'app-top-menu-actions, [app-top-menu-actions]',

@@ -13,7 +13,7 @@ import {
   ChangePasswordModalComponent
 } from '../../../../change-password/change-password-modal/change-password-modal.component';
 
-declare var $: any;
+declare const $: any;
 
 @Component({
   selector: 'app-profile, [app-profile]',
@@ -60,6 +60,7 @@ export class ProfileComponent implements OnInit {
     const menuOpen = $('.m-brand__toggler--active');
 
     sessionStorage.setItem('logout', 'logout');
+    sessionStorage.removeItem('currentRouting');
 
     if (menuOpen.length > 0) {
       $('#m_aside_left_minimize_toggle').trigger('click');

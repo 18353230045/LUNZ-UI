@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import { Logger } from '../../core/logger.service';
 import { LoggerFactory } from '../../core/logger-factory.service';
-import { Dialogs } from '../../core/dialogs.service';
 import { ProfileService } from '../../core/profile/profile.service';
 
 @Component({
@@ -22,7 +21,6 @@ export class ChangePasswordModalComponent implements OnInit {
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
-    private dialogs: Dialogs,
     private loggerFactory: LoggerFactory,
     private profileService: ProfileService,
     public activeModal: BsModalRef) {

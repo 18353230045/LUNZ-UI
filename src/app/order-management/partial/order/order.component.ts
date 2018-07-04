@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Location, DatePipe } from '@angular/common';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { FormGroup } from '@angular/forms';
 
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
-import { Dialogs } from '../../../core/dialogs.service';
 
 import { OrdersService } from '../../shared/orders.service';
 
@@ -26,10 +25,11 @@ export class OrderComponent implements OnInit {
     { key: 3, text: '朋友' }
   ];
 
-  constructor(private ordersService: OrdersService,
+  constructor(
+    private ordersService: OrdersService,
     private loggerFactory: LoggerFactory,
-    private router: Router, private route: ActivatedRoute, public location: Location,
-    private formBuilder: FormBuilder) {
+    private route: ActivatedRoute,
+    public location: Location) {
     this.log = this.loggerFactory.getLogger();
   }
 

@@ -1,8 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 
-import { Subscription } from 'rxjs/Subscription';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
 import { Dialogs } from '../../../core/dialogs.service';
@@ -44,8 +41,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     private ordersService: OrdersService,
     private changeDetectorRef: ChangeDetectorRef,
     private loggerFactory: LoggerFactory,
-    private dialogs: Dialogs,
-    private modalService: BsModalService) {
+    private dialogs: Dialogs) {
     this.log = this.loggerFactory.getLogger();
   };
 
@@ -86,7 +82,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     this.dialogs.confirm(`真的要删除 '${row.subject}' 吗？`).subscribe(
       () => {
         this.ordersService.deleteOrder(row)
-          .subscribe(response => {
+          .subscribe(() => {
             this.ngxDataTable.refreshData();
             this.log.info('订单删除成功!', row);
           }, error => this.log.error('订单删除失败。', error));

@@ -5,6 +5,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ZrValidationMessageModule } from 'zr-validation-message';
+import { NgxQueryToolbarModule } from 'ngx-query-toolbar';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -23,6 +25,8 @@ import { CreateHearFromComponent } from './partial/create-hear-from/create-hear-
     NgxDatatableModule,
     NgxQueryModule,
     BsDatepickerModule,
+    ZrValidationMessageModule.forRoot(),
+    NgxQueryToolbarModule.forRoot(),
     MomentModule,
     SharedModule,
     HearFromRoutingModule

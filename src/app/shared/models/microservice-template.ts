@@ -18,7 +18,7 @@ export class QueryGroup implements IQueryGroup {
 
     constructor(data?: IQueryGroup) {
         if (data) {
-            for (var property in data) {
+            for (const property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
@@ -88,7 +88,7 @@ export class Rule implements IRule {
 
     constructor(data?: IRule) {
         if (data) {
-            for (var property in data) {
+            for (const property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
@@ -152,7 +152,7 @@ export class PagingSort implements IPagingSort {
 
     constructor(data?: IPagingSort) {
         if (data) {
-            for (var property in data) {
+            for (const property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
@@ -206,7 +206,7 @@ export class Response implements IResponse {
 
     constructor(data?: IResponse) {
         if (data) {
-            for (var property in data) {
+            for (const property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
@@ -278,7 +278,7 @@ export class OrderDetails2 implements IOrderDetails2 {
 
     constructor(data?: IOrderDetails2) {
         if (data) {
-            for (var property in data) {
+            for (const property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
@@ -393,7 +393,7 @@ export class OrderItem2 implements IOrderItem2 {
 
     constructor(data?: IOrderItem2) {
         if (data) {
-            for (var property in data) {
+            for (const property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
@@ -562,7 +562,7 @@ export class Response2 implements IResponse2 {
 
     constructor(data?: IResponse2) {
         if (data) {
-            for (var property in data) {
+            for (const property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
@@ -624,7 +624,7 @@ export class HearFromDetails implements IHearFromDetails {
 
     constructor(data?: IHearFromDetails) {
         if (data) {
-            for (var property in data) {
+            for (const property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
@@ -667,7 +667,7 @@ export class Command3 implements ICommand3 {
 
     constructor(data?: ICommand3) {
         if (data) {
-            for (var property in data) {
+            for (const property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }

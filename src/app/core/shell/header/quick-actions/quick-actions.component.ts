@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { ITreeOptions, IActionMapping } from 'angular-tree-component';
 
@@ -7,8 +6,7 @@ import { LoggerFactory } from '../../../logger-factory.service';
 import { Logger } from '../../../logger.service';
 import { OperationService } from './shared/operation.service';
 
-
-declare var $: any;
+declare const $: any;
 
 @Component({
     selector: 'app-quick-actions, [app-quick-actions]',

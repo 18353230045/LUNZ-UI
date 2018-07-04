@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Route } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { RouteExtensions } from '../core/route.service';
 
@@ -9,11 +9,11 @@ import { CreateHearFromComponent } from './partial/create-hear-from/create-hear-
 
 const routes: Routes =
   RouteExtensions.withHost(
-      { path: 'hearFroms', component: HearFromsComponent, data: { title: '从哪里听说' } },
-      [
-        { path: 'new', component: CreateHearFromComponent, data: { title: '新建' } },
-        { path: ':id/edit', component: EditHearFromComponent, data: { title: '编辑' } }
-      ]);
+    { path: 'hearFroms', component: HearFromsComponent, data: { title: '从哪里听说' } },
+    [
+      { path: 'new', component: CreateHearFromComponent, data: { title: '新建' } },
+      { path: ':id/edit', component: EditHearFromComponent, data: { title: '编辑' } }
+    ]);
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

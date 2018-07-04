@@ -1,0 +1,51 @@
+<!-- rectangle button type -->
+<label *ngIf="type==='rectangle'" class="drop-area" for="{{randomId}}" (dragover)="dragover($event)" (drop)="dropSelectFiles($event)">
+  <span class="lz-upload-font">
+    <span class="la la-cloud-upload"></span>
+    <br />
+    <span>将文件拖到此处，或</span>
+    <span class="m--font-info">点击上传</span>
+    <input type="file" name="file" multiple id="{{randomId}}" (change)="clickSelectFiles($event)" />
+  </span>
+</label>
+<!-- button type -->
+<span *ngIf="type==='button'">
+  <label class="btn btn-success" for="{{randomId}}{{randomId}}" (dragover)="dragover($event)" (drop)="dropSelectFiles($event)">
+    <input type="file" id="{{randomId}}{{randomId}}" multiple hidden (change)="clickSelectFiles($event)" />拖动文件到此处或点击选择上传文件
+  </label>
+</span>
+
+<!-- file lists -->
+<div class="lz-file-upload-list" *ngIf="filesList.length > 0">
+  <div class="lz-file-upload-list-item animated {{file?.removeAnimation}}" *ngFor="let file of filesList;let i = index">
+    <div (mouseenter)="file.remove=true" (mouseleave)="file.remove=false">
+      <!-- file name -->
+      <a *ngIf="(file?.percent >= 0 && file?.percent < 100)" href="javascript:void(0)">{{file?.name}}</a>
+      <a *ngIf="file?.percent===100" [href]="file?.href" target="_blank">{{file?.name}}</a>
+      <!-- file size -->
+      <span class="lz-file-upload-file-size">{{file.size | toFixed}}kb</span>
+      <!-- file upload loading -->
+      <span *ngIf="(file?.percent > 0 && file?.percent < 100 && uploadButton && file?.status !== 'error') || (file?.percent >= 0 && file?.percent < 100 && !uploadButton && file?.status !== 'error')" [ngStyle]="{'width':'13px','height':'20px'}" class="lz-file-upload-status float-right m-loader m-loader--sm m-loader--brand"></span>
+      <!-- file upload status error -->
+      <span *ngIf="file?.status === 'error'" class="lz-file-upload-status fa fa-times-circle float-right m--font-danger" (click)="removeFile(i)"></span>
+      <!-- file remove button -->
+      <span *ngIf="(file?.percent === 0 || file?.percent === 100) && file?.remove && file?.status !== 'error'" (click)="removeFile(i)" [ngStyle]="{'width':'13px','height':'20px','cursor':'pointer'}"
+        class="lz-file-upload-status float-right fa fa-times-circle m-loader--brand"></span>
+      <!-- file upload progress -->
+      <div>
+        <div class="lz-file-upload-press-content float-left">
+          <div class="lz-file-upload-press-bg">
+            <span class="progress-bar" [ngStyle]="{'width': file?.percent + '%'}"></span>
+          </div>
+        </div>
+        <div class="float-right text-right lz-file-upload-press-text">{{file?.percent}}%</div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- file upload button -->
+<div *ngIf="uploadButton" [ngStyle]="{'margin-top':'4px'}">
+  <button type="button" class="btn btn-success" (click)="uploadFile()" [disabled]="isDisabledUploadButton">上传</button>
+</div>

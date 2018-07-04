@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 
-import { Subscription } from 'rxjs/Subscription';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';

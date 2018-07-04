@@ -1,4 +1,4 @@
-import { NgModule, Optional, SkipSelf, Injector, LOCALE_ID } from '@angular/core';
+import { NgModule, Optional, SkipSelf, Injector } from '@angular/core';
 import { CommonModule, DatePipe, CurrencyPipe } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { TreeModule } from 'angular-tree-component';
+import { ZrValidationMessageModule } from 'zr-validation-message';
 
 import { environment } from '../../environments/environment';
 import { SharedModule } from '../shared/shared.module';
@@ -55,6 +56,7 @@ import { TopMenuComponent } from './shell/header/top-menu/top-menu.component';
 import { ActionsComponent } from './shell/header/top-menu/actions/actions.component';
 import { ReportsComponent } from './shell/header/top-menu/reports/reports.component';
 import { AppsComponent } from './shell/header/top-menu/apps/apps.component';
+import { TabsComponent } from './shell/header/tabs/tabs.component';
 
 defineLocale('zh-cn', zhCnLocale);
 
@@ -88,6 +90,7 @@ export function createCurrencyPipe() {
         ModalModule.forRoot(),
         BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
+        ZrValidationMessageModule.forRoot(),
         ToastrModule,
         MomentModule,
         SharedModule,
@@ -117,7 +120,8 @@ export function createCurrencyPipe() {
         TopMenuComponent,
         ActionsComponent,
         ReportsComponent,
-        AppsComponent
+        AppsComponent,
+        TabsComponent
     ],
     entryComponents: [
         ChangePasswordModalComponent,

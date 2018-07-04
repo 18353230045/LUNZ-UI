@@ -6,8 +6,6 @@ import { Logger } from '../../core/logger.service';
 
 import { MessageService } from '../shared/message.service';
 
-declare var URI: any;
-
 @Component({
   selector: 'app-web-message',
   templateUrl: './web-message.component.html',

@@ -1,27 +1,22 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
+import { SweetAlertOptions } from 'sweetalert2';
 import { FileUploaderModule } from '../../app/lib/@uniprank/ng2-file-uploader';
 
 import { environment } from '../../environments/environment';
 
 import { LoaderComponent } from './loader/loader.component';
 import { HostComponent } from './components/host.component';
-import { ValidationMessageComponent } from './components/validation-message/validation-message.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { NgxDatatableFooterComponent } from './components/ngx-datatable-footer/ngx-datatable-footer.component';
 import { NgxDatatablePagerComponent } from './components/ngx-datatable-pager/ngx-datatable-pager.component';
-import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions/ngx-datatable-actions.component';
-import { NgxQueryToolbarComponent } from './components/ngx-query-toolbar/ngx-query-toolbar.component';
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
-import { DropdownSelectionComponent } from './components/dropdown-selection/dropdown-selection.component';
-import { SelectSelectionComponent } from './components/select-selection/select-selection.component';
-import { TabsComponent } from './components/tabs/tabs.component';
-import { ProgressComponent } from './components/progress/progress.component';
+import { FileUploadOssComponent } from './components/file-upload-oss/file-upload-oss.component';
+import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions/ngx-datatable-actions.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 
@@ -38,6 +33,7 @@ import { AutoFocusDirective } from './directives/auto-focus.directive';
 
 import { RmbPipe } from './pipes/rmb.pipe';
 import { RemoveSpacePipe } from './pipes/remove-space.pipe';
+import { ToFixedPipe } from './pipes/to-fixed.pipe';
 
 
 export function createDecimalPipe() {
@@ -57,17 +53,12 @@ export function createDecimalPipe() {
     declarations: [
         LoaderComponent,
         HostComponent,
-        ValidationMessageComponent,
         FileUploadComponent,
         NgxDatatableFooterComponent,
         NgxDatatablePagerComponent,
-        NgxDatatableActionsComponent,
-        NgxQueryToolbarComponent,
         VehicleSelectionComponent,
-        DropdownSelectionComponent,
-        SelectSelectionComponent,
-        TabsComponent,
-        ProgressComponent,
+        FileUploadOssComponent,
+        NgxDatatableActionsComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
@@ -77,22 +68,18 @@ export function createDecimalPipe() {
 
         RmbPipe,
         RemoveSpacePipe,
+        ToFixedPipe,
     ],
 
     exports: [
         LoaderComponent,
         HostComponent,
-        ValidationMessageComponent,
-        DropdownSelectionComponent,
         FileUploadComponent,
         NgxDatatableFooterComponent,
         NgxDatatablePagerComponent,
-        NgxDatatableActionsComponent,
-        NgxQueryToolbarComponent,
         VehicleSelectionComponent,
-        SelectSelectionComponent,
-        TabsComponent,
-        ProgressComponent,
+        FileUploadOssComponent,
+        NgxDatatableActionsComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
@@ -100,7 +87,8 @@ export function createDecimalPipe() {
         DatepickerDirective,
         AutoFocusDirective,
 
-        RmbPipe
+        RmbPipe,
+        ToFixedPipe
     ],
 
     providers: [

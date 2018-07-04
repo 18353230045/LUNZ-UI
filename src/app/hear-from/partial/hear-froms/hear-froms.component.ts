@@ -1,8 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { BsModalService } from 'ngx-bootstrap';
 
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
@@ -42,8 +40,7 @@ export class HearFromsComponent implements OnInit, AfterViewInit {
   constructor(private hearFromsService: HearFromsService,
     private changeDetectorRef: ChangeDetectorRef,
     private loggerFactory: LoggerFactory,
-    private dialogs: Dialogs,
-    private modalService: BsModalService) {
+    private dialogs: Dialogs) {
     this.log = this.loggerFactory.getLogger();
   };
 

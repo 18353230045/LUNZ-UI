@@ -5,6 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { MomentModule } from 'angular2-moment/moment.module';
+import { NgxDatatableActionsModule } from 'ngx-datatable-actions';
+import { ZrValidationMessageModule } from 'zr-validation-message';
+import { NgxQueryToolbarModule } from 'ngx-query-toolbar';
 
 import { SharedModule } from '../shared/shared.module';
 import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
@@ -23,9 +26,12 @@ import { OrderComponent } from './partial/order/order.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ZrValidationMessageModule.forRoot(),
+    NgxQueryToolbarModule.forRoot(),
     NgxDatatableModule,
     NgxQueryModule,
     MomentModule,
+    NgxDatatableActionsModule.forRoot(),
     SharedModule,
     OrderManagementRoutingModule
   ],

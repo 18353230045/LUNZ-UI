@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
+import { environment } from '../../../environments/environment';
+
 declare const jQuery: any;
 declare const mApp: any;
 declare const mUtil: any;
@@ -12,10 +14,16 @@ declare const mLayout: any;
   styleUrls: ['./shell.component.scss']
 })
 export class ShellComponent implements OnInit {
+  paddingTop: string;
+  showBreadcrumbs: Boolean = true;
 
   constructor(private router: Router) { }
 
+
   ngOnInit() {
+
+    this.showBreadcrumbs = !environment.haveTabs;
+
     this.router.events.subscribe((route) => {
       if (route instanceof NavigationStart) {
         jQuery('.m-wrapper>.progress').show();
@@ -40,6 +48,25 @@ export class ShellComponent implements OnInit {
           }).removeClass(animation).addClass(animation);
       }
     });
-  }
 
-}
+    this.setContentWarpPaddingTop();
+
+    jQuery(window).resize(() => {
+      this.setContentWarpPaddingTop();
+    });
+
+  };
+
+  setContentWarpPaddingTop() {
+    const haveTabs = environment.haveTabs;
+    const winWidth = window.innerWidth;
+
+    if (haveTabs) {
+      if (winWidth >= 993) {
+        this.paddingTop = 'lz-content-padding-top';
+      } else {
+        this.paddingTop = '';
+      }
+    };
+  };
+};

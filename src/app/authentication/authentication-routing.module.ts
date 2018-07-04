@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { environment } from '../../environments/environment';
-
-import { RouteExtensions } from '../core/route.service';
 import { SignInCallbackComponent } from './sign-in-callback/sign-in-callback.component';
 
 const routes: Routes = [

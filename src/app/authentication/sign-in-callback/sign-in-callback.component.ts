@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { environment } from '../../../environments/environment';
 
@@ -11,8 +11,8 @@ import { AuthenticationOAuth2Service } from '../../core/authentication/authentic
   templateUrl: './sign-in-callback.component.html',
   styleUrls: ['./sign-in-callback.component.scss']
 })
-export class SignInCallbackComponent implements OnInit {
 
+export class SignInCallbackComponent implements OnInit {
   loading: boolean;
   success: boolean;
 
@@ -21,32 +21,50 @@ export class SignInCallbackComponent implements OnInit {
     private router: Router,
     private injector: Injector) {
     this.loading = true;
-  }
+  };
 
   ngOnInit() {
-    this.authenticationOAuth2Service.signinCallback().then(() => {
-      this.loading = false;
-      this.success = true;
 
-      if (!environment.authentication.useServiceV1) {
-        this.router.navigateByUrl('/');
-      }
+    setTimeout(() => {
+      this.authenticationOAuth2Service.signinCallback().then(() => {
+        this.loading = false;
+        this.success = true;
+      }).then(() => {
+        const claims: any = this.authenticationOAuth2Service.claims;
+        const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
+        const currentRouting: string = sessionStorage.getItem('currentRouting');
 
-      const claims: any = this.authenticationOAuth2Service.claims;
-      const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
+        if (environment.authentication.useServiceV1 && claims.authToken &&
+          (!authenticationService.isAuthenticated() ||
+            authenticationService.credentials.token !== claims.authToken)) {
+          authenticationService.loginByAuthToken(claims.authToken)
+            .subscribe(() => {
+              if (currentRouting !== null) {
+                this.router.navigateByUrl(`/${currentRouting}`);
+              } else {
+                this.router.navigateByUrl(`/dashboard`);
+              }
+            });
+        } else {
+          if (currentRouting !== null) {
+            this.router.navigateByUrl(`/${currentRouting}`);
+          } else {
+            this.router.navigateByUrl(`/dashboard`);
+          }
+        }
 
-      if (environment.authentication.useServiceV1 && claims.authToken &&
-        (!authenticationService.isAuthenticated() || authenticationService.credentials.token !== claims.authToken)) {
-        authenticationService.loginByAuthToken(claims.authToken)
-          .subscribe(() => {
-            this.router.navigateByUrl('/');
-          });
-      } else {
-        this.router.navigateByUrl('/');
-      }
-    }).catch(error => {
-      this.loading = false;
-      this.success = false;
-    });
-  }
-}
+        if (!environment.authentication.useServiceV1) {
+          if (currentRouting !== null) {
+            this.router.navigateByUrl(`/${currentRouting}`);
+          } else {
+            this.router.navigateByUrl(`/dashboard`);
+          }
+        }
+
+      }).catch(error => {
+        this.loading = false;
+        this.success = false;
+      });
+    }, 1000);
+  };
+};
