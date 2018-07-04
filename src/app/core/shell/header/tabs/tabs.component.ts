@@ -55,6 +55,8 @@ export class TabsComponent implements OnInit {
       this.addTab(activeUrl).then(() => {
         this.isFill();
       }).then(() => {
+        this.movingTabToVisualArea(activeUrl);
+      }).then(() => {
         this.isShowMoveTabIcon();
       }).then(() => {
         this.isDisableLeftMoveIcon();
@@ -283,7 +285,7 @@ export class TabsComponent implements OnInit {
           allTabWidth += ($(this).outerWidth() + thisMarginRight);
         });
         minMoveMarginLeft = tabCcontentDomWidth - allTabWidth;
-        if (Math.floor(marginLeft) >= Math.floor(minMoveMarginLeft) && marginLeft !== 0) {
+        if (Math.floor(marginLeft) <= Math.floor(minMoveMarginLeft) && marginLeft !== 0) {
           this.disableRightMoveIcon = true;
         } else {
           this.disableRightMoveIcon = false;
