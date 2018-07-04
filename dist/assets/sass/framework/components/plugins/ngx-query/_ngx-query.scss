@@ -1,0 +1,22 @@
+/* ngx-query */
+
+ngx-query.full-screen {
+  .card {
+    border: none;
+    .card-body {
+      border-bottom: 1px solid #ebedf2;
+    }
+  }
+}
+
+ngx-query.no-header {
+  .card-header {
+    display: none;
+  }
+}
+
+ngx-query {
+  .btn {
+    color: #c4c5d6;
+  }
+}
