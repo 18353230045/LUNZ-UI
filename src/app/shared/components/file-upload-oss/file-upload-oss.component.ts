@@ -160,6 +160,7 @@ export class FileUploadOssComponent implements OnInit {
     this.filesList[index]['removeAnimation'] = 'fadeOutRight';
     setTimeout(() => {
       this.filesList.splice(index, 1);
+      this.isDisabled();
     }, 300);
   };
 
