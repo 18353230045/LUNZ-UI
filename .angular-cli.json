@@ -33,8 +33,8 @@
       "../node_modules/highcharts/modules/map.js",
       "../node_modules/highcharts/highcharts-3d.js",
       "../node_modules/highcharts/modules/exporting.js",
-      "../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
-      "../node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js",
+      "../node_modules/@activix/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js",
+      "../node_modules/@activix/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js",
       "../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js",
       "../node_modules/ali-oss/dist/aliyun-oss-sdk.min.js",
 

@@ -7,24 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DatepickerSelectComponent implements OnInit {
-    date1: String;
-    date2: String;
-    date3: String;
-    date4: String;
-    date5: String;
-    date6: String;
-    date7: String;
-    date8: String;
-    date9: String;
-    date10: String;
-    date11: String;
-    date12: String;
-    date13: String;
-    date14: String;
-    startDate: any = new Date(2018, 3, 9);
-    endDate: any = new Date(2018, 3, 15);
+    date1: any;
+    date2: any;
+    date3: any = '2018-06-01 11:15:00';
+    date4: any;
+    date5: any;
+    date6: any;
+    date7: any;
+    date8: any;
+    date9: any;
+    date10: any;
+    date11: any;
+    date12: any;
+    date13: any;
+    date14: any;
 
-    constructor( ) { };
+    startDate: any = new Date(2018, 6, 1);
+    endDate: any = new Date(2018, 6, 10);
+
+    constructor() { };
 
     ngOnInit() { };
 };
