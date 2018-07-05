@@ -41,72 +41,81 @@ export class DatepickerDirective implements OnInit, AfterViewInit {
     ngOnInit() { };
 
     ngAfterViewInit() {
-        this.setDatePicker();
-        this.setIconTrigger();
-        this.setBlur();
-        this.repairIcon();
+        this.setDatePicker().then(() => {
+            this.setIconTrigger().then(() => {
+                this.setBlur().then(() => {
+                    this.repairIcon();
+                });
+            });
+        });
     };
 
     setDatePicker() {
-        $(`#${this.el.nativeElement.id}`).datetimepicker({
-            language: 'zh-CN',
-            format: this.format,
-            showMeridian: this.showMeridian,
-            autoclose: this.autoclose,
-            startView: this.startView,
-            weekStart: this.weekStart,
-            startDate: this.startDate,
-            endDate: this.endDate,
-            daysOfWeekDisabled: this.daysOfWeekDisabled,
-            minView: this.minView,
-            maxView: this.maxView,
-            todayBtn: this.todayBtn,
-            clearBtn: this.clearBtn,
-            todayHighlight: this.todayHighlight,
-            keyboardNavigation: this.keyboardNavigation,
-            forceParse: this.forceParse,
-            minuteStep: this.minuteStep,
-            pickerPosition: this.pickerPosition,
-            initialDate: this.initialDate
-        }).on('changeDate', (ev: any) => {
-            if (this.dateType === 'displayDate') {
-                this.ngModelChange.emit(ev.target.value);
-            } else if (this.dateType === 'originalDate') {
-                this.ngModelChange.emit(ev.date);
-            }
+        return new Promise((resolve) => {
+            $(`#${this.el.nativeElement.id}`).datetimepicker({
+                language: 'zh-CN',
+                format: this.format,
+                showMeridian: this.showMeridian,
+                autoclose: this.autoclose,
+                startView: this.startView,
+                weekStart: this.weekStart,
+                startDate: this.startDate,
+                endDate: this.endDate,
+                daysOfWeekDisabled: this.daysOfWeekDisabled,
+                minView: this.minView,
+                maxView: this.maxView,
+                todayBtn: this.todayBtn,
+                clearBtn: this.clearBtn,
+                todayHighlight: this.todayHighlight,
+                keyboardNavigation: this.keyboardNavigation,
+                forceParse: this.forceParse,
+                minuteStep: this.minuteStep,
+                pickerPosition: this.pickerPosition,
+                initialDate: this.initialDate
+            }).on('changeDate', (ev: any) => {
+                if (this.dateType === 'displayDate') {
+                    this.ngModelChange.emit(ev.target.value);
+                } else if (this.dateType === 'originalDate') {
+                    this.ngModelChange.emit(ev.date);
+                }
+            });
+            resolve();
         });
     };
 
     // set blur
     setBlur() {
-        $(`#${this.el.nativeElement.id}`).blur((ev: any) => {
-            if (this.ngModel) {
-                this.ngModelChange.emit(this.ngModel);
-                $(`#${this.el.nativeElement.id}`).val(this.ngModel);
-                return;
-            };
+        return new Promise((resolve) => {
+            $(`#${this.el.nativeElement.id}`).blur((ev: any) => {
+                if (this.ngModel) {
+                    this.ngModelChange.emit(this.ngModel);
+                    $(`#${this.el.nativeElement.id}`).val(this.ngModel);
+                    return;
+                };
 
-            if (this.dateType === 'displayDate') {
-                this.ngModelChange.emit(ev.target.value);
-            } else if (this.dateType === 'originalDate') {
-                this.ngModelChange.emit(ev.date);
-            }
+                if (this.dateType === 'displayDate') {
+                    this.ngModelChange.emit(ev.target.value);
+                } else if (this.dateType === 'originalDate') {
+                    this.ngModelChange.emit(ev.date);
+                }
+            });
+            resolve();
         });
     };
 
     // set icon trigger
     setIconTrigger() {
-        if (this.isIcon) {
-            if ($(`#${this.el.nativeElement.id}`).next('span').length === 0) {
-
+        return new Promise((resolve) => {
+            if (this.isIcon) {
                 $(`#${this.el.nativeElement.id}`).after(`<span class="input-group-addon" 
-                    style="cursor: pointer;"><i class="${this.iconClass}"></i></span>`);
+                        style="cursor: pointer;"><i class="${this.iconClass}"></i></span>`);
 
                 $(`#${this.el.nativeElement.id}`).next('span').click(function () {
                     $(this).prev('input').trigger('focus');
                 });
+                resolve();
             };
-        };
+        });
     };
 
     // Fix the last page / next page icon
