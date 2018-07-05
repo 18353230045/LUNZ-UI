@@ -52,12 +52,7 @@
               <span class="text-danger">*</span>
             </label>
             <div class="input-group">
-              <input type="text" class="form-control" id="date" appDatepicker [clearBtn]="true" [(ngModel)]="order.date" formControlName="date" placeholder="yyyy-mm-dd" />
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                  <i class="fa fa-calendar"></i>
-                </button>
-              </span>
+              <input type="text" class="form-control" id="date" appDatepicker [clearBtn]="true" [(ngModel)]="order.date" [format]="'yyyy-mm-dd'" [startView]="2" [minView]="2" formControlName="date" placeholder="yyyy-mm-dd" />
             </div>
             <component-zr-validation-message [formGroup]="form" for="date" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></component-zr-validation-message>
           </div>

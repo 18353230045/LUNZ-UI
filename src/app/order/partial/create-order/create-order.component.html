@@ -51,7 +51,7 @@
               <span class="text-danger">*</span>
             </label>
             <div class="input-group">
-              <input type="text" class="form-control" id="date" appDatepicker [clearBtn]="true" [(ngModel)]="order.date" placeholder="yyyy-mm-dd"
+              <input type="text" class="form-control" id="date" appDatepicker [clearBtn]="true" [format]="'yyyy-mm-dd'" [startView]="2" [minView]="2" [(ngModel)]="order.date" placeholder="yyyy-mm-dd"
               />
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button">
