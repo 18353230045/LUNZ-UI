@@ -17,11 +17,12 @@
     </li>
     <!-- 我的模块 -->
     <li class="m-menu__item" *ngFor="let mode of myOperationMyModelList | slice:0:5;let i=index">
-      <a class="m-menu__link lz-m-menu__link" [routerLink]="[mode.url]">
+      <a class="m-menu__link lz-m-menu__link">
         <i class="m-menu__link-icon {{mode.icon}}"></i>
         <span class="m-menu__link-title">
           <span class="m-menu__link-wrap">
-            <span class="m-menu__link-text">{{mode.name}}
+            <span class="m-menu__link-text">
+              <a class="fa" [routerLink]="[mode.url]" [ngStyle]="{'text-decoration':'none'}">{{mode.name}}</a>
               <span *ngIf="editModel" class="lz-mode-edit-item">
                 <i class="fa flaticon-up-arrow lz-model-edit-icon-left lz-model-edit-icon" *ngIf="i!==0" (click)="$event.stopPropagation();moveModel(mode,i,myOperationMyModelList,1,'myOperationMyModelList')"
                   title="上移"></i>
@@ -37,11 +38,12 @@
     </li>
     <!-- 历史访问模块 -->
     <li class="m-menu__item" *ngFor="let modeList of myOperationOpenHistoryList | slice:0:5;let i=index">
-      <a class="m-menu__link lz-m-menu__link" [routerLink]="[modeList.url]">
+      <a class="m-menu__link lz-m-menu__link">
         <i class="m-menu__link-icon {{modeList.icon}} "></i>
         <span class="m-menu__link-title">
           <span class="m-menu__link-wrap">
-            <span class="m-menu__link-text">{{modeList.name}}
+            <span class="m-menu__link-text">
+              <a class="fa" [routerLink]="[modeList.url]" [ngStyle]="{'text-decoration':'none'}">{{modeList.name}}</a>
               <span *ngIf="editModel" class="lz-mode-edit-item">
                 <i class="fa flaticon-cancel" (click)="$event.stopPropagation();deleteModel(modeList,myOperationOpenHistoryList,i,'openHistoryList')"
                   title="移除"></i>
