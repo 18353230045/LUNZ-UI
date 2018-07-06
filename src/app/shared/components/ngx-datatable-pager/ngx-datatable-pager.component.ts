@@ -9,18 +9,19 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   }
 })
 export class NgxDatatablePagerComponent {
-
   @Input() pagerLeftArrowIcon: string;
   @Input() pagerRightArrowIcon: string;
   @Input() pagerPreviousIcon: string;
   @Input() pagerNextIcon: string;
+  @Input() pSize: number;
+  @Input() pageSizeArray?: any[] = [10, 20, 30, 40, 50];
+  @Input() datatable: any;
 
   @Input()
   set size(val: number) {
     this._size = val;
     this.pages = this.calcPages();
   }
-
   get size(): number {
     return this._size;
   }
@@ -30,7 +31,6 @@ export class NgxDatatablePagerComponent {
     this._count = val;
     this.pages = this.calcPages();
   }
-
   get count(): number {
     return this._count;
   }
@@ -40,11 +40,9 @@ export class NgxDatatablePagerComponent {
     this._page = val;
     this.pages = this.calcPages();
   }
-
   get page(): number {
     return this._page;
   }
-
   get totalPages(): number {
     const count = this.size < 1 ? 1 : Math.ceil(this.count / this.size);
     return Math.max(count || 0, 1);
@@ -52,10 +50,11 @@ export class NgxDatatablePagerComponent {
 
   @Output() change: EventEmitter<any> = new EventEmitter();
 
-  _count = 0;
   _page = 1;
+  _count = 0;
   _size = 0;
   pages: any;
+  pageSizeColumn: Boolean = true;
 
   canPrevious(): boolean {
     return this.page > 1;
@@ -73,15 +72,23 @@ export class NgxDatatablePagerComponent {
     this.selectPage(this.page + 1);
   }
 
-  selectPage(page: number): void {
-    if (page > 0 && page <= this.totalPages && page !== this.page) {
-      this.page = page;
-
-      this.change.emit({
-        page
-      });
+  selectPage(page: number, changePageSize?: any): void {
+    if (changePageSize) {
+      if (page > 0 && page <= this.totalPages) {
+        this.page = page;
+        this.change.emit({
+          page
+        });
+      }
+    } else {
+      if (page > 0 && page <= this.totalPages && page !== this.page) {
+        this.page = page;
+        this.change.emit({
+          page
+        });
+      }
     }
-  }
+  };
 
   calcPages(page?: number): any[] {
     const pages = [];
@@ -106,5 +113,10 @@ export class NgxDatatablePagerComponent {
 
     return pages;
   }
+
+  changePageSize(pageSize: number) {
+    this.datatable.limit = pageSize;
+    this.selectPage(1, 'changePageSize');
+  };
 
 }
