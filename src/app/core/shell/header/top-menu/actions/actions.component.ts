@@ -100,32 +100,36 @@ export class ActionsComponent implements OnInit {
     // existence
     existence(activeUrl: any, moduleTree: any[]) {
         return new Promise((resolve) => {
-            for (const model of moduleTree) {
-                if (model.children.length === 0) {
-                    if (activeUrl === model.ngUrl) {
-                        this.recordClickMenu.push({
-                            clickNum: 1,
-                            name: model.name,
-                            icon: model.icon,
-                            url: model.ngUrl
-                        });
-                        resolve();
+            const timer = setInterval(() => {
+                if (moduleTree !== null) {
+                    clearInterval(timer);
+                    for (const model of moduleTree) {
+                        if (model.children.length === 0) {
+                            if (activeUrl === model.ngUrl) {
+                                this.recordClickMenu.push({
+                                    clickNum: 1,
+                                    name: model.name,
+                                    icon: model.icon,
+                                    url: model.ngUrl
+                                });
+                                resolve();
+                            };
+                        } else {
+                            for (const mode of model.children) {
+                                if (activeUrl === mode.ngUrl) {
+                                    this.recordClickMenu.push({
+                                        clickNum: 1,
+                                        name: mode.name,
+                                        icon: mode.icon,
+                                        url: mode.ngUrl
+                                    });
+                                    resolve();
+                                };
+                            };
+                        }
                     };
-                } else {
-                    for (const mode of model.children) {
-                        if (activeUrl === mode.ngUrl) {
-                            this.recordClickMenu.push({
-                                clickNum: 1,
-                                name: mode.name,
-                                icon: mode.icon,
-                                url: mode.ngUrl
-                            });
-                            resolve();
-                        };
-                    };
-                }
-            };
-
+                };
+            }, 200);
         });
     };
 
