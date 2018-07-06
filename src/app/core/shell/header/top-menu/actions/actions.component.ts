@@ -4,7 +4,6 @@ import { ITreeOptions, IActionMapping } from 'angular-tree-component';
 
 import { LoggerFactory } from '../../../../logger-factory.service';
 import { Logger } from '../../../../logger.service';
-import { OperationService } from '../../quick-actions/shared/operation.service';
 
 declare const $: any;
 
@@ -40,8 +39,7 @@ export class ActionsComponent implements OnInit {
     };
 
     constructor(
-        private loggerFactory: LoggerFactory,
-        private operationService: OperationService,
+        private loggerFactory: LoggerFactory
     ) {
         this.log = this.loggerFactory.getLogger();
 
@@ -52,14 +50,29 @@ export class ActionsComponent implements OnInit {
     };
 
     ngOnInit() {
-        this.myOperationMyModelList = this.operationService.getModeList(`myOperationMyModelList`, 0) || [];
-        this.myOperationOpenHistoryList = this.operationService.getModeList(`openHistoryList`, 1) || [];
+        this.myOperationMyModelList = this.getModeList(`myOperationMyModelList`, 0) || [];
+        this.myOperationOpenHistoryList = this.getModeList(`openHistoryList`, 1) || [];
 
         this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
 
         $('.m-menu__submenu--left').on('click', '.lz-m-menu__link', function () {
             $(this).parents('.m-menu__item--rel').removeClass('m-menu__item--open-dropdown m-menu__item--hover');
         });
+    };
+
+    sortModelList(modeList: any) {
+        modeList.sort((x: any, y: any) => {
+            return y.clickNum - x.clickNum;
+        });
+        return modeList;
+    };
+
+    getModeList(modelName: string, moduelType: any) {
+        const modeList = JSON.parse(localStorage.getItem(modelName)) || [];
+
+        if (modeList !== null) {
+            return this.sortModelList(modeList);
+        }
     };
 
     removeRepeat(arr1: Array<any>, arr2: Array<any>) {
@@ -93,11 +106,11 @@ export class ActionsComponent implements OnInit {
             });
         }
 
-        this.operationService.sortModelList(list);
+        this.sortModelList(list);
 
         localStorage.setItem(`${moveListName}`, JSON.stringify(list));
 
-        this.myOperationMyModelList = this.operationService.getModeList(`myOperationMyModelList`, 0) || [];
+        this.myOperationMyModelList = this.getModeList(`myOperationMyModelList`, 0) || [];
     };
 
     deleteModel(row: any, list: Array<any>, i: number, deleteListName: string): void {
@@ -195,7 +208,7 @@ export class ActionsComponent implements OnInit {
         localStorage.setItem(`myOperationMyModelList`, JSON.stringify(this.temporaryList));
 
         const myOperationMyModelList = JSON.parse(localStorage.getItem('myOperationMyModelList'));
-        this.myOperationMyModelList = this.operationService.sortModelList(myOperationMyModelList);
+        this.myOperationMyModelList = this.sortModelList(myOperationMyModelList);
 
         this.temporaryList = [];
         this.addModel = false;

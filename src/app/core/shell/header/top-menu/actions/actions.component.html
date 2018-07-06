@@ -17,7 +17,7 @@
     </li>
     <!-- 我的模块 -->
     <li class="m-menu__item" *ngFor="let mode of myOperationMyModelList | slice:0:5;let i=index">
-      <a class="m-menu__link lz-m-menu__link" (click)="operationService.fastEntryModule(mode)">
+      <a class="m-menu__link lz-m-menu__link" [routerLink]="[mode.url]">
         <i class="m-menu__link-icon {{mode.icon}}"></i>
         <span class="m-menu__link-title">
           <span class="m-menu__link-wrap">
@@ -37,7 +37,7 @@
     </li>
     <!-- 历史访问模块 -->
     <li class="m-menu__item" *ngFor="let modeList of myOperationOpenHistoryList | slice:0:5;let i=index">
-      <a class="m-menu__link lz-m-menu__link" (click)="operationService.fastEntryModule(modeList)">
+      <a class="m-menu__link lz-m-menu__link" [routerLink]="[modeList.url]">
         <i class="m-menu__link-icon {{modeList.icon}} "></i>
         <span class="m-menu__link-title">
           <span class="m-menu__link-wrap">
@@ -73,10 +73,8 @@
       </div>
     </li>
     <li class="lz-add-model-cancel">
-      <a class="btn m-btn--pill btn-secondary btn-sm m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
-       (click)="$event.stopPropagation();submitCheckedModel()">添加</a>
-      <a class="btn m-btn--pill btn-secondary btn-sm m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
-       (click)="$event.stopPropagation();cancelCheckedModel()">取消</a>
+      <a class="btn m-btn--pill btn-secondary btn-sm m-btn m-btn--custom m-btn--label-brand m-btn--bolder" (click)="$event.stopPropagation();submitCheckedModel()">添加</a>
+      <a class="btn m-btn--pill btn-secondary btn-sm m-btn m-btn--custom m-btn--label-brand m-btn--bolder" (click)="$event.stopPropagation();cancelCheckedModel()">取消</a>
     </li>
   </ul>
 </div>

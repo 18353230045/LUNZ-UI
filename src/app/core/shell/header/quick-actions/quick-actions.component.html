@@ -24,8 +24,14 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 lz-m-nav-__item" *ngFor="let module of moduleList" [ngClass]="{'lz-m-nav-__item-edit':editModules}"
                   (click)="operationModule($event,module)">
                   <div href="#" class="lz-m-nav-grid__item">
-                    <i class="m-nav-grid__icon flatico-add {{module.icon}}"></i>
-                    <h6 class="m-nav-grid__text">{{module.name}}</h6>
+                    <a *ngIf="module.url" [routerLink]="[module.url]" [ngStyle]="{'text-decoration':'none'}">
+                      <i class="m-nav-grid__icon flatico-add {{module.icon}}"></i>
+                      <h6 class="m-nav-grid__text">{{module.name}}</h6>
+                    </a>
+                    <a *ngIf="!module.url">
+                      <i class="m-nav-grid__icon flatico-add {{module.icon}}"></i>
+                      <h6 class="m-nav-grid__text">{{module.name}}</h6>
+                    </a>
                   </div>
                 </div>
               </div>
