@@ -31,10 +31,10 @@ export class NgxDatatableFooterComponent implements OnInit {
   private _datatable: DatatableComponent;
 
   constructor() {
-  }
+  };
 
   ngOnInit() {
-  }
+  };
 
   private update(): void {
     if (this._datatable && this._template
@@ -54,5 +54,5 @@ export class NgxDatatableFooterComponent implements OnInit {
         };
       }
     }
-  }
+  };
 }

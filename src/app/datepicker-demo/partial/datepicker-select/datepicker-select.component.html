@@ -22,149 +22,100 @@
     <div class="container-fluid">
       <div class="row form-group m-form__group">
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>默认</h6>
+          <h6>有图标</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="default" appDatepicker [(ngModel)]="date1" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="icon" appDatepicker [(ngModel)]="date1" />
           </div>
           <div>{{date1}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>显示今日按钮</h6>
+          <h6>无图标</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="todayBtn" appDatepicker [todayBtn]="true" [(ngModel)]="date2" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="noicon" appDatepicker [(ngModel)]="date2" [isIcon]="false" />
           </div>
           <div>{{date2}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>显示清除按钮</h6>
+          <h6>绑定默认日期</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="clearBtn" appDatepicker [clearBtn]="true" [(ngModel)]="date3" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="defaultValue" appDatepicker [(ngModel)]="date3" />
           </div>
           <div>{{date3}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>只选择年</h6>
+          <h6>不显示上午/下午分割线</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="year" appDatepicker [startView]="'years'" [minViewMode]="'years'" [maxViewMode]="'years'"
-              [format]="'yyyy'" [(ngModel)]="date4" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="showMeridian" appDatepicker [showMeridian]="false" [(ngModel)]="date4" />
           </div>
           <div>{{date4}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>只选择月</h6>
+          <h6>输出年</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="month" appDatepicker [startView]="'months'" [minViewMode]="'months'" [maxViewMode]="'months'"
-              [format]="'mm'" [(ngModel)]="date5" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="year" appDatepicker [format]="'yyyy'" [startView]="4" [minView]="4" [(ngModel)]="date5" />
           </div>
           <div>{{date5}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>只选择日</h6>
+          <h6>输出月</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="days" appDatepicker [startView]="'months'" [minViewMode]="'days'" [maxViewMode]="'days'"
-              [format]="'dd'" [(ngModel)]="date6" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="month" appDatepicker [format]="'mm'" [startView]="3" [minView]="3" [maxView]="3" [(ngModel)]="date6" />
           </div>
           <div>{{date6}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>只选择年月</h6>
+          <h6>输出日</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="yearmonth" appDatepicker [startView]="'years'" [minViewMode]="'months'" [maxViewMode]="'years'"
-              [format]="'yyyy-mm'" [(ngModel)]="date7" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="day" appDatepicker [format]="'dd'" [startView]="2" [minView]="2" [maxView]="2" [(ngModel)]="date7" />
           </div>
           <div>{{date7}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>只选择月日</h6>
+          <h6>输出时分</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="monthday" appDatepicker [startView]="'months'" [minViewMode]="'days'" [maxViewMode]="'months'"
-              [format]="'mm-dd'" [(ngModel)]="date8" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="timemin" appDatepicker [format]="'hh:ii'" [startView]="0" [(ngModel)]="date8" />
           </div>
           <div>{{date8}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>支持多选</h6>
+          <h6>输出时分秒[秒不能选择]</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="multidate" appDatepicker [clearBtn]="true" [autoclose]="false" [multidate]="true"
-              [(ngModel)]="date9" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="timeminss" appDatepicker [format]="'hh:ii:ss'" [startView]="0" [(ngModel)]="date9" />
           </div>
           <div>{{date9}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>指定最小选择日期2018-04-09</h6>
+          <h6>自定义图标</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="minDate" appDatepicker [clearBtn]="true" [autoclose]="true" [multidate]="true"
-              [startDate]="startDate" [todayHighlight]="false" [(ngModel)]="date10" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="iconde" appDatepicker [iconClass]="'fa fa-table'" [(ngModel)]="date10" />
           </div>
           <div>{{date10}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>指定最大选择日期2018-04-15</h6>
+          <h6>显示今日按钮</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="maxDate" appDatepicker [clearBtn]="true" [autoclose]="true"
-            [endDate]="endDate" [todayHighlight]="false" [(ngModel)]="date11" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="daybtn" appDatepicker [todayBtn]="true" [(ngModel)]="date11" />
           </div>
           <div>{{date11}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>指定选择范围[2018-04-09至2018-04-15]</h6>
+          <h6>显示清除按钮</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="range" appDatepicker [clearBtn]="true" [autoclose]="true" [multidate]="true"
-            [startDate]="startDate" [endDate]="endDate" [todayHighlight]="false" [(ngModel)]="date12" />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="clearBtn" appDatepicker [clearBtn]="true" [(ngModel)]="date12" />
           </div>
           <div>{{date12}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>传出原始时间格式</h6>
+          <h6>设定分最小步长</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="displayDate" appDatepicker [dateType]="'originalDate'" [(ngModel)]="date13" [format]=""
-            />
-            <span class="input-group-addon default">
-              <i class="la la-calendar"></i>
-            </span>
+            <input class="form-control" type="text" id="minuteStep" appDatepicker [minuteStep]="2" [(ngModel)]="date13" />
           </div>
           <div>{{date13}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>无iocn</h6>
+          <h6>设定选择区间[2018-07-01至2018-07-10]</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="noicon" appDatepicker [(ngModel)]="date14" />
+            <input class="form-control" type="text" id="startDate" appDatepicker [startDate]="startDate" [endDate]="endDate" [(ngModel)]="date14" />
           </div>
           <div>{{date14}}</div>
         </div>

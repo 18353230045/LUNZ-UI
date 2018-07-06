@@ -35,7 +35,6 @@ import { RmbPipe } from './pipes/rmb.pipe';
 import { RemoveSpacePipe } from './pipes/remove-space.pipe';
 import { ToFixedPipe } from './pipes/to-fixed.pipe';
 
-
 export function createDecimalPipe() {
     return new DecimalPipe(environment.localeId);
 }
@@ -68,7 +67,7 @@ export function createDecimalPipe() {
 
         RmbPipe,
         RemoveSpacePipe,
-        ToFixedPipe,
+        ToFixedPipe
     ],
 
     exports: [

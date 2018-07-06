@@ -111,7 +111,6 @@ export class FileUploadOssComponent implements OnInit {
         this.filterFileNumber(file).then((fil: any[]) => {
           this.filterFileSize(fil).then((filesArr: any[]) => {
             for (const filesA of filesArr) {
-              filesA['fileSize'] = filesA['size'];
               filesA['loading'] = false;
               filesA['remove'] = false;
               filesA['percent'] = 0;
@@ -161,6 +160,7 @@ export class FileUploadOssComponent implements OnInit {
     this.filesList[index]['removeAnimation'] = 'fadeOutRight';
     setTimeout(() => {
       this.filesList.splice(index, 1);
+      this.isDisabled();
     }, 300);
   };
 
@@ -190,6 +190,7 @@ export class FileUploadOssComponent implements OnInit {
           file['href'] = href;
         }
         file['status'] = 'success';
+        file['displaySize'] = file['size'];
         this.uploadStatus.emit(res);
       })).catch((reason: any) => {
         file['status'] = 'error';
