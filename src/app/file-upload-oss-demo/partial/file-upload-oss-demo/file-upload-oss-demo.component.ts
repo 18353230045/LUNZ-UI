@@ -15,13 +15,9 @@ export class FileUploadOssDemoComponent implements OnInit {
   fileSize: Number = 20;
   fileNumber: Number = 10;
 
-  constructor() { }
+  constructor() { };
 
   ngOnInit() {
-    this.region = 'oss-cn-qingdao';
-    this.accessKeyId = '6MKOqxGiGU4AUk44';
-    this.accesskey = 'ufu7nS8kS59awNihtjSonMETLI0KLy';
-    this.bucket = 'lunz-test';
-  }
+  };
 
-}
+};
