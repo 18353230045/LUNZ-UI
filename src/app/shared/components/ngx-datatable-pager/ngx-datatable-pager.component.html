@@ -1,8 +1,8 @@
 <ul class="pager">
   <li class="page-size-continer" (click)="pageSizeColumn=!pageSizeColumn" (mouseleave)="pageSizeColumn=true">
-    <span>{{size}}条/页</span>
+    <span>{{size}} 行/页</span>
     <ul [hidden]="pageSizeColumn" class="page-size-content">
-      <li *ngFor="let ps of pageSizeArray" (click)="changePageSize(ps)" [ngClass]="{'page-size-column-active':size===ps}">{{ps}}条/页</li>
+      <li *ngFor="let ps of pageSizeArray" (click)="changePageSize(ps)" [ngClass]="{'page-size-column-active':size===ps}">{{ps}} 行/页</li>
     </ul>
   </li>
   <li [class.disabled]="!canPrevious()">
