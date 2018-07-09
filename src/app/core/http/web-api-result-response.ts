@@ -24,7 +24,7 @@ export class WebApiResultResponse {
       return response;
     }
 
-    if (result && result.Success && result.Success !== undefined) {
+    if (result && result.Success !== undefined) {
 
       result = camelCaseObject(result);
 
