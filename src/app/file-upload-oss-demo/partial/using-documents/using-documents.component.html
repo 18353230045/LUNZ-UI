@@ -43,19 +43,30 @@
       </li>
       <li>
         <code>
-          &lt;input class="form-control" type="text" id="default" appDatepicker [(ngModel)]="date" /&gt;
+          &lt;app-file-upload-oss [region]="region" [accessKeyId]="accessKeyId" [accesskey]="accesskey" [bucket]="bucket"&gt;&lt;/app-file-upload-oss&gt;
         </code>
       </li>
       <li>
-        <span>3、.component.ts中声明用于与组件实现双向数据绑定的变量，如：</span>
+        <span>3、.component.ts中声明并初始化OSS账户region，accessKeyId，accesskey，bucket，如：</span>
         <br/>
         <code>
-          export class DatepickerSelectComponent implements OnInit &#123;
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;date:String;
+          export class ***Component implements OnInit &#123;
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;region:String;
+          <br/>
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;accessKeyId:String;
+          <br/>
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;accesskey:String;
+          <br/>
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;bucket:String;
           <br/>
           <br/> &nbsp;&nbsp;&nbsp;&nbsp;constructor() &#123; &#125;;
           <br/>
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;ngOnInit() &#123;&nbsp;&#125;;
+          <br/> &nbsp;&nbsp;&nbsp;&nbsp;ngOnInit() &#123;&nbsp;
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.region = 'oss-cn-qingdao';
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.accessKeyId = '6MKOqxG******';
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.accesskey = 'ufu7nS8k*******';
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.bucket = '*****';
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&#125;;
           <br/>
           <br/>&#125;;
         </code>

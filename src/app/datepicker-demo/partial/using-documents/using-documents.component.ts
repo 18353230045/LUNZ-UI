@@ -16,124 +16,160 @@ export class UsingDocumentsComponent implements OnInit {
     ngOnInit() {
         this.paramsList = [
             {
-                name: 'date',
-                explain: '必选，组件交互入口，可使用[(date)]=\'date1\'实现双向数据绑定',
-                type: 'any',
-                optionaValue: '—',
-                defaultValue: '-'
-            },
-            {
-                name: 'original',
-                explain: '可选，当配置传出原始时间格式的可用，用于组件交互入口，可使用[(original)]=\'date1\'实现双向数据绑定',
+                name: 'ngModel',
+                explain: '必选，获取组件传出值，通过其实现双向数据绑定',
                 type: 'any',
                 optionaValue: '—',
                 defaultValue: '-'
             },
             {
                 name: 'dateType',
-                explain: '可选，配置组件传出时间类型',
+                explain: '可选，传出时间类型["originalDate"："原始时间类型"，"displayDate"："常见显示类型]"',
                 type: 'String',
-                optionaValue: 'displayDate,originalDate',
+                optionaValue: 'originalDate,displayDate',
                 defaultValue: 'displayDate'
             },
             {
                 name: 'format',
-                explain: `可选，日期格式化，当需要传出原始时间格式时，format需传入空字符串，如：[format]=""`,
+                explain: '可选，日期格式化',
                 type: 'String',
-                optionaValue: '可通过d，dd，D，DD，m，mm，M，MM，yy，yyyy任意组合',
-                defaultValue: 'yyyy-mm-dd'
+                optionaValue: 'y（年），m(月)，d（日），h（时），i（分），s（秒），自由组合',
+                defaultValue: 'yyyy-mm-dd hh:ii:ss'
             },
             {
-                name: 'todayHighlight',
-                explain: '可选，今日高亮',
+                name: 'showMeridian',
+                explain: '可选，显示上午/下午',
                 type: 'Boolean',
-                optionaValue: 'true,false',
+                optionaValue: 'true，false',
                 defaultValue: 'true'
             },
             {
                 name: 'autoclose',
-                explain: '可选，选择完后自动关闭',
+                explain: '选择日期后自动关闭',
                 type: 'Boolean',
-                optionaValue: 'true,false',
+                optionaValue: 'true，false',
                 defaultValue: 'true'
             },
             {
-                name: 'calendarWeeks',
-                explain: '可选， 显示左侧的星期数',
+                name: 'startView',
+                explain: '开始视图',
+                type: 'Number',
+                optionaValue: '0：时分视图，1：时视图，2：日视图，3：月视图，4：年视图',
+                defaultValue: '2'
+            },
+            {
+                name: 'weekStart',
+                explain: '开始星期',
+                type: 'Number',
+                optionaValue: '0：星期一，1：星期二，2：星期三，3：星期四，4：星期五，5：星期六，6：星期天',
+                defaultValue: '1'
+            },
+            {
+                name: 'startDate',
+                explain: '开始日期',
+                type: 'Date',
+                optionaValue: '无,[开始日期前面的不能选择]',
+                defaultValue: '-'
+            },
+            {
+                name: 'endDate',
+                explain: '结束日期',
+                type: 'Date',
+                optionaValue: '无,[结束日期后面的不能选择]',
+                defaultValue: '-'
+            },
+            {
+                name: 'daysOfWeekDisabled',
+                explain: '禁选星期',
+                type: 'String | Array<any>',
+                optionaValue: '无,[例如：0,6或者[0,6]，即：禁止选择星期六和星期天的所有日期]',
+                defaultValue: '-'
+            },
+            {
+                name: 'minView',
+                explain: '最小选择视图',
+                type: 'String | Number',
+                optionaValue: '0：时分视图，1：时视图，2：日视图，3：月视图，4：年视图',
+                defaultValue: '0'
+            },
+            {
+                name: 'maxView',
+                explain: '最小选择视图',
+                type: 'String | Number',
+                optionaValue: '0：时分视图，1：时视图，2：日视图，3：月视图，4：年视图',
+                defaultValue: '4'
+            },
+            {
+                name: 'todayBtn',
+                explain: '显示今日按钮',
                 type: 'Boolean',
                 optionaValue: 'true,false',
                 defaultValue: 'false'
             },
             {
                 name: 'clearBtn',
-                explain: '可选，显示清除按钮',
+                explain: '显示清楚按钮',
                 type: 'Boolean',
                 optionaValue: 'true,false',
                 defaultValue: 'false'
             },
             {
-                name: 'todayBtn',
-                explain: '可选，显示今日按钮',
+                name: 'todayHighlight',
+                explain: '今日高亮',
                 type: 'Boolean',
                 optionaValue: 'true,false',
-                defaultValue: 'false'
+                defaultValue: 'true'
             },
             {
-                name: 'startView',
-                explain: '可选，打开时的视图',
-                type: 'String',
-                optionaValue: 'days,months,years',
-                defaultValue: 'days'
-            },
-            {
-                name: 'minViewMode',
-                explain: '可选， 最小选择视图',
-                type: 'String',
-                optionaValue: 'days,months,years',
-                defaultValue: 'days'
-            },
-            {
-                name: 'maxViewMode',
-                explain: '可选，最大选择视图',
-                type: 'String',
-                optionaValue: 'days,months,years',
-                defaultValue: 'years'
-            },
-            {
-                name: 'multidate',
-                explain: '可选，支持多选',
+                name: 'keyboardNavigation',
+                explain: '键盘选择',
                 type: 'Boolean',
                 optionaValue: 'true,false',
-                defaultValue: 'false'
+                defaultValue: 'true'
             },
             {
-                name: 'multidateSeparator',
-                explain: '可选， 当支持多选时，值于值之间的隔字符',
+                name: 'forceParse',
+                explain: '强制解析',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'true'
+            },
+            {
+                name: 'minuteStep',
+                explain: '选择分时最小步长',
+                type: 'Number',
+                optionaValue: '-',
+                defaultValue: '5'
+            },
+            {
+                name: 'pickerPosition',
+                explain: '选择框位置',
                 type: 'String',
-                optionaValue: '任意',
-                defaultValue: ','
+                optionaValue: '-',
+                defaultValue: 'bottom-right'
             },
             {
-                name: 'orientation',
-                explain: '可选，日期选择框弹出位置',
-                type: 'String',
-                optionaValue: 'left,right,bottom,auto,top left,top right,auto top,auto bottom',
-                defaultValue: 'bottom'
-            },
-            {
-                name: 'startDate',
-                explain: '可选，设定开始日期',
-                type: 'string',
-                optionaValue: '—',
+                name: 'initialDate',
+                explain: '打开时初始日期',
+                type: 'Date',
+                optionaValue: '-',
                 defaultValue: '-'
             },
             {
-                name: 'endDate',
-                explain: '可选，设定结束日期',
-                type: 'string',
-                optionaValue: '—',
-                defaultValue: '-'
+                name: 'isIcon',
+                explain: '设置图标触发',
+                type: 'Boolean',
+                optionaValue: 'true,false',
+                defaultValue: 'true'
+            },
+            {
+                name: 'iconClass',
+                explain: '设置图标样式类',
+                type: 'String',
+                optionaValue: '-',
+                defaultValue: 'la la-calendar'
             }
+
         ];
     };
 };
