@@ -8,6 +8,7 @@ import { MomentModule } from 'angular2-moment/moment.module';
 import { NgxDatatableActionsModule } from 'ngx-datatable-actions';
 import { ZrValidationMessageModule } from 'zr-validation-message';
 import { NgxQueryToolbarModule } from 'ngx-query-toolbar';
+import { ZrAngularModule } from 'zr-angular';
 
 import { SharedModule } from '../shared/shared.module';
 import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
@@ -28,6 +29,7 @@ import { OrderComponent } from './partial/order/order.component';
     ReactiveFormsModule,
     ZrValidationMessageModule.forRoot(),
     NgxQueryToolbarModule.forRoot(),
+    ZrAngularModule.forRoot(),
     NgxDatatableModule,
     NgxQueryModule,
     MomentModule,

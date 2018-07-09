@@ -75,7 +75,7 @@
     <ngx-datatable #dt class="material" [scrollbarH]="true" (select)="onSelect($event)" [rows]="orders" [loadingIndicator]="loading"
       [selected]="selectedOrders" [selectionType]="'checkbox'" #appNgxDataTable="NgxDataTableDirective" appNgxDataTable [ngxQuery]="ngxQuery"
       (data)="loadOrders($event)">
-      <app-ngx-datatable-footer></app-ngx-datatable-footer>
+      <app-datatable-footer [datatable]="datatable"></app-datatable-footer>
       <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
         [checkboxable]="true">
       </ngx-datatable-column>

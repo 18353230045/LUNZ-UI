@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ZrValidationMessageModule } from 'zr-validation-message';
 import { NgxQueryToolbarModule } from 'ngx-query-toolbar';
+import { ZrAngularModule } from 'zr-angular';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -27,6 +29,7 @@ import { CreateHearFromComponent } from './partial/create-hear-from/create-hear-
     BsDatepickerModule,
     ZrValidationMessageModule.forRoot(),
     NgxQueryToolbarModule.forRoot(),
+    ZrAngularModule.forRoot(),
     MomentModule,
     SharedModule,
     HearFromRoutingModule

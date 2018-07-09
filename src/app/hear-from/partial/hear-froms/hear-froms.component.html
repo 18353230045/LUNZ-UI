@@ -37,7 +37,7 @@
     </ngx-query>
     <ngx-datatable #dt class="material" [scrollbarH]="true" [rows]="hearfroms" [loadingIndicator]="loading" #appNgxDataTable="NgxDataTableDirective" appNgxDataTable [ngxQuery]="ngxQuery"
       (data)="loadHearfroms($event)">
-      <app-ngx-datatable-footer></app-ngx-datatable-footer>
+      <app-datatable-footer [datatable]="datatable"></app-datatable-footer>
       <ngx-datatable-column  name="名称" prop="name">
       </ngx-datatable-column>
       <ngx-datatable-column maxWidth="250"  headerClass="datatable-header-cell-acitons">
