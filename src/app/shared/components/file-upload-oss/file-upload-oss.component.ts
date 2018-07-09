@@ -179,6 +179,7 @@ export class FileUploadOssComponent implements OnInit {
           done();
         };
       };
+      file['isLoad'] = true;
       this.isDisabled();
       this.client.multipartUpload(key, file, {
         progress: progress
@@ -189,7 +190,6 @@ export class FileUploadOssComponent implements OnInit {
         } else {
           file['href'] = href;
         }
-        file['isLoad'] = true;
         file['status'] = 'success';
         file['displaySize'] = file['size'];
         this.uploadStatus.emit(res);
