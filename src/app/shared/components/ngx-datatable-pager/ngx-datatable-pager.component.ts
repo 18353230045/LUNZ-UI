@@ -3,17 +3,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-ngx-datatable-pager',
   templateUrl: './ngx-datatable-pager.component.html',
-  styleUrls: ['./ngx-datatable-pager.component.scss'],
-  host: {
-    class: 'datatable-pager'
-  }
+  styleUrls: ['./ngx-datatable-pager.component.scss']
 })
+
 export class NgxDatatablePagerComponent {
   @Input() pagerLeftArrowIcon: string;
   @Input() pagerRightArrowIcon: string;
   @Input() pagerPreviousIcon: string;
   @Input() pagerNextIcon: string;
-  @Input() pSize: number;
   @Input() pageSizeArray?: any[] = [10, 20, 30, 40, 50];
   @Input() datatable: any;
 

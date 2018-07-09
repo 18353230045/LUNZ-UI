@@ -4,6 +4,6 @@
   </div>
   <app-ngx-datatable-pager *ngIf="rowCount>0" [pagerPreviousIcon]="'fa fa-step-backward'" [pagerNextIcon]="'fa fa-step-forward'"
     [pagerLeftArrowIcon]="'fa fa-angle-left'" [pagerRightArrowIcon]="'fa fa-angle-right'" [page]="curPage" [size]="pageSize"
-    [datatable]="datatable" [count]="rowCount" (change)="datatable.onFooterPage($event)">
+    [datatable]="datatable" [count]="rowCount" (change)="datatable.onFooterPage($event)" class="datatable-pager">
   </app-ngx-datatable-pager>
 </ng-template>
