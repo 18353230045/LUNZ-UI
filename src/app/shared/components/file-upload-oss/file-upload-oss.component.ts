@@ -20,6 +20,7 @@ export class FileUploadOssComponent implements OnInit {
   @Input() accept?: String = '*';
   @Input() fileSize?: Number;
   @Input() fileNumber?: Number = 10;
+  @Input() uploadButtonBg?: String = 'btn-success';
 
   @Output() uploadStatus = new EventEmitter();
 
