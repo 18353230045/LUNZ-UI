@@ -9,7 +9,7 @@ import { ColumnMode, SortType } from '@swimlane/ngx-datatable/release/types';
 import { QueryComponent } from '@zhongruigroup/ngx-query/query.component';
 import { cloneQueryGroup } from '@zhongruigroup/ngx-query/utils/query-helper';
 
-import { NgxDatatableFooterComponent } from '../components/ngx-datatable-footer/ngx-datatable-footer.component';
+import { DatatableFooterComponent } from 'zr-angular/datatable-footer/datatable-footer.component';
 import { NgxDatatableActionsComponent } from '../components/ngx-datatable-actions/ngx-datatable-actions.component';
 
 @Directive({
@@ -52,8 +52,8 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
     get pageIndex(): number {
         return this._pageIndex;
     }
-    @ContentChild(NgxDatatableFooterComponent)
-    footer: NgxDatatableFooterComponent;
+    @ContentChild(DatatableFooterComponent)
+    footer: DatatableFooterComponent;
     @ContentChild(NgxDatatableActionsComponent)
     toolbar: NgxDatatableActionsComponent;
 
