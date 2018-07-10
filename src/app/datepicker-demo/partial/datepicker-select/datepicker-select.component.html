@@ -24,14 +24,15 @@
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>有图标</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="icon" appDatepicker [(ngModel)]="date1" />
+            <input class="form-control" type="text" id="icon" appDatepicker [format]="'yyyy-mm-dd hh:ii:00'" [(ngModel)]="date1" />
           </div>
           <div>{{date1}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>无图标</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="noicon" appDatepicker [(ngModel)]="date2" [isIcon]="false" />
+            <input class="form-control" type="text" id="noicon" appDatepicker [format]="'yyyy-mm-dd hh:ii:00'" [(ngModel)]="date2" [isIcon]="false"
+            />
           </div>
           <div>{{date2}}</div>
         </div>
@@ -45,79 +46,93 @@
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>不显示上午/下午分割线</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="showMeridian" appDatepicker [showMeridian]="false" [(ngModel)]="date4" />
+            <input class="form-control" type="text" id="showMeridian" appDatepicker [format]="'yyyy-mm-dd hh:ii:00'" [showMeridian]="false"
+              [(ngModel)]="date4" />
           </div>
           <div>{{date4}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>输出年</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="year" appDatepicker [format]="'yyyy'" [startView]="4" [minView]="4" [(ngModel)]="date5" />
+            <input class="form-control" type="text" id="year" appDatepicker [format]="'yyyy'" [startView]="4" [minView]="4" [(ngModel)]="date5"
+            />
           </div>
           <div>{{date5}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>输出月</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="month" appDatepicker [format]="'mm'" [startView]="3" [minView]="3" [maxView]="3" [(ngModel)]="date6" />
+            <input class="form-control" type="text" id="month" appDatepicker [format]="'mm'" [startView]="3" [minView]="3" [maxView]="3"
+              [(ngModel)]="date6" />
           </div>
           <div>{{date6}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>输出日</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="day" appDatepicker [format]="'dd'" [startView]="2" [minView]="2" [maxView]="2" [(ngModel)]="date7" />
+            <input class="form-control" type="text" id="day" appDatepicker [format]="'dd'" [startView]="2" [minView]="2" [maxView]="2"
+              [(ngModel)]="date7" />
           </div>
           <div>{{date7}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>输出时分</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="timemin" appDatepicker [format]="'hh:ii'" [startView]="0" [(ngModel)]="date8" />
+            <input class="form-control" type="text" id="timemin" appDatepicker [format]="'hh:ii:00'" [startView]="0" [(ngModel)]="date8"
+            />
           </div>
           <div>{{date8}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>输出时分秒[秒不能选择]</h6>
+          <h6>输出年月日</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="timeminss" appDatepicker [format]="'hh:ii:ss'" [startView]="0" [(ngModel)]="date9" />
+            <input class="form-control" type="text" id="timemin1" appDatepicker [format]="'yyyy-mm-dd 00:00:00'" [startView]="4" [minView]="2"
+              [(ngModel)]="date9" />
           </div>
           <div>{{date9}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>自定义图标</h6>
+          <h6>输出年月日时</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="iconde" appDatepicker [iconClass]="'fa fa-table'" [(ngModel)]="date10" />
+            <input class="form-control" type="text" id="timemin2" appDatepicker [format]="'yyyy-mm-dd hh:00:00'" [startView]="4" [minView]="1"
+              [(ngModel)]="date10" />
           </div>
           <div>{{date10}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>显示今日按钮</h6>
+          <h6>自定义图标</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="daybtn" appDatepicker [todayBtn]="true" [(ngModel)]="date11" />
+            <input class="form-control" type="text" id="iconde" appDatepicker [format]="'yyyy-mm-dd hh:ii:00'"  [iconClass]="'fa fa-table'" [(ngModel)]="date11" />
           </div>
           <div>{{date11}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>显示清除按钮</h6>
+          <h6>显示今日按钮</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="clearBtn" appDatepicker [clearBtn]="true" [(ngModel)]="date12" />
+            <input class="form-control" type="text" id="daybtn" appDatepicker [format]="'yyyy-mm-dd hh:ii:00'" [todayBtn]="true" [(ngModel)]="date12" />
           </div>
           <div>{{date12}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>设定分最小步长</h6>
+          <h6>显示清除按钮</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="minuteStep" appDatepicker [minuteStep]="2" [(ngModel)]="date13" />
+            <input class="form-control" type="text" id="clearBtn" appDatepicker [format]="'yyyy-mm-dd hh:ii:00'" [clearBtn]="true" [(ngModel)]="date13" />
           </div>
           <div>{{date13}}</div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
-          <h6>设定选择区间[2018-07-01至2018-07-10]</h6>
+          <h6>设定分最小步长</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="startDate" appDatepicker [startDate]="startDate" [endDate]="endDate" [(ngModel)]="date14" />
+            <input class="form-control" type="text" id="minuteStep" appDatepicker [format]="'yyyy-mm-dd hh:ii:00'" [minuteStep]="1" [(ngModel)]="date14" />
           </div>
           <div>{{date14}}</div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
+          <h6>设定选择区间[2018-07-01至2018-07-10]</h6>
+          <div class="input-group">
+            <input class="form-control" type="text" id="startDate" appDatepicker [format]="'yyyy-mm-dd hh:00:00'" [startView]="4" [minView]="2" [startDate]="startDate" [endDate]="endDate" [(ngModel)]="date15" />
+          </div>
+          <div>{{date15}}</div>
         </div>
       </div>
     </div>
