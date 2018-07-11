@@ -17,6 +17,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
 import { FileUploadOssComponent } from './components/file-upload-oss/file-upload-oss.component';
 import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions/ngx-datatable-actions.component';
+import { ZrButtonComponent } from './components/zr-button/zr-button.component';
 
 import { swalDefaultsProvider } from './dialogs/sweetalert2.providers';
 
@@ -58,6 +59,7 @@ export function createDecimalPipe() {
         VehicleSelectionComponent,
         FileUploadOssComponent,
         NgxDatatableActionsComponent,
+        ZrButtonComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
@@ -67,7 +69,7 @@ export function createDecimalPipe() {
 
         RmbPipe,
         RemoveSpacePipe,
-        ToFixedPipe
+        ToFixedPipe,
     ],
 
     exports: [
@@ -79,6 +81,7 @@ export function createDecimalPipe() {
         VehicleSelectionComponent,
         FileUploadOssComponent,
         NgxDatatableActionsComponent,
+        ZrButtonComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
