@@ -3,11 +3,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'zr-button',
   template: `
-  <button type="button" class="btn {{size}} {{bg}} {{borderRadius}} {{shadow}}" (click)="click()" 
-    [disabled]="disabled" [ngClass]="{'dropdown-toggle':toggle}">
+  <button type="button" class="btn {{bg}}" (click)="click()" 
+    [disabled]="disabled" [ngClass]="{'dropdown-toggle':toggle,'m-btn--air':shadow,
+    'btn-sm':size==='sm','btn-lg':size==='lg','m-btn--square':borderRadius==='square',
+    'm-btn--pill':borderRadius==='pill'}">
     <i class="{{icon}}"></i>
     {{text}}
-  </button>`
+  </button>
+  `
 })
 
 // @Component({
@@ -24,7 +27,7 @@ export class ZrButtonComponent implements OnInit {
   @Input() disabled?: Boolean = false;
   @Input() icon?: String = '';
   @Input() borderRadius?: String = '';      // button border radius ['m-btn--square'，'m-btn--pill']
-  @Input() shadow?: String = '';      // button shadow
+  @Input() shadow?: Boolean = false;      // button shadow
   @Input() toggle?: Boolean = false;
 
   @Output() clickEventer = new EventEmitter();
