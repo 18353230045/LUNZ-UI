@@ -2,6 +2,7 @@ import {
     Directive, OnInit, AfterViewInit, Input, Output,
     ViewContainerRef, EventEmitter, ContentChild
 } from '@angular/core';
+
 import { Router } from '@angular/router';
 
 import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
@@ -171,7 +172,7 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
             if (this.saveState === true) {
                 const paging = {
                     pageSize: page.limit,
-                    pageIndex: page.offset + 1,
+                    pageIndex: page.offset + 1 || 1,
                     sorts: sorts,
                     filters: query.filters,
                     rules: this.ngxQuery.getOriginalQuery().rules
@@ -184,7 +185,7 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
                 // event: event,
                 page: {
                     pageSize: page.limit,
-                    pageIndex: page.offset + 1,
+                    pageIndex: page.offset + 1 || 1,
                     sort: sortArray,
                     filters: query.filters,
                     filter: query.query
