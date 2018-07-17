@@ -42,7 +42,7 @@
       </ngx-datatable-column>
       <ngx-datatable-column maxWidth="250"  headerClass="datatable-header-cell-acitons">
         <ng-template let-column="column" ngx-datatable-header-template>
-          <app-ngx-datatable-actions [datatable]="dt" class="pull-right"></app-ngx-datatable-actions>
+          <app-datatable-actions [datatable]="dt" class="pull-right"></app-datatable-actions>
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
           <!-- <a [routerLink]="['./', row.id]" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="查看">
