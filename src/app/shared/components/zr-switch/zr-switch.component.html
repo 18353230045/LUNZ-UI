@@ -1,0 +1,7 @@
+<span class="m-switch m-switch--{{state}}" [ngClass]="{'m-switch--icon':icon,'m-switch--lg':size==='lg',
+  'm-switch--sm':size==='sm','m-switch--outline':outline}">
+  <label>
+    <input type="checkbox" name="{{name}}" [disabled]="disabled" [checked]="checked" (change)="handle($event)">
+    <span></span>
+  </label>
+</span>

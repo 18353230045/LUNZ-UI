@@ -1,0 +1,87 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">switch</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button [routerLink]="['using-documents']" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>默认</h6>
+          <zr-switch [(checked)]="switch1"></zr-switch>
+          <div>{{switch1}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>带icon</h6>
+          <zr-switch [icon]="true" [(checked)]="switch2"></zr-switch>
+          <div>{{switch2}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>禁用</h6>
+          <zr-switch [icon]="true" [disabled]="true" [(checked)]="switch3"></zr-switch>
+          <div>{{switch3}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>大尺寸</h6>
+          <zr-switch [icon]="true" [size]="'lg'" [(checked)]="switch4"></zr-switch>
+          <div>{{switch4}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>小尺寸</h6>
+          <zr-switch [icon]="true" [size]="'sm'" [(checked)]="switch5"></zr-switch>
+          <div>{{switch5}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>状态[成功]</h6>
+          <zr-switch [icon]="true" [state]="'success'" [(checked)]="switch6"></zr-switch>
+          <div>{{switch6}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>状态[警告]</h6>
+          <zr-switch [icon]="true" [state]="'warning'" [(checked)]="switch7"></zr-switch>
+          <div>{{switch7}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>状态[信息]</h6>
+          <zr-switch [icon]="true" [state]="'info'" [(checked)]="switch8"></zr-switch>
+          <div>{{switch8}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>状态[危险]</h6>
+          <zr-switch [icon]="true" [state]="'danger'" [(checked)]="switch9"></zr-switch>
+          <div>{{switch9}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>状态[重复]</h6>
+          <zr-switch [icon]="true" [state]="'accent'" [(checked)]="switch10"></zr-switch>
+          <div>{{switch10}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>带边框</h6>
+          <zr-switch [icon]="true" [outline]="true" [(checked)]="switch11"></zr-switch>
+          <div>{{switch11}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h6>选中</h6>
+          <zr-switch [icon]="true" [outline]="true" [(checked)]="switch12"></zr-switch>
+          <div>{{switch12}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
