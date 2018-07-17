@@ -25,19 +25,19 @@
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
               <h5>百分比外显</h5>
-              <component-progress [progress]="0"></component-progress>
+              <zr-progress [progress]="0"></zr-progress>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
               <h5>百分比外显</h5>
-              <component-progress [progress]="70"></component-progress>
+              <zr-progress [progress]="70"></zr-progress>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
               <h5>百分比外显[成功]</h5>
-              <component-progress [progress]="100"></component-progress>
+              <zr-progress [progress]="100"></zr-progress>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
               <h5>百分比外显[失败]</h5>
-              <component-progress [progress]="50" [backGround]="'#FA5555'"></component-progress>
+              <zr-progress [progress]="50" [backGround]="'#FA5555'"></zr-progress>
             </div>
           </div>
         </div>
@@ -45,19 +45,19 @@
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
               <h5>百分比内显</h5>
-              <component-progress [progress]="0" [textInside]="'inside'"></component-progress>
+              <zr-progress [progress]="0" [textInside]="'inside'"></zr-progress>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
               <h5>百分比内显</h5>
-              <component-progress [progress]="40" [textInside]="'inside'"></component-progress>
+              <zr-progress [progress]="40" [textInside]="'inside'"></zr-progress>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
               <h5>百分比内显[成功]</h5>
-              <component-progress [progress]="100" [textInside]="'inside'"></component-progress>
+              <zr-progress [progress]="100" [textInside]="'inside'"></zr-progress>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
               <h5>百分比内显[失败]</h5>
-              <component-progress [progress]="50" [textInside]="'inside'" [backGround]="'#FA5555'"></component-progress>
+              <zr-progress [progress]="50" [textInside]="'inside'" [backGround]="'#FA5555'"></zr-progress>
             </div>
           </div>
         </div>
@@ -65,43 +65,43 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 m-portlet__body">
           <h5>隐藏文字内容</h5>
-          <component-progress [progress]="60" [textInside]="'outside'" [textShow]="false"></component-progress>
+          <zr-progress [progress]="60" [textInside]="'outside'" [textShow]="false"></zr-progress>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 m-portlet__body">
           <h5>隐藏文字内容</h5>
-          <component-progress [progress]="0" [textInside]="'inside'"  [textShow]="false"></component-progress>
+          <zr-progress [progress]="0" [textInside]="'inside'"  [textShow]="false"></zr-progress>
         </div>
       </div>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
           <h5>自定义进度条的背景颜色</h5>
-          <component-progress [progress]="60" [textInside]="'outside'" [backGround]="'#FF00FF'"></component-progress>
+          <zr-progress [progress]="60" [textInside]="'outside'" [backGround]="'#FF00FF'"></zr-progress>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
           <h5>自定义进度条的背景颜色</h5>
-          <component-progress [progress]="20" [textInside]="'inside'"  [backGround]="'#716ACA'"></component-progress>
+          <zr-progress [progress]="20" [textInside]="'inside'"  [backGround]="'#716ACA'"></zr-progress>
         </div>
       </div>
       <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-12 text-center m-portlet__body">
           <h5>圆形进度条</h5>
-          <component-progress [progress]="0" [type]="'circle'"></component-progress>
+          <zr-progress [progress]="0" [type]="'circle'"></zr-progress>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-12 text-center m-portlet__body">
           <h5>圆形进度条</h5>
-          <component-progress [progress]="40" [type]="'circle'"></component-progress>
+          <zr-progress [progress]="40" [type]="'circle'"></zr-progress>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-12 text-center m-portlet__body">
           <h5>圆形进度条[成功]</h5>
-          <component-progress [progress]="100"  [type]="'circle'"></component-progress>
+          <zr-progress [progress]="100"  [type]="'circle'"></zr-progress>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-12 text-center m-portlet__body">
           <h5>圆形进度条[失败]</h5>
-          <component-progress [progress]="50"  [type]="'circle'" [status]="'exception'"></component-progress>
+          <zr-progress [progress]="50"  [type]="'circle'" [status]="'exception'"></zr-progress>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-12 text-center m-portlet__body">
           <h5>自定义宽度</h5>
-          <component-progress [progress]="30"  [type]="'circle'" [width]="150"></component-progress>
+          <zr-progress [progress]="30"  [type]="'circle'" [width]="150"></zr-progress>
         </div>
       </div>
     </div>

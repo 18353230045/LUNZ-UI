@@ -23,17 +23,17 @@
       <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-4">
           <h6>默认样式（btn模式），点击触发</h6>
-          <component-zr-dropdown-selection 
+          <zr-dropdown-selection 
             [options]="options"
             [position]="'left'" 
             [dropText]="'部门'" 
             (selected)="handle1($event)">
-        </component-zr-dropdown-selection>
+        </zr-dropdown-selection>
         <div>{{item1}}</div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-4">
         <h6>btn模式下自定义样式，鼠标移入触发</h6>
-        <component-zr-dropdown-selection 
+        <zr-dropdown-selection 
             [btnColor]="'btn-success'"
             [options]="options" 
             [position]="'right'" 
@@ -43,22 +43,22 @@
             [separateCharacter]="','"
             (selected)="handle2($event)"
             (remove)="remove()">
-          </component-zr-dropdown-selection>
+          </zr-dropdown-selection>
           <div>{{item2}}</div>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-4">
           <h6>icon模式下默认样式，点击触发</h6>
-          <component-zr-dropdown-selection 
+          <zr-dropdown-selection 
             [options]="options"
             [position]="'center'"
             [type]="'icon'"
             (selected)="handle3($event)">
-          </component-zr-dropdown-selection>
+          </zr-dropdown-selection>
           <div>{{item3}}</div>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-4">
           <h6>icon模式下自定义样式，鼠标移入触发,允许选择父级</h6>
-          <component-zr-dropdown-selection 
+          <zr-dropdown-selection 
             [options]="options" 
             [position]="'center'" 
             [trigger]="'hover'" 
@@ -66,7 +66,7 @@
             [iconClass]="'m-btn--icon m-btn--icon-only btn-lg btn-default m-btn--air m-btn--pill'"
             (selected)="handle4($event)" 
             [selectParent]="true">
-          </component-zr-dropdown-selection>
+          </zr-dropdown-selection>
           <div>{{item4}}</div>
         </div>
       </div>

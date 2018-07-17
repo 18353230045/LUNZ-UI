@@ -41,7 +41,7 @@
               <span class="text-danger">*</span>
             </label>
             <input type="text" formControlName="subject" placeholder="订单摘要" class="form-control" [(ngModel)]="order.subject" />
-            <component-zr-validation-message [control]="form.controls['subject']" label="订单摘要"></component-zr-validation-message>
+            <zr-validation-message [control]="form.controls['subject']" label="订单摘要"></zr-validation-message>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
                 </button>
               </span>
             </div>
-            <component-zr-validation-message [formGroup]="form" for="date" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></component-zr-validation-message>
+            <zr-validation-message [formGroup]="form" for="date" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></zr-validation-message>
           </div>
         </div>
         <div class="col-md-6">
@@ -79,7 +79,7 @@
               <span class="text-danger">*</span>
             </label>
             <input type="text" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="order.price" />
-            <component-zr-validation-message [control]="form.controls['price']" label="单价" [validationMessages]="{pattern:'请输入数字'}"></component-zr-validation-message>
+            <zr-validation-message [control]="form.controls['price']" label="单价" [validationMessages]="{pattern:'请输入数字'}"></zr-validation-message>
           </div>
         </div>
         <div class="col-md-4">
@@ -88,7 +88,7 @@
               <span class="text-danger">*</span>
             </label>
             <input type="text" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="order.amount" />
-            <component-zr-validation-message [control]="form.controls['amount']" label="数量" [validationMessages]="{pattern:'请输入数字'}"></component-zr-validation-message>
+            <zr-validation-message [control]="form.controls['amount']" label="数量" [validationMessages]="{pattern:'请输入数字'}"></zr-validation-message>
           </div>
         </div>
         <div class="col-md-4">

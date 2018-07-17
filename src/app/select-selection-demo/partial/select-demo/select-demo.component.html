@@ -24,31 +24,31 @@
         <!-- 默认 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>默认(无清除/无默认值)</h6>
-          <component-zr-select-selection [selects]="selects1" [(model)]="selectValue1"></component-zr-select-selection>
+          <zr-select-selection [selects]="selects1" [(model)]="selectValue1"></zr-select-selection>
           <p>你选择的值为：{{selectValue1}}</p>
         </div>
         <!-- 禁用 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>禁用</h6>
-          <component-zr-select-selection [selects]="selects2" [(model)]="selectValue2" [disabled]="true"></component-zr-select-selection>
+          <zr-select-selection [selects]="selects2" [(model)]="selectValue2" [disabled]="true"></zr-select-selection>
           <p>你选择的值为：{{selectValue2}}</p>
         </div>
         <!-- item禁用 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>第二项禁选</h6>
-          <component-zr-select-selection [selects]="selects3" [(model)]="selectValue3"></component-zr-select-selection>
+          <zr-select-selection [selects]="selects3" [(model)]="selectValue3"></zr-select-selection>
           <p>你选择的值为：{{selectValue3}}</p>
         </div>
         <!-- 默认选中 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>默认值</h6>
-          <component-zr-select-selection [selects]="selects4" [(model)]="selectValue4"></component-zr-select-selection>
+          <zr-select-selection [selects]="selects4" [(model)]="selectValue4"></zr-select-selection>
           <p>你选择的值为：{{selectValue4}}</p>
         </div>
         <!-- 可清除值 -->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <h6>可清除</h6>
-          <component-zr-select-selection [selects]="selects5" [(model)]="selectValue5" [clear]="true"></component-zr-select-selection>
+          <zr-select-selection [selects]="selects5" [(model)]="selectValue5" [clear]="true"></zr-select-selection>
           <p>你选择的值为：{{selectValue5}}</p>
         </div>
       </div>
