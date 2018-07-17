@@ -16,10 +16,11 @@ export class FileUploadOssComponent implements OnInit {
   @Input() accesskey: string;
   @Input() bucket: string;
   @Input() type?: String = 'rectangle';
-  @Input() uploadButton?: Boolean;
+  @Input() uploadButton?: Boolean = false;
   @Input() accept?: String = '*';
   @Input() fileSize?: Number;
   @Input() fileNumber?: Number = 10;
+  @Input() uploadButtonBg?: String = 'btn-success';
 
   @Output() uploadStatus = new EventEmitter();
 

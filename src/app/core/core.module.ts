@@ -13,7 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { TreeModule } from 'angular-tree-component';
-import { ZrValidationMessageModule } from 'zr-validation-message';
+import { ZrAngularModule } from 'zr-angular';
 
 import { environment } from '../../environments/environment';
 import { SharedModule } from '../shared/shared.module';
@@ -36,7 +36,6 @@ import { SsoServiceService } from '../sso/shared/sso-service.service';
 
 import { MessageService } from '../messages/shared/message.service';
 import { OrdersService } from '../order-management/shared/orders.service';
-import { OperationService } from './shell/header/quick-actions/shared/operation.service';
 
 import { ShellComponent } from './shell/shell.component';
 import { HeaderComponent } from './shell/header/header.component';
@@ -90,7 +89,7 @@ export function createCurrencyPipe() {
         ModalModule.forRoot(),
         BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
-        ZrValidationMessageModule.forRoot(),
+        ZrAngularModule.forRoot(),
         ToastrModule,
         MomentModule,
         SharedModule,
@@ -153,8 +152,7 @@ export function createCurrencyPipe() {
         SweetAlert2Service,
         SsoServiceService,
         MessageService,
-        OrdersService,
-        OperationService
+        OrdersService
     ]
 })
 

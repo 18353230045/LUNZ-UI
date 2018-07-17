@@ -35,7 +35,7 @@ export class HearFromsComponent implements OnInit, AfterViewInit {
   @ViewChild('appNgxDataTable')
   ngxDataTable: NgxDataTableDirective;
 
-  private datatable: any;
+  public datatable: any;
 
   constructor(private hearFromsService: HearFromsService,
     private changeDetectorRef: ChangeDetectorRef,

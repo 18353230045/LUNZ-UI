@@ -2,6 +2,7 @@ import {
     Directive, OnInit, AfterViewInit, Input, Output,
     ViewContainerRef, EventEmitter, ContentChild
 } from '@angular/core';
+
 import { Router } from '@angular/router';
 
 import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
@@ -9,8 +10,8 @@ import { ColumnMode, SortType } from '@swimlane/ngx-datatable/release/types';
 import { QueryComponent } from '@zhongruigroup/ngx-query/query.component';
 import { cloneQueryGroup } from '@zhongruigroup/ngx-query/utils/query-helper';
 
-import { NgxDatatableFooterComponent } from '../components/ngx-datatable-footer/ngx-datatable-footer.component';
-import { NgxDatatableActionsComponent } from '../components/ngx-datatable-actions/ngx-datatable-actions.component';
+import { DatatableFooterComponent } from 'zr-angular/datatable-footer/datatable-footer.component';
+import { DatatableActionsComponent } from 'zr-angular/datatable-actions/datatable-actions.component';
 
 @Directive({
     selector: '[appNgxDataTable]',
@@ -52,10 +53,10 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
     get pageIndex(): number {
         return this._pageIndex;
     }
-    @ContentChild(NgxDatatableFooterComponent)
-    footer: NgxDatatableFooterComponent;
-    @ContentChild(NgxDatatableActionsComponent)
-    toolbar: NgxDatatableActionsComponent;
+    @ContentChild(DatatableFooterComponent)
+    footer: DatatableFooterComponent;
+    @ContentChild(DatatableActionsComponent)
+    toolbar: DatatableActionsComponent;
 
     private _datatable: DatatableComponent;
     private _pageSize = 10;
@@ -171,7 +172,7 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
             if (this.saveState === true) {
                 const paging = {
                     pageSize: page.limit,
-                    pageIndex: page.offset + 1,
+                    pageIndex: page.offset + 1 || 1,
                     sorts: sorts,
                     filters: query.filters,
                     rules: this.ngxQuery.getOriginalQuery().rules
@@ -184,7 +185,7 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
                 // event: event,
                 page: {
                     pageSize: page.limit,
-                    pageIndex: page.offset + 1,
+                    pageIndex: page.offset + 1 || 1,
                     sort: sortArray,
                     filters: query.filters,
                     filter: query.query

@@ -4,7 +4,6 @@ import { ITreeOptions, IActionMapping } from 'angular-tree-component';
 
 import { LoggerFactory } from '../../../logger-factory.service';
 import { Logger } from '../../../logger.service';
-import { OperationService } from './shared/operation.service';
 
 declare const $: any;
 
@@ -36,8 +35,7 @@ export class QuickActionsComponent implements OnInit {
     };
 
     constructor(
-        private loggerFactory: LoggerFactory,
-        private operationService: OperationService
+        private loggerFactory: LoggerFactory
     ) {
         this.log = this.loggerFactory.getLogger();
     };
@@ -132,8 +130,6 @@ export class QuickActionsComponent implements OnInit {
             this.getAllModel();
             item.isActive = true;
             this.myModuleShow = true;
-        } else {
-            this.operationService.fastEntryModule(item);
         }
     };
 

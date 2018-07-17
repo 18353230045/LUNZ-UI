@@ -24,27 +24,27 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-4">
           <h6>line-tabs型 [默认]</h6>
-          <component-zr-tabs [tabsData]="tabsArray1" (selected)="getItem1($event)"></component-zr-tabs>
+          <zr-tabs [tabsData]="tabsArray1" (selected)="getItem1($event)"></zr-tabs>
           <p>{{efferentValue1}}</p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-4">
           <h6>line-tabs型 [自定义颜色]</h6>
-          <component-zr-tabs [tabsData]="tabsArray1" [colorThemeStyle]="'m-tabs-line--warning'" (selected)="getItem2($event)"></component-zr-tabs>
+          <zr-tabs [tabsData]="tabsArray1" [colorThemeStyle]="'m-tabs-line--warning'" (selected)="getItem2($event)"></zr-tabs>
           <p>{{efferentValue2}}</p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-4">
           <h6>line-tabs型 [粗下边框]</h6>
-          <component-zr-tabs [tabsData]="tabsArray1" [bootomBorder2X]="true" (selected)="getItem3($event)"></component-zr-tabs>
+          <zr-tabs [tabsData]="tabsArray1" [bootomBorder2X]="true" (selected)="getItem3($event)"></zr-tabs>
           <p>{{efferentValue3}}</p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-4">
           <h6>line-tabs型 [加载时选择上海]</h6>
-          <component-zr-tabs [tabsData]="tabsArray1" [choice]="1" (selected)="getItem4($event)"></component-zr-tabs>
+          <zr-tabs [tabsData]="tabsArray1" [choice]="1" (selected)="getItem4($event)"></zr-tabs>
           <p>{{efferentValue4}}</p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-4">
           <h6>line-tabs型 [item项有图标、下拉项、有禁选项.深圳]</h6>
-          <component-zr-tabs [tabsData]="tabsArray2" (selected)="getItem5($event)"></component-zr-tabs>
+          <zr-tabs [tabsData]="tabsArray2" (selected)="getItem5($event)"></zr-tabs>
           <p>{{efferentValue5}}</p>
         </div>
       </div>
@@ -53,12 +53,12 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-4">
           <h6>bootstrap-line-tabs型 [默认]</h6>
-          <component-zr-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-line-tabs'" (selected)="getItem6($event)"></component-zr-tabs>
+          <zr-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-line-tabs'" (selected)="getItem6($event)"></zr-tabs>
           <p>{{efferentValue6}}</p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-4">
           <h6>bootstrap-line-tabs型 [有图标、下拉项、有禁选]</h6>
-          <component-zr-tabs [tabsData]="tabsArray2" [tabsType]="'bootstrap-line-tabs'" (selected)="getItem7($event)"></component-zr-tabs>
+          <zr-tabs [tabsData]="tabsArray2" [tabsType]="'bootstrap-line-tabs'" (selected)="getItem7($event)"></zr-tabs>
           <p>{{efferentValue7}}</p>
         </div>
       </div>
@@ -67,12 +67,12 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-4">
           <h6>bootstrap-btn-tabs型 [默认]</h6>
-          <component-zr-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-btn-tabs'" (selected)="getItem8($event)"></component-zr-tabs>
+          <zr-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-btn-tabs'" (selected)="getItem8($event)"></zr-tabs>
           <p>{{efferentValue8}}</p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-4">
           <h6>bootstrap-tabs型 [有图标、下拉项、有禁选、改变按钮颜色]</h6>
-          <component-zr-tabs [tabsData]="tabsArray2" [tabsType]="'bootstrap-btn-tabs'" [btnColor]="'nav-pills--danger'" (selected)="getItem9($event)"></component-zr-tabs>
+          <zr-tabs [tabsData]="tabsArray2" [tabsType]="'bootstrap-btn-tabs'" [btnColor]="'nav-pills--danger'" (selected)="getItem9($event)"></zr-tabs>
           <p>{{efferentValue9}}</p>
         </div>
       </div>
@@ -91,7 +91,7 @@
         </div>
       </div>
       <div class="m-portlet__body">
-        <component-zr-tabs [tabsData]="tabsArray1" (selected)="getItem1($event)"></component-zr-tabs>
+        <zr-tabs [tabsData]="tabsArray1" (selected)="getItem1($event)"></zr-tabs>
         <div class="tab-content">
           <div [ngClass]="{'active':panel==='1'}" class="tab-pane animated fadeIn" role="tabpanel" aria-expanded="false">
             北京，简称“京”，是中华人民共和国的首都、直辖市、国家中心城市、超大城市、国际大都市，全国政治中心、文化中心、国际交往中心、 科技创新中心，是中国共产党中央委员会、中华人民共和国中央人民政府、全国人民代表大会、中国人民政治协商会议全国委员会、中华

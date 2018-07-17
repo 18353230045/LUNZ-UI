@@ -1,0 +1,87 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">Button</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button [routerLink]="['using-documents']" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid ">
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>默认</h5>
+          <zr-button (clickEventer)="click1($event)" [data]="data"></zr-button>
+          <div>{{demo1}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>小尺寸</h5>
+          <zr-button (clickEventer)="click2($event)" [data]="data" [size]="'sm'" [text]="'Small button'"></zr-button>
+          <div>{{demo2}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>大尺寸</h5>
+          <zr-button (clickEventer)="click3($event)" [data]="data" [size]="'lg'" [text]="'Large button'"></zr-button>
+          <div>{{demo3}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>禁用</h5>
+          <zr-button (clickEventer)="click4($event)" [data]="data" [disabled]="true"></zr-button>
+          <div>{{demo4}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>添加icon</h5>
+          <zr-button (clickEventer)="click5($event)" [data]="data" [icon]="'la la-archive'"></zr-button>
+          <div>{{demo5}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>直角</h5>
+          <zr-button (clickEventer)="click6($event)" [data]="data" [borderRadius]="'square'"></zr-button>
+          <div>{{demo6}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>圆角</h5>
+          <zr-button (clickEventer)="click7($event)" [data]="data" [borderRadius]="'pill'"></zr-button>
+          <div>{{demo7}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>阴影</h5>
+          <zr-button (clickEventer)="click8($event)" [data]="data" [shadow]="true"></zr-button>
+          <div>{{demo8}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>自定义背景色1</h5>
+          <zr-button (clickEventer)="click9($event)" [data]="data" [bg]="'btn-success'"></zr-button>
+          <div>{{demo9}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>自定义背景色2</h5>
+          <zr-button (clickEventer)="click10($event)" [data]="data" [bg]="'btn-danger'"></zr-button>
+          <div>{{demo10}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>自定义文本</h5>
+          <zr-button (clickEventer)="click11($event)" [data]="data" [bg]="'btn-primary'" [text]="'提交'"></zr-button>
+          <div>{{demo11}}</div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>下拉小箭头</h5>
+          <zr-button (clickEventer)="click12($event)" [data]="data" [bg]="'btn-primary'" [toggle]="true"></zr-button>
+          <div>{{demo12}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

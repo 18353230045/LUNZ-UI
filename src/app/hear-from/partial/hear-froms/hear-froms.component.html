@@ -21,7 +21,7 @@
           </a>
         </li>
         <li class="m-portlet__nav-item">
-          <component-ngx-query-toolbar #ngxQueryToolbar [ngxQuery]="ngxQuery"></component-ngx-query-toolbar>
+          <ngx-query-toolbar #ngxQueryToolbar [ngxQuery]="ngxQuery"></ngx-query-toolbar>
         </li>
         <li class="m-portlet__nav-item">
           <button (click)="appNgxDataTable.refreshData()" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
@@ -37,12 +37,12 @@
     </ngx-query>
     <ngx-datatable #dt class="material" [scrollbarH]="true" [rows]="hearfroms" [loadingIndicator]="loading" #appNgxDataTable="NgxDataTableDirective" appNgxDataTable [ngxQuery]="ngxQuery"
       (data)="loadHearfroms($event)">
-      <app-ngx-datatable-footer></app-ngx-datatable-footer>
+      <app-datatable-footer [datatable]="datatable"></app-datatable-footer>
       <ngx-datatable-column  name="名称" prop="name">
       </ngx-datatable-column>
       <ngx-datatable-column maxWidth="250"  headerClass="datatable-header-cell-acitons">
         <ng-template let-column="column" ngx-datatable-header-template>
-          <app-ngx-datatable-actions [datatable]="dt" class="pull-right"></app-ngx-datatable-actions>
+          <app-datatable-actions [datatable]="dt" class="pull-right"></app-datatable-actions>
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
           <!-- <a [routerLink]="['./', row.id]" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="查看">

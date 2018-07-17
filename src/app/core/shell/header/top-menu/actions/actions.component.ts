@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { ITreeOptions, IActionMapping } from 'angular-tree-component';
 
 import { LoggerFactory } from '../../../../logger-factory.service';
 import { Logger } from '../../../../logger.service';
-import { OperationService } from '../../quick-actions/shared/operation.service';
 
 declare const $: any;
 
@@ -41,9 +41,10 @@ export class ActionsComponent implements OnInit {
 
     constructor(
         private loggerFactory: LoggerFactory,
-        private operationService: OperationService,
+        private router: Router
     ) {
         this.log = this.loggerFactory.getLogger();
+        this.init();
 
         // 取消tree组件内部打开子级菜单事件冒泡
         $('body').on('click', '.toggle-children-wrapper', function (event: any) {
@@ -52,16 +53,106 @@ export class ActionsComponent implements OnInit {
     };
 
     ngOnInit() {
-        this.myOperationMyModelList = this.operationService.getModeList(`myOperationMyModelList`, 0) || [];
-        this.myOperationOpenHistoryList = this.operationService.getModeList(`openHistoryList`, 1) || [];
-
-        this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
+        this.getModeList(`myOperationMyModelList`, 0).then((ModeList: any[]) => {
+            this.myOperationMyModelList = ModeList || [];
+        }).then(() => {
+            this.getModeList(`openHistoryList`, 1).then((Mode: any[]) => {
+                this.myOperationOpenHistoryList = Mode || [];
+            }).then(() => {
+                this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
+            });
+        });
 
         $('.m-menu__submenu--left').on('click', '.lz-m-menu__link', function () {
             $(this).parents('.m-menu__item--rel').removeClass('m-menu__item--open-dropdown m-menu__item--hover');
         });
     };
 
+    // init
+    init() {
+        this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
+            const activeUrl = event['urlAfterRedirects'];
+            const moduleTree = JSON.parse(localStorage.getItem('moduleTree'));
+            const openHistoryList = localStorage.getItem(`openHistoryList`);
+
+            if (openHistoryList == null) {
+                this.existence(activeUrl, moduleTree).then(() => {
+                    localStorage.setItem(`openHistoryList`, JSON.stringify(this.recordClickMenu));
+                });
+            } else {
+                this.recordClickMenu = JSON.parse(openHistoryList);
+                for (let i = 0; i < this.recordClickMenu.length; i++) {
+                    if (this.recordClickMenu[i].url === activeUrl) {
+                        this.recordClickMenu[i].clickNum += 1;
+                        localStorage.setItem(`openHistoryList`, JSON.stringify(this.recordClickMenu));
+                        this.recordClickMenu = [];
+                        return;
+                    }
+                }
+                this.existence(activeUrl, moduleTree).then(() => {
+                    localStorage.setItem(`openHistoryList`, JSON.stringify(this.recordClickMenu));
+                    this.recordClickMenu = [];
+                });
+            }
+        });
+    };
+
+    // existence
+    existence(activeUrl: any, moduleTree: any[]) {
+        return new Promise((resolve) => {
+            const timer = setInterval(() => {
+                if (moduleTree !== null) {
+                    clearInterval(timer);
+                    for (const model of moduleTree) {
+                        if (model.children.length === 0) {
+                            if (activeUrl === model.ngUrl) {
+                                this.recordClickMenu.push({
+                                    clickNum: 1,
+                                    name: model.name,
+                                    icon: model.icon,
+                                    url: model.ngUrl
+                                });
+                                resolve();
+                            };
+                        } else {
+                            for (const mode of model.children) {
+                                if (activeUrl === mode.ngUrl) {
+                                    this.recordClickMenu.push({
+                                        clickNum: 1,
+                                        name: mode.name,
+                                        icon: mode.icon,
+                                        url: mode.ngUrl
+                                    });
+                                    resolve();
+                                };
+                            };
+                        }
+                    };
+                };
+            }, 200);
+        });
+    };
+
+    // sort
+    sortModelList(modeList: any) {
+        return new Promise((resolve) => {
+            modeList.sort((x: any, y: any) => {
+                return y.clickNum - x.clickNum;
+            });
+            resolve(modeList);
+        });
+    };
+
+    // get mode list
+    getModeList(modelName: string, moduelType: any) {
+        const modeList = JSON.parse(localStorage.getItem(modelName)) || [];
+
+        if (modeList !== null) {
+            return this.sortModelList(modeList);
+        }
+    };
+
+    // remove repeat
     removeRepeat(arr1: Array<any>, arr2: Array<any>) {
         arr1.forEach((item: any) => {
             arr2.forEach((itemt, index) => {
@@ -72,6 +163,7 @@ export class ActionsComponent implements OnInit {
         });
     };
 
+    // move model
     moveModel(row: any, i: any, list: Array<any>, sortType: number, moveListName: string): void {
         if (sortType === 1) {
             list.forEach((item, index) => {
@@ -93,13 +185,16 @@ export class ActionsComponent implements OnInit {
             });
         }
 
-        this.operationService.sortModelList(list);
-
-        localStorage.setItem(`${moveListName}`, JSON.stringify(list));
-
-        this.myOperationMyModelList = this.operationService.getModeList(`myOperationMyModelList`, 0) || [];
+        this.sortModelList(list).then((modlist: any) => {
+            localStorage.setItem(`${moveListName}`, JSON.stringify(modlist));
+        }).then(() => {
+            this.getModeList(`myOperationMyModelList`, 0).then((modelList: any[]) => {
+                this.myOperationMyModelList = modelList || [];
+            });
+        });
     };
 
+    // delete model
     deleteModel(row: any, list: Array<any>, i: number, deleteListName: string): void {
         list.splice(i, 1);
 
@@ -108,6 +203,7 @@ export class ActionsComponent implements OnInit {
         this.log.info(`${row.name} 移除成功！`);
     };
 
+    // delete model all
     deleteModelAll(): void {
         const count = this.myOperationOpenHistoryList.length;
 
@@ -118,8 +214,7 @@ export class ActionsComponent implements OnInit {
         this.log.info(`移除成功！`);
     };
 
-
-    // 获取本地所有模块（赋值tree）
+    // get all model（assignment tree）
     getAllModel() {
         this.nodes.length = 0;
         let clickNum = 1;
@@ -155,6 +250,7 @@ export class ActionsComponent implements OnInit {
         this.addModel = true;
     };
 
+    // handle file
     handle(modelList: any) {
         if (modelList.data.children.length > 0) {
             return;
@@ -181,6 +277,7 @@ export class ActionsComponent implements OnInit {
         modelList.data.checked = true;
     };
 
+    // submit model
     submitCheckedModel(): void {
         if (this.temporaryList.length === 0) {
             this.log.warn(`至少选择 1 个模块！`);
@@ -193,9 +290,11 @@ export class ActionsComponent implements OnInit {
         }
 
         localStorage.setItem(`myOperationMyModelList`, JSON.stringify(this.temporaryList));
-
         const myOperationMyModelList = JSON.parse(localStorage.getItem('myOperationMyModelList'));
-        this.myOperationMyModelList = this.operationService.sortModelList(myOperationMyModelList);
+
+        this.sortModelList(myOperationMyModelList).then((modelList: any[]) => {
+            this.myOperationMyModelList = modelList || [];
+        });
 
         this.temporaryList = [];
         this.addModel = false;
