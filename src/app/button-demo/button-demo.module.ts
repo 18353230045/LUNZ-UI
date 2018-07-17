@@ -13,8 +13,8 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
   imports: [
     CommonModule,
     SharedModule,
+    ButtonDemoRoutingModule,
     ZrAngularModule.forRoot(),
-    ButtonDemoRoutingModule
   ],
   declarations: [
     ButtonDemoComponent,
