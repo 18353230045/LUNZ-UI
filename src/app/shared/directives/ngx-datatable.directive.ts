@@ -11,7 +11,7 @@ import { QueryComponent } from '@zhongruigroup/ngx-query/query.component';
 import { cloneQueryGroup } from '@zhongruigroup/ngx-query/utils/query-helper';
 
 import { DatatableFooterComponent } from 'zr-angular/datatable-footer/datatable-footer.component';
-import { NgxDatatableActionsComponent } from '../components/ngx-datatable-actions/ngx-datatable-actions.component';
+import { DatatableActionsComponent } from 'zr-angular/datatable-actions/datatable-actions.component';
 
 @Directive({
     selector: '[appNgxDataTable]',
@@ -55,8 +55,8 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
     }
     @ContentChild(DatatableFooterComponent)
     footer: DatatableFooterComponent;
-    @ContentChild(NgxDatatableActionsComponent)
-    toolbar: NgxDatatableActionsComponent;
+    @ContentChild(DatatableActionsComponent)
+    toolbar: DatatableActionsComponent;
 
     private _datatable: DatatableComponent;
     private _pageSize = 10;
