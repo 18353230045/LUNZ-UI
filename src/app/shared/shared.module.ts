@@ -16,7 +16,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 // import { NgxDatatablePagerComponent } from './components/ngx-datatable-pager/ngx-datatable-pager.component';
 // import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions/ngx-datatable-actions.component';
 // import { ZrButtonComponent } from './components/zr-button/zr-button.component';
-import { ZrSwitchComponent } from './components/zr-switch/zr-switch.component';
+// import { ZrSwitchComponent } from './components/zr-switch/zr-switch.component';
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
 import { FileUploadOssComponent } from './components/file-upload-oss/file-upload-oss.component';
 
@@ -59,7 +59,7 @@ export function createDecimalPipe() {
         // NgxDatatablePagerComponent,
         // NgxDatatableActionsComponent,
         // ZrButtonComponent,
-        ZrSwitchComponent,
+        // ZrSwitchComponent,
         VehicleSelectionComponent,
         FileUploadOssComponent,
 
@@ -82,7 +82,7 @@ export function createDecimalPipe() {
         // NgxDatatablePagerComponent,
         // NgxDatatableActionsComponent,
         // ZrButtonComponent,
-        ZrSwitchComponent,
+        // ZrSwitchComponent,
         VehicleSelectionComponent,
         FileUploadOssComponent,
 
