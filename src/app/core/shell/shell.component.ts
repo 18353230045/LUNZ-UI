@@ -15,7 +15,7 @@ declare const mLayout: any;
 })
 export class ShellComponent implements OnInit {
   paddingTop: string;
-  showBreadcrumbs: Boolean = true;
+  showBreadcrumbs: boolean = true;
 
   constructor(private router: Router) { }
 
