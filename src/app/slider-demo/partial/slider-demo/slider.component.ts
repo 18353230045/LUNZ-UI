@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+declare const Slider: any;
 @Component({
     selector: 'app-slider',
     templateUrl: './slider.component.html',
@@ -12,6 +13,9 @@ export class SliderComponent implements OnInit {
     };
 
     ngOnInit() {
+        const slider = new Slider('#slider1', {
+            tooltip: 'always'
+        });
     };
 
 };
