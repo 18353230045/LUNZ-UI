@@ -38,6 +38,7 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../switch-demo/switch-demo.module#SwitchDemoModule' },
     { path: '', loadChildren: '../slider-demo/slider-demo.module#SliderDemoModule' },
     { path: '', loadChildren: '../tips-demo/tips-demo.module#TipsDemoModule' },
+    { path: '', loadChildren: '../counter-demo/counter-demo.module#CounterDemoModule' },
 ]);
 
 @NgModule({
