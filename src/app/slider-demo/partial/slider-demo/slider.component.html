@@ -21,11 +21,51 @@
   <div class="m-portlet__body">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
-          <h5>slider滑块</h5>
-          <div>
-            <input type="text" name="" id="slider1">
-          </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>单滑块</h5>
+          <input type="text" name="slider1" id="slider1">
+          <div>当前值：{{value01}}</div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>双滑块</h5>
+          <input type="text" name="slider2" id="slider2">
+          <div>当前值：{{value02}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>单滑块[配置初始值为5]</h5>
+          <input type="text" name="slider3" id="slider3">
+          <div>当前值：{{value03}}</div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>双滑块[配置初始值为2,8]</h5>
+          <input type="text" name="slider4" id="slider4">
+          <div>当前值：{{value04}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>最小/大值10,100</h5>
+          <input type="text" name="slider5" id="slider5">
+          <div>当前值：{{value05}}</div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>设置步长[3]</h5>
+          <input type="text" name="slider6" id="slider6">
+          <div>当前值：{{value06}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>设置value值得进度[保留小数点后两位]</h5>
+          <input type="text" name="slider7" id="slider7">
+          <div>当前值：{{value07}}</div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>禁用</h5>
+          <input type="text" name="slider8" id="slider8">
+          <div>当前值：{{value08}}</div>
         </div>
       </div>
     </div>

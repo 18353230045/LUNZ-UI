@@ -1,0 +1,21 @@
+.slider.slider-horizontal {
+  width: 100%;
+  min-width: 300px;
+}
+
+.slider-handle {
+  background-color: #5867dd;
+  background-image: -webkit-linear-gradient(top, #5867dd 0, #5867dd 100%);
+  background-image: -o-linear-gradient(top, #5867dd 0, #5867dd 100%);
+  background-image: linear-gradient(to bottom, #5867dd 0, #5867dd 100%);
+}
+
+.tooltip {
+  opacity: 1;
+}
+
+.tooltip-inner {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+}
