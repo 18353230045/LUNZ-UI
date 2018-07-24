@@ -21,8 +21,40 @@
   <div class="m-portlet__body">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
-          <h5>top</h5>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>默认</h5>
+          <zr-counter [(value)]="value01"></zr-counter>
+          <div>{{value01}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>标识符[左]</h5>
+          <zr-counter [showLeftIdentifier]="true" [identifierLeft]="'$'" [(value)]="value02"></zr-counter>
+          <div>{{value02}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>标识符[右]</h5>
+          <zr-counter [showRightIdentifier]="true" [identifierRight]="'元'" [(value)]="value03"></zr-counter>
+          <div>{{value03}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>设置步长为0.5</h5>
+          <zr-counter [(value)]="value04" [step]="0.5"></zr-counter>
+          <div>{{value04}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>设置最小值2</h5>
+          <zr-counter [(value)]="value05" [minValue]="2"></zr-counter>
+          <div>{{value05}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>设置最大值10</h5>
+          <zr-counter [(value)]="value06" [maxValue]="10"></zr-counter>
+          <div>{{value06}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>设置最小值2/设置最大值10</h5>
+          <zr-counter [(value)]="value07" [minValue]="2" [maxValue]="10"></zr-counter>
+          <div>{{value07}}</div>
         </div>
       </div>
     </div>
