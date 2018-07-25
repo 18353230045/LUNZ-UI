@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ZrAngularModule } from 'zr-angular';
+import { ZrButtonModule } from 'zr-button';
 
 import { SharedModule } from '../shared/shared.module';
 import { ButtonDemoRoutingModule } from './button-demo-routing.module';
@@ -14,7 +14,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
     CommonModule,
     SharedModule,
     ButtonDemoRoutingModule,
-    ZrAngularModule.forRoot(),
+    ZrButtonModule
   ],
   declarations: [
     ButtonDemoComponent,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ZrAngularModule } from 'zr-angular';
+import { ZrButtonModule } from 'zr-button';
 
 import { SharedModule } from '../shared/shared.module';
 import { TipsDemoRoutingModule } from './tips-demo-routing.module';
@@ -17,7 +17,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     SharedModule,
     TipsDemoRoutingModule,
     TooltipModule,
-    ZrAngularModule.forRoot()
+    ZrButtonModule
   ],
   declarations: [
     TipsComponent,
