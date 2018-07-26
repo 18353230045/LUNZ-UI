@@ -27,33 +27,46 @@
           <div>{{value01}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
-          <h5>标识符[左]</h5>
-          <zr-counter [showLeftIdentifier]="true" [identifierLeft]="'$'" [(value)]="value02"></zr-counter>
+          <h5>标识符[左]
+            <input type="text" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="identifierLeft" placeholder="标识符">
+          </h5>
+          <zr-counter [showLeftIdentifier]="true" [identifierLeft]="identifierLeft" [(value)]="value02"></zr-counter>
           <div>{{value02}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
-          <h5>标识符[右]</h5>
-          <zr-counter [showRightIdentifier]="true" [identifierRight]="'元'" [(value)]="value03"></zr-counter>
+          <h5>标识符[右]
+            <input type="text" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="identifierRight" placeholder="标识符">
+          </h5>
+          <zr-counter [showRightIdentifier]="true" [identifierRight]="identifierRight" [(value)]="value03"></zr-counter>
           <div>{{value03}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
-          <h5>设置步长为0.5</h5>
-          <zr-counter [(value)]="value04" [step]="0.5"></zr-counter>
+          <h5>设置步长为
+            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="valueStep" placeholder="步长">
+          </h5>
+          <zr-counter [(value)]="value04" [step]="valueStep"></zr-counter>
           <div>{{value04}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
-          <h5>设置最小值2</h5>
-          <zr-counter [(value)]="value05" [minValue]="2"></zr-counter>
+          <h5>设置最小值
+            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="minValue1" placeholder="最小值">
+          </h5>
+          <zr-counter [(value)]="value05" [minValue]="minValue1"></zr-counter>
           <div>{{value05}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
-          <h5>设置最大值10</h5>
-          <zr-counter [(value)]="value06" [maxValue]="10"></zr-counter>
+          <h5>设置最大值
+            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="maxValue1" placeholder="最大值">
+          </h5>
+          <zr-counter [(value)]="value06" [maxValue]="maxValue1"></zr-counter>
           <div>{{value06}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
-          <h5>设置最小值2/设置最大值10</h5>
-          <zr-counter [(value)]="value07" [minValue]="2" [maxValue]="10"></zr-counter>
+          <h5>设置最小值/最大值
+            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="minValue2" placeholder="最小值">/
+            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="maxValue2" placeholder="最大值">
+          </h5>
+          <zr-counter [(value)]="value07" [minValue]="minValue2" [maxValue]="maxValue2"></zr-counter>
           <div>{{value07}}</div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { CounterDemoRoutingModule } from './counter-demo-routing.module';
@@ -10,6 +11,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     SharedModule,
     CounterDemoRoutingModule,
   ],

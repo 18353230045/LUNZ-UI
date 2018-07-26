@@ -16,6 +16,15 @@ export class CounterComponent implements OnInit {
     value07: any;
     value08: any;
 
+    valueStep: number;
+    minValue1: number;
+    maxValue1: number;
+    minValue2: number;
+    maxValue2: number;
+
+    identifierLeft: string = '￥';
+    identifierRight: string = '$';
+
     constructor() {
     };
 

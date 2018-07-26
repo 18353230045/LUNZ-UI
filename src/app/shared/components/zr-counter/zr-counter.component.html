@@ -1,13 +1,14 @@
 <div class="input-group bootstrap-touchspin">
   <span class="input-group-btn">
-    <button type="button" class="btn btn-secondary bootstrap-touchspin-down" (click)="reduceValue()" [disabled]="reduceDisabled"
-      [ngClass]="{'disabled':reduceDisabled}">-</button>
+    <button type="button" class="btn btn-secondary bootstrap-touchspin-down" (click)="reduceValue()" [disabled]="value<=minValue&&minValue!==null"
+      [ngClass]="{'disabled':value<=minValue&&minValue!==null}">-</button>
   </span>
   <span class="input-group-addon bootstrap-touchspin-prefix" *ngIf="showLeftIdentifier">{{identifierLeft}}</span>
-  <input type="number" class="form-control" [(ngModel)]="value" (keyup.enter)="changeValue(touchspin.value)" (blur)="blurValue(touchspin.value)" #touchspin />
+  <input type="number" class="form-control" [(ngModel)]="value" (keyup.enter)="changeValue(touchspin.value)" (blur)="blurValue(touchspin.value)"
+    #touchspin />
   <span class="input-group-addon bootstrap-touchspin-prefix" *ngIf="showRightIdentifier">{{identifierRight}}</span>
   <span class="input-group-btn">
-    <button type="button" class="btn btn-secondary bootstrap-touchspin-up" (click)="increaseValue()" [disabled]="increaseDisabled"
-      [ngClass]="{'disabled':increaseDisabled}">+</button>
+    <button type="button" class="btn btn-secondary bootstrap-touchspin-up" (click)="increaseValue()" [disabled]="value>=maxValue&&maxValue!==null"
+      [ngClass]="{'disabled':value>=maxValue&&maxValue!==null}">+</button>
   </span>
 </div>
