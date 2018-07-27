@@ -18,6 +18,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 // import { ZrButtonComponent } from './components/zr-button/zr-button.component';
 // import { ZrSwitchComponent } from './components/zr-switch/zr-switch.component';
 import { ZrCounterComponent } from './components/zr-counter/zr-counter.component';
+import { ZrTagComponent } from './components/zr-tag/zr-tag.component';
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
 import { FileUploadOssComponent } from './components/file-upload-oss/file-upload-oss.component';
 
@@ -62,6 +63,7 @@ export function createDecimalPipe() {
         // ZrButtonComponent,
         // ZrSwitchComponent,
         ZrCounterComponent,
+        ZrTagComponent,
         VehicleSelectionComponent,
         FileUploadOssComponent,
 
@@ -86,6 +88,7 @@ export function createDecimalPipe() {
         // ZrButtonComponent,
         // ZrSwitchComponent,
         ZrCounterComponent,
+        ZrTagComponent,
         VehicleSelectionComponent,
         FileUploadOssComponent,
 

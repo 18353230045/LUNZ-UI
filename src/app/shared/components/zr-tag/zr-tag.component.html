@@ -1,0 +1,18 @@
+<label class="lz-tag-item" [ngClass]="{
+    'lz-tag-item-radius-small':size==='small',
+    'lz-tag-item-radius-middle':size==='middle',
+    'lz-tag-item-radius-large':size==='large',
+    'lz-tag-gray':type==='gray',
+    'lz-tag-primary':type==='primary',
+    'lz-tag-success':type==='success',
+    'lz-tag-warning':type==='warning',
+    'lz-tag-danger':type==='danger'}">
+  <span class="lz-tag-item-text" [ngClass]="{
+      'lz-tag-item-middle':size==='middle',
+      'lz-tag-item-small':size==='small',
+      'lz-tag-item-large':size==='large'}" (click)="clickTag()">{{text}}</span>
+  <span class="lz-tag-item-close" [ngClass]="{
+      'lz-tag-item-middle':size==='middle',
+      'lz-tag-item-small':size==='small',
+      'lz-tag-item-large':size==='large'}" *ngIf="closeTag" (click)="close.emit($event)">×</span>
+</label>
