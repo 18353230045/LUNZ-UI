@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { BarRatingModule } from 'ng2-bar-rating';
+
 import { SharedModule } from '../shared/shared.module';
 import { RateDemoRoutingModule } from './rate-demo-routing.module';
 
@@ -10,6 +12,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 @NgModule({
     imports: [
         CommonModule,
+        BarRatingModule,
         SharedModule,
         RateDemoRoutingModule
     ],
