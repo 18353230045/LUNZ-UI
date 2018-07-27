@@ -21,6 +21,7 @@ export class CounterComponent implements OnInit {
     maxValue1: number;
     minValue2: number;
     maxValue2: number;
+    toFixed: number;
 
     identifierLeft: string = '￥';
     identifierRight: string = '$';

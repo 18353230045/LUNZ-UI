@@ -69,6 +69,14 @@
           <zr-counter [(value)]="value07" [minValue]="minValue2" [maxValue]="maxValue2"></zr-counter>
           <div>{{value07}}</div>
         </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>设置小数点后保留
+            <input type="number" class="form-control m-input" [min]="0" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="toFixed" #custorme (keydown)="toFixed=custorme.value<0?0:custorme.value" placeholder="小数点后保留位数">
+            位
+          </h5>
+          <zr-counter [(value)]="value08" [toFixed]="toFixed"></zr-counter>
+          <div>{{value08}}</div>
+        </div>
       </div>
     </div>
   </div>

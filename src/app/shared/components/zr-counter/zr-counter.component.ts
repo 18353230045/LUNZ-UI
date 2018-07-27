@@ -37,6 +37,7 @@ export class ZrCounterComponent implements OnInit {
   };
 
   changeValue(value: number) {
+    this.toFixed = this.toFixed < 0 ? 0 : this.toFixed;
     const currentValue = Number(Number(value).toFixed(this.toFixed));
     if ((this.minValue || this.minValue === 0) && (this.maxValue || this.maxValue === 0)) {
       if (currentValue <= this.minValue) {
@@ -72,8 +73,14 @@ export class ZrCounterComponent implements OnInit {
   };
 
   reduceValue() {
-    if (isNaN(this.value) || isUndefined(this.value) || isNull(this.value)) this.value = 0;
-    if (isNaN(this.step) || isUndefined(this.step) || isNull(this.step)) this.step = 1;
+    this.toFixed = this.toFixed < 0 ? 0 : this.toFixed;
+
+    if (isNaN(this.value) || isUndefined(this.value) || isNull(this.value)) {
+      this.value = 0;
+    };
+    if (isNaN(this.step) || isUndefined(this.step) || isNull(this.step)) {
+      this.step = 1;
+    };
     if (this.minValue) {
       if (this.value > this.minValue) {
         this.value -= this.step;
@@ -86,8 +93,14 @@ export class ZrCounterComponent implements OnInit {
   };
 
   increaseValue() {
-    if (isNaN(this.value) || isUndefined(this.value) || isNull(this.value)) this.value = 0;
-    if (isNaN(this.step) || isUndefined(this.step) || isNull(this.step)) this.step = 1;
+    this.toFixed = this.toFixed < 0 ? 0 : this.toFixed;
+
+    if (isNaN(this.value) || isUndefined(this.value) || isNull(this.value)) {
+      this.value = 0;
+    };
+    if (isNaN(this.step) || isUndefined(this.step) || isNull(this.step)) {
+      this.step = 1;
+    };
 
     if (this.minValue && this.value < this.minValue) {
       this.value = this.minValue;
