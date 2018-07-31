@@ -8,6 +8,7 @@ export const environment = {
     production: false,
     version: '2.0',
     localeId: 'zh-CN',
+    haveTabs: true,
     defaultLanguage: 'zh-CN',
     supportedLanguages: [
         'en-US',

@@ -6,6 +6,7 @@ export const environment = {
     production: true,
     version: env.npm_package_version,
     localeId: 'zh-CN',
+    haveTabs: true,
     defaultLanguage: 'en-US',
     supportedLanguages: [
         'en-US',
