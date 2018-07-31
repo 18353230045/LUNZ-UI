@@ -9,10 +9,10 @@ import { isUndefined, isNull } from 'util';
 
 export class ZrCounterComponent implements OnInit {
   @Input()
-  private set value(value: number) {
+  set value(value: number) {
     this._value = Number(Number(value).toFixed(this.toFixed));
   }
-  private get value(): number {
+  get value(): number {
     return this._value;
   }
   @Input() showLeftIdentifier?: boolean = false;
@@ -29,7 +29,7 @@ export class ZrCounterComponent implements OnInit {
 
   @Output() valueChange = new EventEmitter();
 
-  private _value: number;
+  _value: number;
 
   constructor() { };
 
