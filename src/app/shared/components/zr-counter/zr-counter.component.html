@@ -1,14 +1,16 @@
 <div class="input-group bootstrap-touchspin">
   <span class="input-group-btn">
     <button type="button" class="btn btn-secondary bootstrap-touchspin-down" (click)="reduceValue()" [disabled]="value<=minValue&&minValue!==null"
-      [ngClass]="{'disabled':value<=minValue&&minValue!==null}">-</button>
+      [ngClass]="{'disabled':value<=minValue&&minValue!==null,'lz-counter-sm bt-sm':size==='sm','lz-counter-lg':size==='lg'}">-</button>
   </span>
-  <span class="input-group-addon bootstrap-touchspin-prefix" *ngIf="showLeftIdentifier">{{identifierLeft}}</span>
-  <input type="number" class="form-control" [(ngModel)]="value" (keyup.enter)="changeValue(touchspin.value)" (blur)="blurValue(touchspin.value)"
-    #touchspin />
-  <span class="input-group-addon bootstrap-touchspin-prefix" *ngIf="showRightIdentifier">{{identifierRight}}</span>
+  <span class="input-group-addon bootstrap-touchspin-prefix" *ngIf="showLeftIdentifier&&!iconLeft">{{identifierLeft}}</span>
+  <span class="input-group-addon bootstrap-touchspin-prefix {{iconLeft}}" *ngIf="iconLeft" [ngStyle]="{'padding-top':'12px'}"></span>
+  <input type="number" class="form-control" [ngClass]="{'lz-counter-sm bt-sm':size==='sm','lz-counter-lg':size==='lg'}" [(ngModel)]="value"
+    (keyup.enter)="changeValue(touchspin.value)" (blur)="blurValue(touchspin.value)" #touchspin />
+  <span class="input-group-addon bootstrap-touchspin-prefix" *ngIf="showRightIdentifier&&!iconRight">{{identifierRight}}</span>
+  <span class="input-group-addon bootstrap-touchspin-prefix {{iconRight}}" *ngIf="iconRight" [ngStyle]="{'padding-top':'12px'}"></span>
   <span class="input-group-btn">
     <button type="button" class="btn btn-secondary bootstrap-touchspin-up" (click)="increaseValue()" [disabled]="value>=maxValue&&maxValue!==null"
-      [ngClass]="{'disabled':value>=maxValue&&maxValue!==null}">+</button>
+      [ngClass]="{'disabled':value>=maxValue&&maxValue!==null,'lz-counter-sm bt-sm':size==='sm','lz-counter-lg':size==='lg'}">+</button>
   </span>
 </div>

@@ -1,6 +1,5 @@
 .bootstrap-touchspin {
-  width: 100%;
-  min-width: 220px;
+  width: 220px;
 }
 
 .form-control {
@@ -37,4 +36,13 @@ input[type='number'] {
 
 .disabled {
   cursor: not-allowed;
+}
+
+.lz-counter-sm {
+  height: 31px;
+  padding: 0.25rem 1rem !important;
+}
+
+.lz-counter-lg {
+  height: 51px;
 }

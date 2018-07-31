@@ -15,6 +15,9 @@ export class CounterComponent implements OnInit {
     value06: any;
     value07: any;
     value08: any;
+    value09: any;
+    value10: any;
+    value11: any;
 
     valueStep: number;
     minValue1: number;

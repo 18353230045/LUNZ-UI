@@ -23,6 +23,9 @@ export class ZrCounterComponent implements OnInit {
   @Input() maxValue?: number;
   @Input() toFixed?: number = 2;
   @Input() step?: number = 1;
+  @Input() size?: string = 'md';
+  @Input() iconLeft?: string;
+  @Input() iconRight?: string;
 
   @Output() valueChange = new EventEmitter();
 

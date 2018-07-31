@@ -27,52 +27,74 @@
           <div>{{value01}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>小尺寸</h5>
+          <zr-counter [(value)]="value09" [size]="'sm'"></zr-counter>
+          <div>{{value09}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>大尺寸</h5>
+          <zr-counter [(value)]="value10" [size]="'lg'"></zr-counter>
+          <div>{{value10}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
           <h5>标识符[左]
-            <input type="text" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="identifierLeft" placeholder="标识符">
+            <input type="text" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="identifierLeft"
+              placeholder="标识符">
           </h5>
           <zr-counter [showLeftIdentifier]="true" [identifierLeft]="identifierLeft" [(value)]="value02"></zr-counter>
           <div>{{value02}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
           <h5>标识符[右]
-            <input type="text" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="identifierRight" placeholder="标识符">
+            <input type="text" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="identifierRight"
+              placeholder="标识符">
           </h5>
           <zr-counter [showRightIdentifier]="true" [identifierRight]="identifierRight" [(value)]="value03"></zr-counter>
           <div>{{value03}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
+          <h5>标识符[icon]</h5>
+          <zr-counter [(value)]="value11" [iconRight]="'fa fa-usd'"></zr-counter>
+          <div>{{value11}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
           <h5>设置步长为
-            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="valueStep" placeholder="步长">
+            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="valueStep"
+              placeholder="步长">
           </h5>
           <zr-counter [(value)]="value04" [step]="valueStep"></zr-counter>
           <div>{{value04}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
           <h5>设置最小值
-            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="minValue1" placeholder="最小值">
+            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="minValue1"
+              placeholder="最小值">
           </h5>
           <zr-counter [(value)]="value05" [minValue]="minValue1"></zr-counter>
           <div>{{value05}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
           <h5>设置最大值
-            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="maxValue1" placeholder="最大值">
+            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="maxValue1"
+              placeholder="最大值">
           </h5>
           <zr-counter [(value)]="value06" [maxValue]="maxValue1"></zr-counter>
           <div>{{value06}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
           <h5>设置最小值/最大值
-            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="minValue2" placeholder="最小值">/
-            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="maxValue2" placeholder="最大值">
+            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="minValue2"
+              placeholder="最小值">/
+            <input type="number" class="form-control m-input" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="maxValue2"
+              placeholder="最大值">
           </h5>
           <zr-counter [(value)]="value07" [minValue]="minValue2" [maxValue]="maxValue2"></zr-counter>
           <div>{{value07}}</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 m-portlet__body">
           <h5>设置小数点后保留
-            <input type="number" class="form-control m-input" [min]="0" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="toFixed" #custorme (keydown)="toFixed=custorme.value<0?0:custorme.value" placeholder="小数点后保留位数">
-            位
+            <input type="number" class="form-control m-input" [min]="0" [ngStyle]="{'display':'inline-block','width':'120px'}" [(ngModel)]="toFixed"
+              #custorme (keydown)="toFixed=custorme.value<0?0:custorme.value" placeholder="小数点后保留位数"> 位
           </h5>
           <zr-counter [(value)]="value08" [toFixed]="toFixed"></zr-counter>
           <div>{{value08}}</div>
