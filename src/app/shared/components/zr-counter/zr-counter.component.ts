@@ -70,6 +70,8 @@ export class ZrCounterComponent implements OnInit {
   blurValue(value: number) {
     if (value > 0 || value < 0) {
       this.changeValue(value);
+    } else if (Number(value) === 0) {
+      this.changeValue(value);
     } else {
       this.valueChange.emit(null);
     }
