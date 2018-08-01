@@ -85,8 +85,12 @@ export class ZrCounterComponent implements OnInit {
       this.step = 1;
     };
     if (this.minValue) {
+      this.value -= this.step;
+
       if (this.value > this.minValue) {
-        this.value -= this.step;
+        this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
+      } else {
+        this.value = this.minValue;
         this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
       }
     } else {
@@ -112,8 +116,12 @@ export class ZrCounterComponent implements OnInit {
     };
 
     if (this.maxValue) {
+      this.value += this.step;
+
       if (this.value < this.maxValue) {
-        this.value += this.step;
+        this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
+      } else {
+        this.value = this.maxValue;
         this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
       }
     } else {
