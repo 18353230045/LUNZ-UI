@@ -76,7 +76,7 @@
     "urijs": "^1.18.10",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.4",
-    "zr-button": "^1.0.0",
+    "zr-button": "^1.1.2",
     "zr-dropdown-selection": "^1.1.0",
     "zr-progress": "^1.2.0",
     "zr-select-selection": "^1.1.2",
