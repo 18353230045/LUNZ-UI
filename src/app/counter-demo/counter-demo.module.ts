@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ZrCounterModule } from 'zr-counter';
 
 import { SharedModule } from '../shared/shared.module';
 import { CounterDemoRoutingModule } from './counter-demo-routing.module';
@@ -13,6 +14,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
     CommonModule,
     FormsModule,
     SharedModule,
+    ZrCounterModule,
     CounterDemoRoutingModule,
   ],
   declarations: [

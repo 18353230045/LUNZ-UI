@@ -82,7 +82,9 @@
     "zr-select-selection": "^1.1.2",
     "zr-switch": "^1.0.0",
     "zr-tabs": "^1.1.0",
-    "zr-validation-message": "^1.1.0"
+    "zr-validation-message": "^1.1.0",
+    "zr-tag": "^1.0.0",
+    "zr-counter": "^1.0.1"
   },
   "devDependencies": {
     "@angular/cli": "^1.4.9",
