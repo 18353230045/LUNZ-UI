@@ -8,13 +8,7 @@ import { isUndefined, isNull } from 'util';
 })
 
 export class ZrCounterComponent implements OnInit {
-  @Input()
-  set value(value: number) {
-    this._value = Number(Number(value).toFixed(this.toFixed));
-  }
-  get value(): number {
-    return this._value;
-  }
+  @Input() value: any;
   @Input() showLeftIdentifier?: boolean = false;
   @Input() showRightIdentifier?: boolean = false;
   @Input() identifierLeft?: string;
@@ -29,8 +23,6 @@ export class ZrCounterComponent implements OnInit {
 
   @Output() valueChange = new EventEmitter();
 
-  _value: number;
-
   constructor() { };
 
   ngOnInit() {
@@ -39,9 +31,23 @@ export class ZrCounterComponent implements OnInit {
     };
   };
 
-  changeValue(value: number) {
+  processingValue(value: any) {
+    value = value.toString();
+    if (value.lastIndexOf('.') > -1) {
+      value = Number(value);
+      value = value.toFixed(this.toFixed + 2);
+      value = value.substring(0, value.lastIndexOf('.') + this.toFixed + 1);
+      return Number(value);
+    } else {
+      return Number(value);
+    };
+  };
+
+  changeValue(value: any) {
     this.toFixed = this.toFixed < 0 ? 0 : this.toFixed;
-    const currentValue = Number(Number(value).toFixed(this.toFixed));
+
+    const currentValue = this.processingValue(value);
+
     if ((this.minValue || this.minValue === 0) && (this.maxValue || this.maxValue === 0)) {
       if (currentValue <= this.minValue) {
         this.value = this.minValue;
@@ -67,7 +73,7 @@ export class ZrCounterComponent implements OnInit {
     this.valueChange.emit(this.value);
   };
 
-  blurValue(value: number) {
+  blurValue(value: any) {
     if (value > 0 || value < 0) {
       this.changeValue(value);
     } else if (Number(value) === 0) {
@@ -90,14 +96,14 @@ export class ZrCounterComponent implements OnInit {
       this.value -= this.step;
 
       if (this.value > this.minValue) {
-        this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
+        this.valueChange.emit(this.processingValue(this.value));
       } else {
         this.value = this.minValue;
-        this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
+        this.valueChange.emit(this.processingValue(this.value));
       }
     } else {
       this.value -= this.step;
-      this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
+      this.valueChange.emit(this.processingValue(this.value));
     };
   };
 
@@ -113,7 +119,7 @@ export class ZrCounterComponent implements OnInit {
 
     if (this.minValue && this.value < this.minValue) {
       this.value = this.minValue;
-      this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
+      this.valueChange.emit(this.processingValue(this.value));
       return;
     };
 
@@ -121,14 +127,14 @@ export class ZrCounterComponent implements OnInit {
       this.value += this.step;
 
       if (this.value < this.maxValue) {
-        this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
+        this.valueChange.emit(this.processingValue(this.value));
       } else {
         this.value = this.maxValue;
-        this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
+        this.valueChange.emit(this.processingValue(this.value));
       }
     } else {
       this.value += this.step;
-      this.valueChange.emit(Number(Number(this.value).toFixed(this.toFixed)));
+      this.valueChange.emit(this.processingValue(this.value));
     };
   };
 
