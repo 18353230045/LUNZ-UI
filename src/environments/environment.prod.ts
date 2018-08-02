@@ -14,7 +14,7 @@ export const environment = {
     ],
     authentication: {
         // oauth2 / usercenter
-        type: 'usercenter',
+        type: 'oauth2',
         useServiceV1: true
     },
     odic: {
