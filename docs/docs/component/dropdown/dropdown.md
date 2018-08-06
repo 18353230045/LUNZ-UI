@@ -1,20 +1,23 @@
-###引入SharedModule
+###安装插件
+npm install --save zr-dropdown-selection （或确认node-modules里面有此插件）
+
+###引入ZrDropdownSelectionModule
 在当前模块的.module.ts中引入
 
-    import { SharedModule } from '../shared/shared.module';
+    import { ZrDropdownSelectionModule } from 'zr-dropdown-selection';
 
 添加到@NgModule装饰器中
 
     @NgModule({ 
         imports: [ 
-            SharedModule 
+            ZrDropdownSelectionModule 
         ] 
     });
 
 ###引用组件标签
 .component.html中，直接引用组件标签，如：
 
-    <app-dropdown-selection [options]="options" [position]="'left'" [dropText]="'部门'" (selected)="handle($event)"></app-dropdown-selection>
+    <zr-dropdown-selection [options]='options' [dropText]="'部门'" (selected)='handle1($event)'></zr-dropdown-selection>`
 
 ###传入数据源变量
 component.ts中声明传入组件的数据源变量，如：

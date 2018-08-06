@@ -30,20 +30,25 @@
 ###指令参数说明
 参数|说明|类型|可选值|默认值
 -|-|-|-|-
-date | 必选，组件交互入口，可使用[(date)]='date1'实现双向数据绑定 | any | — | -
-original | 可选，当配置传出原始时间格式的可用，用于组件交互入口，可使用[(original)]='date1'实现双向数据绑定 | any | — | -
-dateType | 可选，配置组件传出时间类型 | String | displayDate,originalDate | displayDate
-format | 可选，日期格式化，当需要传出原始时间格式时，format需传入空字符串，如：[format]="" | String | 可通过d，dd，D，DD，m，mm，M，MM，yy，yyyy任意组合 | yyyy-mm-dd
-todayHighlight | 可选，今日高亮 | Boolean | true,false | true
-autoclose | 可选，选择完后自动关闭 | Boolean | true,false | true
-calendarWeeks | 可选， 显示左侧的星期数 | Boolean | true,false | false
-clearBtn | 可选，显示清除按钮 | Boolean | true,false | false
-todayBtn | 可选，显示今日按钮 | Boolean | true,false | false
-startView | 可选，打开时的视图 | String | days,months,years | days
-minViewMode | 可选， 最小选择视图 | String | days,months,years | days
-maxViewMode | 可选， 最大选择视图 | String | days,months,years | years
-multidate | 可选，支持多选 | Boolean | true,false | false
-multidateSeparator | 可选， 当支持多选时，值于值之间的隔字符 | String | 任意 | ,
-orientation | 可选，日期选择框弹出位置 | String | left,right,bottom,auto,top left,top right,auto top,auto bottom | bottom
-startDate | 可选，设定开始日期 | String | — | -
-endDate | 可选，设定结束日期 | String | — | -
+ngModel | 必选，组件交互入口，可使用[(date)]='date1'实现双向数据绑定 | any | — | -
+dateType | 可选，传出时间类型["originalDate"："原始时间类型"，"displayDate"："常见显示类型]" | String | originalDate,displayDate | displayDate
+format | 可选，日期格式化 | String | y（年），m(月)，d（日），h（时），i（分），s（秒），自由组合 | yyyy-mm-dd hh:ii:ss
+showMeridian | 可选，日期格式化 | Boolean | true，false | true
+autoclose | 选择日期后自动关闭 | Boolean | true，false | true
+startView | 开始视图 | Number | 0：时分视图，1：时视图，2：日视图，3：月视图，4：年视图 | 2
+weekStart | 开始星期 | Number | 0：星期一，1：星期二，2：星期三，3：星期四，4：星期五，5：星期六，6：星期天 | 1
+startDate | 开始日期 | Date | 无,（开始日期前面的不能选择） | —
+endDate | 结束日期 | Date | 无,（结束日期后面的不能选择） | —
+daysOfWeekDisabled | 禁选星期 | String | Array | 无,[例如：0,6或者[0,6]，即：禁止选择星期六和星期天的所有日期] | —
+minView | 最小选择视图 | String | Number | 0：时分视图，1：时视图，2：日视图，3：月视图，4：年视图 | 0
+maxView | 最大选择视图 | String | Number | 0：时分视图，1：时视图，2：日视图，3：月视图，4：年视图 | 4
+todayBtn | 显示今日按钮 | Boolean | true,false | false
+clearBtn | 显示清楚按钮 | Boolean | true,false | false
+todayHighlight | 今日高亮 | Boolean | true,false | true
+keyboardNavigation | 键盘选择 | Boolean | true,false | true
+forceParse | 强制解析 | Boolean | true,false | true
+minuteStep | 选择分时最小步长 | Number | - | 5
+pickerPosition | 选择框位置 | String | - | bottom-right
+initialDate | 打开时初始日期 | Date | - | -
+isIcon | 设置图标触发 | Boolean | true,false | true
+iconClass | 设置图标样式类 | String | - | la la-calendar

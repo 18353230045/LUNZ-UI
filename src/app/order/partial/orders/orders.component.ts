@@ -49,7 +49,6 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.changeDetectorRef.detectChanges();
-    this.ngxDataTable.refreshData();
     this.removeHeaderNull();
   };
 

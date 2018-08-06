@@ -25,76 +25,7 @@
     <ul>
       <li>
         <h5>使用方法：</h5>
-        <span> 说明：树形组件用了第三方组件
-          <a href="https://angular2-tree.readme.io/docs" target="_blank">angular-tree-component</a>此组件功能强大，demo中使用了异步加载子节点，拖动换节点位置，其他更多功能请详见官方文档；</span>
-        <br/>
-        <span>1、在当前模块的.module.ts中引入:</span>
-        <br/>
-        <code> import &#123; TreeModule &#125; from 'angular-tree-component';</code>
-      </li>
-      <li>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;添加到@NgModule装饰器中:</span>
-        <br/>
-        <code>@NgModule(&#123;
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;imports: [
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TreeModule
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;]
-          <br/>&#125;);
-        </code>
-      </li>
-      <li>
-        <span>2、.component.html中（demo）:</span>
-        <br/>
-        <code>
-          &lt;tree-root #tree [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"&gt;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;ng-template #treeNodeTemplate let-node="node" let-index="index"&gt;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;i class="jstree-icon jstree-themeicon m--font-success jstree-themeicon-custom
-          ｛｛ node.data.icon ｝｝" role="presentation"&gt;&lt;/i&gt;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span (click)="getItemData(node)"&gt; ｛｛ node.data.name ｝｝&lt;/span&gt;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/ng-template&gt;
-          <br/> &lt;/tree-root&gt;
-          <br/>
-        </code>
-      </li>
-      <li>
-        <span>3、.component.ts中（demo）</span>
-        <br/>
-        <code>
-          export class TreeviewDemoComponent implements OnInit &#123;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;nodes: Array&lt;any&gt; = [];
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;// 配置tree选项
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;options: ITreeOptions = &#123;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allowDrag: true, // 支持拖动位置
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getChildren: this.getChildrenList.bind(this), // 异步加载子节点
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allowDrop: (element, &#123; parent, index &#125;) =&gt; &#123;
-          // 拖动选项
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return parent.hasChildren;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;,
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getNodeClone: (item: any) =&gt; (&#123; // 拖动克隆对象
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: item.node.id,
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: item.node.name
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;)
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&#125;;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;// 获取子列表
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;getChildrenList(node: any) &#123;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let newNodes: Array&lt;any&gt; = [];
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <small>// asyn get childnodes</small>
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Promise((resolve, reject) =&gt; &#123;
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() =&gt; resolve(newNodes),
-          1500);
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#125;);
-          <br/> &nbsp;&nbsp;&nbsp;&nbsp;&#125;;
-          <br/> &#125;;
-          <br/>
-        </code>
-      </li>
-      <li>
-        <span>4、更多功能详细说明请查看
-          <a href="https://angular2-tree.readme.io/docs">官方文档，</a>
-          github位置请
-          <a href="https://github.com/500tech/angular-tree-component">点击</a>
-        </span>
+        <a href="http://lp-doc.lunztech.cn/component/treeview/treeview/" target="_blank">http://lp-doc.lunztech.cn/component/treeview/treeview/</a>
       </li>
     </ul>
   </div>

@@ -7,7 +7,10 @@ import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { DateFormatPipe } from 'angular2-moment';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { ZrAngularModule } from 'zr-angular';
+import { NgxDatatableFooterModule } from 'ngx-datatable-footer';
+import { NgxQueryToolbarModule } from 'ngx-query-toolbar';
+import { NgxDatatableActionsModule } from 'ngx-datatable-actions';
+import { ZrValidationMessageModule } from 'zr-validation-message';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -28,7 +31,10 @@ import { HearFromsService } from '../hear-from/shared/hear-froms.service';
     NgxDatatableModule,
     NgxQueryModule,
     BsDatepickerModule,
-    ZrAngularModule.forRoot(),
+    NgxDatatableFooterModule,
+    NgxQueryToolbarModule,
+    NgxDatatableActionsModule,
+    ZrValidationMessageModule,
     MomentModule,
     SharedModule,
     OrderRoutingModule

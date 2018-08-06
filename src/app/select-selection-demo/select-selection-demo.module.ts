@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ZrAngularModule } from 'zr-angular';
+import { ZrSelectSelectionModule } from 'zr-select-selection';
 
 import { SharedModule } from '../shared/shared.module';
 import { SelectSelectionrRoutingModule } from './select-selectionr-demo-routing.module';
@@ -12,7 +12,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 @NgModule({
     imports: [
         CommonModule,
-        ZrAngularModule.forRoot(),
+        ZrSelectSelectionModule,
         SharedModule,
         SelectSelectionrRoutingModule
     ],

@@ -10,8 +10,8 @@ import { ColumnMode, SortType } from '@swimlane/ngx-datatable/release/types';
 import { QueryComponent } from '@zhongruigroup/ngx-query/query.component';
 import { cloneQueryGroup } from '@zhongruigroup/ngx-query/utils/query-helper';
 
-import { DatatableFooterComponent } from 'zr-angular/datatable-footer/datatable-footer.component';
-import { DatatableActionsComponent } from 'zr-angular/datatable-actions/datatable-actions.component';
+import { DatatableFooterComponent } from 'ngx-datatable-footer/datatable-footer/datatable-footer.component';
+import { DatatableActionsComponent } from 'ngx-datatable-actions/datatable-actions/datatable-actions.component';
 
 @Directive({
     selector: '[appNgxDataTable]',

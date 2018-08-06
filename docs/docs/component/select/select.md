@@ -1,20 +1,23 @@
-###引入SharedModule
-在当前模块的.module.ts中引入SharedModule
+###安装插件
+npm install --save zr-select-selection （或确认node-modules里面有此插件）
 
-`import { SharedModule } from '../shared/shared.module';`
+###引入ZrSelectSelectionModule
+在当前模块的.module.ts中引入
+
+`import { ZrSelectSelectionModule } from 'zr-select-selection';`
 
 添加到@NgModule装饰器中
 
     @NgModule({ 
         imports: [ 
-            SharedModule 
+            ZrSelectSelectionModule 
         ] 
     });
 
 ###.component.html中
 直接引用组件标签，传入需要的配置字段，如
 
-`<app-select-selection [label]="'年级'" [selects]="selects1" [(model)]="selectValue1" [clear]="true"></app-select-selection>`
+`<zr-select-selection [selects]="selects1" [(model)]="selectValue1"></zr-select-selection>`
 
 ###.component.ts中
 声明组件需要的数据和与组件实现双向数据绑定的变量，如

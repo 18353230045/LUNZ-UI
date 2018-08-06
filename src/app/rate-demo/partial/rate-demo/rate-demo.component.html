@@ -1,0 +1,60 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">rate评分</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button [routerLink]="['using-documents']" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm4">
+          <h5>默认</h5>
+          <bar-rating [(rate)]="rate1" [max]="5" [showText]="true" [titles]="['需要努力', '继续努力' , '真棒', '超级棒','超人']"></bar-rating>
+          <div>{{rate1}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm4">
+          <h5>只读</h5>
+          <bar-rating [(rate)]="rate2" [max]="5" [showText]="true" [readOnly]="true" [titles]="['需要努力', '继续努力' , '真棒', '超级棒','超人']"></bar-rating>
+          <div>{{rate2}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm4">
+          <h5>movie主题</h5>
+          <bar-rating [(rate)]="rate3" [max]="5" [showText]="true" [theme]="'movie'" [titles]="['需要努力', '继续努力' , '真棒', '超级棒','超人']"></bar-rating>
+          <div>{{rate3}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm4">
+          <h5>square主题</h5>
+          <bar-rating [(rate)]="rate4" [max]="5" [showText]="true" [theme]="'square'" [titles]="['需要努力', '继续努力' , '真棒', '超级棒','超人']"></bar-rating>
+          <div>{{rate4}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm4">
+          <h5>vertical主题</h5>
+          <bar-rating [(rate)]="rate5" [max]="5" [showText]="true" [theme]="'vertical'" [titles]="['需要努力', '继续努力' , '真棒', '超级棒','超人']"></bar-rating>
+          <div>{{rate5}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm4">
+          <h5>vertical主题</h5>
+          <bar-rating [(rate)]="rate6" [max]="5" [showText]="true" [theme]="'fontawesome-o'" [titles]="['需要努力', '继续努力' , '真棒', '超级棒','超人']"></bar-rating>
+          <div>{{rate6}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
