@@ -1,5 +1,5 @@
 ###安装插件
-npm install --save zr-tabs （或确认node-modules里面有此插件）
+`npm install --save zr-tabs` （或确认node-modules里面有此插件）
 
 ###引入ZrTabsModule
 

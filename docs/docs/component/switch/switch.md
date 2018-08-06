@@ -1,5 +1,5 @@
 ###安装插件
-npm install --save zr-switch （或确认node-modules里面有此插件）
+`npm install --save zr-switch` （或确认node-modules里面有此插件）
 
 ###引入ZrSwitchModule
 在当前模块的.module.ts中引入
