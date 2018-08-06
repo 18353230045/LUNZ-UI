@@ -15,7 +15,6 @@ pages:
         - '表单Form': component/form/form.md
         - '数据列表展示ngx-datatable': component/ngx-datatable/ngx-datatable.md
         - '查询过滤ngx-query': component/ngx-query/ngx-query.md
-        - '表单验证反馈validation-message': component/validation-message/validation-message.md
         - '时间选择器': component/datepicker/datepicker.md
         - '表单验证器': component/validator/validator.md
         - '选择器select': component/select/select.md
@@ -26,6 +25,13 @@ pages:
         - '车型选择': component/vehicle-select/vehicle-select.md
         - '树形结构': component/treeview/treeview.md
         - '切换tabs': component/tabs/tabs.md
+        - 'Button按钮': component/button/button.md
+        - 'Switch开关': component/switch/switch.md
+        - 'Slider滑块': component/slider/slider.md
+        - 'Tips提示': component/tips/tips.md
+        - 'Counter计数器': component/counter/counter.md
+        - 'Rate评分': component/rate/rate.md
+        - 'Tag标签': component/tag/tag.md
         - '图表': component/chart/chart.md
         - '对话框dialogs': component/dialogs/dialogs.md
         - '按钮处理状态': component/angular2-ladda/angular2-ladda.md

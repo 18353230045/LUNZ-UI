@@ -1,15 +1,15 @@
-###说明
-tabs组件有三种类型，分别是：'line-tabs'，'bootstrap-line-tabs'，'bootstrap-btn-tabs'，默认是'line-tabs'，每种类型对应的样式请查看demo。
+###安装插件
+npm install --save zr-tabs （或确认node-modules里面有此插件）
 
-###引入SharedModule 
+###引入ZrTabsModule
 
-    import { SharedModule } from '../shared/shared.module';
+    import { ZrTabsModule } from 'zr-tabs';
 
 添加到@NgModule装饰器中: 
 
     @NgModule({ 
         imports: [ 
-            SharedModule 
+            ZrTabsModule 
         ] 
     });
 
@@ -18,15 +18,15 @@ tabs组件有三种类型，分别是：'line-tabs'，'bootstrap-line-tabs'，'b
 
  line-tabs类型:
  
-    <app-tabs [tabsData]="tabsArray1" (selected)="getItem1($event)"></app-tabs>
+    <zr-tabs [tabsData]="tabsArray1" (selected)="getItem1($event)"></zr-tabs>
 
 bootstrap-line-tabs类型:
 
-    <app-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-line-tabs'" (selected)="getItem1($event)"></app-tabs>
+    <zr-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-line-tabs'" (selected)="getItem1($event)"></zr-tabs>
 
 bootstrap-btn-tabs类型:
 
-    <app-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-btn-tabs'" (selected)="getItem1($event)"></app-tabs>
+    <zr-tabs [tabsData]="tabsArray1" [tabsType]="'bootstrap-btn-tabs'" (selected)="getItem1($event)"></zr-tabs>
 
 ###定义数据源变量和方法
 

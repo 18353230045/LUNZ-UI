@@ -1,23 +1,26 @@
 ###说明
-验证器视觉反馈组件“app-validation-message”,集成了第三方验证器 “ng2-validation”,此验证器， 包括常见的必填验证、数字验证、最小/大值验证、字符长度验证、日期验证、最小/大日期验证、 邮箱验证、 网址验证、字段相同验证等。需要特别说明的是最大/小字符长度验证，不能反馈限制值，用传值label来代替反馈值。 各种验证方法详见demo，更多不常见信息验证请查看 [第三方文档](https://www.npmjs.com/package/ng2-validation)。
+验证器视觉反馈组件“zr-validation-message”,集成了第三方验证器 “ng2-validation”,此验证器， 包括常见的必填验证、数字验证、最小/大值验证、字符长度验证、日期验证、最小/大日期验证、 邮箱验证、 网址验证、字段相同验证等。需要特别说明的是最大/小字符长度验证，不能反馈限制值，用传值label来代替反馈值。 各种验证方法详见demo，更多不常见信息验证请查看 [第三方文档](https://www.npmjs.com/package/ng2-validation)。
 
 ###使用方法
+#####安装插件
+    npm install --save zr-validation-message （或确认node-modules里面有此插件）
 #####引入模块
     import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-    import { SharedModule } from '../shared/shared.module';
-
+    import { ZrValidationMessageModule } from 'zr-validation-message';
+    
     @NgModule({ 
         imports: [ 
             FormsModule, 
             ReactiveFormsModule, 
+            ZrValidationMessageModule,
             SharedModule 
         ] 
     });
 
 #####.html中
     <form [formGroup]="form"
-        <input type="text" class="form-control" name="email" formControlName="email" /
-        <app-validation-message [control]="form.controls['email']"></app-validation-message
+        <input type="text" class="form-control" name="email" formControlName="email" />
+        <zr-validation-message [control]="form.controls['email']"></zr-validation-message>
     </form>
 
 #####.component.ts中

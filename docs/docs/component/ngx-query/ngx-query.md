@@ -1,7 +1,7 @@
 ###说明
 提供了自定查询界面组件，包括简单查询和复杂查询。
 
-github地址： [https://github.com/xuemingfeng/ngx-query](https://github.com/xuemingfeng/ngx-query)
+github地址： [https://github.com/ZhongruiGroup/ngx-query](https://github.com/ZhongruiGroup/ngx-query)
 
 ### 如何使用？简单用例
 在模块.module.ts 引入 `NgxQueryModule` 

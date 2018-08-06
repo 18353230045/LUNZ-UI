@@ -1,20 +1,23 @@
-###引入SharedModule
+###安装插件
+npm install --save zr-progress （或确认node-modules里面有此插件）
+
+###引入ZrProgressModule
 在当前模块的.module.ts中引入
 
-    import { SharedModule } from '../shared/shared.module';
+    import { ZrProgressModule } from 'zr-progress';
 
 添加到@NgModule装饰器中
 
     @NgModule({ 
         imports: [ 
-            SharedModule 
+            ZrProgressModule 
         ] 
     });
 
 ###引用组件标签
 .component.html中，直接引用组件标签，如：
 
-    <app-progress [progress]="0"></app-progress>
+    <zr-progress [progress]="0"></zr-progress>
 
 ###组件参数说明
 参数|说明|类型|可选值|默认值
