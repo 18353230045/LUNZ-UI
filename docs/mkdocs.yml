@@ -12,19 +12,19 @@ pages:
         - '创建新建/编辑订单组件': lunz/step5/step5.md
         - '发布': lunz/release/release.md
     - 'LUNZ+ 组件':
-        - '表单Form': component/form/form.md
-        - '数据列表展示ngx-datatable': component/ngx-datatable/ngx-datatable.md
-        - '查询过滤ngx-query': component/ngx-query/ngx-query.md
+        - 'Form表单': component/form/form.md
+        - 'Ngx-datatable数据列表展示': component/ngx-datatable/ngx-datatable.md
+        - 'Ngx-query查询过滤': component/ngx-query/ngx-query.md
         - '时间选择器': component/datepicker/datepicker.md
         - '表单验证器': component/validator/validator.md
-        - '选择器select': component/select/select.md
-        - '选择器select2': component/select2/select2.md
-        - '下拉dropdown': component/dropdown/dropdown.md
+        - 'Select选择器': component/select/select.md
+        - 'Select2选择器': component/select2/select2.md
+        - 'Dropdown下拉': component/dropdown/dropdown.md
         - '文件上传': component/upload/upload.md
         - '进度条': component/progress/progress.md
         - '车型选择': component/vehicle-select/vehicle-select.md
         - '树形结构': component/treeview/treeview.md
-        - '切换tabs': component/tabs/tabs.md
+        - 'Tabs切换': component/tabs/tabs.md
         - 'Button按钮': component/button/button.md
         - 'Switch开关': component/switch/switch.md
         - 'Slider滑块': component/slider/slider.md
@@ -33,9 +33,9 @@ pages:
         - 'Rate评分': component/rate/rate.md
         - 'Tag标签': component/tag/tag.md
         - '图表': component/chart/chart.md
-        - '对话框dialogs': component/dialogs/dialogs.md
+        - 'Dialogs对话框': component/dialogs/dialogs.md
         - '按钮处理状态': component/angular2-ladda/angular2-ladda.md
-        - '信息提示logger': component/logger/logger.md
+        - 'Logger信息提示': component/logger/logger.md
         - '第三方组件库': component/third-party-components/third-party-components.md
         - '编写自定义组件': component/edit-component/edit-component.md
     - '部署':

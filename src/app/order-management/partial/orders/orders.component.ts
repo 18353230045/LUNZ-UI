@@ -73,8 +73,9 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     };
 
     onSelect(event: any) {
-        this.selectedOrders.splice(0, this.selectedOrders.length);
-        this.selectedOrders.push(event.selected);
+        if (event !== void 0 && event.selected !== void 0) {
+            this.selectedOrders = event.selected;
+        }
     };
 
     loadOrders(event: any) {
