@@ -1,0 +1,71 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">steps步骤条</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button [routerLink]="['using-documents']" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>基础用法</h5>
+          <el-steps [active]="active1" [finish-status]="'success'">
+            <el-step title="步骤 1"></el-step>
+            <el-step title="步骤 2"></el-step>
+            <el-step title="步骤 3"></el-step>
+          </el-steps>
+          <div>
+            <zr-button (handle)="click1()" [text]="'下一步'"></zr-button>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>带描述的步骤条</h5>
+          <el-steps [active]="active2" [align-center]="true">
+            <el-step title="步骤 1" description="这是描述性文字"></el-step>
+            <el-step title="步骤 2" description="这是描述性文字"></el-step>
+            <el-step title="步骤 3" description="这是描述性文字"></el-step>
+          </el-steps>
+          <div>
+            <zr-button (handle)="click2()" [text]="'下一步'"></zr-button>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>带图标的步骤条</h5>
+          <el-steps [active]="active3">
+            <el-step title="步骤 1" icon="edit"></el-step>
+            <el-step title="步骤 2" icon="upload"></el-step>
+            <el-step title="步骤 3" icon="picture"></el-step>
+          </el-steps>
+          <div>
+            <zr-button (handle)="click3()" [text]="'下一步'"></zr-button>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>简洁风格的步骤条</h5>
+          <el-steps [active]="active4" [simple]="true">
+            <el-step title="步骤 1"></el-step>
+            <el-step title="步骤 2"></el-step>
+            <el-step title="步骤 3"></el-step>
+          </el-steps>
+          <div>
+            <zr-button (handle)="click4()" [text]="'下一步'"></zr-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
