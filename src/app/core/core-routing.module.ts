@@ -41,6 +41,7 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../counter-demo/counter-demo.module#CounterDemoModule' },
     { path: '', loadChildren: '../rate-demo/rate-demo.module#RateDemoModule' },
     { path: '', loadChildren: '../tag-demo/tag-demo.module#TagDemoModule' },
+    { path: '', loadChildren: '../collapse-demo/collapse-demo.module#CollapseDemoModule' },
 ]);
 
 @NgModule({
