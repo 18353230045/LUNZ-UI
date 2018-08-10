@@ -43,6 +43,7 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../tag-demo/tag-demo.module#TagDemoModule' },
     { path: '', loadChildren: '../collapse-demo/collapse-demo.module#CollapseDemoModule' },
     { path: '', loadChildren: '../steps-demo/steps-demo.module#StepsDemoModule' },
+    { path: '', loadChildren: '../badge-demo/badge-demo.module#BadgeDemoModule' },
 ]);
 
 @NgModule({

@@ -11,7 +11,6 @@ import { zhCnLocale } from 'ngx-bootstrap/locale';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
 import { MomentModule } from 'angular2-moment/moment.module';
-import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { TreeModule } from 'angular-tree-component';
 import { ZrValidationMessageModule } from 'zr-validation-message';
 
@@ -85,7 +84,6 @@ export function createCurrencyPipe() {
         HttpModule,
         TranslateModule,
         RouterModule,
-        NgxQueryModule,
         ModalModule.forRoot(),
         BsDatepickerModule.forRoot(),
         TabsModule.forRoot(),
