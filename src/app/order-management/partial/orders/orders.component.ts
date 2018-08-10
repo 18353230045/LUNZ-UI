@@ -75,7 +75,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     onSelect(event: any) {
         if (event !== void 0 && event.selected !== void 0) {
             this.selectedOrders = event.selected;
-        }
+        };
     };
 
     loadOrders(event: any) {
