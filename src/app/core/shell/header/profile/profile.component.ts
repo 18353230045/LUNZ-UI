@@ -38,56 +38,62 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private modalService: BsModalService) {
     this.log = this.loggerFactory.getLogger('Profile');
-  }
+  };
 
   ngOnInit() {
 
     if (this.authenticationService.isUsing()) {
       this.isAuthenticated = this.authenticationService.isAuthenticated();
-    }
+    };
 
     if (this.authenticationOAuth2Service.isUsing()) {
       this.isAuthenticated = this.authenticationOAuth2Service.isAuthenticated();
-    }
+    };
 
     if (this.isAuthenticated) {
       this.getProfile();
-    }
+    };
 
-  }
+  };
 
   logout() {
-    const menuOpen = $('.m-brand__toggler--active');
-
-    sessionStorage.setItem('logout', 'logout');
-    sessionStorage.removeItem('currentRouting');
-
-    if (menuOpen.length > 0) {
-      $('#m_aside_left_minimize_toggle').trigger('click');
-    }
-
+    // if usercenter authentication
     if (this.authenticationService.isUsing()) {
-      this.authenticationService
-        .logout()
-        .subscribe(() => {
+      this.authenticationService.logout().subscribe(() => { });
+      setTimeout(() => {
+        this.checkoutMenuActive().then(() => {
           this.router.navigate(['/login']);
         });
-    }
+      }, 300);
+    };
 
+    // if micro service authentication
     if (this.authenticationOAuth2Service.isUsing()) {
 
       if (environment.authentication.useServiceV1) {
         this.authenticationService
           .logout()
           .subscribe(() => { });
-      }
+      };
 
       this.authenticationOAuth2Service
         .signout()
         .then(() => {
           this.router.navigate(['/']);
         });
-    }
+    };
+  };
+
+  checkoutMenuActive() {
+    return new Promise((resolve) => {
+      const menuOpen = $('.m-brand__toggler--active');
+      sessionStorage.setItem('logout', 'logout');
+      sessionStorage.removeItem('currentRouting');
+      if (menuOpen.length > 0) {
+        $('#m_aside_left_minimize_toggle').trigger('click');
+      };
+      resolve();
+    });
   };
 
   changePassword() {
