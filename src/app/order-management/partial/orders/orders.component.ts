@@ -83,6 +83,8 @@ export class OrdersComponent implements OnInit, AfterViewInit {
         this.datatable = event.datatable;
 
         this.loading = true;
+        this.selectedOrders.length = 0;
+
         this.ordersService.getOrders(params)
             .finally(() => this.loading = false)
             .subscribe(response => {
@@ -115,5 +117,14 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
         const modalRef: BsModalRef = this.modalService.show(EditOrderModalComponent);
         modalRef.content.data = row;
+    };
+
+    onDetailToggle(event: any) {
+        console.log('Detail Toggled', event);
+    };
+
+    toggleExpandRow(row: any) {
+        console.log('Toggled Expand Row!', row);
+        this.datatable.rowDetail.toggleExpandRow(row);
     };
 };

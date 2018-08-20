@@ -6,7 +6,7 @@
 @import "toggler/mixins";
 
 //== Datatable
-// @import "datatable/default";
+@import "datatable/default";
 
 //== Navigation menu
 @import "nav/nav";
@@ -51,12 +51,12 @@
 @import "portlets/portlets";
 
 //== Widgets
-// @import "widgets/widget1";
-// @import "widgets/widget2";
-// @import "widgets/widget3";
-// @import "widgets/widget4";
-// @import "widgets/widget5";
-// @import "widgets/widget6";
+@import "widgets/widget1";
+@import "widgets/widget2";
+@import "widgets/widget3";
+@import "widgets/widget4";
+@import "widgets/widget5";
+@import "widgets/widget6";
 // @import "widgets/widget7";
 // @import "widgets/widget8";
 // @import "widgets/widget9";
@@ -64,7 +64,7 @@
 // @import "widgets/widget11";
 // @import "widgets/widget12";
 // @import "widgets/widget13";
-// @import "widgets/widget14";
+@import "widgets/widget14";
 // @import "widgets/widget15";
 // @import "widgets/widget16";
 // @import "widgets/widget17";
@@ -91,4 +91,4 @@
 @import "forms/layout";
 
 //== Table
-// @import "table/table";
+@import "table/table";

@@ -67,7 +67,8 @@
     </div>
   </div>
   <div class="m-portlet__body p-0">
-    <ngx-query [hidden]="!ngxQueryToolbar.visible" [datePickerReadonly]="true" [columnNumber]="2" class="full-screen no-header" #ngxQuery [queryTemplates]="queryTemplates">
+    <ngx-query [hidden]="!ngxQueryToolbar.visible" [datePickerReadonly]="true" [columnNumber]="2" class="full-screen no-header"
+      #ngxQuery [queryTemplates]="queryTemplates">
       <ngx-query-field [name]="'subject'" [label]="'订单摘要'" [type]="'string'"></ngx-query-field>
       <ngx-query-field name="Date" label="日期" type="date"></ngx-query-field>
       <ngx-query-field [name]="'Amount'" [label]="'数量'" [type]="'number'"></ngx-query-field>
@@ -76,7 +77,23 @@
       [selected]="selectedOrders" [selectionType]="'checkbox'" #appNgxDataTable="NgxDataTableDirective" appNgxDataTable [ngxQuery]="ngxQuery"
       (data)="loadOrders($event)">
       <app-datatable-footer [datatable]="datatable"></app-datatable-footer>
-      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false" [headerCheckboxable]="true"
+
+      <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow (toggle)="onDetailToggle($event)">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+          <div [ngStyle]="{'padding-left':'55px'}">
+            <strong>这里可以是附加信息或者其他字段信息；</strong>
+            <div>日期：{{ row.date | amDateFormat: 'YYYY/MM/DD'}}</div>
+          </div>
+        </ng-template>
+      </ngx-datatable-row-detail>
+      <ngx-datatable-column [width]="50" [resizeable]="true" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <a [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="展开/折叠" (click)="toggleExpandRow(row)">
+          </a>
+        </ng-template>
+      </ngx-datatable-column>
+      
+      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="true" [headerCheckboxable]="true"
         [checkboxable]="true">
       </ngx-datatable-column>
       <ngx-datatable-column name="订单摘要" prop="subject">

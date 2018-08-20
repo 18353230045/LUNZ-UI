@@ -77,7 +77,6 @@ export function createDecimalPipe() {
         RemoveSpacePipe,
         ToFixedPipe,
     ],
-
     exports: [
         LoaderComponent,
         HostComponent,

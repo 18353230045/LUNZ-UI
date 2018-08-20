@@ -7,37 +7,67 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class StepsDemoComponent implements OnInit {
-  active1: number = 1;
-  active2: number = 1;
-  active3: number = 1;
-  active4: number = 1;
+  steps1: any[] = [];
+  steps2: any[] = [];
+  steps3: any[] = [];
+  steps4: any[] = [];
+  stepActive1: number = 1;
+  stepActive2: number = 2;
+  stepActive3: number = 3;
+  stepActive4: number = 4;
+  icon: any[] = ['la la-child', 'la la-vine', 'la la-hand-paper-o', 'la la-user-times'];
+
   constructor() { };
 
   ngOnInit() {
+    this.steps1 = [
+      { text: '步骤一' },
+      { text: '步骤二' },
+      { text: '步骤三' },
+      { text: '步骤四' }
+    ];
+    this.steps2 = [
+      { text: '步骤一', describe: '这是描述性文字这是描述性文字' },
+      { text: '步骤二', describe: '这是描述性文字' },
+      { text: '步骤三', describe: '这是描述性文字' },
+      { text: '步骤四', describe: '这是描述性文字' }
+    ];
+    this.steps3 = [
+      { text: '步骤一' },
+      { text: '步骤二' },
+      { text: '步骤三' },
+      { text: '步骤四' }
+    ];
+    this.steps4 = [
+      { text: '步骤一' },
+      { text: '步骤二' },
+      { text: '步骤三' },
+      { text: '步骤四' }
+    ];
   };
 
-  click1() {
-    this.active1 += 1;
-    if (this.active1 > 3) {
-      this.active1 = 0;
+  step1() {
+    this.stepActive1 += 1;
+    if (this.stepActive1 > this.steps1.length) {
+      this.stepActive1 = 0;
     };
   };
-  click2() {
-    this.active2 += 1;
-    if (this.active2 > 3) {
-      this.active2 = 0;
+  step2() {
+    this.stepActive2 += 1;
+    if (this.stepActive2 > this.steps2.length) {
+      this.stepActive2 = 0;
     };
   };
-  click3() {
-    this.active3 += 1;
-    if (this.active3 > 3) {
-      this.active3 = 0;
+  step3() {
+    this.stepActive3 += 1;
+    if (this.stepActive3 > this.steps3.length) {
+      this.stepActive3 = 0;
     };
   };
-  click4() {
-    this.active4 += 1;
-    if (this.active4 > 3) {
-      this.active4 = 0;
+  step4() {
+    this.stepActive4 += 1;
+    if (this.stepActive4 > this.steps4.length) {
+      this.stepActive4 = 0;
     };
   };
 

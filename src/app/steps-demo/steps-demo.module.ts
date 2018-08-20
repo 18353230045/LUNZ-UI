@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ElChildModules } from 'element-angular';
+import { ZrStepsModule } from 'zr-steps';
 import { ZrButtonModule } from 'zr-button';
 
 import { SharedModule } from '../shared/shared.module';
@@ -15,8 +15,8 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
   imports: [
     CommonModule,
     SharedModule,
+    ZrStepsModule,
     ZrButtonModule,
-    ElChildModules.ElStepsModule,
     StepsDemoRoutingModule
   ],
 
