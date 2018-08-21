@@ -11,6 +11,7 @@ import { NgxDatatableFooterModule } from 'ngx-datatable-footer';
 import { NgxQueryToolbarModule } from 'ngx-query-toolbar';
 import { NgxDatatableActionsModule } from 'ngx-datatable-actions';
 import { ZrValidationMessageModule } from 'zr-validation-message';
+import { ZrDatepickerModule } from 'zr-datepicker';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -35,6 +36,7 @@ import { HearFromsService } from '../hear-from/shared/hear-froms.service';
     NgxQueryToolbarModule,
     NgxDatatableActionsModule,
     ZrValidationMessageModule,
+    ZrDatepickerModule,
     MomentModule,
     SharedModule,
     OrderRoutingModule

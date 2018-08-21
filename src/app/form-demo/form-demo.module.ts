@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ZrValidationMessageModule } from 'zr-validation-message';
+import { ZrDatepickerModule } from 'zr-datepicker';
 
 import { SharedModule } from '../shared/shared.module';
 import { FormDemoRoutingModule } from './form-demo-routing.module';
@@ -16,6 +17,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
         FormsModule,
         ReactiveFormsModule,
         ZrValidationMessageModule,
+        ZrDatepickerModule,
         SharedModule,
         FormDemoRoutingModule
     ],

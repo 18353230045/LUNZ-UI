@@ -32,7 +32,7 @@ import { ReferenceDataService } from './services/reference-data.service';
 import { NgxDataTableDirective } from './directives/ngx-datatable.directive';
 import { ApplyPermissionDirective } from './directives/apply-permission.directive';
 import { LaddaDirective } from './directives/ladda.directive';
-import { DatepickerDirective } from './directives/datepicker.directive';
+// import { DatepickerDirective } from './directives/datepicker.directive';
 import { AutoFocusDirective } from './directives/auto-focus.directive';
 
 import { RmbPipe } from './pipes/rmb.pipe';
@@ -70,7 +70,7 @@ export function createDecimalPipe() {
         NgxDataTableDirective,
         ApplyPermissionDirective,
         LaddaDirective,
-        DatepickerDirective,
+        // DatepickerDirective,
         AutoFocusDirective,
 
         RmbPipe,
@@ -94,7 +94,7 @@ export function createDecimalPipe() {
         NgxDataTableDirective,
         ApplyPermissionDirective,
         LaddaDirective,
-        DatepickerDirective,
+        // DatepickerDirective,
         AutoFocusDirective,
 
         RmbPipe,

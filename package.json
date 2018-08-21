@@ -79,6 +79,7 @@
     "zone.js": "^0.8.4",
     "zr-button": "^1.1.2",
     "zr-counter": "^1.0.1",
+    "zr-datepicker": "^1.0.1",
     "zr-dropdown-selection": "^1.1.0",
     "zr-progress": "^1.2.0",
     "zr-select-selection": "^1.1.2",
