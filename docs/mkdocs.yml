@@ -28,10 +28,14 @@ pages:
         - 'Button按钮': component/button/button.md
         - 'Switch开关': component/switch/switch.md
         - 'Slider滑块': component/slider/slider.md
+        - 'Badge标记': component/badge/badge.md
+        - 'Card卡片': component/card/card.md
         - 'Tips提示': component/tips/tips.md
         - 'Counter计数器': component/counter/counter.md
         - 'Rate评分': component/rate/rate.md
         - 'Tag标签': component/tag/tag.md
+        - 'Steps步骤条': component/steps/steps.md
+        - 'Collapse折叠面板': component/collapse/collapse.md
         - '图表': component/chart/chart.md
         - 'Dialogs对话框': component/dialogs/dialogs.md
         - '按钮处理状态': component/angular2-ladda/angular2-ladda.md

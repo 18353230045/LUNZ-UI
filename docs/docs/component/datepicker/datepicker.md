@@ -1,13 +1,16 @@
-###引入SharedModule
-在当前模块的.module.ts中引入: 
+###安装插件
+`npm install --save zr-datepicker` （或确认node-modules里面有此插件）
 
-`import { SharedModule } from '../shared/shared.module';`
+###引入ZrDatepickerModule
+在当前模块的.module.ts中引入
 
-添加到@NgModule装饰器中: 
+    import { ZrDatepickerModule } from 'zr-datepicker';
 
-    @NgModule({
+添加到@NgModule装饰器中
+
+    @NgModule({ 
         imports: [ 
-            SharedModule 
+            ZrDatepickerModule 
         ] 
     });
 
