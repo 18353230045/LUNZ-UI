@@ -71,22 +71,16 @@ export class TreeviewDemoComponent implements OnInit {
 
     // 获取子列表
     getChildrenList(node: any) {
-        let newNodes: Array<any> = [];
+        return new Promise((resolve) => {
+            this.treeviewDemoService.getChildrenList(node.data.id).subscribe(response => {
+                const nodeData = [];
+                for (const row of response) {
+                    const oneData = this.processingNodeData(row);
+                    nodeData.push(oneData);
+                };
+                resolve(nodeData);
+            }, error => this.log.error('子列表获取失败。', error));
 
-        this.treeviewDemoService.getChildrenList(node.data.id).subscribe(response => {
-            const nodeData = [];
-
-            for (const row of response) {
-                const oneData = this.processingNodeData(row);
-                nodeData.push(oneData);
-            }
-
-            newNodes = nodeData;
-
-        }, error => this.log.error('子列表获取失败。', error));
-
-        return new Promise((resolve, reject) => {
-            setTimeout(() => resolve(newNodes), 1500);
         });
     };
 
