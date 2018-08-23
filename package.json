@@ -10,7 +10,7 @@
   "scripts": {
     "ng": "ng",
     "build": "npm run env && ng build --aot --prod",
-    "build:stage": "npm run env && ng build --aot --dev --output-hashing=all --environment=stage",
+    "build:stage": "npm run env && ng build --aot --prod --environment=stage",
     "start": "ng serve --ec true --open",
     "lint": "ng lint && stylelint \"src/app/**/*.scss\" --syntax scss && htmlhint \"src/app\" --config .htmlhintrc",
     "lint:all": "ng lint && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
@@ -21,7 +21,7 @@
     "docs": "hads ./docs -o",
     "env": "env2json npm_package_version -o src/environments/.env.json",
     "generate": "ng generate",
-    "stage": "npm run lint && git checkout stage && git merge develop --no-edit --no-ff && npm run build:stage && git add . && git commit -m \"release stage\" && git push && git checkout develop",
+    "stage": "npm run lint && git checkout stage && git merge DEV --no-edit --no-ff && npm run build:stage && git add . && git commit -m \"release stage\" && git push && git checkout DEV",
     "live": "npm run lint && git checkout live && git merge master --no-edit --no-ff && npm run build && git add . && git commit -m \"release live\" && git push && git checkout master",
     "clean": "del-cli dist"
   },
