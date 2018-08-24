@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TreeModule } from 'angular-tree-component';
+import { TreeModule } from 'primeng';
 
 import { SharedModule } from 'app/shared/shared.module';
 import { TreeviewDemoRoutingModule } from './treeview-demo-routing.module';

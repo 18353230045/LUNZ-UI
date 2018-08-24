@@ -4,8 +4,6 @@ import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
 import { TreeviewDemoService } from '../../shared/treeview-demo.service';
 
-import { ITreeOptions } from 'angular-tree-component';
-
 @Component({
     selector: 'app-treeview-demo',
     templateUrl: './treeview-demo.component.html',
@@ -14,21 +12,8 @@ import { ITreeOptions } from 'angular-tree-component';
 
 export class TreeviewDemoComponent implements OnInit {
     log: Logger;
-    nodes: Array<any> = [];
+    filesTree0: Array<any> = [];
     itemData: any;
-
-    // 配置tree选项
-    options: ITreeOptions = {
-        allowDrag: true,  // 支持拖动位置
-        getChildren: this.getChildrenList.bind(this),  // 异步加载子节点
-        allowDrop: (element, { parent, index }) => { // 拖动选项
-            return parent.hasChildren;
-        },
-        getNodeClone: (item: any) => ({  // 拖动克隆对象
-            id: item.node.id,
-            name: item.node.name
-        })
-    };
 
     constructor(
         private treeviewDemoService: TreeviewDemoService,
@@ -44,10 +29,12 @@ export class TreeviewDemoComponent implements OnInit {
     // 处理数据
     processingNodeData(item: any): any {
         const oneData = {
-            name: item.text,
+            label: item.text,
             id: item.id,
-            hasChildren: item.children,
-            isOpen: false
+            // expandedIcon: 'fa fa-folder-open',
+            // collapsedIcon: 'fa fa-folder',
+            icon: item.children ? 'fa fa-github-alt' : 'fa fa-github',
+            leaf: item.children ? false : true
         };
         return oneData;
     };
@@ -55,34 +42,39 @@ export class TreeviewDemoComponent implements OnInit {
     // 获取根列表
     getRootList() {
         const applicationId = '4f500000-4c4f-0200-6a51-08d4ccde1a4a';
-
         this.treeviewDemoService.getRootList(applicationId).subscribe(response => {
             const nodeData = [];
-
             for (const row of response) {
                 const oneData = this.processingNodeData(row);
                 nodeData.push(oneData);
             }
-
-            this.nodes = nodeData;
-
+            this.filesTree0 = nodeData;
         }, error => this.log.error('列表获取失败。', error));
     };
 
     // 获取子列表
-    getChildrenList(node: any) {
-        return new Promise((resolve) => {
-            this.treeviewDemoService.getChildrenList(node.data.id).subscribe(response => {
-                const nodeData = [];
-                for (const row of response) {
+    getChildrenList(event: any) {
+        if (event.node) {
+            this.treeviewDemoService.getChildrenList(event.node.id).subscribe(nodes => {
+                const nodeArr = [];
+                for (const row of nodes) {
                     const oneData = this.processingNodeData(row);
-                    nodeData.push(oneData);
+                    nodeArr.push(oneData);
                 };
-                resolve(nodeData);
+                event.node.children = nodeArr;
             }, error => this.log.error('子列表获取失败。', error));
-
-        });
+        }
     };
+
+    nodeSelect(event: any) {
+        console.log(event);
+        this.log.info(`选择：${event.node.label}`);
+    };
+
+    nodeUnselect(event: any) {
+        this.log.info(`取消选择：${event.node.label}`);
+    };
+
 
     // 拖动节点
     onMoveNode($event: any) {
@@ -91,18 +83,4 @@ export class TreeviewDemoComponent implements OnInit {
         // }, error => this.log.error('操作失败', error));
     };
 
-    // 获取item项数据
-    getItemData(event: any) {
-        const cacheArr: Array<any> = [];
-        this.itemData = JSON.stringify(event, (key: any, value: any) => {
-            if (typeof value === 'object' && value !== null) {
-                if (cacheArr.indexOf(value) !== -1) {
-                    return;
-                }
-                cacheArr.push(value);
-            }
-
-            return value;
-        });
-    };
 };
