@@ -1,6 +1,6 @@
 // tslint:disable:max-line-length
 // tslint:disable:no-unused-expression
-import { Directive, EventEmitter, HostListener, HostBinding, Output, Input, OnInit, OnDestroy } from '@angular/core';
+import { Directive, EventEmitter, HostListener, HostBinding, Output, Input, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { FileManager } from '../source/fileManager.core';
 import { FileUploader } from '../source/fileUploader.core';
 import { FileManagerOptions } from '../interface';
@@ -37,13 +37,14 @@ export class FileSelectDirective implements OnInit, OnDestroy {
     //
     // Constructor requires an element reference that instantiated this directive
     //
-    public constructor() { }
+    public constructor(private el: ElementRef) { };
 
     //
     // Initialisation
     //
     public ngOnInit() {
         this._files = [];
+        this.el.nativeElement.val = '';
     }
 
     public ngOnDestroy() {
@@ -68,7 +69,7 @@ export class FileSelectDirective implements OnInit, OnDestroy {
         this._InputFile = this.getEventTarget(event);
 
         if (this._InputFile.files.length === 0) {
-            this._InputFile  = null;
+            this._InputFile = null;
             return;
         }
 
@@ -80,10 +81,15 @@ export class FileSelectDirective implements OnInit, OnDestroy {
         this.fileAccepted.emit(this._files);
 
         // Finished with the file
-        this._InputFile  = null;
+        this._InputFile = null;
 
         // Don't let it continue
         this.preventAndStopEventPropagation(event);
+
+        setTimeout(() => {
+            this.el.nativeElement.value = '';
+        }, 500);
+
     }
 
     //
