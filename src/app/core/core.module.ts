@@ -36,6 +36,7 @@ import { SsoServiceService } from '../sso/shared/sso-service.service';
 
 import { MessageService } from '../messages/shared/message.service';
 import { OrdersService } from '../order-management/shared/orders.service';
+import { TreeviewDemoService } from '../treeview-demo/shared/treeview-demo.service';
 
 import { ShellComponent } from './shell/shell.component';
 import { HeaderComponent } from './shell/header/header.component';
@@ -46,7 +47,6 @@ import { ChangePasswordModalComponent } from '../change-password/change-password
 import { MenuItemComponent } from './shell/navigation/menu-item/menu-item.component';
 import { BreadcrumbsComponent } from './shell/breadcrumbs/breadcrumbs.component';
 import { SsoRegisterComponent } from '../sso/sso-register/sso-register.component';
-import { EditOrderModalComponent } from '../order-management/partial/edit-order-modal/edit-order-modal.component';
 import { ProfileComponent } from './shell/header/profile/profile.component';
 import { QuickActionsComponent } from './shell/header/quick-actions/quick-actions.component';
 import { NotificationsComponent } from './shell/header/notifications/notifications.component';
@@ -56,6 +56,10 @@ import { ActionsComponent } from './shell/header/top-menu/actions/actions.compon
 import { ReportsComponent } from './shell/header/top-menu/reports/reports.component';
 import { AppsComponent } from './shell/header/top-menu/apps/apps.component';
 import { TabsComponent } from './shell/header/tabs/tabs.component';
+
+import { EditOrderModalComponent } from '../order-management/partial/edit-order-modal/edit-order-modal.component';
+import { EditNodeModalComponent } from '../treeview-demo/partial/edit-node-modal/edit-node-modal.component';
+import { CreateNodeModalComponent } from '../treeview-demo/partial/create-node-modal/create-node-modal.component';
 
 defineLocale('zh-cn', zhCnLocale);
 
@@ -112,7 +116,6 @@ export function createCurrencyPipe() {
         MenuItemComponent,
         BreadcrumbsComponent,
         SsoRegisterComponent,
-        EditOrderModalComponent,
         ProfileComponent,
         QuickActionsComponent,
         NotificationsComponent,
@@ -121,11 +124,17 @@ export function createCurrencyPipe() {
         ActionsComponent,
         ReportsComponent,
         AppsComponent,
-        TabsComponent
+        TabsComponent,
+
+        EditOrderModalComponent,
+        EditNodeModalComponent,
+        CreateNodeModalComponent
     ],
     entryComponents: [
         ChangePasswordModalComponent,
-        EditOrderModalComponent
+        EditOrderModalComponent,
+        EditNodeModalComponent,
+        CreateNodeModalComponent
     ],
     providers: [
         {
@@ -153,7 +162,8 @@ export function createCurrencyPipe() {
         SweetAlert2Service,
         SsoServiceService,
         MessageService,
-        OrdersService
+        OrdersService,
+        TreeviewDemoService
     ]
 })
 

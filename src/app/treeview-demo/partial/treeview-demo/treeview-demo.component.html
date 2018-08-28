@@ -21,23 +21,22 @@
   <div class="m-portlet__body">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-4">
-          <p-tree 
-            [value]="filesTree0"
-            selectionMode="checkbox"
-            draggableNodes="true" 
-            droppableNodes="true"
-            [loading]="loading"
-            [(selection)]="selectedFile"
-            (onNodeExpand)="getChildrenList($event)"
-            (onNodeSelect)="nodeSelect($event)"
-            (onNodeUnselect)="nodeUnselect($event)"
-            [style]="{'max-height':'450px','overflow':'auto'}">
-          </p-tree>
+        <div class="col-lg-4 col-md-4 col-sm-12" [ngStyle]="{'position':'static'}">
+            <p-tree 
+              [value]="filesTree0"
+              selectionMode="single"
+              [loading]="loading"
+              [(selection)]="selectedFile"
+              (onNodeExpand)="getChildrenList($event)"
+              (onNodeSelect)="nodeSelect($event)"
+              (onNodeUnselect)="nodeUnselect($event)"
+              [contextMenu]="cm"
+              [style]="{'max-height':'450px','overflow':'auto'}">
+            </p-tree>
+            <p-contextMenu #cm [model]="items"></p-contextMenu>
         </div>
-        <div class="col-lg-8">
-          <div>Selected Nodes: <span *ngFor="let file of selectedFile">{{file.label}} </span></div>
-          <!-- 你选择了： {{selectedFile ? selectedFile.node.label : ''}} -->
+        <div class="col-lg-8 col-md-8 col-sm-12">
+          你选择了： {{selectedFile ? selectedFile.label : ''}}
         </div>
       </div>
     </div>
