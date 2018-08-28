@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { SelectModule } from 'ng-select';
+import { MultiSelectModule } from 'primeng';
 
 import { SharedModule } from '../shared/shared.module';
 import { Select2DemoRoutingModule } from './select2-demo-routing.module';
@@ -16,6 +17,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
     imports: [
         CommonModule,
         FormsModule,
+        MultiSelectModule,
         SelectModule,
         SharedModule,
         Select2DemoRoutingModule

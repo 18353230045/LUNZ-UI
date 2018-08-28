@@ -21,7 +21,7 @@
   <div class="m-portlet__body">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
           <h6>异步</h6>
           <div #customerInput class="input-group">
             <ng-select [options]="customers" [placeholder]="'请选择客户'" [allowClear]="true" [(ngModel)]="customer" (selected)="handler($event)">
@@ -29,6 +29,11 @@
           </div>
           <div>双向绑定：{{customer | json}}</div>
           <div>选择：{{handlerCustomer | json}}</div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h6>过滤</h6>
+          <p-multiSelect [options]="cars" [(ngModel)]="selectedCities1"></p-multiSelect>
+          <p>Selected Cars: {{selectedCars1}}</p>
         </div>
       </div>
     </div>
