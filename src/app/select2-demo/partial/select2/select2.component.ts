@@ -19,7 +19,7 @@ export class Select2Component implements OnInit, AfterViewInit {
     customers: Array<IOption> = [];
     handlerCustomer: any;
     customer: any;
-    selectedCities: any;
+    selectedCars: any;
     cars: any[];
 
     config = {

@@ -25,7 +25,6 @@
             <p-tree 
               [value]="filesTree0"
               selectionMode="single"
-              [loading]="loading"
               [(selection)]="selectedFile"
               (onNodeExpand)="getChildrenList($event)"
               (onNodeSelect)="nodeSelect($event)"
