@@ -73,11 +73,10 @@
       <ngx-query-field name="Date" label="日期" type="date"></ngx-query-field>
       <ngx-query-field [name]="'Amount'" [label]="'数量'" [type]="'number'"></ngx-query-field>
     </ngx-query>
-    <ngx-datatable #dt class="material" [scrollbarH]="true" (select)="onSelect($event)" [rows]="orders" [loadingIndicator]="loading"
-      [selected]="selectedOrders" [selectionType]="'checkbox'" #appNgxDataTable="NgxDataTableDirective" appNgxDataTable [ngxQuery]="ngxQuery"
-      (data)="loadOrders($event)">
+    <ngx-datatable #dt class="material" [scrollbarH]="true" (select)="onSelect($event)" [rows]="orders"
+      [loadingIndicator]="loading" [selected]="selectedOrders" [selectionType]="'checkbox'" #appNgxDataTable="NgxDataTableDirective"
+      appNgxDataTable [ngxQuery]="ngxQuery" (data)="loadOrders($event)">
       <app-datatable-footer [datatable]="datatable"></app-datatable-footer>
-
       <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow (toggle)="onDetailToggle($event)">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
           <div [ngStyle]="{'padding-left':'55px'}">
@@ -88,15 +87,16 @@
       </ngx-datatable-row-detail>
       <ngx-datatable-column [width]="50" [resizeable]="true" [sortable]="false" [draggable]="false" [canAutoResize]="false">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-          <a [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="展开/折叠" (click)="toggleExpandRow(row)">
-          </a>
+          <a [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="展开/折叠" (click)="toggleExpandRow(row)"></a>
         </ng-template>
       </ngx-datatable-column>
-      
-      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="true" [headerCheckboxable]="true"
-        [checkboxable]="true">
+      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="true"
+        [headerCheckboxable]="true" [checkboxable]="true">
       </ngx-datatable-column>
       <ngx-datatable-column name="订单摘要" prop="subject">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.subject}}
+        </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="日期" prop="date" headerClass="text-center" cellClass="text-center">
         <ng-template let-row="row" ngx-datatable-cell-template>
@@ -128,11 +128,13 @@
           <app-datatable-actions [datatable]="dt" class="pull-right"></app-datatable-actions>
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <a [routerLink]="['./', row.id]" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="查看订单">
+          <a [routerLink]="['./', row.id]" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
+            title="查看订单">
             <i class="la la-sticky-note"></i>
           </a>
           <div class="dropdown m-dropdown--inline">
-            <a class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="false">
+            <a class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown"
+              aria-expanded="false">
               <i class="la la-ellipsis-h"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end">

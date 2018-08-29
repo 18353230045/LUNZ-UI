@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BsModalRef } from 'ngx-bootstrap';
@@ -18,7 +18,9 @@ export class EditOrderModalComponent implements OnInit {
     log: Logger;
     saving = false;
     form: FormGroup;
-    @Input() data: any = {};
+    middleVariable: any;
+    @Input() data: any;
+    @Output() action = new EventEmitter();
 
     hearFromItems: Array<any> = [
         { key: 1, text: '广告' },
@@ -37,20 +39,17 @@ export class EditOrderModalComponent implements OnInit {
     };
 
     ngOnInit() {
+        this.middleVariable = JSON.parse(JSON.stringify(this.data));
     };
 
     submit() {
-        if (!this.form.valid) {
-            this.log.error('表单数据不完整，请检查。');
-            return;
-        }
-
         this.saving = true;
         this.ordersService.updateOrder(this.data)
             .subscribe(response => {
                 this.saving = false;
-                this.log.info('成功修改订单!', response);
+                this.action.emit(this.middleVariable);
                 this.activeModal.hide();
+                this.log.info('成功修改订单!', response);
             }, error => {
                 this.saving = false;
                 this.log.error('订单保存失败。', error);

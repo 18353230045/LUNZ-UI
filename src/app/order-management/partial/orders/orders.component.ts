@@ -109,14 +109,19 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     };
 
     editByModal(row: any) {
-        const onHidden = this.modalService.onHidden.subscribe((reason: string) => {
-            this.log.debug('onHidden', reason);
-            this.ngxDataTable.refreshData();
+        const initialState = { data: row };
+        const modalRef: BsModalRef = this.modalService.show(EditOrderModalComponent, { initialState });
+
+        const onHidden = this.modalService.onHidden.subscribe(() => {
             onHidden.unsubscribe();
         });
 
-        const modalRef: BsModalRef = this.modalService.show(EditOrderModalComponent);
-        modalRef.content.data = row;
+        modalRef.content.action.take(1).subscribe((value: any) => {
+            // tslint:disable-next-line:forin
+            for (const r in row) {
+                row[r] = value[r];
+            };
+        });
     };
 
     onDetailToggle(event: any) {

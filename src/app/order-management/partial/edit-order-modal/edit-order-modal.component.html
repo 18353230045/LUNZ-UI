@@ -11,7 +11,7 @@
         <label>订单摘要
           <span class="text-danger">*</span>
         </label>
-        <input type="text" formControlName="subject" placeholder="订单摘要" class="form-control" [(ngModel)]="data.subject" />
+        <input type="text" formControlName="subject" placeholder="订单摘要" class="form-control" [(ngModel)]="middleVariable.subject" />
         <zr-validation-message [control]="form.controls['subject']" label="订单摘要"></zr-validation-message>
       </div>
       <div class="form-group">
@@ -19,12 +19,7 @@
           <span class="text-danger">*</span>
         </label>
         <div class="input-group">
-          <input type="text" class="form-control" formControlName="date" placeholder="yyyy-mm-dd" id="date" appDatepicker [clearBtn]="true" [(ngModel)]="data.date" />
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <i class="fa fa-calendar"></i>
-            </button>
-          </span>
+          <input type="text" class="form-control" formControlName="date" placeholder="yyyy-mm-dd" id="date" appDatepicker [clearBtn]="true" [(ngModel)]="middleVariable.date" />
         </div>
         <zr-validation-message [formGroup]="form" for="date" label="日期"></zr-validation-message>
       </div>
@@ -32,14 +27,14 @@
         <label>单价
           <span class="text-danger">*</span>
         </label>
-        <input type="number" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="data.price" />
+        <input type="number" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="middleVariable.price" />
         <zr-validation-message [control]="form.controls['price']" label="单价"></zr-validation-message>
       </div>
       <div class="form-group">
         <label>从何处了解本站？
           <span class="text-danger">*</span>
         </label>
-        <select formControlName="hearFrom" [(ngModel)]="data.hearFrom" class="form-control">
+        <select formControlName="hearFrom" [(ngModel)]="middleVariable.hearFrom" class="form-control">
           <option *ngFor="let item of hearFromItems" [ngValue]="item.key">{{item.text}}</option>
         </select>
         <zr-validation-message [control]="form.controls['hearFrom']" label="从何处了解本站"></zr-validation-message>
@@ -48,18 +43,18 @@
         <label>数量
           <span class="text-danger">*</span>
         </label>
-        <input type="number" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="data.amount" />
+        <input type="number" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="middleVariable.amount" />
         <zr-validation-message [control]="form.controls['amount']" label="数量"></zr-validation-message>
       </div>
       <div class="form-group">
         <label>金额</label>
-        <span class="form-control">{{data.price*data.amount}}</span>
+        <span class="form-control">{{middleVariable.price*middleVariable.amount}}</span>
       </div>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--pill" [ladda]="saving" (click)="submit()">
+  <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--pill" [disabled]="form.invalid || (!form.dirty && !form.touched)" [ladda]="saving" (click)="submit()">
     <span>
       <i class="la la-check"></i>
       <span>保存</span>
