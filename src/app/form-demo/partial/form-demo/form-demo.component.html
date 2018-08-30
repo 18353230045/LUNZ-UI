@@ -11,7 +11,7 @@
     <div class="m-portlet__head-tools">
       <ul class="m-portlet__nav">
         <li class="m-portlet__nav-item">
-          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [disabled]="form.invalid" [ladda]="saving" type="button"
+          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [disabled]="form.invalid || (!form.dirty && !form.touched)" [ladda]="saving" type="button"
             (click)="submit()">
             <span>
               <i class="la la-check"></i>
