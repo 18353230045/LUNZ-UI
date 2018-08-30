@@ -1,17 +1,15 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+
+import { NgxDataTableDirective } from '../../../shared/directives/ngx-datatable.directive';
+import { EditOrderModalComponent } from '../edit-order-modal/edit-order-modal.component';
 
 import { LoggerFactory } from '../../../core/logger-factory.service';
 import { Logger } from '../../../core/logger.service';
 import { Dialogs } from '../../../core/dialogs.service';
-import { NgxDataTableDirective } from '../../../shared/directives/ngx-datatable.directive';
-
 import { OrdersService } from '../../shared/orders.service';
-
-import { EditOrderModalComponent } from '../edit-order-modal/edit-order-modal.component';
 
 declare const $: any;
 

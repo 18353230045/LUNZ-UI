@@ -20,6 +20,7 @@ export class TreeviewDemoComponent implements OnInit {
     filesTree0: Array<any> = [];
     selectedFile: any;
     items: any;
+    loading: boolean = false;
 
     constructor(
         private treeviewDemoService: TreeviewDemoService,
@@ -36,12 +37,12 @@ export class TreeviewDemoComponent implements OnInit {
             {
                 label: '新增同级节点',
                 icon: 'fa fa-link',
-                command: (event: any) => this.addNode(this.selectedFile)
+                command: (event: any) => this.addNode(this.selectedFile, 'sameLevel')
             },
             {
                 label: '新增子级节点',
                 icon: 'fa fa-chain-broken',
-                command: (event: any) => this.addNode(this.selectedFile)
+                command: (event: any) => this.addNode(this.selectedFile, 'subLevel')
             },
             {
                 label: '编辑节点',
@@ -56,26 +57,34 @@ export class TreeviewDemoComponent implements OnInit {
         ];
     };
     // 添加节点
-    addNode(row: any) {
-        const modalRef: BsModalRef = this.modalService.show(CreateNodeModalComponent);
-        modalRef.content.data['action'] = '创建';
+    addNode(row: any, level: string) {
+        row['level'] = level;
+        const initialState = { data: row };
+        const modalRef: BsModalRef = this.modalService.show(CreateNodeModalComponent, { initialState });
 
         const onHidden = this.modalService.onHidden.subscribe((reason: string) => {
-            this.log.debug('onHidden', reason);
             onHidden.unsubscribe();
+        });
+
+        modalRef.content.action.take(1).subscribe((value: any) => {
+            this.getRootList();
         });
 
     };
     // 编辑节点
     editNode(row: any) {
-        console.log(row);
-        const modalRef: BsModalRef = this.modalService.show(CreateNodeModalComponent);
-        modalRef.content.data = row;
-        modalRef.content.data['action'] = '编辑';
+        const initialState = { data: row };
+        const modalRef: BsModalRef = this.modalService.show(EditNodeModalComponent, { initialState });
 
-        const onHidden = this.modalService.onHidden.subscribe((reason: string) => {
-            this.log.debug('onHidden', reason);
+        const onHidden = this.modalService.onHidden.subscribe(() => {
             onHidden.unsubscribe();
+        });
+
+        modalRef.content.action.take(1).subscribe((value: any) => {
+            // tslint:disable-next-line:forin
+            for (const r in row) {
+                row[r] = value[r];
+            };
         });
 
     };
@@ -83,7 +92,6 @@ export class TreeviewDemoComponent implements OnInit {
     removeNode(selectedFile: any) {
         // 从selectedFile里面获取节点id，调用后端接口，删除
         const label = selectedFile.label;
-        console.log(label);
         if (selectedFile.parent) {
             const index = selectedFile.parent.children.indexOf(selectedFile);
             selectedFile.parent.children.splice(index, 1);
@@ -106,8 +114,10 @@ export class TreeviewDemoComponent implements OnInit {
 
     // 获取一级
     getRootList() {
+        this.loading = true;
         const applicationId = '4f500000-4c4f-0200-6a51-08d4ccde1a4a';
         this.treeviewDemoService.getRootList(applicationId).subscribe(response => {
+            this.loading = false;
             const nodeData = [];
             for (const row of response) {
                 const oneData = this.processingNodeData(row);
@@ -120,7 +130,9 @@ export class TreeviewDemoComponent implements OnInit {
     // 获取子级
     getChildrenList(event: any) {
         if (event.node) {
+            this.loading = true;
             this.treeviewDemoService.getChildrenList(event.node.id).subscribe(nodes => {
+                this.loading = false;
                 const nodeArr = [];
                 for (const row of nodes) {
                     const oneData = this.processingNodeData(row);
@@ -142,7 +154,8 @@ export class TreeviewDemoComponent implements OnInit {
 
 
     // 拖动节点
-    onMoveNode($event: any) {
+    nodeDrop($event: any) {
+        console.log($event);
         // this.treeviewDemoService.moveNode($event).subscribe(response => {
         //     this.log.info(`操作成功!`);
         // }, error => this.log.error('操作失败', error));

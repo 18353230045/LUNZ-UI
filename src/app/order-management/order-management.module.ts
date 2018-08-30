@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ModalModule } from 'ngx-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { MomentModule } from 'angular2-moment/moment.module';
@@ -20,6 +21,7 @@ import { OrdersService } from './shared/orders.service';
 
 import { OrdersComponent } from './partial/orders/orders.component';
 import { EditOrderComponent } from './partial/edit-order/edit-order.component';
+import { EditOrderModalComponent } from './partial/edit-order-modal/edit-order-modal.component';
 import { CreateOrderComponent } from './partial/create-order/create-order.component';
 import { OrderComponent } from './partial/order/order.component';
 
@@ -27,6 +29,7 @@ import { OrderComponent } from './partial/order/order.component';
   imports: [
     CommonModule,
     FormsModule,
+    ModalModule.forRoot(),
     ReactiveFormsModule,
     NgxDatatableFooterModule,
     NgxQueryToolbarModule,
@@ -43,7 +46,11 @@ import { OrderComponent } from './partial/order/order.component';
     OrdersComponent,
     EditOrderComponent,
     CreateOrderComponent,
+    EditOrderModalComponent,
     OrderComponent
+  ],
+  entryComponents: [
+    EditOrderModalComponent,
   ],
   providers: [
     OrdersService,

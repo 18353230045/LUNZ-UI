@@ -30,6 +30,10 @@
               (onNodeSelect)="nodeSelect($event)"
               (onNodeUnselect)="nodeUnselect($event)"
               [contextMenu]="cm"
+              [loading]="loading"
+              draggableNodes="true"
+              droppableNodes="true"
+              (onNodeDrop)="nodeDrop($event)"
               [style]="{'max-height':'450px','overflow':'auto'}">
             </p-tree>
             <p-contextMenu #cm [model]="items"></p-contextMenu>

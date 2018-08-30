@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BsModalRef } from 'ngx-bootstrap';
@@ -14,8 +14,10 @@ import { Logger } from '../../../core/logger.service';
 export class EditNodeModalComponent implements OnInit {
     log: Logger;
     saving = false;
+    middleVariable: any;
     form: FormGroup;
-    @Input() data: any = {};
+    @Input() data: any;
+    @Output() action = new EventEmitter();
 
     constructor(
         private treeviewService: TreeviewDemoService,
@@ -27,18 +29,33 @@ export class EditNodeModalComponent implements OnInit {
     };
 
     ngOnInit() {
+        this.cloneData(this.data);
     };
 
     submit() {
         // 此处调用接口，存节点数据
         this.saving = true;
-        // this.treeviewService
+        this.action.emit(this.middleVariable);
+        this.activeModal.hide();
     }
 
     private buildForm() {
         this.form = this.formBuilder.group({
             nodeName: [null, [Validators.required, Validators.maxLength(50)]]
         });
-    }
+    };
 
+    // tslint:disable-next-line:member-ordering
+    cloneData(row: any) {
+        const cacheArr: Array<any> = [];
+        this.middleVariable = JSON.parse(JSON.stringify(row, (key: any, value: any) => {
+            if (typeof value === 'object' && value !== null) {
+                if (cacheArr.indexOf(value) !== -1) {
+                    return;
+                }
+                cacheArr.push(value);
+            }
+            return value;
+        }));
+    };
 }
