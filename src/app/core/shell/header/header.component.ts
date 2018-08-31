@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../../authentication/authentication.service';
@@ -15,7 +15,7 @@ declare const $: any;
   styleUrls: ['./header.component.scss']
 })
 
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   height: string;
   topMenuHeight: string;
@@ -27,8 +27,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private i18nService: I18nService) { }
 
   ngOnInit() {
-
-    $('body').on('click', '#m_aside_left_minimize_toggle', function () {
+    $('#m_aside_left_minimize_toggle').click(() => {
       if (!sessionStorage.getItem('logout')) {
         $('.la-refresh').trigger('click');
       };
@@ -66,28 +65,32 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   toggleMenu() {
     this.menuHidden = !this.menuHidden;
-  }
+  };
 
   setLanguage(language: string) {
     this.i18nService.language = language;
-  }
+  };
 
   logout() {
     this.authenticationService.logout()
       .subscribe(() => this.router.navigate(['/login']));
-  }
+  };
 
   get currentLanguage(): string {
     return this.i18nService.language;
-  }
+  };
 
   get languages(): string[] {
     return this.i18nService.supportedLanguages;
-  }
+  };
 
   get username(): string {
     const credentials = this.authenticationService.credentials;
     return credentials ? credentials.username : null;
-  }
+  };
+
+  ngOnDestroy() {
+    $('#m_aside_left_minimize_toggle').unbind('click');
+  };
 
 }
