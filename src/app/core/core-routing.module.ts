@@ -12,7 +12,6 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../help/help.module#HelpModule' },
     { path: '', loadChildren: '../order-management/order-management.module#OrderManagementModule' },
     { path: '', loadChildren: '../messages/web-message.module#WebMessageModule' },
-    // { path: '', loadChildren: '../ngx-bootstrap/ngx-bootstrap.module#NgxBootstrapModule' },
     { path: '', loadChildren: '../form-validator-demo/form-validator-demo.module#FormValidatorDemoModule' },
     {
         path: '',

@@ -84,6 +84,7 @@ export function createCurrencyPipe() {
         ModalModule.forRoot(),
         ZrValidationMessageModule,
         ZrDatepickerModule,
+        TreeModule,
 
         ToastrModule,
         MomentModule,
@@ -91,7 +92,6 @@ export function createCurrencyPipe() {
         CoreRoutingModule,
         SsoModule,
         WebMessageModule,
-        TreeModule
     ],
     exports: [
         HeaderComponent
