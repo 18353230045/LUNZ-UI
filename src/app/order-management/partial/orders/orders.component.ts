@@ -11,8 +11,6 @@ import { Logger } from '../../../core/logger.service';
 import { Dialogs } from '../../../core/dialogs.service';
 import { OrdersService } from '../../shared/orders.service';
 
-declare const $: any;
-
 @Component({
     selector: 'app-orders',
     templateUrl: './orders.component.html',
@@ -58,16 +56,6 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         this.changeDetectorRef.detectChanges();
-        this.removeHeaderNull();
-    };
-
-    // 解决Edge浏览器下，ngx-datatable组件header处有'null'空值的现象
-    removeHeaderNull() {
-        $('.datatable-header-cell-label').each(function () {
-            if ($(this).text() === 'null') {
-                $(this).remove();
-            }
-        });
     };
 
     onSelect(event: any) {

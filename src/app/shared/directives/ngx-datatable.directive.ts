@@ -13,6 +13,8 @@ import { cloneQueryGroup } from '@zhongruigroup/ngx-query/utils/query-helper';
 import { DatatableFooterComponent } from 'ngx-datatable-footer/datatable-footer/datatable-footer.component';
 import { DatatableActionsComponent } from 'ngx-datatable-actions/datatable-actions/datatable-actions.component';
 
+declare const $: any;
+
 @Directive({
     selector: '[appNgxDataTable]',
     exportAs: 'NgxDataTableDirective'
@@ -76,8 +78,19 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        this.removeHeaderNull();
+
         this.emitData();
     }
+
+    // 解决Edge浏览器下，ngx-datatable组件header处有'null'空值的现象
+    public removeHeaderNull() {
+        $('.datatable-header-cell-label').each(function () {
+            if ($(this).text() === 'null') {
+                $(this).remove();
+            }
+        });
+    };
 
     public refreshData() {
         this.emitData();

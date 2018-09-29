@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CounterComponent implements OnInit {
-    value01: any = 1231;
+    value01: any;
     value02: any;
     value03: any;
     value04: any;
@@ -18,6 +18,7 @@ export class CounterComponent implements OnInit {
     value09: any;
     value10: any;
     value11: any;
+    value12: any;
 
     valueStep: number;
     minValue1: number;
@@ -33,6 +34,10 @@ export class CounterComponent implements OnInit {
     };
 
     ngOnInit() {
+    };
+
+    handler(event: any) {
+        console.log(event);
     };
 
 };

@@ -18,7 +18,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 // import { ZrButtonComponent } from './components/zr-button/zr-button.component';
 // import { ZrSwitchComponent } from './components/zr-switch/zr-switch.component';
 // import { ZrTagComponent } from './components/zr-tag/zr-tag.component';
-// import { ZrCounterComponent } from './components/zr-counter/zr-counter.component';
+// import { ZrCounterComponent } from './components/zr-counter.component';
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
 import { FileUploadOssComponent } from './components/file-upload-oss/file-upload-oss.component';
 
@@ -34,6 +34,7 @@ import { ApplyPermissionDirective } from './directives/apply-permission.directiv
 import { LaddaDirective } from './directives/ladda.directive';
 // import { DatepickerDirective } from './directives/datepicker.directive';
 import { AutoFocusDirective } from './directives/auto-focus.directive';
+// import { ZrCounterDirective } from './components/zr-counter.directive';
 
 import { RmbPipe } from './pipes/rmb.pipe';
 import { RemoveSpacePipe } from './pipes/remove-space.pipe';
@@ -72,6 +73,7 @@ export function createDecimalPipe() {
         LaddaDirective,
         // DatepickerDirective,
         AutoFocusDirective,
+        // ZrCounterDirective,
 
         RmbPipe,
         RemoveSpacePipe,
@@ -96,6 +98,7 @@ export function createDecimalPipe() {
         LaddaDirective,
         // DatepickerDirective,
         AutoFocusDirective,
+        // ZrCounterDirective,
 
         RmbPipe,
         ToFixedPipe
