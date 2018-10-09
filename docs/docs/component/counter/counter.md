@@ -37,3 +37,5 @@ identifierRight | 可选，右侧图标class类 | string | - | -
 identifierRight | 可选，右侧图标class类 | string | - | -
 minValue | 可选，设置最小值 | number | - | -
 maxValue | 可选，设置最大值 | number | - | -
+integer | 可选，设置设置输出整数 | boolean | true,false | false
+handler | 可选，弹出事件 | Eventer | - | -
