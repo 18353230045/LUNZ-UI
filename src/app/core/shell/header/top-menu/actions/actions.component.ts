@@ -23,6 +23,7 @@ export class ActionsComponent implements OnInit {
     temporaryList: Array<any> = [];
     recordClickMenu: Array<any> = [];
     nodes: Array<any> = [];
+    userName: string;
 
     editModel: Boolean = false;
     addModel: Boolean = false;
@@ -43,8 +44,11 @@ export class ActionsComponent implements OnInit {
         private loggerFactory: LoggerFactory,
         private router: Router
     ) {
-        this.log = this.loggerFactory.getLogger();
-        this.init();
+        this.log = this.loggerFactory.getLogger(`我的操作`);
+
+        this.getProfileName().then(() => {
+            this.init();
+        });
 
         // 取消tree组件内部打开子级菜单事件冒泡
         $('body').on('click', '.toggle-children-wrapper', function (event: any) {
@@ -53,13 +57,15 @@ export class ActionsComponent implements OnInit {
     };
 
     ngOnInit() {
-        this.getModeList(`myOperationMyModelList`, 0).then((ModeList: any[]) => {
-            this.myOperationMyModelList = ModeList || [];
-        }).then(() => {
-            this.getModeList(`openHistoryList`, 1).then((Mode: any[]) => {
-                this.myOperationOpenHistoryList = Mode || [];
+        this.getProfileName().then(() => {
+            this.getModeList(`${this.userName}-myOperationMyModelList`, 0).then((ModeList: any[]) => {
+                this.myOperationMyModelList = ModeList || [];
             }).then(() => {
-                this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
+                this.getModeList(`${this.userName}-openHistoryList`, 1).then((Mode: any[]) => {
+                    this.myOperationOpenHistoryList = Mode || [];
+                }).then(() => {
+                    this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
+                });
             });
         });
 
@@ -68,29 +74,40 @@ export class ActionsComponent implements OnInit {
         });
     };
 
+    // getUserName
+    getProfileName(): Promise<any> {
+        return new Promise((resolve) => {
+            const SHARED_SESSION_STORAGE_DATA = JSON.parse(localStorage.getItem('SHARED_SESSION_STORAGE_DATA'));
+            const userName = JSON.parse(SHARED_SESSION_STORAGE_DATA.credentials).username;
+
+            this.userName = userName;
+            resolve();
+        });
+    };
+
     // init
     init() {
         this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
             const activeUrl = event['urlAfterRedirects'];
             const moduleTree = JSON.parse(localStorage.getItem('moduleTree'));
-            const openHistoryList = localStorage.getItem(`openHistoryList`);
+            const openHistoryList = localStorage.getItem(`${this.userName}-openHistoryList`);
 
             if (openHistoryList == null) {
                 this.existence(activeUrl, moduleTree).then(() => {
-                    localStorage.setItem(`openHistoryList`, JSON.stringify(this.recordClickMenu));
+                    localStorage.setItem(`${this.userName}-openHistoryList`, JSON.stringify(this.recordClickMenu));
                 });
             } else {
                 this.recordClickMenu = JSON.parse(openHistoryList);
                 for (let i = 0; i < this.recordClickMenu.length; i++) {
                     if (this.recordClickMenu[i].url === activeUrl) {
                         this.recordClickMenu[i].clickNum += 1;
-                        localStorage.setItem(`openHistoryList`, JSON.stringify(this.recordClickMenu));
+                        localStorage.setItem(`${this.userName}-openHistoryList`, JSON.stringify(this.recordClickMenu));
                         this.recordClickMenu = [];
                         return;
                     }
                 }
                 this.existence(activeUrl, moduleTree).then(() => {
-                    localStorage.setItem(`openHistoryList`, JSON.stringify(this.recordClickMenu));
+                    localStorage.setItem(`${this.userName}-openHistoryList`, JSON.stringify(this.recordClickMenu));
                     this.recordClickMenu = [];
                 });
             }
@@ -164,7 +181,7 @@ export class ActionsComponent implements OnInit {
     };
 
     // move model
-    moveModel(row: any, i: any, list: Array<any>, sortType: number, moveListName: string): void {
+    moveModel(row: any, i: number, list: Array<any>, sortType: number, moveListName: string): void {
         if (sortType === 1) {
             list.forEach((item, index) => {
                 if (i === index + 1) {
@@ -186,9 +203,9 @@ export class ActionsComponent implements OnInit {
         }
 
         this.sortModelList(list).then((modlist: any) => {
-            localStorage.setItem(`${moveListName}`, JSON.stringify(modlist));
+            localStorage.setItem(`${this.userName}-${moveListName}`, JSON.stringify(modlist));
         }).then(() => {
-            this.getModeList(`myOperationMyModelList`, 0).then((modelList: any[]) => {
+            this.getModeList(`${this.userName}-myOperationMyModelList`, 0).then((modelList: any[]) => {
                 this.myOperationMyModelList = modelList || [];
             });
         });
@@ -198,9 +215,9 @@ export class ActionsComponent implements OnInit {
     deleteModel(row: any, list: Array<any>, i: number, deleteListName: string): void {
         list.splice(i, 1);
 
-        localStorage.setItem(`${deleteListName}`, JSON.stringify(list));
+        localStorage.setItem(`${this.userName}-${deleteListName}`, JSON.stringify(list));
 
-        this.log.info(`${row.name} 移除成功！`);
+        this.log.success(`${row.name} 移除成功！`);
     };
 
     // delete model all
@@ -209,9 +226,9 @@ export class ActionsComponent implements OnInit {
 
         this.myOperationOpenHistoryList.splice(0, count);
 
-        localStorage.setItem(`openHistoryList`, JSON.stringify(this.myOperationOpenHistoryList));
+        localStorage.setItem(`${this.userName}-openHistoryList`, JSON.stringify(this.myOperationOpenHistoryList));
 
-        this.log.info(`移除成功！`);
+        this.log.success(`移除成功！`);
     };
 
     // get all model（assignment tree）
@@ -289,8 +306,8 @@ export class ActionsComponent implements OnInit {
             return;
         }
 
-        localStorage.setItem(`myOperationMyModelList`, JSON.stringify(this.temporaryList));
-        const myOperationMyModelList = JSON.parse(localStorage.getItem('myOperationMyModelList'));
+        localStorage.setItem(`${this.userName}-myOperationMyModelList`, JSON.stringify(this.temporaryList));
+        const myOperationMyModelList = JSON.parse(localStorage.getItem(`${this.userName}-myOperationMyModelList`));
 
         this.sortModelList(myOperationMyModelList).then((modelList: any[]) => {
             this.myOperationMyModelList = modelList || [];
@@ -300,7 +317,7 @@ export class ActionsComponent implements OnInit {
         this.addModel = false;
         this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
 
-        this.log.info(`操作成功！`);
+        this.log.success(`操作成功！`);
     };
 
     cancelCheckedModel(): void {
