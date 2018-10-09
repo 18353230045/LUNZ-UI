@@ -42,7 +42,8 @@ export enum LogLevel {
   Error,
   Warning,
   Info,
-  Debug
+  Debug,
+  Success
 }
 
 /**
@@ -56,7 +57,7 @@ export class Logger {
    * Current logging level.
    * Set it to LogLevel.Off to disable logs completely.
    */
-  static level = LogLevel.Debug;
+  static level = LogLevel.Success;
 
   /**
    * Additional log outputs.
@@ -68,7 +69,7 @@ export class Logger {
    * Sets logging level to LogLevel.Warning.
    */
   static enableProductionMode() {
-    Logger.level = LogLevel.Info;
+    Logger.level = LogLevel.Success;
   }
 
   constructor(private dialogs: Dialogs, private source?: string) { }
@@ -79,6 +80,14 @@ export class Logger {
    */
   debug(...objects: any[]) {
     this.log(console.log, LogLevel.Debug, objects);
+  }
+
+  /**
+   * Logs messages or objects  with the success level.
+   * Works the same as console.log().
+   */
+  success(...objects: any[]) {
+    this.log(console.warn, LogLevel.Success, objects);
   }
 
   /**
@@ -132,6 +141,10 @@ export class Logger {
         break;
       case LogLevel.Error:
         this.dialogs.error(message, environment.production ? null : this.source,
+          { enableHtml: true, progressBar: true });
+        break;
+      case LogLevel.Success:
+        this.dialogs.success(message, environment.production ? null : this.source,
           { enableHtml: true, progressBar: true });
         break;
       default:
