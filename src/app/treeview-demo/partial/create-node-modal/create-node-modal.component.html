@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h5 class="modal-title">创建节点</h5>
-  <button type="button" class="close" (click)="activeModal.hide()" aria-label="Close">
+  <button type="button" class="close" (click)="activeModal.hide()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -11,14 +11,15 @@
         <label>节点名称
           <span class="text-danger">*</span>
         </label>
-        <input type="text" formControlName="nodeName" placeholder="节点名称" class="form-control" [(ngModel)]="label" />
+        <input type="text" formControlName="nodeName" placeholder="节点名称" class="form-control" [(ngModel)]="node.name" />
         <zr-validation-message [control]="form.controls['nodeName']" label="节点名称"></zr-validation-message>
       </div>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--pill" [ladda]="saving" [disabled]="form.invalid || (!form.dirty && !form.touched)" (click)="submit()">
+  <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--pill" [ladda]="saving" [disabled]="form.invalid || (!form.dirty && !form.touched)"
+    (click)="submit()">
     <span>
       <i class="la la-check"></i>
       <span>保存</span>
