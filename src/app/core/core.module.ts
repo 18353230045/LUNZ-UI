@@ -144,7 +144,7 @@ export function createCurrencyPipe() {
         LoggerFactory,
         SweetAlert2Service,
         SsoServiceService,
-        MessageService,
+        MessageService
     ]
 })
 
