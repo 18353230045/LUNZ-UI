@@ -11,7 +11,7 @@
     "ng": "ng",
     "build": "npm run env && ng build --aot --prod",
     "build:stage": "npm run env && ng build --aot --prod --environment=stage",
-    "start": "ng serve --ec true --hmr true --show-circular-dependencies false --open true",
+    "start": "ng serve --hmr true --show-circular-dependencies false --open true",
     "lint": "ng lint && stylelint \"src/app/**/*.scss\" --syntax scss && htmlhint \"src/app\" --config .htmlhintrc",
     "lint:all": "ng lint && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
     "test": "ng test",
