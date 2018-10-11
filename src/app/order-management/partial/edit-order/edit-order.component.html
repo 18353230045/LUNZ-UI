@@ -13,8 +13,7 @@
     <div class="m-portlet__head-tools">
       <ul class="m-portlet__nav">
         <li class="m-portlet__nav-item">
-          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [ladda]="saving" type="button"
-            (click)="submit()">
+          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [ladda]="saving" type="button" (click)="submit()">
             <span>
               <i class="la la-check"></i>
               <span>保存</span>
@@ -22,7 +21,8 @@
           </button>
         </li>
         <li class="m-portlet__nav-item">
-          <button class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" type="button" (click)="location.back()">
+          <button class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" type="button"
+            (click)="location.back()">
             <span>
               <i class="la la-rotate-left"></i>
               <span>取消</span>
@@ -33,7 +33,7 @@
     </div>
   </div>
   <div class="m-portlet__body">
-    <form role="form" #orderForm [formGroup]="form" (submit)="submit()">
+    <form role="form" #orderForm [formGroup]="form" (submit)="submit()" novalidate>
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
@@ -52,7 +52,8 @@
               <span class="text-danger">*</span>
             </label>
             <div class="input-group">
-              <input type="text" class="form-control" id="date" appDatepicker [clearBtn]="true" [(ngModel)]="order.date" [format]="'yyyy-mm-dd'" [startView]="2" [minView]="2" formControlName="date" placeholder="yyyy-mm-dd" />
+              <input type="text" class="form-control" id="date" appDatepicker [clearBtn]="true" [(ngModel)]="order.date"
+                [format]="'yyyy-mm-dd'" [startView]="2" [minView]="2" formControlName="date" placeholder="yyyy-mm-dd" />
             </div>
             <zr-validation-message [formGroup]="form" for="date" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></zr-validation-message>
           </div>
