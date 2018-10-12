@@ -33,6 +33,8 @@ import { SsoServiceService } from '../sso/shared/sso-service.service';
 
 import { MessageService } from '../messages/shared/message.service';
 
+import { InitMenutCloseDirective } from './shell/header/directive/init-menut-close.directive';
+
 import { ShellComponent } from './shell/shell.component';
 import { HeaderComponent } from './shell/header/header.component';
 import { PageHeaderComponent } from './shell/page-header/page-header.component';
@@ -114,7 +116,8 @@ export function createCurrencyPipe() {
         ActionsComponent,
         ReportsComponent,
         AppsComponent,
-        TabsComponent
+        TabsComponent,
+        InitMenutCloseDirective
     ],
     entryComponents: [
         ChangePasswordModalComponent

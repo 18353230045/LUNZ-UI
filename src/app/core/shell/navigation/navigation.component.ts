@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BsModalService } from 'ngx-bootstrap';
@@ -7,10 +7,7 @@ import { Logger } from '../../logger.service';
 import { LoggerFactory } from '../../logger-factory.service';
 import { AuthenticationService } from '../../authentication/authentication.service';
 import { AuthenticationOAuth2Service } from '../../authentication/authentication-oauth2.service';
-import { ProfileService, Profile } from '../../profile/profile.service';
-
-declare const mLayout: any;
-declare const jQuery: any;
+import { ProfileService } from '../../profile/profile.service';
 
 @Component({
     selector: 'app-navigation',
@@ -19,12 +16,10 @@ declare const jQuery: any;
     providers: [AuthenticationService, ProfileService]
 })
 
-export class NavigationComponent implements OnInit, AfterViewChecked {
+export class NavigationComponent implements OnInit {
     log: Logger;
     isAuthenticated: boolean;
     menuItems: any;
-
-    private _loaded = false;
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -47,14 +42,6 @@ export class NavigationComponent implements OnInit, AfterViewChecked {
 
         if (this.isAuthenticated) {
             this.getMenuItems();
-        }
-    };
-
-    ngAfterViewChecked() {
-        if (this._loaded === false) {
-            mLayout.initAside();
-            this._loaded = true;
-            jQuery('#m_aside_left_minimize_toggle').click();
         }
     };
 
