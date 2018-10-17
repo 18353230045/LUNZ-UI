@@ -12,7 +12,7 @@ export class OrdersService extends WebApiResultResponse {
 
   constructor(private http: Http) {
     super();
-  }
+  };
 
   getOrders(params: any): Observable<PagingResponse> {
 
@@ -23,7 +23,18 @@ export class OrdersService extends WebApiResultResponse {
     })
       .map(super.handleSuccess)
       .catch(super.handleError);
-  }
+  };
+
+  getOrdersCount(params: any): Observable<PagingResponse> {
+
+    const url = 'orders';
+
+    return this.http.get(url, {
+      params: params
+    })
+      .map(super.handleSuccess)
+      .catch(super.handleError);
+  };
 
   getOrder(orderId: any): Observable<PagingResponse> {
 
@@ -32,7 +43,7 @@ export class OrdersService extends WebApiResultResponse {
     return this.http.get(url)
       .map(super.handleSuccess)
       .catch(super.handleError);
-  }
+  };
 
   createOrder(entity: any): Observable<any> {
 
@@ -41,7 +52,7 @@ export class OrdersService extends WebApiResultResponse {
     return this.http.post(url, entity)
       .map(super.handleSuccess)
       .catch(super.handleError);
-  }
+  };
 
   updateOrder(entity: any): Observable<any> {
 
@@ -50,7 +61,7 @@ export class OrdersService extends WebApiResultResponse {
     return this.http.put(url, entity)
       .map(super.handleSuccess)
       .catch(super.handleError);
-  }
+  };
 
   deleteOrder(entity: any): Observable<any> {
 
@@ -59,5 +70,5 @@ export class OrdersService extends WebApiResultResponse {
     return this.http.delete(url)
       .map(super.handleSuccess)
       .catch(super.handleError);
-  }
+  };
 }

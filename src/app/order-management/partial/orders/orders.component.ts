@@ -21,6 +21,8 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     loading = false;
     orders: Array<any>;
     selectedOrders: Array<any> = [];
+    count: any;
+    countParams: any;
 
     queryTemplates: any = [{
         name: 'Default',
@@ -66,8 +68,9 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
     loadOrders(event: any) {
         const params: any = event.page;
-        this.datatable = event.datatable;
+        this.countParams = event.page;
 
+        this.datatable = event.datatable;
         this.loading = true;
         this.selectedOrders.length = 0;
 
@@ -80,6 +83,12 @@ export class OrdersComponent implements OnInit, AfterViewInit {
             }, error => {
                 this.log.error('订单获取失败。', error);
             });
+    };
+
+    showCount() {
+        this.ordersService.getOrdersCount(this.countParams).subscribe(response => {
+            this.count = response.count;
+        });
     };
 
     delete(row: any) {

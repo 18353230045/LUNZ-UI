@@ -12,8 +12,8 @@ import { environment } from '../../environments/environment';
 import { LoaderComponent } from './loader/loader.component';
 import { HostComponent } from './components/host.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
-// import { NgxDatatableFooterComponent } from './components/ngx-datatable-footer/ngx-datatable-footer.component';
-// import { NgxDatatablePagerComponent } from './components/ngx-datatable-pager/ngx-datatable-pager.component';
+import { NgxDatatableFooterSimpleComponent } from './components/ngx-datatable-footer-simple/ngx-datatable-footer-simple.component';
+import { NgxDatatablePagerSimpleComponent } from './components/ngx-datatable-pager-simple/ngx-datatable-pager-simple.component';
 // import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions/ngx-datatable-actions.component';
 // import { ZrButtonComponent } from './components/zr-button/zr-button.component';
 // import { ZrSwitchComponent } from './components/zr-switch/zr-switch.component';
@@ -58,8 +58,8 @@ export function createDecimalPipe() {
         LoaderComponent,
         HostComponent,
         FileUploadComponent,
-        // NgxDatatableFooterComponent,
-        // NgxDatatablePagerComponent,
+        NgxDatatableFooterSimpleComponent,
+        NgxDatatablePagerSimpleComponent,
         // NgxDatatableActionsComponent,
         // ZrButtonComponent,
         // ZrSwitchComponent,
@@ -83,8 +83,8 @@ export function createDecimalPipe() {
         LoaderComponent,
         HostComponent,
         FileUploadComponent,
-        // NgxDatatableFooterComponent,
-        // NgxDatatablePagerComponent,
+        NgxDatatableFooterSimpleComponent,
+        NgxDatatablePagerSimpleComponent,
         // NgxDatatableActionsComponent,
         // ZrButtonComponent,
         // ZrSwitchComponent,
