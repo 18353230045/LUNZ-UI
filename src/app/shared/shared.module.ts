@@ -12,13 +12,6 @@ import { environment } from '../../environments/environment';
 import { LoaderComponent } from './loader/loader.component';
 import { HostComponent } from './components/host.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
-import { NgxDatatableFooterSimpleComponent } from './components/ngx-datatable-footer-simple/ngx-datatable-footer-simple.component';
-import { NgxDatatablePagerSimpleComponent } from './components/ngx-datatable-pager-simple/ngx-datatable-pager-simple.component';
-// import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions/ngx-datatable-actions.component';
-// import { ZrButtonComponent } from './components/zr-button/zr-button.component';
-// import { ZrSwitchComponent } from './components/zr-switch/zr-switch.component';
-// import { ZrTagComponent } from './components/zr-tag/zr-tag.component';
-// import { ZrCounterComponent } from './components/zr-counter.component';
 import { VehicleSelectionComponent } from './components/vehicle-selection/vehicle-selection.component';
 import { FileUploadOssComponent } from './components/file-upload-oss/file-upload-oss.component';
 
@@ -32,9 +25,7 @@ import { ReferenceDataService } from './services/reference-data.service';
 import { NgxDataTableDirective } from './directives/ngx-datatable.directive';
 import { ApplyPermissionDirective } from './directives/apply-permission.directive';
 import { LaddaDirective } from './directives/ladda.directive';
-// import { DatepickerDirective } from './directives/datepicker.directive';
 import { AutoFocusDirective } from './directives/auto-focus.directive';
-// import { ZrCounterDirective } from './components/zr-counter.directive';
 
 import { RmbPipe } from './pipes/rmb.pipe';
 import { RemoveSpacePipe } from './pipes/remove-space.pipe';
@@ -58,22 +49,13 @@ export function createDecimalPipe() {
         LoaderComponent,
         HostComponent,
         FileUploadComponent,
-        NgxDatatableFooterSimpleComponent,
-        NgxDatatablePagerSimpleComponent,
-        // NgxDatatableActionsComponent,
-        // ZrButtonComponent,
-        // ZrSwitchComponent,
-        // ZrTagComponent,
-        // ZrCounterComponent,
         VehicleSelectionComponent,
         FileUploadOssComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
         LaddaDirective,
-        // DatepickerDirective,
         AutoFocusDirective,
-        // ZrCounterDirective,
 
         RmbPipe,
         RemoveSpacePipe,
@@ -83,22 +65,13 @@ export function createDecimalPipe() {
         LoaderComponent,
         HostComponent,
         FileUploadComponent,
-        NgxDatatableFooterSimpleComponent,
-        NgxDatatablePagerSimpleComponent,
-        // NgxDatatableActionsComponent,
-        // ZrButtonComponent,
-        // ZrSwitchComponent,
-        // ZrTagComponent,
-        // ZrCounterComponent,
         VehicleSelectionComponent,
         FileUploadOssComponent,
 
         NgxDataTableDirective,
         ApplyPermissionDirective,
         LaddaDirective,
-        // DatepickerDirective,
         AutoFocusDirective,
-        // ZrCounterDirective,
 
         RmbPipe,
         ToFixedPipe

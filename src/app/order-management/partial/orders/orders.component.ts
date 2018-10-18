@@ -78,6 +78,8 @@ export class OrdersComponent implements OnInit, AfterViewInit {
             .finally(() => this.loading = false)
             .subscribe(response => {
                 this.datatable.count = response.count;
+                // 使用简洁翻页组件时
+                // this.datatable.count = response.data.length;
                 this.orders = response.data;
                 this.log.debug('订单列表', this.orders);
             }, error => {
@@ -85,6 +87,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
             });
     };
 
+    // 使用简洁翻页组件时，获取总条数
     showCount() {
         this.ordersService.getOrdersCount(this.countParams).subscribe(response => {
             this.count = response.count;
