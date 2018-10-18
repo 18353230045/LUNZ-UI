@@ -35,12 +35,12 @@
     <ngx-query [hidden]="!ngxQueryToolbar.visible" class="full-screen no-header" #ngxQuery [queryTemplates]="queryTemplates">
       <ngx-query-field [name]="'name'" [label]="'名称'" [type]="'string'"></ngx-query-field>
     </ngx-query>
-    <ngx-datatable #dt class="material" [scrollbarH]="true" [rows]="hearfroms" [loadingIndicator]="loading" #appNgxDataTable="NgxDataTableDirective" appNgxDataTable [ngxQuery]="ngxQuery"
-      (data)="loadHearfroms($event)">
-      <app-datatable-footer [datatable]="datatable"></app-datatable-footer>
-      <ngx-datatable-column  name="名称" prop="name">
+    <ngx-datatable #dt class="material" [scrollbarH]="true" [rows]="hearfroms" [loadingIndicator]="loading"
+      #appNgxDataTable="NgxDataTableDirective" appNgxDataTable [ngxQuery]="ngxQuery" (data)="loadHearfroms($event)">
+      <ngx-datatable-footer [datatable]="datatable"></ngx-datatable-footer>
+      <ngx-datatable-column name="名称" prop="name">
       </ngx-datatable-column>
-      <ngx-datatable-column maxWidth="250"  headerClass="datatable-header-cell-acitons">
+      <ngx-datatable-column maxWidth="250" headerClass="datatable-header-cell-acitons">
         <ng-template let-column="column" ngx-datatable-header-template>
           <app-datatable-actions [datatable]="dt" class="pull-right"></app-datatable-actions>
         </ng-template>
@@ -48,7 +48,8 @@
           <!-- <a [routerLink]="['./', row.id]" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="查看">
             <i class="la la-sticky-note"></i>
           </a> -->
-          <a [routerLink]="['./', row.id,'edit']" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="编辑">
+          <a [routerLink]="['./', row.id,'edit']" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
+            title="编辑">
             <i class="la la-edit"></i>
           </a>
           <a (click)="delete(row)" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="删除">

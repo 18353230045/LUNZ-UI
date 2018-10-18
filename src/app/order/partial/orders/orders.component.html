@@ -74,7 +74,7 @@
     </ngx-query>
     <ngx-datatable #dt class="material" [scrollbarH]="true" [rows]="orders" [loadingIndicator]="loading" #appNgxDataTable="NgxDataTableDirective"
       appNgxDataTable [ngxQuery]="ngxQuery" (data)="loadOrders($event)">
-      <app-datatable-footer [datatable]="datatable"></app-datatable-footer>
+      <ngx-datatable-footer [datatable]="datatable"></ngx-datatable-footer>
       <ngx-datatable-column name="订单摘要" prop="subject">
       </ngx-datatable-column>
       <ngx-datatable-column name="日期" prop="date" headerClass="text-center" cellClass="text-center">
