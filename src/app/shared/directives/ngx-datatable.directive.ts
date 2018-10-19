@@ -37,10 +37,10 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
         if (this._datatable) {
             this._datatable.limit = this._pageSize;
         }
-    }
+    };
     get pageSize(): number {
         return this._pageSize;
-    }
+    };
     @Input()
     set pageIndex(val: number) {
         if (val < 1) {
@@ -51,10 +51,10 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
         if (this._datatable) {
             this._datatable.offset = this._pageIndex;
         }
-    }
+    };
     get pageIndex(): number {
         return this._pageIndex;
-    }
+    };
     @ContentChild(DatatableFooterComponent)
     footer: DatatableFooterComponent;
     @ContentChild(DatatableActionsComponent)
@@ -66,8 +66,10 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
     private _sorts: any[] = [];
     private _tempQueryTemplates: any;
 
-    constructor(private _view: ViewContainerRef, private router: Router) {
-    }
+    constructor(
+        private _view: ViewContainerRef,
+        private router: Router) {
+    };
 
     ngOnInit() {
         if (this.saveState === true) {
@@ -75,13 +77,13 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
         }
         this._datatable = (<any>this._view)._data.componentView.component;
         this.initialize(this._datatable, this.ngxQuery);
-    }
+    };
 
     ngAfterViewInit() {
         this.removeHeaderNull();
 
         this.emitData();
-    }
+    };
 
     // 解决Edge浏览器下，ngx-datatable组件header处有'null'空值的现象
     public removeHeaderNull() {
@@ -94,7 +96,7 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
 
     public refreshData() {
         this.emitData();
-    }
+    };
 
     private initialize(datatable: DatatableComponent, ngxQuery: QueryComponent): void {
 
@@ -150,63 +152,69 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
                 });
             }
         }
-    }
+    };
 
     private emitData(page?: any, sorts?: any[]) {
-        if (this.data) {
-            // page
-            if (page === undefined) {
-                page = {
-                    limit: this.pageSize,
-                    offset: this.pageIndex - 1
-                };
-            } else {
-                this._pageSize = page.limit;
-                this._pageIndex = page.offset + 1;
-            }
-            // sort
-            if (sorts === undefined) {
-                sorts = this._datatable.sorts;
-            } else {
-                page.offset = 0;
-                this._pageIndex = page.offset + 1;
-            }
-            const sortArray = [];
-            for (const sort of sorts) {
-                sortArray.push({
-                    field: sort.prop,
-                    sort: sort.dir
-                });
-            }
-            // query
-            const query = this.getQuery();
-
-            // cache
-            if (this.saveState === true) {
-                const paging = {
-                    pageSize: page.limit,
-                    pageIndex: page.offset + 1 || 1,
-                    sorts: sorts,
-                    filters: query.filters,
-                    rules: this.ngxQuery.getOriginalQuery().rules
-                };
-                sessionStorage.setItem(this.router.url + '|saveState|dt', JSON.stringify(paging));
-            }
-            // event
-            this.data.emit({
-                datatable: this._datatable,
-                // event: event,
-                page: {
-                    pageSize: page.limit,
-                    pageIndex: page.offset + 1 || 1,
-                    sort: sortArray,
-                    filters: query.filters,
-                    filter: query.query
-                },
-                query: query
+        // page
+        if (page === undefined) {
+            page = {
+                limit: this.pageSize,
+                offset: this.pageIndex - 1
+            };
+        } else {
+            this._pageSize = page.limit;
+            this._pageIndex = page.offset + 1;
+        }
+        // sort
+        if (sorts === undefined) {
+            sorts = this._datatable.sorts;
+        } else {
+            page.offset = 0;
+            this._pageIndex = page.offset + 1;
+        }
+        const sortArray = [];
+        for (const sort of sorts) {
+            sortArray.push({
+                field: sort.prop,
+                sort: sort.dir
             });
         }
-    }
+        // query
+        const query = this.getQuery();
+
+        // cache
+        if (this.saveState === true) {
+            let rules;
+
+            if (this.ngxQuery) {
+                rules = this.ngxQuery.getOriginalQuery().rules;
+            } else {
+                rules = '';
+            }
+
+            const paging = {
+                pageSize: page.limit,
+                pageIndex: page.offset + 1 || 1,
+                sorts: sorts,
+                filters: query.filters,
+                rules: rules
+            };
+            sessionStorage.setItem(this.router.url + '|saveState|dt', JSON.stringify(paging));
+        }
+        // event
+        this.data.emit({
+            datatable: this._datatable,
+            // event: event,
+            page: {
+                pageSize: page.limit,
+                pageIndex: page.offset + 1 || 1,
+                sort: sortArray,
+                filters: query.filters,
+                filter: query.query
+            },
+            query: query
+        });
+    };
 
     private getQuery(): any {
         const result: any = {
@@ -254,14 +262,17 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
         }
 
         return result;
-    }
+    };
 
     private loadCachePaging() {
 
-        this._tempQueryTemplates = [{
-            name: this.ngxQuery.queryTemplates[0].name,
-            template: cloneQueryGroup(this.ngxQuery.queryTemplates[0].template)
-        }];
+        if (this.ngxQuery) {
+            this._tempQueryTemplates = [{
+                name: this.ngxQuery.queryTemplates[0].name,
+                template: cloneQueryGroup(this.ngxQuery.queryTemplates[0].template)
+            }];
+
+        }
 
         const paging = JSON.parse(sessionStorage.getItem(this.router.url + '|saveState|dt'));
 
@@ -278,5 +289,5 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
                 this._sorts = paging.sorts;
             }
         }
-    }
+    };
 }
