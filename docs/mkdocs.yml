@@ -12,9 +12,11 @@ pages:
         - '创建新建/编辑订单组件': lunz/step5/step5.md
         - '发布': lunz/release/release.md
     - 'LUNZ+ 组件':
-        - 'Form表单': component/form/form.md
-        - 'Ngx-datatable数据列表展示': component/ngx-datatable/ngx-datatable.md
-        - 'Ngx-query查询过滤': component/ngx-query/ngx-query.md
+        - 'form表单': component/form/form.md
+        - 'ngx-datatable数据列表展示': component/ngx-datatable/ngx-datatable.md
+        - 'ngx-query查询过滤': component/ngx-query/ngx-query.md
+        - '列表页脚复杂型（ngx-datatable-footer）': component/ngx-datatable-footer/ngx-datatable-footer.md
+        - '列表页脚简单型（ngx-datatable-footer-simple）': component/ngx-datatable-footer-simple/ngx-datatable-footer-simple.md
         - '时间选择器': component/datepicker/datepicker.md
         - '表单验证器': component/validator/validator.md
         - 'Select选择器': component/select/select.md
