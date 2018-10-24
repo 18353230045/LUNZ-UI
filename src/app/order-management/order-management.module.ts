@@ -13,6 +13,7 @@ import { NgxQueryToolbarModule } from 'ngx-query-toolbar';
 import { NgxDatatableActionsModule } from 'ngx-datatable-actions';
 import { ZrValidationMessageModule } from 'zr-validation-message';
 import { ZrDatepickerModule } from 'zr-datepicker';
+import { NgxTrimDirectiveModule } from 'ngx-trim-directive/src';
 
 import { SharedModule } from '../shared/shared.module';
 import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
@@ -40,6 +41,7 @@ import { OrderComponent } from './partial/order/order.component';
     NgxDatatableActionsModule,
     ZrValidationMessageModule,
     ZrDatepickerModule,
+    NgxTrimDirectiveModule,
     NgxDatatableModule,
     NgxQueryModule,
     MomentModule,

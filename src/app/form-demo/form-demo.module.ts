@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ZrValidationMessageModule } from 'zr-validation-message';
 import { ZrDatepickerModule } from 'zr-datepicker';
+import { NgxTrimDirectiveModule } from 'ngx-trim-directive/src';
 
 import { SharedModule } from '../shared/shared.module';
 import { FormDemoRoutingModule } from './form-demo-routing.module';
@@ -18,6 +19,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
         ReactiveFormsModule,
         ZrValidationMessageModule,
         ZrDatepickerModule,
+        NgxTrimDirectiveModule,
         SharedModule,
         FormDemoRoutingModule
     ],

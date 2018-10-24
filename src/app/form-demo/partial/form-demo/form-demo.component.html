@@ -11,8 +11,8 @@
     <div class="m-portlet__head-tools">
       <ul class="m-portlet__nav">
         <li class="m-portlet__nav-item">
-          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [disabled]="form.invalid || (!form.dirty && !form.touched)" [ladda]="saving" type="button"
-            (click)="submit()">
+          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [disabled]="form.invalid || (!form.dirty && !form.touched)"
+            [ladda]="saving" type="button" (click)="submit()">
             <span>
               <i class="la la-check"></i>
               <span>保存</span>
@@ -20,7 +20,8 @@
           </button>
         </li>
         <li class="m-portlet__nav-item">
-          <button class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" type="button" (click)="location.back()">
+          <button class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" type="button"
+            (click)="location.back()">
             <span>
               <i class="la la-rotate-left"></i>
               <span>取消</span>
@@ -45,7 +46,7 @@
                 <span>摘要</span>
                 <span class="text-danger">*</span>
               </label>
-              <input type="text" class="form-control" formControlName="abstract" placeholder="摘要" />
+              <input type="text" class="form-control" formControlName="abstract" placeholder="摘要" trim />
               <zr-validation-message [control]="form.controls['abstract']" label="摘要"></zr-validation-message>
             </div>
           </div>
@@ -100,10 +101,11 @@
                 <span class="text-danger">*</span>
               </label>
               <div class="input-group">
-                <input class="form-control" type="text" id="todayBtn" appDatepicker [clearBtn]="true" [format]="'yyyy-mm-dd'" [startView]="2" [minView]="2" [(ngModel)]="date" formControlName="date" 
-                placeholder="日期格式：yyyy-mm-dd"/>
+                <input class="form-control" type="text" id="todayBtn" appDatepicker [clearBtn]="true" [format]="'yyyy-mm-dd'"
+                  [startView]="2" [minView]="2" [(ngModel)]="date" formControlName="date" placeholder="日期格式：yyyy-mm-dd"
+                  trim />
               </div>
-              <zr-validation-message [control]="form.controls['date']" label="日期" [validationMessages]="{pattern:'日期格式不正确。'}" ></zr-validation-message>
+              <zr-validation-message [control]="form.controls['date']" label="日期" [validationMessages]="{pattern:'日期格式不正确。'}"></zr-validation-message>
             </div>
           </div>
           <div class="col-md-6">
@@ -128,7 +130,7 @@
                 <span>电话</span>
               </label>
               <div class="input-group">
-                <input class="form-control" type="text" formControlName="phone" />
+                <input class="form-control" type="text" formControlName="phone" trim />
               </div>
               <zr-validation-message [control]="form.controls['phone']" label="电话" [validationMessages]="{pattern:'请输入11位手机号或固定电话号([区号]-[电话号])。'}"></zr-validation-message>
             </div>
@@ -139,7 +141,7 @@
                 <span>邮箱</span>
               </label>
               <div class="input-group">
-                <input class="form-control" type="text" formControlName="email" />
+                <input class="form-control" type="text" formControlName="email" trim />
               </div>
               <zr-validation-message [control]="form.controls['email']" label="邮箱"></zr-validation-message>
             </div>
@@ -152,7 +154,7 @@
                 <span>单价</span>
                 <span class="text-danger">*</span>
               </label>
-              <input type="text" class="form-control" [(ngModel)]="price" placeholder="单价" formControlName="price" />
+              <input type="text" class="form-control" [(ngModel)]="price" placeholder="单价" formControlName="price" trim />
               <zr-validation-message [control]="form.controls['price']" label="单价"></zr-validation-message>
             </div>
           </div>
@@ -162,7 +164,8 @@
                 <span>数量</span>
                 <span class="text-danger">*</span>
               </label>
-              <input type="text" class="form-control" [(ngModel)]="num" placeholder="数量" formControlName="numberRange" />
+              <input type="text" class="form-control" [(ngModel)]="num" placeholder="数量" formControlName="numberRange"
+                trim />
               <zr-validation-message [control]="form.controls['numberRange']" label="'数量'"></zr-validation-message>
             </div>
           </div>

@@ -11,7 +11,7 @@
         <label>订单摘要
           <span class="text-danger">*</span>
         </label>
-        <input type="text" formControlName="subject" placeholder="订单摘要" class="form-control" [(ngModel)]="middleVariable.subject" />
+        <input type="text" formControlName="subject" placeholder="订单摘要" class="form-control" [(ngModel)]="middleVariable.subject" trim />
         <zr-validation-message [control]="form.controls['subject']" label="订单摘要"></zr-validation-message>
       </div>
       <div class="form-group">
@@ -43,7 +43,7 @@
         <label>数量
           <span class="text-danger">*</span>
         </label>
-        <input type="number" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="middleVariable.amount" />
+        <input type="number" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="middleVariable.amount" trim />
         <zr-validation-message [control]="form.controls['amount']" label="数量"></zr-validation-message>
       </div>
       <div class="form-group">
