@@ -18,6 +18,10 @@ export class FileUploadOssDemoComponent implements OnInit {
   constructor() { };
 
   ngOnInit() {
+    this.region = 'oss-cn-qingdao';
+    this.accessKeyId = '6MKOqxGiGU4AUk44';
+    this.accesskey = 'ufu7nS8kS59awNihtjSonMETLI0KLy';
+    this.bucket = 'lunz-test';
   };
 
 };

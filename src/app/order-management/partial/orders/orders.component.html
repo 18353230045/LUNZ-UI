@@ -21,9 +21,9 @@
           </a>
         </li>
         <li class="m-portlet__nav-item">
-          <ngx-query-toolbar #ngxQueryToolbar [ngxQuery]="ngxQuery"></ngx-query-toolbar>
+          <!-- <ngx-query-toolbar #ngxQueryToolbar [ngxQuery]="ngxQuery"></ngx-query-toolbar> -->
           <!-- 使用简洁翻页组件时 -->
-          <!-- <ngx-query-toolbar #ngxQueryToolbar [ngxQuery]="ngxQuery" (toolbar)="count=undefined"></ngx-query-toolbar> -->
+          <ngx-query-toolbar #ngxQueryToolbar [ngxQuery]="ngxQuery" (toolbar)="count=undefined"></ngx-query-toolbar>
         </li>
         <li class="m-portlet__nav-item">
           <button (click)="appNgxDataTable.refreshData()" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
@@ -70,9 +70,9 @@
   </div>
   <div class="m-portlet__body p-0">
     <ngx-query [hidden]="!ngxQueryToolbar.visible" [datePickerReadonly]="true" [columnNumber]="2" class="full-screen no-header"
-      #ngxQuery [queryTemplates]="queryTemplates">
+    #ngxQuery [queryTemplates]="queryTemplates" (query)="count=undefined">
+      <!-- #ngxQuery [queryTemplates]="queryTemplates"> -->
       <!-- 使用简洁翻页组件时 -->
-      <!-- #ngxQuery [queryTemplates]="queryTemplates" (query)="count=undefined"> -->
       <ngx-query-field [name]="'subject'" [label]="'订单摘要'" [type]="'string'"></ngx-query-field>
       <ngx-query-field name="Date" label="日期" type="date"></ngx-query-field>
       <ngx-query-field [name]="'Amount'" [label]="'数量'" [type]="'number'"></ngx-query-field>
@@ -80,8 +80,8 @@
     <ngx-datatable #dt class="material" [scrollbarH]="true" (select)="onSelect($event)" [rows]="orders"
       [loadingIndicator]="loading" [selected]="selectedOrders" [selectionType]="'checkbox'" #appNgxDataTable="NgxDataTableDirective"
       appNgxDataTable [ngxQuery]="ngxQuery" (data)="loadOrders($event)">
-      <ngx-datatable-footer [datatable]="datatable"></ngx-datatable-footer>
-      <!-- <ngx-datatable-footer-simple [datatable]="datatable" [count]="count" (display)="showCount()"></ngx-datatable-footer-simple> -->
+      <!-- <ngx-datatable-footer [datatable]="datatable"></ngx-datatable-footer> -->
+      <ngx-datatable-footer-simple [datatable]="datatable" [count]="count" (display)="showCount()"></ngx-datatable-footer-simple>
       <ngx-datatable-row-detail [rowHeight]="60" #myDetailRow (toggle)="onDetailToggle($event)">
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
           <div [ngStyle]="{'padding-left':'55px'}">
