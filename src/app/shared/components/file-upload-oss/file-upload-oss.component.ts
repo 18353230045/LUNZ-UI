@@ -171,8 +171,10 @@ export class FileUploadOssComponent implements OnInit {
       if (file.isLoad) {
         continue;
       };
+
       const index = file.name.lastIndexOf('.');
       const key = `${file.name.substring(0, index)}|${new Date().valueOf()}`;
+
       console.log(`${new Date().valueOf()}`);
       const progress = function (pro: any) {
         return function (done: any) {
