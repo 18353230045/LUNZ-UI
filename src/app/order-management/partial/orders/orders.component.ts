@@ -78,7 +78,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
             .finally(() => this.loading = false)
             .subscribe(response => {
                 this.datatable.count = response.count;
-                // 使用简洁翻页组件时
+                // 使用简洁翻页组件时，用data的长度赋值给datatable.count
                 // this.datatable.count = response.data.length;
                 this.orders = response.data;
                 this.log.debug('订单列表', this.orders);
