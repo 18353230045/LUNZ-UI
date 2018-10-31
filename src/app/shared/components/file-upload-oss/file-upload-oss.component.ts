@@ -173,9 +173,8 @@ export class FileUploadOssComponent implements OnInit {
       };
 
       const index = file.name.lastIndexOf('.');
-      const key = `${file.name.substring(0, index)}|${new Date().valueOf()}`;
+      const key = `${file.name.substring(0, index)}|${new Date().valueOf()}|${Math.random()}`;
 
-      console.log(`${new Date().valueOf()}`);
       const progress = function (pro: any) {
         return function (done: any) {
           file['percent'] = Number((pro * 100).toFixed(2));
