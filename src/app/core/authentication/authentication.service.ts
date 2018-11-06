@@ -1,14 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-
-import { environment } from '../../../environments/environment';
-
-import { SharedSessionStorageService } from '../../shared/services/shared-session-storage.service';
-import { WebApiResultResponse } from '../http/web-api-result-response';
+import { Observable, of } from 'rxjs';
 
 export interface Credentials {
   // Customize received credentials here
@@ -22,11 +13,6 @@ export interface LoginContext {
   remember?: boolean;
 }
 
-export interface WebApiResult {
-  success: boolean;
-  data?: any;
-}
-
 const credentialsKey = 'credentials';
 
 /**
@@ -34,21 +20,15 @@ const credentialsKey = 'credentials';
  * The Credentials interface as well as login/logout methods should be replaced with proper implementation.
  */
 @Injectable()
-export class AuthenticationService extends WebApiResultResponse {
+export class AuthenticationService {
 
-  private _credentials: Credentials;
+  private _credentials: Credentials | null;
 
-  constructor(
-    private http: Http,
-    private sharedSessionStorage: SharedSessionStorageService
-  ) {
-    super();
-    this._credentials = JSON.parse(
-      this.sharedSessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey));
-  }
-
-  isUsing(): boolean {
-    return environment.authentication.type === 'usercenter';
+  constructor() {
+    const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
+    if (savedCredentials) {
+      this._credentials = JSON.parse(savedCredentials);
+    }
   }
 
   /**
@@ -57,66 +37,23 @@ export class AuthenticationService extends WebApiResultResponse {
    * @return {Observable<Credentials>} The user credentials.
    */
   login(context: LoginContext): Observable<Credentials> {
-
-    const url = 'membership/login';
-    const params = {
-      'username': context.username,
-      'password': context.password,
-      'remember': context.remember
+    // Replace by proper authentication call
+    const data = {
+      username: context.username,
+      token: '123456'
     };
-
-    return this.http.post(url, params)
-      .map(response => {
-
-        const result = super.handleSuccess(response);
-
-        const data = {
-          username: context.username,
-          token: result
-        };
-        this.setCredentials(data, context.remember);
-
-        return data;
-      }).catch(super.handleError);
+    this.setCredentials(data, context.remember);
+    return of(data);
   }
 
   /**
-   * Authenticates the user.
-   * @param {AuthToken} authToken The login parameters.
-   * @return {Observable<Credentials>} The user credentials.
-   */
-  loginByAuthToken(authToken: string): Observable<Credentials> {
-
-    const url = `membership/loginByAuthToken/${authToken}`;
-
-    return this.http.get(url)
-      .map(response => {
-        const result = super.handleSuccess(response);
-        const data = {
-          username: result.userName,
-          token: result.authToken
-        };
-        this.setCredentials(data);
-        return data;
-      }).catch(super.handleError);
-  }
-
-  /**F
    * Logs out the user and clear credentials.
    * @return {Observable<boolean>} True if the user was logged out successfully.
    */
   logout(): Observable<boolean> {
-
-    const url = 'membership/logout';
-
-    return this.http.get(url)
-      .map(response => {
-        const result = super.handleSuccess(response);
-        if (result) {
-          this.setCredentials();
-          return true;
-        }
-      }).catch(super.handleError);
+    // Customize credentials invalidation here
+    this.setCredentials();
+    return of(true);
   }
 
   /**
@@ -131,7 +68,7 @@ export class AuthenticationService extends WebApiResultResponse {
    * Gets the user credentials.
    * @return {Credentials} The user credentials or null if the user is not authenticated.
    */
-  get credentials(): Credentials {
+  get credentials(): Credentials | null {
     return this._credentials;
   }
 
@@ -146,11 +83,12 @@ export class AuthenticationService extends WebApiResultResponse {
     this._credentials = credentials || null;
 
     if (credentials) {
-      const storage: any = remember ? localStorage : this.sharedSessionStorage;
+      const storage = remember ? localStorage : sessionStorage;
       storage.setItem(credentialsKey, JSON.stringify(credentials));
     } else {
-      this.sharedSessionStorage.removeItem(credentialsKey);
+      sessionStorage.removeItem(credentialsKey);
       localStorage.removeItem(credentialsKey);
     }
   }
+
 }

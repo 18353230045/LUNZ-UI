@@ -1,26 +1,9 @@
-.lz-home-module-item {
-  display: flex;
-  margin: 2px;
-  padding-top: 16px;
-  border: solid 1px #d4d5d9;
-  cursor: pointer;
-
-  a {
-    display: inline-block;
-    margin: auto;
-    color: #575962;
-
-    h6 {
-      font-size: 24px;
-    }
-  }
+.logo {
+  width: 100px;
 }
 
-.lz-home-module-item:hover {
-  background: #2c2e3e;
-  box-shadow: 0 0 15px 1px rgba(44, 46, 62, 0.3);
-}
-
-.lz-home-module-item:hover a {
-  color: #fff;
+q {
+  font-style: italic;
+  font-size: 1.2rem;
+  quotes: "« " " »";
 }

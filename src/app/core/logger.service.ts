@@ -1,6 +1,3 @@
-import { environment } from '../../environments/environment';
-import { Dialogs } from './dialogs.service';
-
 /**
  * Simple logger system with the possibility of registering custom outputs.
  *
@@ -42,8 +39,7 @@ export enum LogLevel {
   Error,
   Warning,
   Info,
-  Debug,
-  Success
+  Debug
 }
 
 /**
@@ -57,7 +53,7 @@ export class Logger {
    * Current logging level.
    * Set it to LogLevel.Off to disable logs completely.
    */
-  static level = LogLevel.Success;
+  static level = LogLevel.Debug;
 
   /**
    * Additional log outputs.
@@ -69,10 +65,10 @@ export class Logger {
    * Sets logging level to LogLevel.Warning.
    */
   static enableProductionMode() {
-    Logger.level = LogLevel.Success;
+    Logger.level = LogLevel.Warning;
   }
 
-  constructor(private dialogs: Dialogs, private source?: string) { }
+  constructor(private source?: string) { }
 
   /**
    * Logs messages or objects  with the debug level.
@@ -80,14 +76,6 @@ export class Logger {
    */
   debug(...objects: any[]) {
     this.log(console.log, LogLevel.Debug, objects);
-  }
-
-  /**
-   * Logs messages or objects  with the success level.
-   * Works the same as console.log().
-   */
-  success(...objects: any[]) {
-    this.log(console.warn, LogLevel.Success, objects);
   }
 
   /**
@@ -118,72 +106,8 @@ export class Logger {
     if (level <= Logger.level) {
       const log = this.source ? ['[' + this.source + ']'].concat(objects) : objects;
       func.apply(console, log);
-      this.show(level, objects);
       Logger.outputs.forEach((output) => output.apply(output, [this.source, level].concat(objects)));
     }
   }
 
-  private show(level: LogLevel, objects: any[]) {
-
-    const message = this.getMessage(level, objects);
-
-    switch (level) {
-      case LogLevel.Debug:
-      case LogLevel.Off:
-        break;
-      case LogLevel.Info:
-        this.dialogs.info(message, environment.production ? null : this.source,
-          { enableHtml: true, progressBar: true });
-        break;
-      case LogLevel.Warning:
-        this.dialogs.warning(message, environment.production ? null : this.source,
-          { enableHtml: true, progressBar: true });
-        break;
-      case LogLevel.Error:
-        this.dialogs.error(message, environment.production ? null : this.source,
-          { enableHtml: true, progressBar: true });
-        break;
-      case LogLevel.Success:
-        this.dialogs.success(message, environment.production ? null : this.source,
-          { enableHtml: true, progressBar: true });
-        break;
-      default:
-        throw new Error('NOT IMPLEMENT!');
-    }
-  }
-
-  private getMessage(level: LogLevel, objects: any[]): string {
-    let message = '';
-
-    objects.forEach(obj => {
-      const response = obj;
-      this.getMessages(obj).forEach(item => {
-        if (message === '') {
-          message += item;
-        } else {
-          message += '<br/>' + item;
-        }
-      });
-    });
-
-    return message;
-  }
-
-  private getMessages(obj: any): Array<string> {
-    const messages = new Array<string>();
-
-    if (typeof (obj) === 'string') {
-      messages.push(obj);
-    } else if (typeof (obj) === 'object') {
-      for (const prop in obj) {
-        if (prop === 'modelState' || !environment.production) {
-          this.getMessages(obj[prop]).forEach(item => {
-            messages.push(item);
-          });
-        }
-      }
-    }
-
-    return messages;
-  }
 }

@@ -1,254 +1,119 @@
-import 'rxjs/add/observable/throw';
+import { Inject, Injectable, InjectionToken, Injector, Optional } from '@angular/core';
+import { HttpClient, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { Injectable, Injector } from '@angular/core';
-import { Router } from '@angular/router';
-import {
-    Http, ConnectionBackend, RequestOptions, Headers,
-    Request, Response, RequestOptionsArgs, RequestMethod, ResponseOptions
-} from '@angular/http';
+import { ErrorHandlerInterceptor } from './error-handler.interceptor';
+import { CacheInterceptor } from './cache.interceptor';
+import { ApiPrefixInterceptor } from './api-prefix.interceptor';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscriber } from 'rxjs/Subscriber';
-import { extend } from 'lodash';
+// HttpClient is declared in a re-exported module, so we have to extend the original module to make it work properly
+// (see https://github.com/Microsoft/TypeScript/issues/13897)
+declare module '@angular/common/http/src/client' {
 
-import { environment } from '../../../environments/environment';
-import { Logger } from '../logger.service';
-import { LoggerFactory } from '../logger-factory.service';
-import { HttpCacheService } from './http-cache.service';
-import { HttpCachePolicy } from './request-options-args';
-
-import { AuthenticationService, Credentials } from '../authentication/authentication.service';
-import { AuthenticationOAuth2Service } from '../authentication/authentication-oauth2.service';
-
-import { toURLSearchParams } from './http-helper';
-
-declare const URI: any;
-
-/**
- * Provides a base framework for http service extension.
- * The default extension adds support for API prefixing, request caching and default error handler.
- */
-@Injectable()
-export class HttpService extends Http {
-
-    log: Logger;
-
-    private _apiSettings: any;
-
-    constructor(backend: ConnectionBackend,
-        private defaultOptions: RequestOptions,
-        private httpCacheService: HttpCacheService,
-        private router: Router,
-        private loggerFactory: LoggerFactory,
-        private injector: Injector) {
-        // Customize default options here if needed
-        super(backend, defaultOptions);
-
-        this.log = this.loggerFactory.getLogger(environment.production ? undefined : 'HttpService');
-        this._apiSettings = environment.api[environment.api.default];
-    }
+  // Augment HttpClient with the added configuration methods from HttpService, to allow in-place replacement of
+  // HttpClient with HttpService using dependency injection
+  export interface HttpClient {
 
     /**
-     * Performs any type of http request.
-     * You can customize this method with your own extended behavior.
+     * Enables caching for this request.
+     * @param {boolean} forceUpdate Forces request to be made and updates cache entry.
+     * @return {HttpClient} The new instance.
      */
-    request(request: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-        options = options || {};
-        let url: string;
+    cache(forceUpdate?: boolean): HttpClient;
 
-        const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
-        const credentials: Credentials =
-            authenticationService.isAuthenticated() ? authenticationService.credentials : null;
-        const token: string = credentials == null ? null : credentials.token;
+    /**
+     * Skips default error handler for this request.
+     * @return {HttpClient} The new instance.
+     */
+    skipErrorHandler(): HttpClient;
 
-        const authenticationOAuth2Service: AuthenticationOAuth2Service = this.injector.get(AuthenticationOAuth2Service);
-        const authorization = authenticationOAuth2Service.getAuthorizationHeaderValue();
+    /**
+     * Do not use API prefix for this request.
+     * @return {HttpClient} The new instance.
+     */
+    disableApiPrefix(): HttpClient;
 
-        if (options && options != null && options.params && options.params != null) {
-            if (options.params['paramsMap'] === undefined) {
-                options.params = toURLSearchParams(options.params);
-            }
-        }
+  }
 
-        // DON'T add 'environment.api.v1.baseUrl' if 'request.url' starts with 'http://', 'https://' or '//'.
-        const regex = new RegExp('^(http://|https://|//)');
-        if (typeof request === 'string') {
-            url = request;
-            if (!regex.test(url)) {
-                request = this._apiSettings.baseUrl + url;
-            }
-        } else {
-            url = request.url;
-            if (!regex.test(url)) {
-                request.url = this._apiSettings.baseUrl + url;
-            }
-        }
+}
 
-        // Add custom params
-        request = this.addCustomParams(request, options, token, authorization);
+// From @angular/common/http/src/interceptor: allows to chain interceptors
+class HttpInterceptorHandler implements HttpHandler {
 
-        if (!options.cache) {
-            // Do not use cache
-            return this.httpRequest(request, options);
-        } else {
-            return new Observable((subscriber: Subscriber<Response>) => {
-                // Get Cache Params
-                const cacheParams = {};
-                if (options.headers) {
-                    cacheParams['headers'] = options.headers.toJSON();
-                }
-                const cachedData = options.cache === HttpCachePolicy.Update
-                    ? null : this.httpCacheService.getCacheData(url, cacheParams);
-                if (cachedData !== null) {
-                    // Create new response to avoid side-effects
-                    subscriber.next(new Response(cachedData));
-                    subscriber.complete();
-                } else {
-                    this.httpRequest(request, options).subscribe(
-                        (response: Response) => {
-                            // Store the serializable version of the response
-                            this.httpCacheService.setCacheData(url, cacheParams, new ResponseOptions({
-                                body: response.text(),
-                                status: response.status,
-                                headers: response.headers,
-                                statusText: response.statusText,
-                                type: response.type,
-                                url: response.url
-                            }));
-                            subscriber.next(response);
-                        },
-                        (error) => subscriber.error(error),
-                        () => subscriber.complete()
-                    );
-                }
-            });
-        }
+  constructor(private next: HttpHandler, private interceptor: HttpInterceptor) { }
+
+  handle(request: HttpRequest<any>): Observable<HttpEvent<any>> {
+    return this.interceptor.intercept(request, this.next);
+  }
+
+}
+
+/**
+ * Allows to override default dynamic interceptors that can be disabled with the HttpService extension.
+ * Except for very specific needs, you should better configure these interceptors directly in the constructor below
+ * for better readability.
+ *
+ * For static interceptors that should always be enabled (like ApiPrefixInterceptor), use the standard
+ * HTTP_INTERCEPTORS token.
+ */
+export const HTTP_DYNAMIC_INTERCEPTORS = new InjectionToken<HttpInterceptor>('HTTP_DYNAMIC_INTERCEPTORS');
+
+/**
+ * Extends HttpClient with per request configuration using dynamic interceptors.
+ */
+@Injectable()
+export class HttpService extends HttpClient {
+
+  constructor(private httpHandler: HttpHandler,
+              private injector: Injector,
+              @Optional() @Inject(HTTP_DYNAMIC_INTERCEPTORS) private interceptors: HttpInterceptor[] = []) {
+    super(httpHandler);
+
+    if (!this.interceptors) {
+      // Configure default interceptors that can be disabled here
+      this.interceptors = [
+        this.injector.get(ApiPrefixInterceptor),
+        this.injector.get(ErrorHandlerInterceptor)
+      ];
     }
+  }
 
-    get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(url, extend({}, options, { method: RequestMethod.Get }));
-    }
+  cache(forceUpdate?: boolean): HttpClient {
+    const cacheInterceptor = this.injector.get(CacheInterceptor).configure({ update: forceUpdate });
+    return this.addInterceptor(cacheInterceptor);
+  }
 
-    post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(url, extend({}, options, {
-            body: body,
-            method: RequestMethod.Post
-        }));
-    }
+  skipErrorHandler(): HttpClient {
+    return this.removeInterceptor(ErrorHandlerInterceptor);
+  }
 
-    put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(url, extend({}, options, {
-            body: body,
-            method: RequestMethod.Put
-        }));
-    }
+  disableApiPrefix(): HttpClient {
+    return this.removeInterceptor(ApiPrefixInterceptor);
+  }
 
-    delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(url, extend({}, options, { method: RequestMethod.Delete }));
-    }
+  // Override the original method to wire interceptors when triggering the request.
+  request(method?: any, url?: any, options?: any): any {
+    const handler = this.interceptors.reduceRight(
+      (next, interceptor) => new HttpInterceptorHandler(next, interceptor),
+      this.httpHandler
+    );
+    return new HttpClient(handler).request(method, url, options);
+  }
 
-    patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(url, extend({}, options, {
-            body: body,
-            method: RequestMethod.Patch
-        }));
-    }
+  private removeInterceptor(interceptorType: Function): HttpService {
+    return new HttpService(
+      this.httpHandler,
+      this.injector,
+      this.interceptors.filter(i => !(i instanceof interceptorType))
+    );
+  }
 
-    head(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(url, extend({}, options, { method: RequestMethod.Head }));
-    }
+  private addInterceptor(interceptor: HttpInterceptor): HttpService {
+    return new HttpService(
+      this.httpHandler,
+      this.injector,
+      this.interceptors.concat([interceptor])
+    );
+  }
 
-    options(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(url, extend({}, options, { method: RequestMethod.Options }));
-    }
-
-    // Customize the default behavior for all http requests here if needed
-    private httpRequest(request: string | Request, options: RequestOptionsArgs): Observable<Response> {
-        let req: any = super.request(request, options);
-        if (!options.skipErrorHandler) {
-            req = req.catch(this.errorHandler.bind(this));
-        }
-        return req;
-    }
-
-    // Customize the default error handler here if needed
-    private errorHandler(response: Response): Observable<Response> {
-
-        const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
-
-        if (authenticationService.isUsing()) {
-            if (response && response.status && response.status === 401) {
-                this.log.debug('未认证，跳转登录页...');
-                this.router.navigate(['/login']).then(() => {
-                    window.location.reload();
-                });
-            }
-        }
-
-        let message = '服务器错误，请联系系统管理员。';
-        if (response && response.status) {
-            if (response.status === 400) {
-                return Observable.throw(response);
-            } else if (response.status === 401) {
-                // Handle the 404 error on the top.
-                message = '未认证，需要用户登录。';
-            } else if (response.status === 403) {
-                message = '当前用户未被授权。';
-            } else if (response.status === 404) {
-                message = '访问的数据（页面）不存在。';
-            } else if (response.status === 503) {
-                message = '服务器服务无效，请联系系统管理员。';
-            } else if (response.status >= 500) {
-                message = '服务器错误，请联系系统管理员。';
-            }
-        }
-        this.log.error(message, response);
-        return Observable.throw(response);
-    }
-
-    private addCustomParams(request: string | Request, options: RequestOptionsArgs,
-        token: string, authorization: string): string | Request {
-        if (options.headers === undefined) {
-            options.headers = new Headers({});
-        }
-
-        if (!options.headers.has('Authorization') && authorization !== null && authorization !== '') {
-            options.headers.append('Authorization', authorization);
-        }
-
-        if (this._apiSettings.withHeaders) {
-            // Add custom params to 'headers'
-            if (!options.headers.has('AppKey')) {
-                options.headers.append('AppKey', this._apiSettings.appKey);
-            }
-            if (!options.headers.has('AuthToken')) {
-                options.headers.append('AuthToken', token);
-            }
-        } else {
-            // Add custom params to 'query string'
-            let url: string;
-            if (typeof request === 'string') {
-                url = request;
-            } else {
-                url = request.url;
-            }
-
-            const urlParser: any = URI(url);
-            if (!urlParser.hasQuery('AppKey')) {
-                urlParser.addSearch('AppKey', this._apiSettings.appKey);
-            }
-            if (!urlParser.hasQuery('AuthToken')) {
-                urlParser.addSearch('AuthToken', token);
-            }
-
-            url = urlParser.toString();
-            if (typeof request === 'string') {
-                request = url;
-            } else {
-                request.url = url;
-            }
-        }
-
-        return request;
-    }
 }

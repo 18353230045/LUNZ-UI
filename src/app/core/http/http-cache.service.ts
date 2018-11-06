@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Response, ResponseOptions } from '@angular/http';
+import { HttpResponse } from '@angular/common/http';
 import { each } from 'lodash';
 
 import { Logger } from '../logger.service';
-import { LoggerFactory } from '../logger-factory.service';
 
+const log = new Logger('HttpCacheService');
 const cachePersistenceKey = 'httpCache';
 
 export interface HttpCacheEntry {
   lastUpdated: Date;
-  data: ResponseOptions;
+  data: HttpResponse<any>;
 }
 
 /**
@@ -18,45 +18,38 @@ export interface HttpCacheEntry {
 @Injectable()
 export class HttpCacheService {
 
-  log: Logger;
-
   private cachedData: { [key: string]: HttpCacheEntry; } = {};
-  private storage: Storage = null;
+  private storage: Storage | null = null;
 
-  constructor(private loggerFactory: LoggerFactory) {
-    this.log = this.loggerFactory.getLogger('HttpCacheService');
+  constructor() {
     this.loadCacheData();
   }
 
   /**
    * Sets the cache data for the specified request.
    * @param {!string} url The request URL.
-   * @param {any} params Optional request query parameters.
    * @param {ResponseOptions} data The received data.
    * @param {Date=} lastUpdated The cache last update, current date is used if not specified.
    */
-  setCacheData(url: string, params: any, data: ResponseOptions, lastUpdated?: Date) {
-    const cacheKey = this.getCacheKey(url, params);
-    this.cachedData[cacheKey] = {
+  setCacheData(url: string, data: HttpResponse<any>, lastUpdated?: Date) {
+    this.cachedData[url] = {
       lastUpdated: lastUpdated || new Date(),
       data: data
     };
-    this.log.debug('Cache set for key: "' + cacheKey + '"');
+    log.debug(`Cache set for key: "${url}"`);
     this.saveCacheData();
   }
 
   /**
    * Gets the cached data for the specified request.
    * @param {!string} url The request URL.
-   * @param {any=} params Optional request query parameters.
    * @return {?ResponseOptions} The cached data or null if no cached data exists for this request.
    */
-  getCacheData(url: string, params?: any): ResponseOptions {
-    const cacheKey = this.getCacheKey(url, params);
-    const cacheEntry = this.cachedData[cacheKey];
+  getCacheData(url: string): HttpResponse<any> | null {
+    const cacheEntry = this.cachedData[url];
 
     if (cacheEntry) {
-      this.log.debug('Cache hit for key: "' + cacheKey + '"');
+      log.debug(`Cache hit for key: "${url}"`);
       return cacheEntry.data;
     }
 
@@ -66,22 +59,19 @@ export class HttpCacheService {
   /**
    * Gets the cached entry for the specified request.
    * @param {!string} url The request URL.
-   * @param {any=} params Optional request query parameters.
    * @return {?HttpCacheEntry} The cache entry or null if no cache entry exists for this request.
    */
-  getHttpCacheEntry(url: string, params?: any): HttpCacheEntry {
-    return this.cachedData[this.getCacheKey(url, params)] || null;
+  getHttpCacheEntry(url: string): HttpCacheEntry | null {
+    return this.cachedData[url] || null;
   }
 
   /**
    * Clears the cached entry (if exists) for the specified request.
    * @param {!string} url The request URL.
-   * @param {any=} params Optional request query parameters.
    */
-  clearCache(url: string, params?: any): void {
-    const cacheKey = this.getCacheKey(url, params);
-    this.cachedData[cacheKey] = undefined;
-    this.log.debug('Cache cleared for key: "' + cacheKey + '"');
+  clearCache(url: string): void {
+    delete this.cachedData[url];
+    log.debug(`Cache cleared for key: "${url}"`);
     this.saveCacheData();
   }
 
@@ -108,14 +98,10 @@ export class HttpCacheService {
    * @param {'local'|'session'=} persistence How the cache should be persisted, it can be either local or session
    *   storage, or if no value is provided it will be only in-memory (default).
    */
-  setPersistence(persistence?: 'local'|'session') {
+  setPersistence(persistence?: 'local' | 'session') {
     this.cleanCache();
     this.storage = persistence === 'local' || persistence === 'session' ? window[persistence + 'Storage'] : null;
     this.loadCacheData();
-  };
-
-  private getCacheKey(url: string, params?: any): string {
-    return url + (params ? JSON.stringify(params) : '');
   }
 
   private saveCacheData() {
@@ -126,7 +112,7 @@ export class HttpCacheService {
 
   private loadCacheData() {
     const data = this.storage ? this.storage[cachePersistenceKey] : null;
-    this.cachedData = data ? JSON.stringify(data) : {};
+    this.cachedData = data ? JSON.parse(data) : {};
   }
 
 }

@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { TranslateModule } from '@ngx-translate/core';
-import { ToastrModule } from 'ngx-toastr';
-
-import { SharedModule } from '../shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
@@ -15,8 +12,7 @@ import { LoginComponent } from './login.component';
     CommonModule,
     ReactiveFormsModule,
     TranslateModule,
-    ToastrModule,
-    SharedModule,
+    NgbModule,
     LoginRoutingModule
   ],
   declarations: [

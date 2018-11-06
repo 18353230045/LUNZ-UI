@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { environment } from '../../environments/environment';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-about',
@@ -9,7 +9,6 @@ import { environment } from '../../environments/environment';
 })
 export class AboutComponent implements OnInit {
 
-  appName: string = environment.appName;
   version: string = environment.version;
 
   constructor() { }

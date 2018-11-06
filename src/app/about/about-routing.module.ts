@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { environment } from '../../environments/environment';
-
+import { extract } from '@app/core';
 import { AboutComponent } from './about.component';
 
 const routes: Routes = [
-  { path: 'about', component: AboutComponent, data: { title: '关于' + environment.appName } }
+  // Module is lazy loaded, see app-routing.module.ts
+  { path: '', component: AboutComponent, data: { title: extract('About') } }
 ];
 
 @NgModule({

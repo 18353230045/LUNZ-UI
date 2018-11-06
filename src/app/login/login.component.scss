@@ -1,31 +1,29 @@
-.m-login__content {
-  background-image: url('../../assets/media/app/img/bg/bg-4.jpg');
+@import "src/theme/theme-variables";
+@import "~bootstrap/scss/mixins/_breakpoints";
+
+.login-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-.m-login.m-form__group .form-control {
-  border-radius: 0;
-  border: 0;
-  padding: 0 1rem;
-  margin-top: 0.1rem;
+.login-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
 }
 
-.m-login__form .m-form__group .form-control {
-  border-radius: 0;
-  border: 0;
-  border-bottom: 1px solid #ebedf2;
-  padding: 0;
-  margin-top: 0.1rem;
-  height: 46px;
+.ng-invalid.ng-touched:not(form) {
+  border-left: 4px solid theme-color("danger");
 }
 
-.m-login__form-input-first {
-  border-bottom: 1px solid #ebedf2;
-}
-
-.m-login .m-login__forget-password {
-  display: block;
-}
-
-.m-login.m-login--1 .m-login__wrapper {
-  padding: 35% 2rem 0;
+@include media-breakpoint-down(xs) {
+  .container {
+    width: 100%;
+  }
 }
