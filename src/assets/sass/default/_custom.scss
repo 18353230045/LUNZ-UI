@@ -1,0 +1,81 @@
+/*global*/
+* {
+  box-sizing: border-box;
+}
+
+/* app */
+a {
+  cursor: pointer;
+}
+
+app-shell {
+  height: 100%;
+}
+
+app-login {
+  height: 100%;
+}
+
+.m-wrapper .progress.conent-progress {
+  position: absolute;
+  width: 100%;
+  display: none;
+
+  .progress-bar {
+    width: 100%;
+  }
+}
+
+/* metronic */
+.m-grid--root.m-page {
+  height: 100%;
+}
+
+.m-dropdown {
+  .m-dropdown__wrapper {
+    width: 150px;
+  }
+}
+
+.btn-secondary {
+  color: #6f727d;
+}
+
+.progress.m-progress--sm {
+  height: 6px;
+}
+
+/* sweet alert2 */
+.swal2-buttonswrapper button {
+  margin-left: 5px;
+  margin-right: 5px;
+  min-width: 80px;
+}
+
+/* overall situationinput type=‘checkb’ style */
+.m-alert__text {
+  font-size: 13px;
+  padding: 0rem 0rem 0rem 1.75rem !important;
+}
+
+.lz-display-flex {
+  display: flex;
+}
+
+.lz-margin-auto {
+  margin: auto;
+}
+
+app-sign-in-callback {
+  display: grid;
+  height: 100%;
+  background: #fff;
+}
+
+.input-group .input-group-addon {
+  padding-top: 10px;
+}
+
+.form-control {
+  height: 38px;
+}

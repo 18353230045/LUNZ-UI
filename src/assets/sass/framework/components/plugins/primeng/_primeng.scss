@@ -1,0 +1,20 @@
+body .ui-multiselect {
+  min-width: 200px;
+  padding: 0 0.75em;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+.ui-multiselect .ui-multiselect-trigger .fa {
+  margin-top: 6px !important;
+}
+
+.ui-multiselect-filter-container {
+  width: calc(100% - 25px) !important;
+}
+
+.ui-widget-header .ui-multiselect-close {
+  display: none !important;
+}

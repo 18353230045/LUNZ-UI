@@ -1,0 +1,243 @@
+﻿.workflow_1:before {
+  margin-top: 15px;
+  bottom: 17px;
+}
+.workflow_1 .workflow_2 {
+  left: 25px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  padding-right: 0;
+  line-height: 30px;
+  -webkit-border-radius: 30px !important;
+  -moz-border-radius: 30px !important;
+  border-radius: 30px !important;
+  box-shadow: 0 0 0 8px #f5f6fa;
+  background-color: #1ab87e;
+  color: white;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  margin-top: 15px;
+}
+.page-container-bg-solid .workflow_1 .workflow_2 {
+  box-shadow: 0 0 0 8px white;
+}
+@media (max-width: 480px) {
+  .timeline:before {
+    margin-left: 18px;
+  }
+  .workflow_1 .workflow_2 {
+    left: 5px;
+  }
+  .workflow_1 .workflow_body {
+    margin-left: 60px;
+  }
+  .workflow_br {
+    display: block;
+    margin: 5px 0;
+  }
+}
+.workflow_body {
+  margin-left: 90px;
+  padding: 20px 15px;
+  font-size: 14px;
+}
+.workflow_body .workflow_arrow {
+  top: 15px;
+}
+.timeline-body-time {
+  font-size: 12px;
+}
+.timeline-body-head {
+  height: 22px;
+  margin-bottom: 15px;
+  position: relative;
+}
+.font_green {
+  color: #1ab87e;
+  text-decoration: none;
+}
+.font_green:hover,
+.font_green:focus {
+  color: #1ab87e;
+  text-decoration: none;
+}
+.font_666 {
+  color: #666666 !important;
+}
+.font_666 {
+  color: #666666 !important;
+}
+.font_b2b {
+  color: #b2b2b2 !important;
+}
+.back_f35 {
+  background-color: #f3565d !important;
+}
+.back_f7f {
+  background-color: #f7f7f7 !important;
+}
+.back_3c2 {
+  background-color: #f3c200 !important;
+}
+.font_f35,
+.font_f35:hover,
+.font_f35:focus {
+  color: #f3565d !important;
+  text-decoration: none;
+}
+.font_3c2,
+.font_3c2:hover,
+.font_3c2:focus {
+  color: #f3c200 !important;
+  text-decoration: none;
+}
+.workflow_body .workflow_actions {
+  float: right;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 2px 0;
+}
+.workflow_grey {
+  border-bottom: solid 1px #c7c7c7;
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  height: 1px;
+  position: relative;
+  float: left;
+  margin-bottom: 15px;
+}
+.timeline-body-content {
+  margin-top: 15px;
+}
+.workflow_body .portlet {
+  margin-bottom: 0;
+}
+.workflow_body .portlet > .portlet-title {
+  margin: 0;
+  border: 0;
+  min-height: 0;
+  position: relative;
+}
+.workflow_body .portlet > .portlet-title > .caption {
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: normal;
+  padding: 0;
+  line-height: normal;
+  margin-bottom: 8px;
+}
+.workflow_body .portlet > .portlet-title > .tools {
+  padding: 0;
+  position: absolute;
+  right: 0px;
+  top: 17px;
+}
+.workflow_body .portlet > .portlet-title > .tools > a {
+  height: 13px;
+}
+.workflow_body .list-unstyled {
+  margin: 0;
+}
+.pad_left15 {
+  padding-left: 15px;
+}
+.workflow_gay .caption {
+  padding: 15px 20px;
+  background-color: #f7f7f7;
+  border: solid 1px #c7c7c7;
+  margin: 0 0 15px 0;
+}
+.float_right {
+  float: right;
+}
+.workflow_gay .fa {
+  margin-right: 5px;
+}
+.workflow_grp {
+  border-bottom: solid 1px #c7c7c7;
+  margin: 8px 0;
+}
+.pad_rlt {
+  padding-left: 0;
+  padding-right: 0;
+}
+.workflow_bay {
+  background-color: #fff;
+}
+.workflow_bca {
+  padding: 10px;
+}
+.workflow_app,
+.workflow_app:hover,
+.workflow_app:focus {
+  color: #333;
+  text-decoration: none;
+}
+.workflow_app .fa-file-text-o {
+  color: #adadad;
+}
+.back_f7f .timeline-body-arrow {
+  border-color: transparent #f7f7f7 transparent transparent;
+}
+
+.fujian_1 .fujian_2 {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: solid 1px #c7c7c7;
+}
+.fujian_1 .fujian_2 .fa-file-text-o {
+  margin-right: 5px;
+}
+.fujian_1 .fujian_2 .fa-times {
+  padding: 0 5px;
+  cursor: pointer;
+}
+.fujian_1 .fujian_erro {
+  border-color: #9c2924;
+}
+.fujian_erro .fa-exclamation-triangle,
+.fujian_erro .fa-times {
+  color: #9c2924;
+  margin-right: 5px;
+}
+
+.workflow_mt-10 {
+  margin-top: 10px;
+}
+.workflow_mb-10 {
+  margin-bottom: 10px;
+}
+.workflow_mr-10 {
+  margin-right: 10px;
+}
+.workflow_mr-15 {
+  margin-right: 15px;
+}
+.workflow_time-r {
+  padding: 0;
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+.workflow_tool-r {
+  padding: 0;
+  position: absolute;
+  right: 0px;
+}
+.workflow_width {
+  width: 100%;
+}
+.workflow_drow-over {
+  overflow-y: auto;
+}
+.workflow_border-b {
+  border-bottom: 1px solid #e5e5e5;
+}
