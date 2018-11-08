@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+
 import { TranslateService } from '@ngx-translate/core';
 import { merge } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
@@ -16,12 +17,13 @@ const log = new Logger('App');
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-  constructor(private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private titleService: Title,
-              private translateService: TranslateService,
-              private i18nService: I18nService) { }
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title,
+    private translateService: TranslateService,
+    private i18nService: I18nService
+  ) {}
 
   ngOnInit() {
     // Setup logger
@@ -30,7 +32,6 @@ export class AppComponent implements OnInit {
     }
 
     log.debug('init');
-
 
     // Setup translations
     this.i18nService.init(environment.defaultLanguage, environment.supportedLanguages);
@@ -51,11 +52,11 @@ export class AppComponent implements OnInit {
         mergeMap(route => route.data)
       )
       .subscribe(event => {
-        const title = event['title'];
+        let title = event['title'];
         if (title) {
+          title = `${title} - ${environment.appName}`;
           this.titleService.setTitle(this.translateService.instant(title));
         }
       });
   }
-
 }

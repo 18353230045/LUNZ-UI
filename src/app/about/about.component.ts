@@ -8,11 +8,10 @@ import { environment } from '@env/environment';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-
+  appName: string = environment.appName;
   version: string = environment.version;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
-
+  ngOnInit() {}
 }
