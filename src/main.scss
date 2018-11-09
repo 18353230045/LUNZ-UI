@@ -4,14 +4,84 @@
  */
 
 // Theme variables, must be included before the libraries to allow overriding defaults
-@import "theme/theme-variables";
+// @import "theme/theme-variables";
 
 // 3rd party libraries
 @import "~bootstrap/scss/bootstrap";
+
 // @import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
 // @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";
 // @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
 // @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
 
 // Theme customization
-@import "theme/theme";
+// @import "theme/theme";
+
+// fonts
+/* devanagari */
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Poppins Regular"), local("Poppins-Regular"),
+    url("./assets/vendors/poppins/gG8m82oGcrBJF727xHU04fY6323mHUZFJMgTvxaG2iE.woff2") format("woff2");
+  unicode-range: U+02BC, U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200B-200D, U+20A8, U+20B9, U+25CC, U+A830-A839,
+    U+A8E0-A8FB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Poppins Regular"), local("Poppins-Regular"),
+    url("./assets/vendors/poppins/F4YWuALHubF63LLQPw0rMfY6323mHUZFJMgTvxaG2iE.woff2") format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Poppins Regular"), local("Poppins-Regular"),
+    url("./assets/vendors/poppins/HLBysyo0MQBO_7E-DWLwzg.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+// 3rd party libraries
+// @import "~ngx-toastr/toastr";
+// @import "~sweetalert2/dist/sweetalert2.min.css";
+// @import "~ngx-bootstrap/datepicker/bs-datepicker.css";
+// @import '~@swimlane/ngx-datatable/release/index.css';
+// @import '~@swimlane/ngx-datatable/release/themes/material.css';
+// @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+// @import '~angular-tree-component/dist/angular-tree-component.css';
+// @import '~ngx-select-dropdown/dist/assets/style.css';
+// @import "~element-angular/theme/index.css";
+// @import "~primeng/resources/themes/bootstrap/theme.css";
+// @import "~primeng/resources/primeng.min.css";
+// @import "~primeicons/primeicons.css";
+
+// ng2-bar-rating plugin
+// @import '~ng2-bar-rating/themes/br-default-theme.css';
+// @import '~ng2-bar-rating/themes/br-movie-theme.css';
+// @import '~ng2-bar-rating/themes/br-square-theme.css';
+// @import '~ng2-bar-rating/themes/br-vertical-theme.css';
+// @import '~ng2-bar-rating/themes/br-fontawesome-o-theme.css';
+
+// @import '~@activix/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css';
+// @import '~animate.css/animate.min.css';
+// @import '~highcharts/css/highcharts.css';
+// @import '~bootstrap-slider/dist/css/bootstrap-slider.min.css';
+// @import '~malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
+
+// icons
+@import "assets/vendors/metronic/css/styles.css";
+@import "assets/vendors/flaticon/css/flaticon.css";
+@import "assets/vendors/line-awesome/css/line-awesome.css";
+// @import '~font-awesome/css/font-awesome.min.css';
+
+// metronic v5
+@import "assets/sass/default/_style";

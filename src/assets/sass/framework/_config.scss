@@ -41,14 +41,15 @@ $m--border-radius: (
   scrollbar: 2px
 );
 
-// == Transition
+//== Transition
 $m--transition: (
   general: all 0.3s,
   link: (
     hover: color 0.4s ease
   )
 ) !default;
-// == UI State Color
+
+//== UI State Color
 $m--state-colors: (
   // metronic states
     brand:
@@ -93,7 +94,8 @@ $m--state-colors: (
     inverse: #ffffff
   )
 ) !default;
-// == The body element font settings
+
+//== The body element font settings
 $m--root-font: (
   size: (
     desktop: 14px,
@@ -106,12 +108,14 @@ $m--root-font: (
     dark: #efefef
   )
 ) !default;
-// == Font families
+
+//== Font families
 $m--font-families: (
   regular: "Poppins, Microsoft Yahei",
   heading: "Roboto, Microsoft Yahei"
 ) !default;
-// == General link font settings
+
+//== General link font settings
 $m--link-font: (
   default: (
     color: (
@@ -126,7 +130,8 @@ $m--link-font: (
     )
   )
 ) !default;
-// == General Font sizes
+
+//== General Font sizes
 $m--font-sizes: (
   // text font sizes
     regular:
@@ -177,7 +182,8 @@ $m--font-sizes: (
         up5: 2.1rem// access to this shadow value calling get-font-size function as get-font-size(icon, +) in SASS code
     )
 ) !default;
-// == General Font Weights
+
+//== General Font Weights
 $m--font-weights: (
   thin: 200,
   // access to this font weight value calling get-font-weight function as get-font-weight(this) in SASS code
@@ -192,7 +198,7 @@ $m--font-weights: (
     boldest2: 700// access to this font weight value calling get-font-weight function as get-font-weight(boldest2) in SASS code
 ) !default;
 
-// == General typography font colors
+//== General typography font colors
 $m--typography-colors: (
   // light skin
     light:
@@ -223,7 +229,7 @@ $m--typography-colors: (
             darken5: darken(
               #575962,
               30%
-            )// access to this color value calling get-color function as get-color(light, regular, +++++) in SASS code 
+            )// access to this color value calling get-color function as get-color(light, regular, +++++) in SASS code
         ),
       // link color
         link:
@@ -340,7 +346,7 @@ $m--typography-colors: (
             darken5: darken(
               #ffffff,
               30%
-            )// access to this color value calling get-color function as get-color(dark, regular, -----) in SASS code 
+            )// access to this color value calling get-color function as get-color(dark, regular, -----) in SASS code
         ),
       // link color
         link:
@@ -368,7 +374,7 @@ $m--typography-colors: (
             darken5: darken(
               #5b52ce,
               30%
-            )// access to this color value calling get-color function as get-color(dark, link, -----) in SASS code 
+            )// access to this color value calling get-color function as get-color(dark, link, -----) in SASS code
         ),
       // icon color
         icon:
@@ -432,7 +438,8 @@ $m--typography-colors: (
         )
     )
 ) !default;
-// == General box shadows
+
+//== General box shadows
 $m--box-shadows: (
   light: (
     lighten5: 0px 1px 15px 1px rgba(get-brand-color(), 0.02),
