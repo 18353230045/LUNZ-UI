@@ -94,7 +94,7 @@ $m--forms: (
                 border: (
                   default: get-color(light, panel),
                   disabled: get-color(light, panel, "-"),
-                  focus: get-brand-color()//
+                  focus: get-brand-color()// 
                 )
               ),
             // solid input
@@ -114,7 +114,7 @@ $m--forms: (
                 border: (
                   default: get-color(light, panel, "-"),
                   focus: get-brand-color(),
-                  //
+                  // 
                     disabled: get-color(light, panel, "--")
                 )
               ),
@@ -141,7 +141,7 @@ $m--forms: (
                 border: (
                   default: get-color(light, panel),
                   disabled: get-color(light, panel, "--"),
-                  focus: get-brand-color()//
+                  focus: get-brand-color()// 
                 )
               ),
             // solid input
@@ -161,7 +161,7 @@ $m--forms: (
                 border: (
                   default: get-color(light, panel, "-"),
                   focus: get-brand-color(),
-                  //
+                  // 
                     disabled: get-color(light, panel, "---")
                 )
               ),

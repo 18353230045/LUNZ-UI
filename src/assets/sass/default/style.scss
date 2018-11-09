@@ -6,22 +6,22 @@
 ///////////// DO NOT MODIFY BELOW INCLUDE ORDER ////////////////
 ////////////////////////////////////////////////////////////////
 //== 1: Framework Config
-@import "../framework/_config"; // metronic framework config
-@import "../framework/vendors/bootstrap/_variables"; // metronic bootstrap override config
-@import "_framework-config"; // demo level framework config override
+@import "../framework/config"; // metronic framework config
+@import "../framework/vendors/bootstrap/variables"; // metronic bootstrap override config
+@import "framework-config"; // demo level framework config override
 
 //== 2: Framework Components Config
-@import "../framework/components/base/_config";
-@import "../framework/components/general/_config";
+@import "../framework/components/base/config";
+@import "../framework/components/general/config";
 
 //== 3: Bootstrap Include
-@import "../framework/vendors/bootstrap/bootstrap";
+@import "../framework/vendors/bootstrap/bootstrap.scss";
 
 //== 4: Framework Components
-@import "../framework/_include";
+@import "../framework/include";
 
 //== 5: Snippets
-@import "../snippets/_include";
+@import "../snippets/include";
 @import "_workflow";
 @import "_timeline";
 ////////////////////////////////////////////////////////////////
@@ -38,26 +38,26 @@
 @import "footer/_config";
 
 //== 7: Demo Layout
-@import "base/_page";
-@import "base/_body";
+@import "base/page";
+@import "base/body";
 
-@import "header/_brand";
-@import "header/_header";
-@import "header/_topbar";
-@import "header/_search";
+@import "header/brand";
+@import "header/header";
+@import "header/topbar";
+@import "header/search";
 
-@import "aside/_aside-left";
-@import "aside/_aside-right";
-@import "aside/_aside-header-menu-mobile";
+@import "aside/aside-left";
+@import "aside/aside-right";
+@import "aside/aside-header-menu-mobile";
 
-@import "menu-header/_menu";
-@import "menu-aside/_menu";
+@import "menu-header/menu";
+@import "menu-aside/menu";
 
-@import "subheader/_default";
+@import "subheader/default";
 
-@import "footer/_default";
+@import "footer/default";
 
-@import "_builder";
+@import "builder";
 
 @import "_custom";
 

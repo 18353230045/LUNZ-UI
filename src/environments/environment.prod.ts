@@ -2,12 +2,61 @@
 import env from './.env';
 
 export const environment = {
+  appName: 'LUNZ+',
   production: true,
   version: env.npm_package_version,
-  serverUrl: 'https://api.chucknorris.io',
+  localeId: 'zh-CN',
+  haveTabs: true,
   defaultLanguage: 'en-US',
-  supportedLanguages: [
-    'en-US',
-    'fr-FR'
-  ]
+  supportedLanguages: ['en-US', 'fr-FR'],
+  authentication: {
+    // oauth2 / usercenter
+    type: 'oauth2',
+    useServiceV1: true
+  },
+  odic: {
+    config: {
+      authority: 'http://{identity-server-domain}',
+      client_id: '',
+      redirect_uri: 'http://{domain}/authentication/callback',
+      response_type: 'id_token token',
+      scope: 'openid profile',
+      post_logout_redirect_uri: 'http://{domain}'
+    }
+  },
+  api: {
+    default: 'v1',
+    // WebAPI for V2 - Microservice
+    v2: {
+      baseUrl: ''
+    },
+    // WebAPI for V1
+    v1: {
+      baseUrl: '',
+      appKey: '',
+      withHeaders: true
+    },
+    // User Center
+    userCenter: {
+      baseUrl: '',
+      appKey: '',
+      authUri: ''
+    },
+    // Message Center
+    messageCenter: {
+      signalR: '',
+      baseUrl: '',
+      appKey: ''
+    },
+    // Data Center
+    dataCenter: {
+      baseUrl: '',
+      appKey: ''
+    },
+    // Customer Center
+    customerCenter: {
+      baseUrl: '',
+      appKey: ''
+    }
+  }
 };
