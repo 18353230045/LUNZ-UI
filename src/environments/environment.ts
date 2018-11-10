@@ -10,6 +10,7 @@ export const environment = {
   appName: 'LUNZ+',
   production: false,
   version: env.npm_package_version + '-dev',
+  serverUrl: '/api',
   localeId: 'zh-CN',
   haveTabs: true,
   defaultLanguage: 'zh-CN',
