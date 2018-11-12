@@ -20,7 +20,9 @@
     "baseUrl": "src",
     "paths": {
       "@app/*": ["app/*"],
-      "@env/*": ["environments/*"]
+      "@assets/*": ["assets/*"],
+      "@env/*": ["environments/*"],
+      "@node_modules/*": ["./node_modules/*"]
     }
   }
 }

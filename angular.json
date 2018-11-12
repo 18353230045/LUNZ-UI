@@ -32,7 +32,39 @@
             "styles": [
               "src/main.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "@node_modules/jquery/dist/jquery.min.js",
+              "@node_modules/popper.js/dist/popper.min.js",
+              "@node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "@node_modules/urijs/src/URI.min.js",
+              "@node_modules/signalr/jquery.signalR.min.js",
+              "@node_modules/highcharts/highcharts.js",
+              "@node_modules/highcharts/highcharts-3d.js",
+              "@node_modules/highcharts/modules/map.js",
+              "@node_modules/highcharts/modules/exporting.js",
+              "@node_modules/@activix/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js",
+              "@node_modules/@activix/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js",
+              "@node_modules/bootstrap-slider/dist/bootstrap-slider.min.js",
+              "@node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js",
+              "@node_modules/ali-oss/dist/aliyun-oss-sdk.min.js",
+
+              "@assets/js/framework/base/app.js",
+              "@assets/js/framework/base/util.js",
+              "@assets/js/framework/components/general/animate.js",
+              "@assets/js/framework/components/general/dropdown.js",
+              "@assets/js/framework/components/general/example.js",
+              "@assets/js/framework/components/general/header.js",
+              "@assets/js/framework/components/general/menu.js",
+              "@assets/js/framework/components/general/messenger.js",
+              "@assets/js/framework/components/general/offcanvas.js",
+              "@assets/js/framework/components/general/scroll-top.js",
+              "@assets/js/framework/components/general/toggle.js",
+              "@assets/js/framework/components/plugins/Highcharts/Highcharts.setOptions.min.js",
+              "@assets/js/framework/components/plugins/Highcharts/china.min.js",
+              "@assets/js/default/base/layout.js",
+              "@assets/js/snippets/custom/pages/user/login.js",
+              "@assets/js/deposit/deposit.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -46,12 +78,10 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }]
             }
           }
         },

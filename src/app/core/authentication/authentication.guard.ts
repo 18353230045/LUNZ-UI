@@ -10,7 +10,7 @@ const log = new Logger('AuthenticationGuard');
 export class AuthenticationGuard implements CanActivate {
 
   constructor(private router: Router,
-              private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService) { }
 
   canActivate(): boolean {
     if (this.authenticationService.isAuthenticated()) {
