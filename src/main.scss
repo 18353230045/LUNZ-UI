@@ -6,14 +6,7 @@
 // Theme variables, must be included before the libraries to allow overriding defaults
 @import "theme/theme-variables";
 
-// 3rd party libraries
-@import "~bootstrap/scss/bootstrap";
-// @import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
-// @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";
-// @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
-// @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
-
-// fonts
+// local fonts
 /* devanagari */
 
 @font-face {
@@ -42,10 +35,17 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
+// icons
+@import "assets/vendors/metronic/css/styles.css";
+@import "assets/vendors/flaticon/css/flaticon.css";
+@import "assets/vendors/line-awesome/css/line-awesome.css";
+@import '~font-awesome/css/font-awesome.min.css';
+
 // Theme customization
 @import "theme/theme";
 
 // 3rd party libraries
+@import "~bootstrap/scss/bootstrap";
 // @import "~ngx-toastr/toastr";
 // @import "~sweetalert2/dist/sweetalert2.min.css";
 // @import "~ngx-bootstrap/datepicker/bs-datepicker.css";
@@ -58,25 +58,11 @@
 // @import "~primeng/resources/themes/bootstrap/theme.css";
 // @import "~primeng/resources/primeng.min.css";
 // @import "~primeicons/primeicons.css";
-
-// ng2-bar-rating plugin
-// @import '~ng2-bar-rating/themes/br-default-theme.css';
-// @import '~ng2-bar-rating/themes/br-movie-theme.css';
-// @import '~ng2-bar-rating/themes/br-square-theme.css';
-// @import '~ng2-bar-rating/themes/br-vertical-theme.css';
-// @import '~ng2-bar-rating/themes/br-fontawesome-o-theme.css';
-
 // @import '~@activix/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css';
 // @import '~animate.css/animate.min.css';
 // @import '~highcharts/css/highcharts.css';
 // @import '~bootstrap-slider/dist/css/bootstrap-slider.min.css';
 // @import '~malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css';
-
-// icons
-@import "assets/vendors/metronic/css/styles.css";
-@import "assets/vendors/flaticon/css/flaticon.css";
-@import "assets/vendors/line-awesome/css/line-awesome.css";
-@import '~font-awesome/css/font-awesome.min.css';
 
 // metronic v5
 @import "assets/sass/default/style";
