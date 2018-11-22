@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "build": "npm run env -s && ng build --prod",
-    "start": "npm run env -s && ng serve --aot --port 9200 --open",
+    "start": "ng serve --aot --port 9200 --open",
     "serve:sw": "npm run build -s && npx http-server ./dist -p 4200",
     "lint": "ng lint && stylelint \"src/app/**/*.scss\" --syntax scss && htmlhint \"src/app\" --config .htmlhintrc",
     "lint:all": "ng lint && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
