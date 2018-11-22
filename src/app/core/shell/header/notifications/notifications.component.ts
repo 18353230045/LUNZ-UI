@@ -1,18 +1,18 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-// import { LoggerFactory } from '../../../../core/logger-factory.service';
-// import { Logger } from '../../../../core/logger.service';
-// import { MessageService } from '../../../../messages/shared/message.service';
+import { LoggerFactory } from '../../../logger-factory.service';
+import { Logger } from '../../../../core/logger.service';
+import { MessageService } from '../../../../messages/shared/message.service';
 
 @Component({
   selector: 'app-notifications, [app-notifications]',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss']
+  styleUrls: ['./notifications.component.scss'],
+  providers: [MessageService]
 })
 export class NotificationsComponent implements OnInit, AfterViewInit {
-
-  // log: Logger;
+  log: Logger;
   unreadMessageCount = 0;
   unreadMessages: any[] = [];
   get iconClass(): string {
@@ -24,25 +24,25 @@ export class NotificationsComponent implements OnInit, AfterViewInit {
     return this.unreadMessageCount === 0 ? val : val + ' m-animate-blink';
   }
 
-  constructor(private router: Router,
-    // private messageService: MessageService,
-    ) {
-
-    // this.log = this.loggerFactory.getLogger();
-
+  constructor(
+    private router: Router,
+    private messageService: MessageService,
+    private loggerFactory: LoggerFactory
+  ) {
+    this.log = this.loggerFactory.getLogger();
   }
 
   ngOnInit() {
-    // this.messageService.initSignalR();
+    this.messageService.initSignalR();
 
-    // this.messageService.receivedMessage.subscribe((msg: any) => {
-    //   const len = this.unreadMessages.unshift(msg);
-    //   this.unreadMessageCount = len;
-    // });
+    this.messageService.receivedMessage.subscribe((msg: any) => {
+      const len = this.unreadMessages.unshift(msg);
+      this.unreadMessageCount = len;
+    });
 
-    // this.messageService.readMessage.subscribe((msg: any) => {
-    //   this.getUnReadMessage();
-    // });
+    this.messageService.readMessage.subscribe((msg: any) => {
+      this.getUnReadMessage();
+    });
 
     this.getUnReadMessage();
   }
@@ -55,16 +55,16 @@ export class NotificationsComponent implements OnInit, AfterViewInit {
   }
 
   private getUnReadMessage() {
-    // this.messageService.getUnreadMessages().subscribe(response => {
-    //   if (response && response.length > 0) {
-    //     this.unreadMessages = response;
-    //     this.unreadMessageCount = response.length;
-    //   } else {
-    //     this.unreadMessages = [];
-    //     this.unreadMessageCount = 0;
-    //   }
-    // }, error => {
-    //   this.log.error('获取未读消息失败！', error);
-    // });
+    this.messageService.getUnreadMessages().subscribe(response => {
+      if (response && response.length > 0) {
+        this.unreadMessages = response;
+        this.unreadMessageCount = response.length;
+      } else {
+        this.unreadMessages = [];
+        this.unreadMessageCount = 0;
+      }
+    }, error => {
+      this.log.error('获取未读消息失败！', error);
+    });
   }
 }

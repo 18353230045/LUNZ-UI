@@ -5,7 +5,7 @@ import { SignalR, SignalRConnection, BroadcastEventListener } from 'ng2-signalr'
 import { Observable, Subscription } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { WebApiResultResponse, PagingResponse } from '@app/core';
+import { WebApiResultResponse, PagingResponse } from '../../core/http/web-api-result-response';
 import { LoggerFactory } from '../../core/logger-factory.service';
 import { Logger } from '../../core/logger.service';
 

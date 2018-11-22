@@ -89,7 +89,6 @@ defineLocale('zh-cn', zhCnLocale);
     Dialogs,
     SweetAlert2Service,
     SsoServiceService,
-    // MessageService,
     ProfileService,
     // BsModalService,
     LoggerFactory,
