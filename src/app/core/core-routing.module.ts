@@ -7,6 +7,7 @@ const routes: Routes = RouteExtensions.withShell([
     { path: '', loadChildren: '../home/home.module#HomeModule' },
     { path: '', loadChildren: '../messages/web-message.module#WebMessageModule' },
     { path: '', loadChildren: '../help/help.module#HelpModule' },
+    { path: '', loadChildren: '../contact-us/contact-us.module#ContactUsModule' },
     { path: '', loadChildren: '../about/about.module#AboutModule' },
     // { path: '', loadChildren: '../contact-us/contact-us.module#ContactUsModule' },
     // { path: '', loadChildren: '../terms/terms.module#TermsModule' },
