@@ -1,0 +1,76 @@
+.m-dropdown__header {
+  background: url('../../../../../assets/media/app/img/misc/quick_actions_bg.jpg');
+  background-size: cover;
+}
+
+.lz-model-add-wr {
+  max-height: 310px;
+  overflow-y: auto;
+  padding: 20px 20px 10px;
+}
+
+.lz-model-add-icon {
+  margin-bottom: 10px;
+
+  .lz-my-model-add-icon {
+    display: inline-block;
+    margin: 10px 5px 20px;
+  }
+}
+
+.lz-m-radio--state-brand {
+  margin-right: 10px;
+}
+
+.lz-flaticon-edit-1 {
+  padding: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.flatico-add {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 34px;
+  color: #c4c5d6;
+}
+
+.lz-m-nav-grid__item {
+  margin: 25px 0;
+  padding: 26px 0;
+  text-align: center;
+
+  h6 {
+    color: #716aca;
+  }
+}
+
+.lz-m-nav-__item {
+  border-right: 1px solid #f4f5f8;
+  border-bottom: 1px solid #f4f5f8;
+  cursor: pointer;
+}
+
+.lz-m-nav-__item:hover {
+  background: #fdfdff;
+}
+
+.lz-m-nav-__item-edit {
+  background: #e8e8eb;
+}
+
+.m-scrollable {
+  position: relative;
+
+  button {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+  }
+}
+
+.jstree-themeicon-custom {
+  color: #716aca !important;
+}

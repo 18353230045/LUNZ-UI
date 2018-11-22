@@ -1,0 +1,59 @@
+<a href="#" class="m-nav__link m-dropdown__toggle">
+  <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+  <span class="m-nav__link-icon">
+    <i class="flaticon-share"></i>
+  </span>
+</a>
+<div class="m-dropdown__wrapper">
+  <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+  <div class="m-dropdown__inner">
+    <div class="m-dropdown__header m--align-center">
+      <span class="m-dropdown__header-title">快捷操作</span>
+      <span class="m-dropdown__header-subtitle">
+        快速进入常用模块
+        <i class="flaticon-edit-1 lz-flaticon-edit-1" (click)="$event.stopPropagation();editModuleOpen()" [hidden]="editModules"></i>
+        <i class="la la-check lz-flaticon-edit-1" (click)="$event.stopPropagation();editModuleClose()" [hidden]="!editModules"></i>
+      </span>
+    </div>
+    <div class="m-dropdown__body m-dropdown__body--paddingless">
+      <div class="m-dropdown__content" [hidden]="myModuleShow">
+        <div class="m-scrollable" data-scrollable="false" data-max-height="380" data-mobile-max-height="200">
+          <div class="m-nav-grid m-nav-grid--skin-light">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 lz-m-nav-__item" *ngFor="let module of moduleList" [ngClass]="{'lz-m-nav-__item-edit':editModules}"
+                  (click)="operationModule($event,module)">
+                  <div href="#" class="lz-m-nav-grid__item">
+                    <a *ngIf="module.url" [routerLink]="[module.url]" [ngStyle]="{'text-decoration':'none'}">
+                      <i class="m-nav-grid__icon flatico-add {{module.icon}}"></i>
+                      <h6 class="m-nav-grid__text">{{module.name}}</h6>
+                    </a>
+                    <a *ngIf="!module.url">
+                      <i class="m-nav-grid__icon flatico-add {{module.icon}}"></i>
+                      <h6 class="m-nav-grid__text">{{module.name}}</h6>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="m-dropdown__content" [hidden]="!myModuleShow">
+        <div class="m-scrollable" data-scrollable="false" data-max-height="380" data-mobile-max-height="200">
+          <button type="button" (click)="cancelMoeuleEdit($event)" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="la la-reply"></i>
+          </button>
+          <div class="lz-model-add-wr">
+            <!-- <tree-root [nodes]="nodes" [options]="options">
+              <ng-template #treeNodeTemplate let-node="node" let-index="index">
+                <i class="jstree-icon jstree-themeicon {{node.data.icon}} jstree-themeicon-custom"></i>
+                <span (click)="handle($event,node)">{{ node.data.name }}</span>
+              </ng-template>
+            </tree-root> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
