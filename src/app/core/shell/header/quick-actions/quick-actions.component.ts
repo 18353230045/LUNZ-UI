@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ITreeOptions, IActionMapping } from 'angular-tree-component';
 
-// import { LoggerFactory } from '../../logger-factory.service';
-// import { Logger } from '../../../logger.service';
+import { LoggerFactory } from '../../../logger-factory.service';
+import { Logger } from '../../../logger.service';
 declare const $: any;
 
 @Component({
@@ -13,7 +13,7 @@ declare const $: any;
 })
 
 export class QuickActionsComponent implements OnInit {
-    // log: Logger;
+    log: Logger;
 
     nodes: Array<any> = [];
     moduleList: Array<any> = [];
@@ -33,10 +33,8 @@ export class QuickActionsComponent implements OnInit {
         actionMapping: this.actionMapping,
     };
 
-    constructor(
-        // private loggerFactory: LoggerFactory
-    ) {
-        // this.log = this.loggerFactory.getLogger();
+    constructor(private loggerFactory: LoggerFactory) {
+        this.log = this.loggerFactory.getLogger(`快捷操作`);
     }
 
     ngOnInit() {
@@ -246,7 +244,7 @@ export class QuickActionsComponent implements OnInit {
 
         // 成功，关闭模块列表
         this.myModuleShow = false;
-        // this.log.info(`操作成功！`);
+        this.log.info(`模块添加成功！`);
         this.temporaryList = [];
     }
 

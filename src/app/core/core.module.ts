@@ -1,17 +1,17 @@
 import { NgModule, Optional, SkipSelf, Injector } from '@angular/core';
-import { CommonModule, DatePipe, CurrencyPipe } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { XHRBackend, ConnectionBackend, RequestOptions } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule, DatePipe, CurrencyPipe } from '@angular/common';
 import { RouteReuseStrategy, RouterModule, Router } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalModule } from 'ngx-bootstrap';
-// import { BsModalService } from 'ngx-bootstrap';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { zhCnLocale } from 'ngx-bootstrap/locale';
 import { ToastrModule } from 'ngx-toastr';
 import { MomentModule } from 'ngx-moment';
+import { TreeModule } from 'angular-tree-component';
 
 import { SharedModule } from '@app/shared/shared.module';
 import { SweetAlert2Service } from '@app/shared';
@@ -40,11 +40,13 @@ defineLocale('zh-cn', zhCnLocale);
     HttpClientModule,
     TranslateModule,
     RouterModule,
+    BrowserAnimationsModule,
     ModalModule.forRoot(),
     CoreRoutingModule,
     SsoModule,
     ToastrModule,
     MomentModule,
+    TreeModule.forRoot(),
     SharedModule
   ],
   declarations: [
