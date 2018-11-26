@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BsModalService } from 'ngx-bootstrap';
+import { timer } from 'rxjs';
 
 import { environment } from '../../../../../environments/environment';
 import { Logger } from '../../../logger.service';
@@ -62,12 +63,12 @@ export class ProfileComponent implements OnInit {
     // if usercenter authentication
     if (this.authenticationService.isUsing()) {
       this.authenticationService.logout().subscribe(() => { });
-      setTimeout(() => {
+
+      timer(300).subscribe(() => {
         this.checkoutMenuActive().then(() => {
           this.router.navigate(['/login']);
-          window.location.reload();
         });
-      }, 300);
+      });
     }
 
     // if micro service authentication
