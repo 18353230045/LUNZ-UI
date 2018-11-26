@@ -4,10 +4,10 @@ import { Router, NavigationEnd } from '@angular/router';
 import { ITreeOptions, IActionMapping } from 'angular-tree-component';
 import { filter } from 'rxjs/operators';
 
-declare const $: any;
+import { LoggerFactory } from '../../../../logger-factory.service';
+import { Logger } from '../../../../logger.service';
 
-// import { LoggerFactory } from '../../../../logger-factory.service';
-// import { Logger } from '../../../../logger.service';
+declare const $: any;
 
 @Component({
     selector: 'app-top-menu-actions, [app-top-menu-actions]',
@@ -16,7 +16,7 @@ declare const $: any;
 })
 
 export class ActionsComponent implements OnInit {
-    // log: Logger;
+    log: Logger;
 
     myOperationMyModelList: Array<any> = [];
     myOperationOpenHistoryList: Array<any> = [];
@@ -42,14 +42,14 @@ export class ActionsComponent implements OnInit {
     };
 
     constructor(
-        // private loggerFactory: LoggerFactory,
+        private loggerFactory: LoggerFactory,
         private router: Router
     ) {
-        // this.log = this.loggerFactory.getLogger(`我的操作`);
+        this.log = this.loggerFactory.getLogger(`我的操作`);
 
-        // this.getProfileName().then(() => {
-        //     this.init();
-        // });
+        this.getProfileName().then(() => {
+            this.init();
+        });
 
         // 取消tree组件内部打开子级菜单事件冒泡
         $('body').on('click', '.toggle-children-wrapper', function (event: any) {
@@ -58,17 +58,17 @@ export class ActionsComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.getProfileName().then(() => {
-        //     this.getModeList(`${this.userName}-myOperationMyModelList`, 0).then((ModeList: any[]) => {
-        //         this.myOperationMyModelList = ModeList || [];
-        //     }).then(() => {
-        //         this.getModeList(`${this.userName}-openHistoryList`, 1).then((Mode: any[]) => {
-        //             this.myOperationOpenHistoryList = Mode || [];
-        //         }).then(() => {
-        //             this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
-        //         });
-        //     });
-        // });
+        this.getProfileName().then(() => {
+            this.getModeList(`${this.userName}-myOperationMyModelList`, 0).then((ModeList: any[]) => {
+                this.myOperationMyModelList = ModeList || [];
+            }).then(() => {
+                this.getModeList(`${this.userName}-openHistoryList`, 1).then((Mode: any[]) => {
+                    this.myOperationOpenHistoryList = Mode || [];
+                }).then(() => {
+                    this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
+                });
+            });
+        });
 
         $('.m-menu__submenu--left').on('click', '.lz-m-menu__link', function () {
             $(this).parents('.m-menu__item--rel').removeClass('m-menu__item--open-dropdown m-menu__item--hover');
@@ -218,7 +218,7 @@ export class ActionsComponent implements OnInit {
 
         localStorage.setItem(`${this.userName}-${deleteListName}`, JSON.stringify(list));
 
-        // this.log.success(`${row.name} 移除成功！`);
+        this.log.success(`${row.name} 移除成功！`);
     }
 
     // delete model all
@@ -229,7 +229,7 @@ export class ActionsComponent implements OnInit {
 
         localStorage.setItem(`${this.userName}-openHistoryList`, JSON.stringify(this.myOperationOpenHistoryList));
 
-        // this.log.success(`移除成功！`);
+        this.log.success(`移除成功！`);
     }
 
     // get all model（assignment tree）
@@ -298,12 +298,12 @@ export class ActionsComponent implements OnInit {
     // submit model
     submitCheckedModel(): void {
         if (this.temporaryList.length === 0) {
-            // this.log.warn(`至少选择 1 个模块！`);
+            this.log.warn(`至少选择 1 个模块！`);
             return;
         }
 
         if (this.temporaryList.length > 5) {
-            // this.log.warn(`最多添加5个模块！`);
+            this.log.warn(`最多添加5个模块！`);
             return;
         }
 
@@ -318,7 +318,7 @@ export class ActionsComponent implements OnInit {
         this.addModel = false;
         this.removeRepeat(this.myOperationMyModelList, this.myOperationOpenHistoryList);
 
-        // this.log.success(`操作成功！`);
+        this.log.success(`添加成功！`);
     }
 
     cancelCheckedModel(): void {
