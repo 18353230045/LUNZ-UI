@@ -11,7 +11,7 @@ export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
   localeId: 'zh-CN',
-  haveTabs: true,
+  haveTabs: false,
   serverUrl: '',
   defaultLanguage: 'zh-CN',
   supportedLanguages: ['en-US', 'fr-FR'],

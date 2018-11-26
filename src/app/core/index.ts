@@ -39,3 +39,4 @@ export * from './shell/navigation/navigation.component';
 export * from './shell/navigation/navigation.component';
 export * from './shell/navigation/menu-item/menu-item.component';
 export * from './shell/page-header/page-header.component';
+export * from './shell/breadcrumbs/breadcrumbs.component';

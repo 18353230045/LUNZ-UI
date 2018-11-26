@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   height: string;
   topMenuHeight: string;
   menuHidden = true;
-  showTabs: Boolean = true;
+  showTabs: Boolean = environment.haveTabs;
 
   constructor(private router: Router,
     private authenticationService: AuthenticationService,
@@ -31,8 +31,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         $('.la-refresh').trigger('click');
       }
     });
-
-    this.showTabs = environment.haveTabs;
+    console.log(environment.haveTabs);
     this.setHeaderHeight();
 
     $(window).resize(() => {

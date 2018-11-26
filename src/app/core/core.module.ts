@@ -25,7 +25,8 @@ import {
   ApiPrefixInterceptor, ErrorHandlerInterceptor, CacheInterceptor, InitMenutCloseDirective,
   ShellComponent, HeaderComponent, NotificationsComponent, ProfileComponent, ChangePasswordModalComponent,
   QuickActionsComponent, QuickSearchComponent, TabsComponent, TopMenuComponent, ActionsComponent,
-  AppsComponent, ReportsComponent, PageHeaderComponent, NavigationComponent, MenuItemComponent, FooterComponent
+  AppsComponent, ReportsComponent, PageHeaderComponent, BreadcrumbsComponent, NavigationComponent,
+  MenuItemComponent, FooterComponent
 } from '@app/core';
 
 import { SsoRegisterComponent } from '../sso/sso-register/sso-register.component';
@@ -57,7 +58,7 @@ defineLocale('zh-cn', zhCnLocale);
     PageHeaderComponent,
     ChangePasswordModalComponent,
     MenuItemComponent,
-    // BreadcrumbsComponent,
+    BreadcrumbsComponent,
     SsoRegisterComponent,
     ProfileComponent,
     QuickActionsComponent,
@@ -90,7 +91,6 @@ defineLocale('zh-cn', zhCnLocale);
     SweetAlert2Service,
     SsoServiceService,
     ProfileService,
-    // BsModalService,
     LoggerFactory,
   ]
 })
