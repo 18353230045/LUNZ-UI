@@ -20,7 +20,11 @@
     "baseUrl": "src",
     "paths": {
       "@app/*": ["app/*"],
-      "@env/*": ["environments/*"]
+      "@env/*": ["environments/*"],
+      "@core/*": ["app/core/*"],
+      "@components/*": ["app/shared/components/*"],
+      "@directives/*": ["app/shared/directives/*"],
+      "@pipes/*": ["app/shared/pipes/*"]
     }
   }
 }
