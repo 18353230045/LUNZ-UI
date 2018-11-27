@@ -4,6 +4,7 @@ import env from './.env';
 export const environment = {
   appName: 'LUNZ+',
   production: true,
+  hmr: false,
   version: env.npm_package_version,
   localeId: 'zh-CN',
   haveTabs: true,

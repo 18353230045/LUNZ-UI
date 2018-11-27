@@ -9,7 +9,7 @@ import env from './.env';
 export const environment = {
   appName: 'LUNZ+',
   production: false,
-  hmr: false,
+  hmr: true,
   version: env.npm_package_version + '-dev',
   localeId: 'zh-CN',
   haveTabs: false,
@@ -67,3 +67,4 @@ export const environment = {
     }
   }
 };
+

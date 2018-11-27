@@ -47,7 +47,6 @@
               "./node_modules/@activix/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js",
               "./node_modules/@activix/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js",
               "./node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js",
-
               "src/assets/js/framework/base/app.js",
               "src/assets/js/framework/base/util.js",
               "src/assets/js/framework/components/general/animate.js",
@@ -78,10 +77,20 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
+                }
+              ]
             }
           }
         },
@@ -93,6 +102,10 @@
           "configurations": {
             "production": {
               "browserTarget": "lunz-ui:build:production"
+            },
+            "hmr": {
+              "hmr": true,
+              "browserTarget": "lunz-ui:build:hmr"
             }
           }
         },
