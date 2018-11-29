@@ -1,10 +1,24 @@
-<div class="container-fluid">
-  <div class="jumbotron text-center">
-    <h1>
-      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo"/>
-      <span translate>Hello world !</span>
-    </h1>
-    <!-- <app-loader [isLoading]="isLoading"></app-loader> -->
-    <q [hidden]="isLoading">{{quote}}</q>
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">组件库</h3>
+      </div>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid">
+      <div class="row">
+        <div *ngFor="let module of menuLists" class="col-lg-1 col-md-1 col-sm-1 col-xs-4 text-center lz-home-module-item">
+          <a [routerLink]="[module.url]">
+            <h6 class="{{module.icon}}"></h6>
+            <p>{{module.name}}</p>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
