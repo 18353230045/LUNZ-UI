@@ -12,3 +12,4 @@ export * from './pipes/rmb.pipe';
 export * from './pipes/to-fixed.pipe';
 
 export * from './directives/ladda.directive';
+export * from './directives/ngx-datatable.directive';

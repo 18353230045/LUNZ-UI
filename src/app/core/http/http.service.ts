@@ -10,6 +10,8 @@ import { AuthenticationService, Credentials } from '../authentication/authentica
 import { AuthenticationOAuth2Service } from '../authentication/authentication-oauth2.service';
 import { environment } from '@env/environment';
 
+import { toURLSearchParams } from './http-helper';
+
 // HttpClient is declared in a re-exported module, so we have to extend the original module to make it work properly
 // (see https://github.com/Microsoft/TypeScript/issues/13897)
 declare module '@angular/common/http/src/client' {
@@ -121,14 +123,18 @@ export class HttpService extends HttpClient {
       options.headers.append(new HttpHeaders().set('Authorization', authorization));
     }
 
+    if (options && options != null && options.params && options.params != null) {
+      if (!options.params['map']) {
+        options.params = toURLSearchParams(options.params);
+      }
+    }
+
     const regex = new RegExp('^(http://|https://|//)');
     if (!regex.test(url)) {
       url = this._apiSettings.baseUrl + url;
       if (this._apiSettings.withHeaders) {
         // You can customize the 'headers' here.
-        const headers = new HttpHeaders()
-          .set('AppKey', this._apiSettings.appKey)
-          .set('AuthToken', token);
+        const headers = new HttpHeaders().set('AppKey', this._apiSettings.appKey).set('AuthToken', token);
 
         if (options.headers) {
           options.headers.append(headers);

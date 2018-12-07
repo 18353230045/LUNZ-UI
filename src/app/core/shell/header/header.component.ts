@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         $('.la-refresh').trigger('click');
       }
     });
-    console.log(environment.haveTabs);
     this.setHeaderHeight();
 
     $(window).resize(() => {

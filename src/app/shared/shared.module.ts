@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ModuleWithProviders } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HostComponent, SharedSessionStorageService } from '@app/shared';
 import { SweetAlertOptions } from 'sweetalert2';
@@ -9,7 +9,7 @@ import { SweetAlertOptions } from 'sweetalert2';
 import { environment } from '@env/environment';
 import {
   swalDefaultsProvider, ConvertService, ReferenceDataService,
-  RemoveSpacePipe, RmbPipe, ToFixedPipe, LaddaDirective
+  RemoveSpacePipe, RmbPipe, ToFixedPipe, LaddaDirective, NgxDataTableDirective
 } from '@app/shared';
 
 export function createDecimalPipe() {
@@ -28,12 +28,14 @@ export function createDecimalPipe() {
     RmbPipe,
     RemoveSpacePipe,
     ToFixedPipe,
-    LaddaDirective
+    LaddaDirective,
+    NgxDataTableDirective
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [
     HostComponent,
-    LaddaDirective
+    LaddaDirective,
+    NgxDataTableDirective
   ],
   providers: [
     SharedSessionStorageService,

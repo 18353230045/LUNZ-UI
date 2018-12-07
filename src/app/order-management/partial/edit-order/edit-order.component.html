@@ -1,0 +1,100 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">{{title}}</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill" [ladda]="saving" [disabled]="form.invalid"
+            type="button" (click)="submit()">
+            <span>
+              <i class="la la-check"></i>
+              <span>保存</span>
+            </span>
+          </button>
+        </li>
+        <li class="m-portlet__nav-item">
+          <button class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" type="button"
+            (click)="location.back()">
+            <span>
+              <i class="la la-rotate-left"></i>
+              <span>取消</span>
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <form role="form" #orderForm [formGroup]="form" (submit)="submit()" novalidate>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>订单摘要
+              <span class="text-danger">*</span>
+            </label>
+            <input type="text" formControlName="subject" placeholder="订单摘要" class="form-control" [(ngModel)]="order.subject" />
+            <zr-validation-message [control]="form.controls['subject']" label="订单摘要"></zr-validation-message>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>日期
+              <span class="text-danger">*</span>
+            </label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="date" appDatepicker [clearBtn]="true" [format]="'yyyy-mm-dd'"
+                [startView]="2" [minView]="2" formControlName="date" placeholder="yyyy-mm-dd" [(ngModel)]="order.date" />
+            </div>
+            <zr-validation-message [formGroup]="form" for="date" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></zr-validation-message>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>从何处了解本站？
+              <span class="text-danger">*</span>
+            </label>
+            <select formControlName="hearFrom" class="form-control" [(ngModel)]="order.hearFrom">
+              <option *ngFor="let item of hearFromItems" [ngValue]="item.key">{{item.text}}</option>
+            </select>
+            <zr-validation-message [control]="form.controls['hearFrom']" label="从何处了解本站"></zr-validation-message>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>单价
+              <span class="text-danger">*</span>
+            </label>
+            <input type="text" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="order.price"/>
+            <zr-validation-message [control]="form.controls['price']" label="单价" [validationMessages]="{pattern:'请输入数字'}"></zr-validation-message>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>数量
+              <span class="text-danger">*</span>
+            </label>
+            <input type="text" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="order.amount" />
+            <zr-validation-message [control]="form.controls['amount']" label="数量" [validationMessages]="{pattern:'请输入数字'}"></zr-validation-message>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>金额</label>
+            <span class="form-control">{{order.price*order.amount}}</span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

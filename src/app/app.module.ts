@@ -9,6 +9,8 @@ import { LaddaModule } from 'angular2-ladda';
 import { ToastrModule } from 'ngx-toastr';
 import { SweetAlertOptions } from 'sweetalert2';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { NgxQueryModule } from 'ngx-query';
+
 import { SignalRModule, SignalRConfiguration, ConnectionTransports } from 'ng2-signalr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +35,40 @@ const sweetAlertOptions: SweetAlertOptions = {
   cancelButtonText: '取消'
 };
 
+const ngxQuerySettings: any = {
+  labels: {
+    misc: {
+      'from': '从',
+      'to': '到'
+    },
+    buttons: {
+      'quick': '快速',
+      'advanced': '高级',
+      'reset': '重置',
+      'search': '查询'
+    },
+    groupOp: {
+      'and': '并且',
+      'or': '或者'
+    },
+    fieldOp: {
+      'eq': '等于',
+      'ne': '不等于',
+      'lt': '小于',
+      'le': '小于等于',
+      'gt': '大于',
+      'ge': '大于等于',
+      'bw': '开头是',
+      'bn': '开头不是',
+      'ew': '结尾是',
+      'en': '结尾不是',
+      'cn': '包含',
+      'nc': '不包含',
+      'bt': '介于'
+    }
+  }
+};
+
 export function getSignalrConfiguration(): SignalRConfiguration {
   const signalrConfiguration = new SignalRConfiguration();
   signalrConfiguration.hubName = 'WebHub';
@@ -49,12 +85,13 @@ export function getSignalrConfiguration(): SignalRConfiguration {
     FormsModule,
     HttpClientModule,
     TranslateModule.forRoot(),
-    ToastrModule.forRoot({ timeOut: 3000, progressBar: true, positionClass: 'toast-bottom-right' }),
+    SharedModule.forRoot(sweetAlertOptions),
+    NgxQueryModule.forRoot(ngxQuerySettings),
     SweetAlert2Module.forRoot(sweetAlertOptions),
     SignalRModule.forRoot(getSignalrConfiguration),
+    ToastrModule.forRoot({ timeOut: 3000, progressBar: true, positionClass: 'toast-bottom-right' }),
     LaddaModule,
     CoreModule,
-    SharedModule.forRoot(sweetAlertOptions),
     HomeModule,
     LoginModule,
     AuthenticationModule,

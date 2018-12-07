@@ -1,7 +1,7 @@
-import { URLSearchParams, QueryEncoder } from '@angular/http';
+import { HttpParams } from '@angular/common/http';
 
-export function toURLSearchParams(params: any, queryEncoder: QueryEncoder = new QueryEncoder()): URLSearchParams {
-  const result = new URLSearchParams('', queryEncoder);
+export function toURLSearchParams(params: any): HttpParams {
+  let result = new HttpParams();
 
   const add = function (key: string, valueOrFunc: any) {
     let value: any;
@@ -12,7 +12,7 @@ export function toURLSearchParams(params: any, queryEncoder: QueryEncoder = new 
       value = valueOrFunc;
     }
 
-    result.append(key, value);
+    result = result.append(key, value);
   };
 
   if (params && params != null) {
@@ -22,13 +22,12 @@ export function toURLSearchParams(params: any, queryEncoder: QueryEncoder = new 
       }
     }
   }
-
   return result;
 }
 
 function buildParams(prefix: string, params: any, add: any) {
-  if (params === null) {
-    add(prefix, '');
+  if (!params) {
+    return;
   } else if (Array.isArray(params)) {
     params.forEach((item, index) => {
       buildParams(prefix + '[' + index + ']', item, add);
@@ -65,6 +64,7 @@ export function camelCaseObject(obj: any): any {
       }
     }
   }
+
   return dest;
 }
 
