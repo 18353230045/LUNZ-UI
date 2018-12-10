@@ -49,15 +49,13 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     private loggerFactory: LoggerFactory,
     private dialogs: Dialogs,
     private modalService: BsModalService) {
-    this.log = this.loggerFactory.getLogger();
+    this.log = this.loggerFactory.getLogger(`订单列表`);
     this.localeService.use('zh-cn');
   }
 
   ngOnInit() { }
 
-  ngAfterViewInit() {
-    this.changeDetectorRef.detectChanges();
-  }
+  ngAfterViewInit() { this.changeDetectorRef.detectChanges(); }
 
   onSelect(event: any) {
     if (event !== void 0 && event.selected !== void 0) {
@@ -92,7 +90,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   }
 
   delete(row: any) {
-    this.dialogs.confirm(`真的要删除 '${row.subject}' 吗？`).subscribe(
+    this.dialogs.confirm(`真的要删除订单 ${row.subject} 吗？`).subscribe(
       () => {
         this.ordersService.deleteOrder(row)
           .subscribe(response => {

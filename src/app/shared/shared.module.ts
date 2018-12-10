@@ -6,6 +6,9 @@ import { RouterModule } from '@angular/router';
 import { HostComponent, SharedSessionStorageService } from '@app/shared';
 import { SweetAlertOptions } from 'sweetalert2';
 
+// import { DatatablePagerComponent } from './components/datatable-pager/datatable-pager.component';
+// import { DatatableFooterComponent } from './components/datatable-footer/datatable-footer.component';
+
 import { environment } from '@env/environment';
 import {
   swalDefaultsProvider, ConvertService, ReferenceDataService,
@@ -29,13 +32,17 @@ export function createDecimalPipe() {
     RemoveSpacePipe,
     ToFixedPipe,
     LaddaDirective,
-    NgxDataTableDirective
+    NgxDataTableDirective,
+    // DatatablePagerComponent,
+    // DatatableFooterComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [
     HostComponent,
     LaddaDirective,
-    NgxDataTableDirective
+    NgxDataTableDirective,
+    // DatatablePagerComponent,
+    // DatatableFooterComponent
   ],
   providers: [
     SharedSessionStorageService,

@@ -10,6 +10,8 @@ import { NgxQueryComponent, cloneQueryGroup } from 'ngx-query';
 import { DatatableFooterComponent } from 'ngx-datatable-footer';
 import { NgxDatatableActionsComponent } from 'ngx-datatable-actions';
 
+import { timer } from 'rxjs';
+
 // import { QueryComponent } from '@zhongruigroup/ngx-query/query.component';
 // import { cloneQueryGroup } from '@zhongruigroup/ngx-query/utils/query-helper';
 
@@ -110,45 +112,44 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
     datatable.sortType = SortType.multi;
     datatable.limit = this._pageSize;
     datatable.offset = this._pageIndex - 1;
+
     if (this.footer) {
       this.footer.datatable = datatable;
     }
     if (this._sorts && this._sorts.length > 0) {
       datatable.sorts = this._sorts;
     }
+
     datatable.messages = {
       emptyMessage: '当前无记录。',
       totalMessage: '行',
       selectedMessage: '选择'
     };
 
-    const self = this;
-
-    datatable.page.subscribe(function (event: any) {
-      self.emitData(event);
+    datatable.page.subscribe((event: any) => {
+      if (event.offset) this.emitData(event);
     });
-
-    datatable.sort.subscribe(function (event: any) {
-      self.emitData(undefined, event.sorts);
+    datatable.sort.subscribe((event: any) => {
+      this.emitData(undefined, event.sorts);
     });
 
     // query
     if (ngxQuery) {
-      ngxQuery.query.subscribe(function (event: any) {
-        self._datatable.offset = 0;
-        self.emitData(undefined, []);
+      ngxQuery.query.subscribe((event: any) => {
+        this._datatable.offset = 0;
+        this.emitData(undefined, []);
       });
 
-      ngxQuery.reset.subscribe(function (event: any) {
-        window.setTimeout(function () {
-          self._datatable.offset = 0;
-          self.emitData(undefined, []);
-        }, 100);
+      ngxQuery.reset.subscribe(() => {
+        timer(100).subscribe(() => {
+          this._datatable.offset = 0;
+          this.emitData(undefined, []);
+        });
       });
 
       if (this.saveState === true) {
-        ngxQuery.reset.subscribe(function (event: any) {
-          ngxQuery.queryTemplates = self._tempQueryTemplates;
+        ngxQuery.reset.subscribe(() => {
+          ngxQuery.queryTemplates = this._tempQueryTemplates;
         });
       }
     }
