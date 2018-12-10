@@ -34,7 +34,7 @@ export class EditOrderComponent implements OnInit {
     private loggerFactory: LoggerFactory,
     private router: Router, private route: ActivatedRoute, public location: Location,
     private formBuilder: FormBuilder) {
-    this.log = this.loggerFactory.getLogger(`编辑订单`);
+    this.log = this.loggerFactory.getLogger(`订单编辑`);
     this.buildForm();
   }
 
@@ -44,14 +44,13 @@ export class EditOrderComponent implements OnInit {
 
   submit() {
     this.saving = true;
-
     this.ordersService.updateOrder(this.order).subscribe(response => {
       this.saving = false;
       this.router.navigate(['/orders']);
-      this.log.info('成功修改订单!');
+      this.log.info(`订单 ${this.order.subject} 编辑成功!`);
     }, error => {
       this.saving = false;
-      this.log.error('订单保存失败。', error);
+      this.log.error(`订单 ${this.order.subject} 保存失败，失败信息:`, error);
     });
   }
 
@@ -71,7 +70,7 @@ export class EditOrderComponent implements OnInit {
         this.ordersService.getOrder(id)
           .subscribe((order: any) => {
             this.order = order;
-          }, error => this.log.error('订单获取失败。', error));
+          }, error => this.log.error('订单数据获取失败, 失败信息：', error));
       }
     });
   }

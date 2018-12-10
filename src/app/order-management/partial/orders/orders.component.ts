@@ -98,9 +98,9 @@ export class OrdersComponent implements OnInit, AfterViewInit {
           .subscribe(response => {
             this.orders.splice(this.orders.indexOf(row), 1);
             this.datatable.count -= 1;
-            this.log.info('订单删除成功!', row);
-          }, error => this.log.error('订单删除失败。', error));
-      }, () => this.log.debug('取消删除订单。'));
+            this.log.info(`订单 ${row.subject} 删除成功!`);
+          }, error => this.log.error(`订单 ${row.subject} 删除失败,失败信息:`, error));
+      }, (error) => this.log.debug(`订单 ${row.subject} 删除失败,失败信息:`, error));
   }
 
   editByModal(row: any) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, DatePipe } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoggerFactory } from '@core/logger-factory.service';
 import { Logger } from '@core/logger.service';

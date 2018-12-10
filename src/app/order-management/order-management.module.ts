@@ -51,11 +51,7 @@ import { OrderComponent } from './partial/order/order.component';
     EditOrderModalComponent,
     OrderComponent
   ],
-  entryComponents: [
-    EditOrderModalComponent,
-  ],
-  providers: [
-    createBsDatepickerConfigProvider()
-  ]
+  entryComponents: [EditOrderModalComponent],
+  providers: [createBsDatepickerConfigProvider()]
 })
 export class OrderManagementModule { }

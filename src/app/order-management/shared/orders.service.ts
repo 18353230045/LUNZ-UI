@@ -11,9 +11,7 @@ import { WebApiResultResponse, PagingResponse } from '../../core/http/web-api-re
 })
 export class OrdersService extends WebApiResultResponse {
 
-  constructor(private http: HttpClient) {
-    super();
-  }
+  constructor(private http: HttpClient) { super(); }
 
   getOrders(params: HttpParams): Observable<PagingResponse> {
     const url = 'orders';
