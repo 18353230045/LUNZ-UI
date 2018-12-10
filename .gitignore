@@ -7,7 +7,7 @@
 
 # Dependencies
 /node_modules
-
+/projects
 # Cordova
 /www
 /plugins
