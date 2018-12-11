@@ -55,6 +55,7 @@
     "ngx-moment": "^3.2.0",
     "ngx-query": "file:../component3.0.0/ngx-query/dist/ngx-query/ngx-query-3.0.0.tgz",
     "ngx-query-toolbar": "file:../component3.0.0/ngx-query-toolbar/dist/ngx-query-toolbar/ngx-query-toolbar-3.0.0.tgz",
+    "zr-select-selection": "file:../component3.0.0/zr-select-selection/dist/zr-select-selection/zr-select-selection-3.0.0.tgz",
     "ngx-toastr": "^9.1.0",
     "ngx-validators": "^4.2.0",
     "oidc-client": "^1.5.4",

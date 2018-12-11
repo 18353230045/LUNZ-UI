@@ -1,0 +1,57 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">select选择器</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button [routerLink]="['using-documents']" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- 默认 -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <h6>默认(无清除/无默认值)</h6>
+          <zr-select-selection [selects]="selects1" [(model)]="selectValue1"></zr-select-selection>
+          <p>你选择的值为：{{selectValue1}}</p>
+        </div>
+        <!-- 禁用 -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <h6>禁用</h6>
+          <zr-select-selection [selects]="selects2" [(model)]="selectValue2" [disabled]="true"></zr-select-selection>
+          <p>你选择的值为：{{selectValue2}}</p>
+        </div>
+        <!-- item禁用 -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <h6>第二项禁选</h6>
+          <zr-select-selection [selects]="selects3" [(model)]="selectValue3"></zr-select-selection>
+          <p>你选择的值为：{{selectValue3}}</p>
+        </div>
+        <!-- 默认选中 -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <h6>默认值</h6>
+          <zr-select-selection [selects]="selects4" [(model)]="selectValue4"></zr-select-selection>
+          <p>你选择的值为：{{selectValue4}}</p>
+        </div>
+        <!-- 可清除值 -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <h6>可清除</h6>
+          <zr-select-selection [selects]="selects5" [(model)]="selectValue5" [clear]="true"></zr-select-selection>
+          <p>你选择的值为：{{selectValue5}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
