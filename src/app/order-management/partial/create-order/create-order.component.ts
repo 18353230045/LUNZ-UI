@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location, DatePipe } from '@angular/common';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -47,7 +47,7 @@ export class CreateOrderComponent implements OnInit {
     this.ordersService.createOrder(this.order).subscribe(() => {
       this.saving = false;
       this.router.navigate(['/orders']);
-      this.log.info('订单创建成功!');
+      this.log.success('订单创建成功!');
     }, error => {
       this.saving = false;
       this.log.error('订单创建失败。', error);

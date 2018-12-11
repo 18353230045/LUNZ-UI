@@ -4,13 +4,14 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { finalize } from 'rxjs/operators';
 
-import { NgxDataTableDirective } from '../../../shared/directives/ngx-datatable.directive';
-import { EditOrderModalComponent } from '../edit-order-modal/edit-order-modal.component';
-
-import { LoggerFactory } from '../../../core/logger-factory.service';
-import { Logger } from '../../../core/logger.service';
-import { Dialogs } from '../../../core/dialogs.service';
+import { Logger } from '@core/logger.service';
+import { Dialogs } from '@core/dialogs.service';
+import { LoggerFactory } from '@core/logger-factory.service';
 import { OrdersService } from '../../shared/orders.service';
+
+import { NgxDataTableDirective } from '@app/shared/directives/ngx-datatable.directive';
+
+import { EditOrderModalComponent } from '../edit-order-modal/edit-order-modal.component';
 
 @Component({
   selector: 'app-orders',
@@ -72,9 +73,10 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     this.selectedOrders.length = 0;
 
     this.ordersService.getOrders(params).pipe(finalize(() => this.loading = false))
-      .subscribe(response => {
-        this.datatable.count = response.count;
-        this.orders = response.data;
+    .subscribe(response => {
+      this.datatable.count = response.count;
+      this.orders = response.data;
+      console.log(this.datatable);
 
         this.log.debug('订单列表', this.orders);
       }, error => {
@@ -94,9 +96,8 @@ export class OrdersComponent implements OnInit, AfterViewInit {
       () => {
         this.ordersService.deleteOrder(row)
           .subscribe(response => {
-            this.orders.splice(this.orders.indexOf(row), 1);
-            this.datatable.count -= 1;
-            this.log.info(`订单 ${row.subject} 删除成功!`);
+            this.ngxDataTable.refreshData();
+            this.log.success(`订单 ${row.subject} 删除成功!`);
           }, error => this.log.error(`订单 ${row.subject} 删除失败,失败信息:`, error));
       }, (error) => this.log.debug(`订单 ${row.subject} 删除失败,失败信息:`, error));
   }

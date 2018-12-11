@@ -5,9 +5,8 @@ import { FormGroup } from '@angular/forms';
 
 import { map } from 'rxjs/operators';
 
-import { LoggerFactory } from '../../../core/logger-factory.service';
-import { Logger } from '../../../core/logger.service';
-
+import { LoggerFactory } from '@core/logger-factory.service';
+import { Logger } from '@core/logger.service';
 import { OrdersService } from '../../shared/orders.service';
 
 @Component({
@@ -28,11 +27,11 @@ export class OrderComponent implements OnInit {
   ];
 
   constructor(
+    private route: ActivatedRoute,
     private ordersService: OrdersService,
     private loggerFactory: LoggerFactory,
-    private route: ActivatedRoute,
     public location: Location) {
-    this.log = this.loggerFactory.getLogger();
+    this.log = this.loggerFactory.getLogger(`订单详情`);
   }
 
   ngOnInit() {
@@ -45,7 +44,7 @@ export class OrderComponent implements OnInit {
         this.ordersService.getOrder(id)
           .subscribe(order => {
             this.order = order;
-          }, error => this.log.error('订单获取失败。', error));
+          }, error => this.log.error(`订单数据获取失败,失败信息: ${error}`));
       }
     });
   }

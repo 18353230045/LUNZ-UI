@@ -75,7 +75,7 @@
             <label>单价
               <span class="text-danger">*</span>
             </label>
-            <input type="text" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="order.price"/>
+            <input type="number" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="order.price"/>
             <zr-validation-message [control]="form.controls['price']" label="单价" [validationMessages]="{pattern:'请输入数字'}"></zr-validation-message>
           </div>
         </div>
@@ -84,14 +84,14 @@
             <label>数量
               <span class="text-danger">*</span>
             </label>
-            <input type="text" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="order.amount" />
+            <input type="number" formControlName="amount" placeholder="数量" class="form-control" [(ngModel)]="order.amount" />
             <zr-validation-message [control]="form.controls['amount']" label="数量" [validationMessages]="{pattern:'请输入数字'}"></zr-validation-message>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label>金额</label>
-            <span class="form-control">{{order.price*order.amount}}</span>
+            <span class="form-control">{{ order.price*order.amount }}</span>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BsModalRef } from 'ngx-bootstrap';
@@ -17,8 +17,8 @@ export class EditOrderModalComponent implements OnInit {
   @Output() action = new EventEmitter();
 
   log: Logger;
-  saving = false;
   form: FormGroup;
+  saving = false;
   middleVariable: any;
 
   hearFromItems: Array<any> = [
@@ -31,9 +31,8 @@ export class EditOrderModalComponent implements OnInit {
     private ordersService: OrdersService,
     private loggerFactory: LoggerFactory,
     private formBuilder: FormBuilder,
-    public activeModal: BsModalRef,
-    private cdf: ChangeDetectorRef) {
-    this.log = this.loggerFactory.getLogger('编辑订单');
+    public activeModal: BsModalRef) {
+    this.log = this.loggerFactory.getLogger('订单编辑');
     this.buildForm();
   }
 
@@ -44,11 +43,11 @@ export class EditOrderModalComponent implements OnInit {
   submit() {
     this.saving = true;
     this.ordersService.updateOrder(this.data)
-      .subscribe(response => {
+      .subscribe(() => {
         this.saving = false;
         this.action.emit(this.middleVariable);
         this.activeModal.hide();
-        this.log.info('成功修改订单!', response);
+        this.log.success(`订单编辑成功!`);
       }, error => {
         this.saving = false;
         this.log.error('订单保存失败。', error);

@@ -8,6 +8,7 @@ import { SweetAlertOptions } from 'sweetalert2';
 
 // import { DatatablePagerComponent } from './components/datatable-pager/datatable-pager.component';
 // import { DatatableFooterComponent } from './components/datatable-footer/datatable-footer.component';
+// import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions.component';
 
 import { environment } from '@env/environment';
 import {
@@ -34,15 +35,18 @@ export function createDecimalPipe() {
     LaddaDirective,
     NgxDataTableDirective,
     // DatatablePagerComponent,
-    // DatatableFooterComponent
+    // DatatableFooterComponent,
+    // NgxDatatableActionsComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [
     HostComponent,
+    RmbPipe,
     LaddaDirective,
     NgxDataTableDirective,
     // DatatablePagerComponent,
-    // DatatableFooterComponent
+    // DatatableFooterComponent,
+    // NgxDatatableActionsComponent
   ],
   providers: [
     SharedSessionStorageService,

@@ -1,5 +1,6 @@
 .datetimepicker {
   padding: 10px;
+  text-align: center;
 }
 
 .datetimepicker td,
@@ -12,6 +13,31 @@
 .datetimepicker td,
 .datetimepicker th {
   border-radius: 50%;
+}
+
+.datetimepicker .datetimepicker-hours span {
+  height: 30px;
+  line-height: 30px;
+}
+
+.datetimepicker table tr td span {
+  border-radius: 50%;
+}
+
+.datetimepicker table tr td span {
+  height: 50px;
+  line-height: 50px;
+}
+
+.datetimepicker .datetimepicker-minutes span {
+  height: 48px;
+  line-height: 48px;
+}
+
+.datetimepicker .datetimepicker-minutes .next span,
+.datetimepicker .datetimepicker-minutes .prev span {
+  height: 28px;
+  line-height: 28px;
 }
 
 .datetimepicker table tr td.active,
@@ -29,15 +55,6 @@
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
-.datetimepicker .datetimepicker-hours span {
-  height: 30px;
-  line-height: 30px;
-}
-
-.datetimepicker table tr td span {
-  border-radius: 50%;
-}
-
 .datetimepicker table tr td span.active,
 .datetimepicker table tr td span.active:hover,
 .datetimepicker table tr td span.active.disabled,
@@ -51,20 +68,4 @@
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-
-.datetimepicker table tr td span {
-  height: 50px;
-  line-height: 50px;
-}
-
-.datetimepicker .datetimepicker-minutes span {
-  height: 48px;
-  line-height: 48px;
-}
-
-.datetimepicker .datetimepicker-minutes .next span,
-.datetimepicker .datetimepicker-minutes .prev span {
-  height: 28px;
-  line-height: 28px;
 }

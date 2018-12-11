@@ -105,12 +105,12 @@
       </ngx-datatable-column>
       <ngx-datatable-column name="日期" prop="date" headerClass="text-center" cellClass="text-center">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.date}}
+          {{row.date | date: "y/MM/dd"}}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="单价" prop="price" headerClass="text-right" cellClass="text-right">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.price}}
+          {{row.price | rmb}}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="数量" prop="amount" headerClass="text-right" cellClass="text-right">
@@ -120,7 +120,7 @@
       </ngx-datatable-column>
       <ngx-datatable-column name="金额" prop="total" headerClass="text-right" cellClass="text-right">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{row.total}}
+          {{row.total | rmb}}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="付款" prop="paid" headerClass="text-right" cellClass="text-right">
@@ -130,7 +130,7 @@
       </ngx-datatable-column>
       <ngx-datatable-column maxWidth="96" headerClass="datatable-header-cell-acitons">
         <ng-template let-column="column" ngx-datatable-header-template>
-          <!-- <app-datatable-actions [datatable]="dt" class="pull-right"></app-datatable-actions> -->
+          <app-datatable-actions [datatable]="dt" class="pull-right"></app-datatable-actions>
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
           <a [routerLink]="['./', row.id]" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
