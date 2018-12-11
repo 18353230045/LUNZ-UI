@@ -127,7 +127,7 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
     };
 
     datatable.page.subscribe((event: any) => {
-      if (event.offset) this.emitData(event);
+      if (event.offset || event.offset === 0) this.emitData(event);
     });
     datatable.sort.subscribe((event: any) => {
       this.emitData(undefined, event.sorts);
