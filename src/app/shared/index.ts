@@ -1,4 +1,5 @@
 export * from './components/host.component';
+export * from './components/file-upload-oss/file-upload-oss.component';
 
 export * from './dialogs/sweetalert2.providers';
 export * from './dialogs/sweetalert2.service';

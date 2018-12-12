@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { HostComponent, SharedSessionStorageService } from '@app/shared';
+import { HostComponent, FileUploadOssComponent, SharedSessionStorageService } from '@app/shared';
 import { SweetAlertOptions } from 'sweetalert2';
 
 // import { DatatablePagerComponent } from './components/datatable-pager/datatable-pager.component';
@@ -29,6 +29,7 @@ export function createDecimalPipe() {
   ],
   declarations: [
     HostComponent,
+    FileUploadOssComponent,
     RmbPipe,
     RemoveSpacePipe,
     ToFixedPipe,
@@ -41,6 +42,7 @@ export function createDecimalPipe() {
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [
     HostComponent,
+    FileUploadOssComponent,
     RmbPipe,
     LaddaDirective,
     NgxDataTableDirective,
