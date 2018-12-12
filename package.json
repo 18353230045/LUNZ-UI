@@ -49,6 +49,7 @@
     "malihu-custom-scrollbar-plugin": "^3.1.5",
     "moment": "^2.22.2",
     "ng2-signalr": "^6.1.0",
+    "ng2-validation": "^4.2.0",
     "ngx-bootstrap": "^3.1.1",
     "ngx-datatable-actions": "file:../component3.0.0/ngx-datatable-actions/dist/ngx-datatable-actions/ngx-datatable-actions-3.0.0.tgz",
     "ngx-datatable-footer": "file:../component3.0.0/ngx-datatable-footer/dist/ngx-datatable-footer/ngx-datatable-footer-3.0.0.tgz",
@@ -57,6 +58,7 @@
     "ngx-query-toolbar": "file:../component3.0.0/ngx-query-toolbar/dist/ngx-query-toolbar/ngx-query-toolbar-3.0.0.tgz",
     "zr-select-selection": "file:../component3.0.0/zr-select-selection/dist/zr-select-selection/zr-select-selection-3.0.0.tgz",
     "zr-switch": "file:../component3.0.0/zr-switch/dist/zr-switch/zr-switch-3.0.0.tgz",
+    "zr-validation-message": "file:../component3.0.0/zr-validation-message/dist/zr-validation-message/zr-validation-message-3.0.0.tgz",
     "ng-select": "^1.0.1",
     "ngx-toastr": "^9.1.0",
     "primeicons": "^1.0.0",
@@ -64,14 +66,14 @@
     "ngx-validators": "^4.2.0",
     "oidc-client": "^1.5.4",
     "phantomjs-prebuilt": "^2.1.14",
+    "libphonenumber-js": "^0.4.5",
     "popper.js": "^1.14.3",
     "rxjs": "^6.2.2",
     "signalr": "^2.2.2",
     "sweetalert2": "^7.29.1",
     "urijs": "^1.18.10",
     "web-animations-js": "^2.3.1",
-    "zone.js": "^0.8.26",
-    "zr-validation-message": "file:../component3.0.0/zr-validation-message/dist/zr-validation-message/zr-validation-message-3.0.0.tgz"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.1",
