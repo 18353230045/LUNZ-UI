@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ModuleWithProviders } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, DecimalPipe } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FileUploaderModule } from '../../app/lib/@uniprank/ng2-file-uploader';
