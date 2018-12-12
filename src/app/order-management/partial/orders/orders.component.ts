@@ -73,10 +73,9 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     this.selectedOrders.length = 0;
 
     this.ordersService.getOrders(params).pipe(finalize(() => this.loading = false))
-    .subscribe(response => {
-      this.datatable.count = response.count;
-      this.orders = response.data;
-      console.log(this.datatable);
+      .subscribe(response => {
+        this.datatable.count = response.count;
+        this.orders = response.data;
 
         this.log.debug('订单列表', this.orders);
       }, error => {
