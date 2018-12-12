@@ -56,6 +56,7 @@
     "ngx-query": "file:../component3.0.0/ngx-query/dist/ngx-query/ngx-query-3.0.0.tgz",
     "ngx-query-toolbar": "file:../component3.0.0/ngx-query-toolbar/dist/ngx-query-toolbar/ngx-query-toolbar-3.0.0.tgz",
     "zr-select-selection": "file:../component3.0.0/zr-select-selection/dist/zr-select-selection/zr-select-selection-3.0.0.tgz",
+    "zr-switch": "file:../component3.0.0/zr-switch/dist/zr-switch/zr-switch-3.0.0.tgz",
     "ng-select": "^1.0.1",
     "ngx-toastr": "^9.1.0",
     "primeicons": "^1.0.0",

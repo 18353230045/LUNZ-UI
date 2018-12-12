@@ -12,6 +12,7 @@ const routes: Routes = RouteExtensions.withShell([
   { path: '', loadChildren: '../form-demo/form-demo.module#FormDemoModule' },
   { path: '', loadChildren: '../select-selection-demo/select-selection-demo.module#SelectSelectionDemoModule' },
   { path: '', loadChildren: '../select2-demo/select2-demo.module#Select2DemoModule' },
+  { path: '', loadChildren: '../switch-demo/switch-demo.module#SwitchDemoModule' },
   { path: '', loadChildren: '../order-management/order-management.module#OrderManagementModule' },
   // { path: '', loadChildren: '../contact-us/contact-us.module#ContactUsModule' },
   // { path: '', loadChildren: '../terms/terms.module#TermsModule' },
