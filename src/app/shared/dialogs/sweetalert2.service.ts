@@ -1,10 +1,11 @@
 import { Injectable, Inject } from '@angular/core';
 
 import swal, { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
-
 import { SWAL_DEFAULTS } from './sweetalert2.providers';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SweetAlert2Service {
 
   constructor(@Inject(SWAL_DEFAULTS) private defaultSwalOptions: SweetAlertOptions) { }

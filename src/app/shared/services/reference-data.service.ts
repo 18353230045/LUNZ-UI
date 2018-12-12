@@ -7,7 +7,9 @@ import { catchError, map } from 'rxjs/operators';
 import { WebApiResultResponse } from '@app/core';
 import { IHearFromDetails } from '@app/shared';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ReferenceDataService extends WebApiResultResponse {
 
   constructor(private http: HttpClient) {

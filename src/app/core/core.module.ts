@@ -14,7 +14,7 @@ import { MomentModule } from 'ngx-moment';
 import { TreeModule } from 'angular-tree-component';
 
 import { SharedModule } from '@app/shared/shared.module';
-import { SweetAlert2Service } from '@app/shared';
+import { SweetAlert2Service } from '@app/shared/dialogs/sweetalert2.service';
 import { SsoModule } from '../sso/sso.module';
 import { SsoServiceService } from '../sso/shared/sso-service.service';
 import { ProfileService } from './profile/profile.service';

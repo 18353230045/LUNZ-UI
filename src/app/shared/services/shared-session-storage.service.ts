@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SharedSessionStorageService {
 
   private _expiredKey = 'SHARED_SESSION_STORAGE_EXPIRED';

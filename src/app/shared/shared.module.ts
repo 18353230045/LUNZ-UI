@@ -3,18 +3,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { HostComponent, FileUploadOssComponent, SharedSessionStorageService } from '@app/shared';
-import { SweetAlertOptions } from 'sweetalert2';
-
-// import { DatatablePagerComponent } from './components/datatable-pager/datatable-pager.component';
-// import { DatatableFooterComponent } from './components/datatable-footer/datatable-footer.component';
-// import { NgxDatatableActionsComponent } from './components/ngx-datatable-actions.component';
-
-import { environment } from '@env/environment';
 import {
-  swalDefaultsProvider, ConvertService, ReferenceDataService,
+  HostComponent, FileUploadOssComponent, VehicleSelectionComponent, swalDefaultsProvider,
   RemoveSpacePipe, RmbPipe, ToFixedPipe, LaddaDirective, NgxDataTableDirective
 } from '@app/shared';
+import { SweetAlertOptions } from 'sweetalert2';
+
+import { environment } from '@env/environment';
 
 export function createDecimalPipe() {
   return new DecimalPipe(environment.localeId);
@@ -30,31 +25,23 @@ export function createDecimalPipe() {
   declarations: [
     HostComponent,
     FileUploadOssComponent,
+    VehicleSelectionComponent,
     RmbPipe,
     RemoveSpacePipe,
     ToFixedPipe,
     LaddaDirective,
     NgxDataTableDirective,
-    // DatatablePagerComponent,
-    // DatatableFooterComponent,
-    // NgxDatatableActionsComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [
     HostComponent,
     FileUploadOssComponent,
+    VehicleSelectionComponent,
     RmbPipe,
     LaddaDirective,
     NgxDataTableDirective,
-    // DatatablePagerComponent,
-    // DatatableFooterComponent,
-    // NgxDatatableActionsComponent
   ],
-  providers: [
-    SharedSessionStorageService,
-    ConvertService,
-    ReferenceDataService
-  ]
+  providers: []
 })
 export class SharedModule {
   public static forRoot(defaultSwalOptions?: SweetAlertOptions): ModuleWithProviders {

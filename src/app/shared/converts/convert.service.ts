@@ -6,7 +6,9 @@ export interface DateModel {
   day: number;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ConvertService {
 
   constructor() { }

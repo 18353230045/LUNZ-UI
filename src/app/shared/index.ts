@@ -1,11 +1,8 @@
 export * from './components/host.component';
 export * from './components/file-upload-oss/file-upload-oss.component';
+export * from './components/vehicle-selection/vehicle-selection.component';
 
 export * from './dialogs/sweetalert2.providers';
-export * from './dialogs/sweetalert2.service';
-export * from './services/shared-session-storage.service';
-export * from './services/reference-data.service';
-export * from './converts/convert.service';
 export * from './models/microservice-template';
 
 export * from './pipes/remove-space.pipe';

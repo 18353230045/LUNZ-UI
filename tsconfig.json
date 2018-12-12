@@ -24,6 +24,7 @@
       "@core/*": ["app/core/*"],
       "@components/*": ["app/shared/components/*"],
       "@directives/*": ["app/shared/directives/*"],
+      "@services/*": ["app/shared/services/*"],
       "@pipes/*": ["app/shared/pipes/*"]
     }
   }
