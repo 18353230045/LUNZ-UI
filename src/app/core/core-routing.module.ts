@@ -23,6 +23,7 @@ const routes: Routes = RouteExtensions.withShell([
     path: '',
     loadChildren: '../vehicle-selection-demo/vehicle-management-demo.module#VehicleManagementDemoModule'
   },
+  { path: '', loadChildren: '../tabs-demo/tabs-demo.module#TabsDemoModule' },
   // { path: '', loadChildren: '../contact-us/contact-us.module#ContactUsModule' },
   // { path: '', loadChildren: '../terms/terms.module#TermsModule' },
   // { path: '', loadChildren: '../privacy/privacy.module#PrivacyModule' },

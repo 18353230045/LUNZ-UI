@@ -1,0 +1,47 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">树结构</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button [routerLink]="['using-documents']" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12" [ngStyle]="{'position':'static'}">
+            <p-tree 
+              [value]="filesTree0"
+              selectionMode="checkbox"
+              [(selection)]="selectedFile"
+              (onNodeExpand)="getChildrenList($event)"
+              (onNodeSelect)="nodeSelect($event)"
+              (onNodeUnselect)="nodeUnselect($event)"
+              [contextMenu]="cm"
+              [loading]="loading"
+              draggableNodes="true"
+              droppableNodes="true"
+              (onNodeDrop)="nodeDrop($event)"
+              [style]="{'max-height':'450px','overflow':'auto'}">
+            </p-tree>
+            <p-contextMenu #cm [model]="items"></p-contextMenu>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12">
+          你选择了： {{selectedFile ? selectedFile.label : ''}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
