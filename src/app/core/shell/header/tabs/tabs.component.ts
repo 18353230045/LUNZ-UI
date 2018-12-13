@@ -18,9 +18,7 @@ export class TabsComponent implements OnInit {
   disableLeftMoveIcon: Boolean = true;
   disableRightMoveIcon: Boolean = true;
 
-  constructor(
-    private router: Router
-  ) {
+  constructor(private router: Router) {
     this.init();
   }
 

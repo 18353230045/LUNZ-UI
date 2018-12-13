@@ -15,11 +15,15 @@ declare const mLayout: any;
 })
 export class ShellComponent implements OnInit {
   paddingTop: string;
-  showBreadcrumbs: Boolean = !environment.haveTabs;
+  showBreadcrumbs: boolean = true;
 
   constructor(private router: Router) { }
 
+
   ngOnInit() {
+
+    this.showBreadcrumbs = !environment.haveTabs;
+
     this.router.events.subscribe((route) => {
       if (route instanceof NavigationStart) {
         jQuery('.m-wrapper>.progress').show();
@@ -50,19 +54,15 @@ export class ShellComponent implements OnInit {
     jQuery(window).resize(() => {
       this.setContentWarpPaddingTop();
     });
+
   }
 
   setContentWarpPaddingTop() {
-    const haveTabs = environment.haveTabs;
-    const winWidth = window.innerWidth;
 
-    if (haveTabs) {
-      if (winWidth >= 993) {
-        this.paddingTop = 'lz-content-padding-top';
-      } else {
-        this.paddingTop = '';
-      }
+    if (environment.haveTabs && window.innerWidth) {
+      this.paddingTop = 'lz-content-padding-top';
+    } else {
+      this.paddingTop = '';
     }
   }
-
 }
