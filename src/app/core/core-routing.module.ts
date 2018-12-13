@@ -32,6 +32,7 @@ const routes: Routes = RouteExtensions.withShell([
   { path: '', loadChildren: '../tips-demo/tips-demo.module#TipsDemoModule' },
   { path: '', loadChildren: '../tag-demo/tag-demo.module#TagDemoModule' },
   { path: '', loadChildren: '../badge-demo/badge-demo.module#BadgeDemoModule' },
+  { path: '', loadChildren: '../rate-demo/rate-demo.module#RateDemoModule' },
   // { path: '', loadChildren: '../terms/terms.module#TermsModule' },
   // { path: '', loadChildren: '../privacy/privacy.module#PrivacyModule' },
 ]);

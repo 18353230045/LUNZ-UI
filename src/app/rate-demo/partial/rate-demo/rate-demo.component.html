@@ -1,0 +1,48 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">rate评分</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button [routerLink]="['using-documents']" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm4">
+          <h5>简单用法</h5>
+          <nz-rate [ngModel]="0" (ngModelChange)="change($event)"></nz-rate>
+          <div>{{value}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm4">
+          <h5>只读</h5>
+          <nz-rate [ngModel]="2" nzDisabled (ngModelChange)="change($event)"></nz-rate>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm4">
+          <h5>替换icon</h5>
+          <nz-rate [ngModel]="2" nzAllowHalf [nzCharacter]="characterIcon" (ngModelChange)="change($event)"></nz-rate>
+          <ng-template #characterIcon><i nz-icon type="heart"></i></ng-template>
+          <div>{{value}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm4">
+          <h5>支持选中半星</h5>
+          <nz-rate [ngModel]="2.5" nzAllowHalf (ngModelChange)="change($event)"></nz-rate>
+          <div>{{value}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
