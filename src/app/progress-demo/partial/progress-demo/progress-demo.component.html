@@ -1,0 +1,109 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">进度条</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button [routerLink]="['using-documents']" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+              <h5>百分比外显</h5>
+              <zr-progress [progress]="0"></zr-progress>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+              <h5>百分比外显</h5>
+              <zr-progress [progress]="70"></zr-progress>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+              <h5>百分比外显[成功]</h5>
+              <zr-progress [progress]="100"></zr-progress>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+              <h5>百分比外显[失败]</h5>
+              <zr-progress [progress]="50" [backGround]="'#FA5555'"></zr-progress>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+              <h5>百分比内显</h5>
+              <zr-progress [progress]="0" [textInside]="'inside'"></zr-progress>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+              <h5>百分比内显</h5>
+              <zr-progress [progress]="40" [textInside]="'inside'"></zr-progress>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+              <h5>百分比内显[成功]</h5>
+              <zr-progress [progress]="100" [textInside]="'inside'"></zr-progress>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+              <h5>百分比内显[失败]</h5>
+              <zr-progress [progress]="50" [textInside]="'inside'" [backGround]="'#FA5555'"></zr-progress>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 m-portlet__body">
+          <h5>隐藏文字内容</h5>
+          <zr-progress [progress]="60" [textInside]="'outside'" [textShow]="false"></zr-progress>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 m-portlet__body">
+          <h5>隐藏文字内容</h5>
+          <zr-progress [progress]="0" [textInside]="'inside'" [textShow]="false"></zr-progress>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+          <h5>自定义进度条的背景颜色</h5>
+          <zr-progress [progress]="60" [textInside]="'outside'" [backGround]="'#FF00FF'"></zr-progress>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 m-portlet__body">
+          <h5>自定义进度条的背景颜色</h5>
+          <zr-progress [progress]="20" [textInside]="'inside'" [backGround]="'#716ACA'"></zr-progress>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-12 text-center m-portlet__body">
+          <h5>圆形进度条</h5>
+          <zr-progress [progress]="0" [type]="'circle'"></zr-progress>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 text-center m-portlet__body">
+          <h5>圆形进度条</h5>
+          <zr-progress [progress]="40" [type]="'circle'"></zr-progress>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 text-center m-portlet__body">
+          <h5>圆形进度条[成功]</h5>
+          <zr-progress [progress]="100" [type]="'circle'"></zr-progress>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 text-center m-portlet__body">
+          <h5>圆形进度条[失败]</h5>
+          <zr-progress [progress]="50" [type]="'circle'" [status]="'exception'"></zr-progress>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 text-center m-portlet__body">
+          <h5>自定义宽度</h5>
+          <zr-progress [progress]="30" [type]="'circle'" [width]="150"></zr-progress>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
