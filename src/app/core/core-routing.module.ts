@@ -30,11 +30,9 @@ const routes: Routes = RouteExtensions.withShell([
   { path: '', loadChildren: '../slider-demo/slider-demo.module#SliderDemoModule' },
   { path: '', loadChildren: '../dropdown-demo/dropdown-demo.module#DropdownDemoModule' },
   { path: '', loadChildren: '../tips-demo/tips-demo.module#TipsDemoModule' },
-  // { path: '', loadChildren: '../contact-us/contact-us.module#ContactUsModule' },
+  { path: '', loadChildren: '../tag-demo/tag-demo.module#TagDemoModule' },
   // { path: '', loadChildren: '../terms/terms.module#TermsModule' },
   // { path: '', loadChildren: '../privacy/privacy.module#PrivacyModule' },
-  // { path: '', loadChildren: '../help/help.module#HelpModule' },
-  // { path: '', loadChildren: '../order-management/order-management.module#OrderManagementModule' },
 ]);
 
 @NgModule({
