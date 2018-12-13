@@ -1,0 +1,73 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">slider滑块</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <button [routerLink]="['using-documents']" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="flaticon-questions-circular-button"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>单滑块</h5>
+          <input type="text" name="slider1" id="slider1" />
+          <div>当前值：{{value01}}</div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>双滑块</h5>
+          <input type="text" name="slider2" id="slider2" />
+          <div>当前值：{{value02}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>单滑块[配置初始值为5]</h5>
+          <input type="text" name="slider3" id="slider3" />
+          <div>当前值：{{value03}}</div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>双滑块[配置初始值为2,8]</h5>
+          <input type="text" name="slider4" id="slider4" />
+          <div>当前值：{{value04}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>最小/大值10,100</h5>
+          <input type="text" name="slider5" id="slider5" />
+          <div>当前值：{{value05}}</div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>设置步长[3]</h5>
+          <input type="text" name="slider6" id="slider6" />
+          <div>当前值：{{value06}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>设置value值得进度[保留小数点后两位]</h5>
+          <input type="text" name="slider7" id="slider7" />
+          <div>当前值：{{value07}}</div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>禁用</h5>
+          <input type="text" name="slider8" id="slider8" />
+          <div>当前值：{{value08}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
