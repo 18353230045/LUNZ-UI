@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { SharedModule } from '../shared/shared.module';
 import { TipsDemoRoutingModule } from './tips-demo-routing.module';
@@ -13,7 +13,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
   imports: [
     CommonModule,
     SharedModule,
-    NgZorroAntdModule,
+    TooltipModule,
     TipsDemoRoutingModule
   ],
   declarations: [
