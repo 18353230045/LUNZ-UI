@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h5 class="modal-title">编辑节点</h5>
-  <button type="button" class="close" (click)="activeModal.hide()" aria-label="Close">
+  <button type="button" class="close" (click)="modalService.hide(1)" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -11,7 +11,7 @@
         <label>节点名称
           <span class="text-danger">*</span>
         </label>
-        <input type="text" formControlName="nodeName" placeholder="节点名称" class="form-control" [(ngModel)]="middleVariable.label" />
+        <input type="text" formControlName="nodeName" placeholder="节点名称" class="form-control" [(ngModel)]="varNode['label']" />
         <zr-validation-message [control]="form.controls['nodeName']" label="节点名称"></zr-validation-message>
       </div>
     </div>
@@ -24,7 +24,7 @@
       <span>保存</span>
     </span>
   </button>
-  <button type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" (click)="activeModal.hide()">
+  <button type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" (click)="modalService.hide(1)">
     <span>
       <i class="la la-rotate-left"></i>
       <span>取消</span>

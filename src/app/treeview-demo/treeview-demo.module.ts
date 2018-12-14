@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ModalModule } from 'ngx-bootstrap';
 import { TreeModule } from 'primeng/tree';
-import { TreeNode } from 'primeng/api';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { DragDropModule } from 'primeng/dragdrop';
+import { TreeDragDropService } from 'primeng/api';
 
 import { ZrValidationMessageModule } from 'zr-validation-message';
 
@@ -44,7 +44,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
     EditNodeModalComponent
   ],
 
-  providers: []
+  providers: [TreeDragDropService]
 })
 
 export class TreeviewDemoModule { }

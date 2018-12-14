@@ -1,11 +1,13 @@
-import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalService } from 'ngx-bootstrap';
+import { cloneDeep } from 'lodash';
+import { TreeNode } from 'primeng/api';
 
-import { TreeviewDemoService } from '../../shared/treeview-demo.service';
-import { LoggerFactory } from '@core/logger-factory.service';
 import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
+import { TreeviewDemoService } from '../../shared/treeview-demo.service';
 
 @Component({
   selector: 'app-create-node-modal',
@@ -13,18 +15,17 @@ import { Logger } from '@core/logger.service';
   styleUrls: ['./create-node-modal.component.scss']
 })
 export class CreateNodeModalComponent implements OnInit {
+  @Input() node: TreeNode;
+
   log: Logger;
-  saving = false;
-  node: any;
   form: FormGroup;
-  @Input() data: any;
-  @Output() action = new EventEmitter();
+  saving = false;
 
   constructor(
     private treeviewService: TreeviewDemoService,
     private loggerFactory: LoggerFactory,
     private formBuilder: FormBuilder,
-    public activeModal: BsModalRef,
+    public modalService: BsModalService,
     private cdf: ChangeDetectorRef) {
     this.log = this.loggerFactory.getLogger();
     this.buildForm();
@@ -33,12 +34,30 @@ export class CreateNodeModalComponent implements OnInit {
   ngOnInit() { }
 
   submit() {
+    const node = cloneDeep(this.node);
 
-    // 此处调用接口，存节点数据
+    let parentId;
+    if (node['level'] === 'sameLevel') {
+      if (!node.parent) {
+        parentId = null;
+      } else {
+        parentId = node['parentId'];
+      }
+    } else if (node['level'] === 'subLevel') {
+      parentId = node['id'];
+    }
+
     this.saving = true;
-    this.action.emit(null);
-    this.activeModal.hide();
+    const params = { parentId: parentId, name: this.form.value.nodeName };
 
+    this.treeviewService.createNode(params).subscribe((newNode: any) => {
+      this.saving = false;
+      this.modalService.onHidden.emit(null);
+      this.modalService.hide(1);
+    }, error => {
+      this.saving = false;
+      this.log.error(`节点创建失败，失败信息：${error}`);
+    });
   }
 
   private buildForm() {

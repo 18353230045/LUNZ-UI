@@ -23,6 +23,7 @@ const routes: Routes = RouteExtensions.withShell([
     path: '',
     loadChildren: '../vehicle-selection-demo/vehicle-management-demo.module#VehicleManagementDemoModule'
   },
+  { path: '', loadChildren: '../treeview-demo/treeview-demo.module#TreeviewDemoModule' },
   { path: '', loadChildren: '../tabs-demo/tabs-demo.module#TabsDemoModule' },
   { path: '', loadChildren: '../chart-demo/chart-demo.module#ChartDemoModule' },
   { path: '', loadChildren: '../button-demo/button-demo.module#ButtonDemoModule' },

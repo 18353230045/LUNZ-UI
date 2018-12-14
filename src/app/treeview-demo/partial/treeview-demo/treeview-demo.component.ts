@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { BsModalService } from 'ngx-bootstrap';
 import { LoggerFactory } from '@core/logger-factory.service';
 import { Logger } from '@core/logger.service';
+import { TreeNode } from 'primeng/api';
 
 import { EditNodeModalComponent } from '../edit-node-modal/edit-node-modal.component';
 import { CreateNodeModalComponent } from '../create-node-modal/create-node-modal.component';
@@ -17,8 +18,8 @@ import { TreeviewDemoService } from '../../shared/treeview-demo.service';
 
 export class TreeviewDemoComponent implements OnInit {
   log: Logger;
-  filesTree0: Array<any> = [];
-  selectedFile: any;
+  filesTree0: TreeNode[] = [];
+  selectedFile: TreeNode;
   items: any;
   loading: Boolean = false;
 
@@ -55,67 +56,12 @@ export class TreeviewDemoComponent implements OnInit {
       }
     ];
   }
-  // 添加节点
-  addNode(row: any, level: string) {
-    row['level'] = level;
-    const initialState = { data: row };
-    const modalRef: BsModalRef = this.modalService.show(CreateNodeModalComponent, { initialState });
-
-    const onHidden = this.modalService.onHidden.subscribe((reason: string) => {
-      onHidden.unsubscribe();
-    });
-
-    modalRef.content.action.take(1).subscribe((value: any) => {
-      this.getRootList();
-    });
-
-  }
-  // 编辑节点
-  editNode(row: any) {
-    const initialState = { data: row };
-    const modalRef: BsModalRef = this.modalService.show(EditNodeModalComponent, { initialState });
-
-    const onHidden = this.modalService.onHidden.subscribe(() => {
-      onHidden.unsubscribe();
-    });
-
-    modalRef.content.action.take(1).subscribe((value: any) => {
-      // tslint:disable-next-line:forin
-      for (const r in row) {
-        row[r] = value[r];
-      }
-    });
-
-  }
-  // 移除节点
-  removeNode(selectedFile: any) {
-    // 从selectedFile里面获取节点id，调用后端接口，删除
-    const label = selectedFile.label;
-    if (selectedFile.parent) {
-      const index = selectedFile.parent.children.indexOf(selectedFile);
-      selectedFile.parent.children.splice(index, 1);
-    } else {
-      const index = this.filesTree0.indexOf(selectedFile);
-      this.filesTree0.splice(index, 1);
-    }
-    this.log.info(`删除节点：${label}`);
-  }
-
-  // 处理数据
-  processingNodeData(item: any): any {
-    return {
-      label: item.text,
-      id: item.id,
-      icon: item.children ? 'fa fa-github-alt' : 'fa fa-github',
-      leaf: item.children ? false : true
-    };
-  }
 
   // 获取一级
   getRootList() {
     this.loading = true;
-    const applicationId = '4f500000-4c4f-0200-6a51-08d4ccde1a4a';
-    this.treeviewDemoService.getRootList(applicationId).subscribe((response: any) => {
+
+    this.treeviewDemoService.getRootList().subscribe((response: any) => {
       this.loading = false;
       const nodeData = [];
       for (const row of response) {
@@ -142,22 +88,66 @@ export class TreeviewDemoComponent implements OnInit {
     }
   }
 
+  // 创建节点
+  addNode(row: TreeNode, level: string) {
+    row['level'] = level;
+    const initialState = { node: row };
+    this.modalService.show(CreateNodeModalComponent, { initialState });
+
+    const onHidden = this.modalService.onHidden.subscribe(() => {
+      this.getRootList();
+      onHidden.unsubscribe();
+    });
+
+  }
+  // 编辑节点
+  editNode(row: any) {
+    const initialState = { node: row };
+    this.modalService.show(EditNodeModalComponent, { initialState });
+
+    const onHidden = this.modalService.onHidden.subscribe(() => {
+      this.getRootList();
+      onHidden.unsubscribe();
+    });
+
+  }
+  // 移除节点
+  removeNode(selectedFile: any) {
+    const params = [selectedFile.id];
+    this.treeviewDemoService.removeNode(params).subscribe((response) => {
+      this.getRootList();
+      this.log.success(`节点删除成功！`);
+    }, error => { this.log.error(`节点删除失败，失败信息: ${error} `); });
+  }
+
+  // 处理数据
+  processingNodeData(item: any): any {
+    return {
+      label: item.text,
+      id: item.id,
+      icon: item.children ? 'fa fa-github-alt' : 'fa fa-github',
+      leaf: item.children ? false : true,
+      parent: item.parent,
+      parentId: item.parentId
+    };
+  }
+
   nodeSelect(event: any) {
     console.log(event);
-    this.log.info(`选择：${event.node.label}`);
+    // this.selectedFile = event;
+    this.log.info(`选择：${event.node.label} `);
   }
 
   nodeUnselect(event: any) {
-    this.log.info(`取消选择：${event.node.label}`);
+    this.log.info(`取消选择：${event.node.label} `);
   }
-
 
   // 拖动节点
   nodeDrop($event: any) {
-    console.log($event);
-    // this.treeviewDemoService.moveNode($event).subscribe(response => {
-    //     this.log.info(`操作成功!`);
-    // }, error => this.log.error('操作失败', error));
+    this.treeviewDemoService.moveNode($event).subscribe(response => {
+      this.getRootList();
+      this.log.info(`操作成功!`);
+    }, error => this.log.error('操作失败', error));
   }
 
 }

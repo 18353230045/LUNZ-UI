@@ -103,17 +103,15 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
   editByModal(row: any) {
     const initialState = { data: row };
-    const modalRef: BsModalRef = this.modalService.show(EditOrderModalComponent, { initialState });
+    this.modalService.show(EditOrderModalComponent, { initialState });
 
-    const onHidden = this.modalService.onHidden.subscribe(() => {
-      onHidden.unsubscribe();
-    });
-
-    modalRef.content.action.take(1).subscribe((value: any) => {
+    const onHidden = this.modalService.onHidden.subscribe((val: any) => {
       // tslint:disable-next-line:forin
-      for (const r in row) {
-        row[r] = value[r];
+      for (const r in val) {
+        row[r] = val[r];
       }
+
+      onHidden.unsubscribe();
     });
   }
 

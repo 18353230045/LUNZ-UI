@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalService } from 'ngx-bootstrap';
+import { cloneDeep } from 'lodash';
 
 import { LoggerFactory } from '@core/logger-factory.service';
 import { Logger } from '@core/logger.service';
@@ -14,7 +15,6 @@ import { OrdersService } from '../../shared/orders.service';
 })
 export class EditOrderModalComponent implements OnInit {
   @Input() data: any;
-  @Output() action = new EventEmitter();
 
   log: Logger;
   form: FormGroup;
@@ -31,22 +31,23 @@ export class EditOrderModalComponent implements OnInit {
     private ordersService: OrdersService,
     private loggerFactory: LoggerFactory,
     private formBuilder: FormBuilder,
-    public activeModal: BsModalRef) {
+    public modalService: BsModalService) {
     this.log = this.loggerFactory.getLogger('订单编辑');
     this.buildForm();
   }
 
   ngOnInit() {
-    this.middleVariable = JSON.parse(JSON.stringify(this.data));
+    this.middleVariable = cloneDeep(this.data);
   }
 
   submit() {
     this.saving = true;
-    this.ordersService.updateOrder(this.data)
+    this.ordersService.updateOrder(this.middleVariable)
       .subscribe(() => {
         this.saving = false;
-        this.action.emit(this.middleVariable);
-        this.activeModal.hide();
+        this.modalService.onHidden.emit(this.middleVariable);
+        this.modalService.hide(1);
+
         this.log.success(`订单编辑成功!`);
       }, error => {
         this.saving = false;

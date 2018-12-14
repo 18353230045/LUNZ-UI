@@ -1,10 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { BsModalRef } from 'ngx-bootstrap';
-import { TreeviewDemoService } from '../../shared/treeview-demo.service';
+import { BsModalService } from 'ngx-bootstrap';
+import { TreeNode } from 'primeng/api';
+import { cloneDeep } from 'lodash';
+
 import { LoggerFactory } from '@core/logger-factory.service';
 import { Logger } from '@core/logger.service';
+import { TreeviewDemoService } from '../../shared/treeview-demo.service';
 
 @Component({
   selector: 'app-edit-node-modal',
@@ -12,29 +15,37 @@ import { Logger } from '@core/logger.service';
   styleUrls: ['./edit-node-modal.component.scss']
 })
 export class EditNodeModalComponent implements OnInit {
+  @Input() node: TreeNode;
+
   log: Logger;
   saving = false;
-  middleVariable: any;
   form: FormGroup;
-  @Input() data: any;
-  @Output() action = new EventEmitter();
+  varNode: TreeNode;
 
   constructor(
     private treeviewService: TreeviewDemoService,
     private loggerFactory: LoggerFactory,
     private formBuilder: FormBuilder,
-    public activeModal: BsModalRef) {
+    public modalService: BsModalService) {
     this.log = this.loggerFactory.getLogger();
     this.buildForm();
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.varNode = cloneDeep(this.node);
+  }
 
   submit() {
-    // 此处调用接口，存节点数据
+    const params = { id: this.varNode['id'], parentId: this.varNode['parentId'], name: this.varNode['label'] };
     this.saving = true;
-    this.action.emit(this.middleVariable);
-    this.activeModal.hide();
+
+    this.treeviewService.editNode(params).subscribe(() => {
+      this.saving = false;
+      this.modalService.hide(1);
+    }, error => {
+      this.saving = false;
+      this.log.error(`节点保存失败，失败信息：${error}`);
+    });
   }
 
   private buildForm() {
@@ -43,17 +54,4 @@ export class EditNodeModalComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:member-ordering
-  cloneData(row: any) {
-    const cacheArr: Array<any> = [];
-    this.middleVariable = JSON.parse(JSON.stringify(row, (key: any, value: any) => {
-      if (typeof value === 'object' && value !== null) {
-        if (cacheArr.indexOf(value) !== -1) {
-          return;
-        }
-        cacheArr.push(value);
-      }
-      return value;
-    }));
-  }
 }

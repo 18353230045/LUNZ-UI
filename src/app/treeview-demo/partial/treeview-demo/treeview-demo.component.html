@@ -22,9 +22,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12" [ngStyle]="{'position':'static'}">
-            <p-tree 
+            <p-tree
               [value]="filesTree0"
-              selectionMode="checkbox"
+              selectionMode="single"
               [(selection)]="selectedFile"
               (onNodeExpand)="getChildrenList($event)"
               (onNodeSelect)="nodeSelect($event)"
@@ -33,13 +33,15 @@
               [loading]="loading"
               draggableNodes="true"
               droppableNodes="true"
+              dragdropScope="files"
               (onNodeDrop)="nodeDrop($event)"
               [style]="{'max-height':'450px','overflow':'auto'}">
             </p-tree>
             <p-contextMenu #cm [model]="items"></p-contextMenu>
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12">
-          你选择了： {{selectedFile ? selectedFile.label : ''}}
+          <h5>你选择了：</h5>
+          <p>{{selectedFile?.label}}</p>
         </div>
       </div>
     </div>
