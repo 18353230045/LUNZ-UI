@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { RatingModule } from 'primeng/rating';
 
 import { SharedModule } from '../shared/shared.module';
 import { RateDemoRoutingModule } from './rate-demo-routing.module';
@@ -15,7 +15,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
     CommonModule,
     FormsModule,
     SharedModule,
-    NgZorroAntdModule,
+    RatingModule,
     RateDemoRoutingModule
   ],
 

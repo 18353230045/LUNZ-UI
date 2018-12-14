@@ -7,18 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class RateDemoComponent implements OnInit {
-  value: Number = 2;
+  value1: number;
+  value2: number;
+  value3: number;
+  value4: number;
 
   constructor() { }
 
   ngOnInit() { }
-
-  rateChange(event: any) {
-    this.change = event;
-  }
-
-  change(event: any) {
-    this.value = event;
-  }
 
 }
