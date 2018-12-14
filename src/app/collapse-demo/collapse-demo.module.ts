@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { AccordionModule } from 'primeng/accordion';
 
 import { SharedModule } from '../shared/shared.module';
 import { CollapseDemoRoutingModule } from './collapse-demo-routing.module';
@@ -14,7 +14,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
   imports: [
     CommonModule,
     SharedModule,
-    NgZorroAntdModule,
+    AccordionModule,
     CollapseDemoRoutingModule
   ],
   declarations: [
