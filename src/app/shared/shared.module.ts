@@ -34,7 +34,7 @@ export function createDecimalPipe() {
     RemoveSpacePipe,
     ToFixedPipe,
     LaddaDirective,
-    NgxDataTableDirective,
+    NgxDataTableDirective
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [
@@ -44,7 +44,7 @@ export function createDecimalPipe() {
     VehicleSelectionComponent,
     RmbPipe,
     LaddaDirective,
-    NgxDataTableDirective,
+    NgxDataTableDirective
   ],
   providers: []
 })

@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NgZorroAntdModule } from 'ng-zorro-antd';
-
+import { ZrBadgeModule } from 'zr-badge';
 import { SharedModule } from '../shared/shared.module';
 import { BadgeDemoRoutingModule } from './badge-demo-routing.module';
 
@@ -15,8 +14,8 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
   imports: [
     CommonModule,
     FormsModule,
+    ZrBadgeModule,
     SharedModule,
-    NgZorroAntdModule,
     BadgeDemoRoutingModule
   ],
 

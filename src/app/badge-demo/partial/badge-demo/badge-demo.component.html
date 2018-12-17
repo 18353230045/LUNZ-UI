@@ -23,34 +23,39 @@
       <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
           <h5>基础用法</h5>
-          <nz-badge [nzCount]="5">
+          <zr-badge [count]="50">
             <button type="button" class="btn btn-secondary">Bage</button>
-          </nz-badge>
+          </zr-badge>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
-          <h5>设置最大值99,输入值200</h5>
-          <nz-badge [nzCount]="200">
+          <h5>超出设定值显示'+'（默认超过99）</h5>
+          <zr-badge [count]="105">
             <button type="button" class="btn btn-secondary">Bage</button>
-          </nz-badge>
+          </zr-badge>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
-          <h5>自定义内容</h5>
-          <nz-badge [nzStatus]="'success'" [nzText]="'new'">
+          <h5>设定超过值为105</h5>
+          <zr-badge [count]="200" [overflowcount]="105">
             <button type="button" class="btn btn-secondary">Bage</button>
-          </nz-badge>
+          </zr-badge>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
-          <h5>小红点</h5>
-          <nz-badge nzDot>
+          <h5>显示文本</h5>
+          <zr-badge [text]="'new'">
             <button type="button" class="btn btn-secondary">Bage</button>
-          </nz-badge>
+          </zr-badge>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
-          <h5>显示与隐藏</h5>
-          <nz-badge [nzDot]="badge">
+          <h5>自定义颜色</h5>
+          <zr-badge [count]="20" [color]="'#716aca'">
             <button type="button" class="btn btn-secondary">Bage</button>
-          </nz-badge>
-          <button type="button" class="btn btn-secondary" (click)="badge=!badge"> 显示与隐藏 </button>
+          </zr-badge>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 m-portlet__body">
+          <h5>点击显示与隐藏</h5>
+          <zr-badge [count]="20" [color]="'#716aca'" #bage>
+            <button type="button" class="btn btn-secondary" (click)="bage.open=!bage.open">Bage</button>
+          </zr-badge>
         </div>
       </div>
     </div>

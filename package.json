@@ -73,6 +73,7 @@
     "zr-steps": "file:../component3.0.0/zr-steps/dist/zr-steps/zr-steps-3.0.0.tgz",
     "zr-tabs": "file:../component3.0.0/zr-tabs/dist/zr-tabs/zr-tabs-3.0.0.tgz",
     "zr-tag": "file:../component3.0.0/zr-tag/dist/zr-tag/zr-tag-3.0.0.tgz",
+    "zr-badge": "file:../component3.0.0/zr-badge/dist/zr-badge/zr-badge-3.0.0.tgz",
     "ngx-moment": "^3.2.0",
     "ngx-toastr": "^9.1.0",
     "ngx-validators": "^4.2.0",
