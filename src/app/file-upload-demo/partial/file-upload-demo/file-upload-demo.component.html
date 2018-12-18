@@ -11,7 +11,9 @@
     <div class="m-portlet__head-tools">
       <ul class="m-portlet__nav">
         <li class="m-portlet__nav-item">
-          <button [routerLink]="['using-documents']" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+          <button [routerLink]="['using-documents']" type="button" class="btn
+            btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only
+            m-btn--pill">
             <i class="flaticon-questions-circular-button"></i>
           </button>
         </li>
@@ -19,25 +21,29 @@
     </div>
   </div>
   <div class="m-portlet__body">
-    <div class="container-fluid ">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
-          <h5>单文件上传</h5>
-          <app-file-upload (success)="successHandle($event)" (error)="errorHandle($event)"></app-file-upload>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
-          <h5>多文件上传</h5>
-          <app-file-upload [multiple]="true" (success)="successHandle($event)" (error)="errorHandle($event)"></app-file-upload>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
-          <h5>限定文件上传类型[图片]</h5>
-          <app-file-upload [accept]="'image/*'" (success)="successHandle($event)" (error)="errorHandle($event)"></app-file-upload>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
-          <h5>限定文件上传类型[pdf]</h5>
-          <app-file-upload (success)="successHandle($event)" (error)="errorHandle($event)" [accept]="'application/pdf'"></app-file-upload>
+          <h5>单文件上传 {{fileUpload.files.length}}</h5>
+          <h5>单文件上传 {{fileUpload.progress}}</h5>
+          <p-fileUpload
+            #fileUpload
+            customUpload="true"
+            chooseLabel="选择"
+            cancelLabel="取消"
+            uploadLabel="上传"
+            maxFileSize="5000000"
+            (uploadHandler)="uploadHandler($event)"
+            (onUpload)="onUpload($event)"
+            (onSelect)="onSelect($event)"
+            (onProgress)="onProgress($event)">
+            <!-- <ng-template pTemplate="content">
+              <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{file.name}} -
+                  {{file.size}} bytes</li>
+              </ul>
+            </ng-template> -->
+          </p-fileUpload>
         </div>
       </div>
     </div>

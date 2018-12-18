@@ -3,10 +3,8 @@ import { CommonModule, DecimalPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { FileUploaderModule } from '../../app/lib/@uniprank/ng2-file-uploader';
-
 import {
-  HostComponent, FileUploadOssComponent, FileUploadComponent, VehicleSelectionComponent, swalDefaultsProvider,
+  HostComponent, FileUploadOssComponent, VehicleSelectionComponent, swalDefaultsProvider,
   RemoveSpacePipe, RmbPipe, ToFixedPipe, LaddaDirective, NgxDataTableDirective
 } from '@app/shared';
 import { SweetAlertOptions } from 'sweetalert2';
@@ -23,12 +21,10 @@ export function createDecimalPipe() {
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    FileUploaderModule
   ],
   declarations: [
     HostComponent,
     FileUploadOssComponent,
-    FileUploadComponent,
     VehicleSelectionComponent,
     RmbPipe,
     RemoveSpacePipe,
@@ -40,7 +36,6 @@ export function createDecimalPipe() {
   exports: [
     HostComponent,
     FileUploadOssComponent,
-    FileUploadComponent,
     VehicleSelectionComponent,
     RmbPipe,
     LaddaDirective,
