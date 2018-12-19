@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { MomentModule } from 'angular2-moment';
 import { TranslateModule } from '@ngx-translate/core';
 import { LaddaModule } from 'angular2-ladda';
 import { ToastrModule } from 'ngx-toastr';
@@ -90,6 +92,8 @@ export function getSignalrConfiguration(): SignalRConfiguration {
     SweetAlert2Module.forRoot(sweetAlertOptions),
     SignalRModule.forRoot(getSignalrConfiguration),
     ToastrModule.forRoot({ timeOut: 3000, progressBar: true, positionClass: 'toast-bottom-right' }),
+    MomentModule,
+    NgIdleKeepaliveModule.forRoot(),
     LaddaModule,
     CoreModule,
     HomeModule,

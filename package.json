@@ -35,6 +35,8 @@
     "@ngx-translate/core": "^10.0.1",
     "@swimlane/ngx-datatable": "^14.0.0",
     "@toverux/ngx-sweetalert2": "^4.0.0",
+    "@ng-idle/core": "6.0.0-beta.3",
+    "@ng-idle/keepalive": "6.0.0-beta.3",
     "ali-oss": "^5.3.0",
     "angular-tree-component": "^8.0.0",
     "angular2-ladda": "^2.0.0",
