@@ -24,25 +24,18 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
-          <h5>单文件上传 {{fileUpload.files.length}}</h5>
-          <h5>单文件上传 {{fileUpload.progress}}</h5>
+          <h5>单文件上传</h5>
           <p-fileUpload
-            #fileUpload
-            customUpload="true"
+            name="file[]"
+            [url]="url"
             chooseLabel="选择"
             cancelLabel="取消"
             uploadLabel="上传"
-            maxFileSize="5000000"
-            (uploadHandler)="uploadHandler($event)"
-            (onUpload)="onUpload($event)"
             (onSelect)="onSelect($event)"
-            (onProgress)="onProgress($event)">
-            <!-- <ng-template pTemplate="content">
-              <ul *ngIf="uploadedFiles.length">
-                <li *ngFor="let file of uploadedFiles">{{file.name}} -
-                  {{file.size}} bytes</li>
-              </ul>
-            </ng-template> -->
+            (onBeforeSend)="onBeforeSend($event)"
+            (onUpload)="onUpload($event)"
+            (onProgress)="onProgress($event)"
+            maxFileSize="500000">
           </p-fileUpload>
         </div>
       </div>
