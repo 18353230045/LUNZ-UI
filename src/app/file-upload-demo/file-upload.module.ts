@@ -13,7 +13,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
     CommonModule,
     SharedModule,
     FileUploadModule,
-    FileUploadRoutingModule,
+    FileUploadRoutingModule
   ],
 
   declarations: [

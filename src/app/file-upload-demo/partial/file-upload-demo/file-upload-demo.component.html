@@ -25,17 +25,36 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
           <h5>单文件上传</h5>
-          <p-fileUpload
-            name="file[]"
-            [url]="url"
-            chooseLabel="选择"
-            cancelLabel="取消"
-            uploadLabel="上传"
-            (onSelect)="onSelect($event)"
-            (onBeforeSend)="onBeforeSend($event)"
-            (onUpload)="onUpload($event)"
-            (onProgress)="onProgress($event)"
+          <p-fileUpload name="file[]" [url]="url" chooseLabel="选择文件" cancelLabel="取消" uploadLabel="上传" (onSelect)="onSelect($event)"
+            (onBeforeSend)="onBeforeSend($event)" (onUpload)="onUpload($event)" (onProgress)="onProgress($event)">
+          </p-fileUpload>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>多文件上传</h5>
+          <p-fileUpload name="file[]" [url]="url" [multiple]="true" chooseLabel="选择文件" cancelLabel="取消" uploadLabel="上传"
+            (onSelect)="onSelect($event)" (onBeforeSend)="onBeforeSend($event)" (onUpload)="onUpload($event)"
+            (onProgress)="onProgress($event)">
+          </p-fileUpload>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>限制文件类型[图片]</h5>
+          <p-fileUpload name="file[]" [url]="url" chooseLabel="选择文件" cancelLabel="取消" uploadLabel="上传" accept="image/*"
+            (onSelect)="onSelect($event)" (onBeforeSend)="onBeforeSend($event)" (onUpload)="onUpload($event)"
+            (onProgress)="onProgress($event)">
+          </p-fileUpload>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>限制文件大小[5kb]</h5>
+          <p-fileUpload name="file[]" [url]="url" chooseLabel="选择文件" cancelLabel="取消" uploadLabel="上传" (onSelect)="onSelect($event)"
+            (onBeforeSend)="onBeforeSend($event)" (onUpload)="onUpload($event)" (onProgress)="onProgress($event)"
             maxFileSize="500000">
+          </p-fileUpload>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
+          <h5>自动上传</h5>
+          <p-fileUpload name="file[]" [url]="url" auto="true" chooseLabel="选择文件" cancelLabel="取消" uploadLabel="上传"
+            (onSelect)="onSelect($event)" (onBeforeSend)="onBeforeSend($event)" (onUpload)="onUpload($event)"
+            (onProgress)="onProgress($event)">
           </p-fileUpload>
         </div>
       </div>

@@ -39,17 +39,15 @@ export class FileUploadDemoComponent implements OnInit {
     return { url: url, token: token };
   }
 
-  onUpload(event: any) {
-    for (const file of event.files) {
-      console.log(file);
-    }
-  }
-
   onSelect(event: any) {
     console.log(event);
   }
 
   onProgress(event: any) {
+    console.log(event);
+  }
+
+  onUpload(event: any) {
     console.log(event);
   }
 
