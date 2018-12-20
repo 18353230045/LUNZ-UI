@@ -12,3 +12,5 @@ export * from './pipes/to-fixed.pipe';
 
 export * from './directives/ladda.directive';
 export * from './directives/ngx-datatable.directive';
+export * from './services/create-subscription.service';
+

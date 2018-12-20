@@ -9,6 +9,7 @@ import { filter, map, mergeMap } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
 import { Logger, I18nService, LoggerFactory } from '@app/core';
+import { CreateSubscriptionService } from '@app/shared';
 
 @Component({
   selector: 'app-root, body',
@@ -17,11 +18,14 @@ import { Logger, I18nService, LoggerFactory } from '@app/core';
 })
 export class AppComponent implements OnInit {
   log: Logger;
+  idleShow: boolean = false;
   idleWatch: boolean = false;
   onIdleEnd: any;
   onTimeout: any;
   onIdleStart: any;
   onTimeoutWarning: any;
+  freeTime: number = environment.freeTime;
+  countdown: number;
 
   constructor(
     private router: Router,
@@ -30,6 +34,7 @@ export class AppComponent implements OnInit {
     private titleService: Title,
     private loggerFactory: LoggerFactory,
     private translateService: TranslateService,
+    private createSubscriptionService: CreateSubscriptionService,
     private i18nService: I18nService) {
     this.log = this.loggerFactory.getLogger('App');
   }
@@ -58,21 +63,21 @@ export class AppComponent implements OnInit {
       if (title) { this.titleService.setTitle(this.translateService.instant(title)); }
     });
 
-    routerEvent.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
-      if (event['urlAfterRedirects'] !== '/login') {
-        if (!this.idleWatch) {
-          this.setIdleMonitor();
+    if (environment.idle) {
+      routerEvent.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
+        if (event['urlAfterRedirects'] !== '/login') {
+          if (!this.idleWatch) this.setIdleMonitor();
+        } else {
+          if (this.idleWatch) {
+            this.idleWatch = false;
+            this.onIdleEnd.unsubscribe();
+            this.onTimeout.unsubscribe();
+            this.onIdleStart.unsubscribe();
+            this.onTimeoutWarning.unsubscribe();
+          }
         }
-      } else {
-        if (this.idleWatch) {
-          this.idleWatch = false;
-          this.onIdleEnd.unsubscribe();
-          this.onTimeout.unsubscribe();
-          this.onIdleStart.unsubscribe();
-          this.onTimeoutWarning.unsubscribe();
-        }
-      }
-    });
+      });
+    }
 
   }
 
@@ -89,20 +94,21 @@ export class AppComponent implements OnInit {
 
     // 倒计时开始了，触动电脑后回调
     this.onIdleEnd = this.idle.onIdleEnd.subscribe(() => {
-      console.log('No longer idle.');
+      this.idleShow = false;
     });
 
     // 超时后的回调
     this.onTimeout = this.idle.onTimeout.subscribe(() => {
-      console.log('Timed out!');
+      this.idleShow = false;
+      this.idleWatch = false;
+      this.createSubscriptionService.publishSubscribeIdle('idle');
     });
 
-    // 倒计时开始前的回调
-    this.onIdleStart = this.idle.onIdleStart.subscribe(() => console.log('123456789!'));
 
-    // 开始倒计时的回调
+    // 正在倒计时的回调
     this.onTimeoutWarning = this.idle.onTimeoutWarning.subscribe((countdown: number) => {
-      console.log('You will time out in ' + countdown + ' seconds!');
+      this.idleShow = true;
+      this.countdown = countdown;
     });
 
     // 启动空闲监控
