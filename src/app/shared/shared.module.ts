@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import {
   HostComponent, FileUploadOssComponent, VehicleSelectionComponent, swalDefaultsProvider,
-  RemoveSpacePipe, RmbPipe, ToFixedPipe, LaddaDirective, NgxDataTableDirective
+  RemoveSpacePipe, RmbPipe, ToFixedPipe, DomSanitizerPipe, LaddaDirective, NgxDataTableDirective
 } from '@app/shared';
 import { SweetAlertOptions } from 'sweetalert2';
 
@@ -27,8 +27,9 @@ export function createDecimalPipe() {
     FileUploadOssComponent,
     VehicleSelectionComponent,
     RmbPipe,
-    RemoveSpacePipe,
     ToFixedPipe,
+    RemoveSpacePipe,
+    DomSanitizerPipe,
     LaddaDirective,
     NgxDataTableDirective
   ],
@@ -38,6 +39,9 @@ export function createDecimalPipe() {
     FileUploadOssComponent,
     VehicleSelectionComponent,
     RmbPipe,
+    ToFixedPipe,
+    RemoveSpacePipe,
+    DomSanitizerPipe,
     LaddaDirective,
     NgxDataTableDirective
   ],

@@ -6,9 +6,10 @@ export * from './components/vehicle-selection/vehicle-selection.component';
 export * from './dialogs/sweetalert2.providers';
 export * from './models/microservice-template';
 
-export * from './pipes/remove-space.pipe';
 export * from './pipes/rmb.pipe';
 export * from './pipes/to-fixed.pipe';
+export * from './pipes/remove-space.pipe';
+export * from './pipes/dom-sanitizer.pipe';
 
 export * from './directives/ladda.directive';
 export * from './directives/ngx-datatable.directive';
