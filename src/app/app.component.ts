@@ -20,12 +20,11 @@ export class AppComponent implements OnInit {
   log: Logger;
   idleShow: boolean = false;
   idleWatch: boolean = false;
+  countdown: number;
+  freeTime: number = environment.freeTime;
   onIdleEnd: any;
   onTimeout: any;
-  onIdleStart: any;
   onTimeoutWarning: any;
-  freeTime: number = environment.freeTime;
-  countdown: number;
 
   constructor(
     private router: Router,
@@ -72,7 +71,6 @@ export class AppComponent implements OnInit {
             this.idleWatch = false;
             this.onIdleEnd.unsubscribe();
             this.onTimeout.unsubscribe();
-            this.onIdleStart.unsubscribe();
             this.onTimeoutWarning.unsubscribe();
           }
         }
@@ -84,7 +82,7 @@ export class AppComponent implements OnInit {
   setIdleMonitor() {
     this.idleWatch = true;
     // 设置空闲时间
-    this.idle.setIdle(environment.freeTime);
+    this.idle.setIdle(environment.freeTime * 60);
 
     // 设置倒计时时长时间
     this.idle.setTimeout(environment.countdownTime);
