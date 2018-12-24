@@ -26,8 +26,8 @@ export function toURLSearchParams(params: any): HttpParams {
 }
 
 function buildParams(prefix: string, params: any, add: any) {
-  if (!params) {
-    return;
+  if (params === '') {
+    add(prefix, '');
   } else if (Array.isArray(params)) {
     params.forEach((item, index) => {
       buildParams(prefix + '[' + index + ']', item, add);
@@ -40,7 +40,7 @@ function buildParams(prefix: string, params: any, add: any) {
         buildParams(prefix + '.' + prop, params[prop], add);
       }
     }
-  } else {
+  } else if (params) {
     add(prefix, params);
   }
 }
