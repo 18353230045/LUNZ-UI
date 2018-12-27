@@ -9,6 +9,7 @@ const routes: Routes = RouteExtensions.withShell([
   { path: '', loadChildren: '../contact-us/contact-us.module#ContactUsModule' },
   { path: '', loadChildren: '../messages/web-message.module#WebMessageModule' },
   { path: '', loadChildren: '../help/help.module#HelpModule' },
+  { path: '', loadChildren: '../role-management/role-management.module#RoleManagementModule' },
   { path: '', loadChildren: '../form-demo/form-demo.module#FormDemoModule' },
   { path: '', loadChildren: '../select-selection-demo/select-selection-demo.module#SelectSelectionDemoModule' },
   { path: '', loadChildren: '../select2-demo/select2-demo.module#Select2DemoModule' },

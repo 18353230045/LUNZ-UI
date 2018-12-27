@@ -13,5 +13,6 @@ export * from './pipes/dom-sanitizer.pipe';
 
 export * from './directives/ladda.directive';
 export * from './directives/ngx-datatable.directive';
+export * from './directives/auto-focus.directive';
 export * from './services/create-subscription.service';
 

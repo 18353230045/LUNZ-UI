@@ -1,0 +1,90 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">角色列表</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <a (click)="createRole()" class="btn btn-sm btn-secondary m-btn
+            m-btn--hover-brand m-btn--icon m-btn--pill">
+            <span>
+              <i class="la la-plus"></i>
+              <span>新建角色</span>
+            </span>
+          </a>
+        </li>
+        <li class="m-portlet__nav-item">
+          <button (click)="appNgxDataTable.refreshData()" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon
+            m-btn--icon-only m-btn--pill">
+            <i class="la la-refresh"></i>
+          </button>
+        </li>
+        <li *ngIf="selectedRoles.length>0" class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
+          data-dropdown-toggle="hover" aria-expanded="true">
+          <a class="m-portlet__nav-link btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill m-dropdown__toggle">
+            <i class="la la-ellipsis-v"></i>
+          </a>
+          <div class="m-dropdown__wrapper">
+            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+            <div class="m-dropdown__inner">
+              <div class="m-dropdown__body">
+                <div class="m-dropdown__content">
+                  <ul class="m-nav">
+                    <li class="m-nav__item">
+                      <a (click)="deleteRole()" class="m-nav__link">
+                        <i class="m-nav__link-icon flaticon-share"></i>
+                        <span class="m-nav__link-text">批量删除</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body p-0">
+    <ngx-datatable #dt class="material" [scrollbarH]="true" [rows]="roles" [loadingIndicator]="loading" [selected]="selectedRoles"
+      [selectionType]="'checkbox'" #appNgxDataTable="NgxDataTableDirective" appNgxDataTable (data)="loadRoles($event)"
+      [saveState]="false" (select)="onSelect($event)">
+      <ngx-datatable-footer [datatable]="datatable"></ngx-datatable-footer>
+      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false"
+        [headerCheckboxable]="true" [checkboxable]="true">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="角色名称" headerClass="text-left" cellClass="text-left" [sortable]="false">
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span title="双击编辑字段" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
+            {{row.name}}
+          </span>
+          <input type="text" class="form-control" autofocus (blur)="editRole('name', rowIndex, row)" *ngIf="editing[rowIndex+ '-name']"
+            [(ngModel)]="row.name" (keyup.enter)="editRole('name', rowIndex, row)" ngxTrim='keyup' />
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="角色简称" prop="shortName" headerClass="text-left" cellClass="text-left" [sortable]="false"></ngx-datatable-column>
+      <ngx-datatable-column name="角色编码" prop="code" headerClass="text-left" cellClass="text-left"></ngx-datatable-column>
+      <ngx-datatable-column name="操作" maxWidth="150" headerClass="text-center" cellClass="text-left" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="dropdown m-dropdown--inline">
+            <a class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+              <i class="la la-adjust"></i>
+            </a>
+            <a class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+              <i class="la la-users"></i>
+            </a>
+            <a (click)="deleteRole(row)" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+              <i class="la la-remove"></i>
+            </a>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>

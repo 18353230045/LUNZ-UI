@@ -73,6 +73,7 @@
     "zr-tag": "file:../component3.0.0/zr-tag/dist/zr-tag/zr-tag-3.0.0.tgz",
     "zr-badge": "file:../component3.0.0/zr-badge/dist/zr-badge/zr-badge-3.0.0.tgz",
     "ngx-moment": "^3.2.0",
+    "ngx-trim": "^1.0.1",
     "ngx-toastr": "^9.1.0",
     "oidc-client": "^1.5.4",
     "ant-design-palettes": "^1.1.3",

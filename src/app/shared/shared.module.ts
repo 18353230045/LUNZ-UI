@@ -5,8 +5,10 @@ import { RouterModule } from '@angular/router';
 
 import {
   HostComponent, FileUploadOssComponent, VehicleSelectionComponent, swalDefaultsProvider,
-  RemoveSpacePipe, RmbPipe, ToFixedPipe, DomSanitizerPipe, LaddaDirective, NgxDataTableDirective
+  RemoveSpacePipe, RmbPipe, ToFixedPipe, DomSanitizerPipe, LaddaDirective, NgxDataTableDirective,
+  AutoFocusDirective
 } from '@app/shared';
+import { NgxTrimModule } from 'ngx-trim';
 import { SweetAlertOptions } from 'sweetalert2';
 
 import { environment } from '@env/environment';
@@ -20,6 +22,7 @@ export function createDecimalPipe() {
     CommonModule,
     RouterModule,
     FormsModule,
+    NgxTrimModule,
     ReactiveFormsModule,
   ],
   declarations: [
@@ -31,10 +34,12 @@ export function createDecimalPipe() {
     RemoveSpacePipe,
     DomSanitizerPipe,
     LaddaDirective,
-    NgxDataTableDirective
+    AutoFocusDirective,
+    NgxDataTableDirective,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [
+    NgxTrimModule,
     HostComponent,
     FileUploadOssComponent,
     VehicleSelectionComponent,
@@ -43,6 +48,7 @@ export function createDecimalPipe() {
     RemoveSpacePipe,
     DomSanitizerPipe,
     LaddaDirective,
+    AutoFocusDirective,
     NgxDataTableDirective
   ],
   providers: []
