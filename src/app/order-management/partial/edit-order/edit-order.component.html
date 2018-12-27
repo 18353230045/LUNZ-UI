@@ -39,7 +39,7 @@
             <label>订单摘要
               <span class="text-danger">*</span>
             </label>
-            <input type="text" formControlName="subject" placeholder="订单摘要" class="form-control" [(ngModel)]="order.subject" />
+            <input type="text" formControlName="subject" placeholder="订单摘要" class="form-control" [(ngModel)]="order.subject" ngxTrim='keyup' />
             <zr-validation-message [control]="form.controls['subject']" label="订单摘要"></zr-validation-message>
           </div>
         </div>
@@ -52,7 +52,7 @@
             </label>
             <div class="input-group">
               <input type="text" class="form-control" id="date" appDatepicker [clearBtn]="true" [format]="'yyyy-mm-dd'"
-                [startView]="2" [minView]="2" formControlName="date" placeholder="yyyy-mm-dd" [(ngModel)]="order.date" />
+                [startView]="2" [minView]="2" formControlName="date" placeholder="yyyy-mm-dd" [(ngModel)]="order.date" ngxTrim='keyup' />
             </div>
             <zr-validation-message [formGroup]="form" for="date" label="日期" [validationMessages]="{pattern:'日期输入不合法。'}"></zr-validation-message>
           </div>
@@ -75,7 +75,7 @@
             <label>单价
               <span class="text-danger">*</span>
             </label>
-            <input type="number" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="order.price"/>
+            <input type="number" formControlName="price" placeholder="单价" class="form-control" [(ngModel)]="order.price" />
             <zr-validation-message [control]="form.controls['price']" label="单价" [validationMessages]="{pattern:'请输入数字'}"></zr-validation-message>
           </div>
         </div>
