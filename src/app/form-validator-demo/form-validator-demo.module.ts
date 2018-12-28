@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ZrValidationMessageModule } from 'zr-validation-message';
-
 import { SharedModule } from '../shared/shared.module';
 
 import { FormValidatorRoutingModule } from './form-validator-demo-routing.module';
@@ -14,7 +12,6 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 @NgModule({
   imports: [
     CommonModule,
-    ZrValidationMessageModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,

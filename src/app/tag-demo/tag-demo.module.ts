@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ZrTagModule } from 'zr-tag';
-
 import { SharedModule } from '../shared/shared.module';
 import { TagDemoRoutingModule } from './tag-demo-routing.module';
 
@@ -13,7 +11,6 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
   imports: [
     CommonModule,
     SharedModule,
-    ZrTagModule,
     TagDemoRoutingModule
   ],
 

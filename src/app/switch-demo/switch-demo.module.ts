@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ZrSwitchModule } from 'zr-switch';
-
 import { SharedModule } from '../shared/shared.module';
 import { SwitchDemoRoutingModule } from './switch-demo-routing.module';
 
@@ -13,8 +11,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
   imports: [
     CommonModule,
     SharedModule,
-    SwitchDemoRoutingModule,
-    ZrSwitchModule
+    SwitchDemoRoutingModule
   ],
 
   declarations: [

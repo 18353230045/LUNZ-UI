@@ -2,18 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SelectModule } from 'ng-select';
-import { NgxQueryModule } from 'ngx-query';
-import { ModalModule } from 'ngx-bootstrap';
-import { ZrDatepickerModule } from 'zr-datepicker';
-import { NgxQueryToolbarModule } from 'ngx-query-toolbar';
-import { MomentModule } from 'angular2-moment/moment.module';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { NgxDatatableFooterModule } from 'ngx-datatable-footer';
-import { NgxDatatableActionsModule } from 'ngx-datatable-actions';
-import { ZrValidationMessageModule } from 'zr-validation-message';
-
 import { SharedModule } from '../shared/shared.module';
 import { RoleManagementRoutingModule } from './role-management-routing.module';
 
@@ -22,6 +10,8 @@ import { CreateRoleComponent } from './partial/create-role/create-role.component
 import { EditRoleComponent } from './partial/edit-role/edit-role.component';
 import { RoleMenusComponent } from './partial/role-menus/role-menus.component';
 import { RoleUsersComponent } from './partial/role-users/role-users.component';
+import { UsersListComponent } from './partial/role-users/users-list/users-list.component';
+import { InstitutionsComponent } from './partial/role-users/institutions/institutions.component';
 
 import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 
@@ -30,17 +20,6 @@ import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config'
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SelectModule,
-    NgxQueryModule,
-    ModalModule.forRoot(),
-    ZrDatepickerModule,
-    NgxQueryToolbarModule,
-    MomentModule,
-    NgxDatatableModule,
-    BsDatepickerModule,
-    NgxDatatableFooterModule,
-    NgxDatatableActionsModule,
-    ZrValidationMessageModule,
     SharedModule,
     RoleManagementRoutingModule
   ],
@@ -49,7 +28,9 @@ import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config'
     CreateRoleComponent,
     EditRoleComponent,
     RoleMenusComponent,
-    RoleUsersComponent
+    RoleUsersComponent,
+    UsersListComponent,
+    InstitutionsComponent
   ],
   entryComponents: [
     CreateRoleComponent

@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { ZrDatepickerModule } from 'zr-datepicker';
-
 import { SharedModule } from '../shared/shared.module';
 import { DatepickerDemoRoutingModule } from './datepicker-demo-routing.module';
 
@@ -15,7 +13,6 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
     CommonModule,
     FormsModule,
     SharedModule,
-    ZrDatepickerModule,
     DatepickerDemoRoutingModule
   ],
 

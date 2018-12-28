@@ -8,8 +8,8 @@ import {
   RemoveSpacePipe, RmbPipe, ToFixedPipe, DomSanitizerPipe, LaddaDirective, NgxDataTableDirective,
   AutoFocusDirective
 } from '@app/shared';
-import { NgxTrimModule } from 'ngx-trim';
 import { SweetAlertOptions } from 'sweetalert2';
+import { ThirdPartyModule } from './third-party.module';
 
 import { environment } from '@env/environment';
 
@@ -22,8 +22,8 @@ export function createDecimalPipe() {
     CommonModule,
     RouterModule,
     FormsModule,
-    NgxTrimModule,
     ReactiveFormsModule,
+    ThirdPartyModule,
   ],
   declarations: [
     HostComponent,
@@ -39,7 +39,7 @@ export function createDecimalPipe() {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [
-    NgxTrimModule,
+    ThirdPartyModule,
     HostComponent,
     FileUploadOssComponent,
     VehicleSelectionComponent,

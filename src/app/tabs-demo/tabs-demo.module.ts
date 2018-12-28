@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ZrTabsModule } from 'zr-tabs';
-
 import { SharedModule } from '../shared/shared.module';
 import { TabsDemoRoutingModule } from './tabs-demo-routing.module';
 
@@ -13,8 +11,7 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
   imports: [
     CommonModule,
     SharedModule,
-    TabsDemoRoutingModule,
-    ZrTabsModule
+    TabsDemoRoutingModule
   ],
 
   declarations: [
