@@ -2,13 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ModalModule } from 'ngx-bootstrap';
 import { TreeModule } from 'primeng/tree';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { DragDropModule } from 'primeng/dragdrop';
 import { TreeDragDropService } from 'primeng/api';
-
-import { ZrValidationMessageModule } from 'zr-validation-message';
 
 import { SharedModule } from 'app/shared/shared.module';
 import { TreeviewDemoRoutingModule } from './treeview-demo-routing.module';
@@ -20,30 +17,25 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-    ModalModule.forRoot(),
     TreeModule,
-    ContextMenuModule,
+    FormsModule,
+    CommonModule,
+    SharedModule,
     DragDropModule,
-    ZrValidationMessageModule,
+    ContextMenuModule,
+    ReactiveFormsModule,
     TreeviewDemoRoutingModule
   ],
-
   declarations: [
     TreeviewDemoComponent,
-    CreateNodeModalComponent,
     EditNodeModalComponent,
-    UsingDocumentsComponent
-  ],
-
-  entryComponents: [
+    UsingDocumentsComponent,
     CreateNodeModalComponent,
-    EditNodeModalComponent
   ],
-
+  entryComponents: [
+    EditNodeModalComponent,
+    CreateNodeModalComponent
+  ],
   providers: [TreeDragDropService]
 })
 

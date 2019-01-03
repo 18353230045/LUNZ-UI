@@ -18,3 +18,7 @@ label {
 .ui-widget-header .ui-multiselect-close {
   display: none !important;
 }
+
+body .ui-tree .ui-treenode .ui-treenode-content .ui-treenode-label {
+  padding: 2px 10px;
+}

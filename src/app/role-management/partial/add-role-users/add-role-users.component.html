@@ -1,0 +1,70 @@
+<div class="m-portlet" [ngStyle]="{'margin-bottom':'0'}">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text">添加角色用户</h3>
+      </div>
+    </div>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <ngx-query-toolbar #ngxQueryToolbar [ngxQuery]="ngxQuery"></ngx-query-toolbar>
+        </li>
+        <li class="m-portlet__nav-item">
+          <button (click)="appNgxDataTable.refreshData()" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="la la-refresh"></i>
+          </button>
+        </li>
+        <li class="m-portlet__nav-item">
+          <button (click)="modalService.hide(1)" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+            <i class="la la-remove"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-portlet__body p-0">
+    <ngx-query [hidden]="!ngxQueryToolbar.visible" class="full-screen no-header" #ngxQuery [queryTemplates]="queryTemplates">
+      <ngx-query-field name="LoginName" label="帐号" [type]="'string'">
+        <ng-template ngx-query-value-input-template let-rule="rule" let-dataIndex="dataIndex">
+          <input class="form-control form-control-sm" [(ngModel)]="rule.datas[dataIndex]" placeholder="帐号" />
+        </ng-template>
+      </ngx-query-field>
+      <ngx-query-field name="Name" label="姓名" [type]="'string'">
+        <ng-template ngx-query-value-input-template let-rule="rule" let-dataIndex="dataIndex">
+          <input class="form-control form-control-sm" [(ngModel)]="rule.datas[dataIndex]" placeholder="姓名" />
+        </ng-template>
+      </ngx-query-field>
+    </ngx-query>
+    <ngx-datatable #dt class="material" [scrollbarH]="true" [rows]="users" [loadingIndicator]="loading" [selected]="selectedUsers"
+      [selectionType]="'checkbox'" #appNgxDataTable="NgxDataTableDirective" appNgxDataTable [ngxQuery]="ngxQuery"
+      (data)="loadUsers($event)" [saveState]="false" [rowHeight]="-1" (select)="onSelect($event)">
+      <ngx-datatable-footer [datatable]="datatable"></ngx-datatable-footer>
+      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false"
+        [headerCheckboxable]="true" [checkboxable]="true">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="帐号" prop="loginName"></ngx-datatable-column>
+      <ngx-datatable-column name="姓名" prop="name" headerClass="text-center" cellClass="text-center"></ngx-datatable-column>
+      <ngx-datatable-column name="联系电话" prop="mobile" headerClass="text-center" cellClass="text-center"></ngx-datatable-column>
+      <ngx-datatable-column name="邮箱" prop="email" headerClass="text-center" cellClass="text-center"></ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--pill" [disabled]="selectedUsers.length===0||saving"
+      [ladda]="saving" (click)="submit()">
+      <span>
+        <i class="la la-check"></i>
+        <span>添加</span>
+      </span>
+    </button>
+    <button type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" (click)="modalService.hide(1)">
+      <span>
+        <i class="la la-close"></i>
+        <span>取消</span>
+      </span>
+    </button>
+  </div>
+</div>

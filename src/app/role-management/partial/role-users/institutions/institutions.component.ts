@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { IOption } from 'ng-select';
+import { TreeNode } from 'primeng/api';
 
+import { Department, Node } from '../../../interface/interface';
 import { Logger } from '@core/logger.service';
 import { LoggerFactory } from '@core/logger-factory.service';
 import { RoleService } from '../../../shared/role.service';
@@ -14,7 +16,13 @@ import { RoleService } from '../../../shared/role.service';
 export class InstitutionsComponent implements OnInit {
   log: Logger;
   mechanismList: IOption[] = [];
-  departmentList: any[] = [];
+  departmentList: Department[] = [];
+  nodeTrees: TreeNode[] = [];
+  selectedNode: TreeNode;
+  loading: boolean = false;
+  roleId: string;
+
+  @Output() company = new EventEmitter();
 
   constructor(
     private roleService: RoleService,
@@ -23,10 +31,11 @@ export class InstitutionsComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Load department type list
     this.loadDepartmentTypeList();
   }
 
-  // Load department type list
+  // Load department type list(select)
   loadDepartmentTypeList() {
     this.roleService.getDepartmentTypeList().subscribe(response => {
       const mechanismList: IOption[] = [];
@@ -41,38 +50,53 @@ export class InstitutionsComponent implements OnInit {
     });
   }
 
-  // Get depert list info
-  getDepertListInfo(row: IOption) {
-    const id = row.value;
-
-    this.roleService.getDepertList(id).subscribe(response => {
-      const node = [];
-      for (const item of <any>response) {
-        node.push(this.dbDataToTreeNode(item));
-      }
-      this.departmentList = node;
-    }, error => {
-      this.log.error('部门获取失败!', error);
-    });
+  // Process the returned tree node data
+  processingNodeData(item: Node) {
+    return {
+      label: item.text,
+      id: item.id,
+      icon: item.children ? 'fa fa-th-large' : 'fa fa-th',
+      leaf: item.children ? false : true,
+      parentId: item.parentId
+    };
   }
 
-  dbDataToTreeNode(dbData: any): any {
-    const oneData = {
-      id: dbData.id,
-      name: dbData.text,
-      checked: false,
-      hasChildren: dbData.children,
-      type: dbData.type,
-      icon: 'fa fa-folder'
-    };
+  // Get depert list(tree)
+  getRootDepertList(row: IOption) {
+    const id = row.value;
+    this.loading = true;
 
-    if (dbData.type === `company`) {
-      oneData.icon = 'fa fa-file';
-    } else if (dbData.type === 'depart') {
-      oneData.icon = 'fa fa-puzzle-piece';
-    }
+    this.roleService.getRootDepertList(id).subscribe((response: any) => {
+      this.loading = false;
+      const node = [];
+      for (const res of response) {
+        const oneData = this.processingNodeData(res);
+        node.push(oneData);
+      }
+      this.nodeTrees = node;
+    }, (error: any) => this.log.error('数据获取失败。', error));
 
-    return oneData;
+  }
+
+  // Get deper child list(tree)
+  getDeperChildtList(event: any) {
+    const id = event.node.id;
+    this.loading = true;
+
+    this.roleService.getChildDepertList(id).subscribe(response => {
+      this.loading = false;
+      const nodeChild = [];
+      for (const res of response) {
+        const nodeItem = this.processingNodeData(res);
+        nodeChild.push(nodeItem);
+      }
+      event.node.children = nodeChild;
+    }, (error: any) => this.log.error('子级获取失败。', error));
+  }
+
+  nodeSelect(event: any) {
+    console.log(event);
+    this.company.emit(event.node);
   }
 
 }

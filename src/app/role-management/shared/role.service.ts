@@ -70,8 +70,8 @@ export class RoleService extends WebApiResultResponse {
     }).pipe(map(super.handleSuccess), catchError(super.handleError));
   }
 
-  // List root modules and operates
-  listRootModulesAndOperates(appId: string): Observable<any> {
+  // Get root modules and operates
+  getRootModulesAndOperates(appId: string): Observable<any> {
     const initReqestOption = this.initRequest('Role/ListRootModulesAndOperates');
     const params = { applicationId: environment.api.v1.applicationId };
 
@@ -81,8 +81,8 @@ export class RoleService extends WebApiResultResponse {
     }).pipe(map(super.handleSuccess), catchError(super.handleError));
   }
 
-  // List child modules and operates
-  listChildModulesAndOperates(parentId: string): Observable<any> {
+  // Get child modules and operates
+  getChildModulesAndOperates(parentId: string): Observable<any> {
     const initReqestOption = this.initRequest('Role/ListChildModulesAndOperates');
     const params = { parentId: parentId };
 
@@ -92,8 +92,8 @@ export class RoleService extends WebApiResultResponse {
     }).pipe(map(super.handleSuccess), catchError(super.handleError));
   }
 
-  // List role root modules
-  listRoleRootModules(roleId: string): Observable<any> {
+  // Get role root modules
+  getRoleRootModules(roleId: string): Observable<any> {
     const initReqestOption = this.initRequest('Role/ListRoleRootModules');
     const params = { roleId: roleId };
 
@@ -103,8 +103,8 @@ export class RoleService extends WebApiResultResponse {
     }).pipe(map(super.handleSuccess), catchError(super.handleError));
   }
 
-  // List role child modules
-  listRoleChildModules(id: string): Observable<any> {
+  // Get role child modules
+  getRoleChildModules(id: string): Observable<any> {
     const initReqestOption = this.initRequest('Role/ListRoleChildModules');
     const params = { roleOperateId: id };
 
@@ -133,7 +133,7 @@ export class RoleService extends WebApiResultResponse {
   }
 
   // List role users
-  listRoleUsers(params: any, roleId: string, departId: string): Observable<PagingResponse> {
+  getRoleUsers(params: any, roleId: string, departId: string): Observable<PagingResponse> {
     const initReqestOption = this.initRequest('Role/ListRoleUsers');
     params.roleId = roleId;
     params.departId = departId;
@@ -174,7 +174,7 @@ export class RoleService extends WebApiResultResponse {
   }
 
   // Get depert list
-  getDepertList(typeId: string): Observable<PagingResponse> {
+  getRootDepertList(typeId: string): Observable<PagingResponse> {
     const initReqestOption = this.initRequest('Role/ListRootDeparts');
     const params: any = { typeId: typeId };
     return this.http.cache(false).get(initReqestOption.url, {
@@ -183,8 +183,8 @@ export class RoleService extends WebApiResultResponse {
     }).pipe(map(super.handleSuccess), catchError(super.handleError));
   }
 
-  // Get deper childt list
-  getDeperChildtList(departId: string): Observable<any> {
+  // Get deper child list
+  getChildDepertList(departId: string): Observable<any> {
     const initReqestOption = this.initRequest('Role/ListChildDeparts');
     const params = { departId: departId };
 

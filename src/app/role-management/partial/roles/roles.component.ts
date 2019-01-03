@@ -11,7 +11,7 @@ import { Dialogs } from '@core/dialogs.service';
 import { LoggerFactory } from '@core/logger-factory.service';
 import { NgxDataTableDirective } from '@app/shared/directives/ngx-datatable.directive';
 
-import { Role } from '../../interface/role';
+import { Role } from '../../interface/interface';
 import { RoleService } from '../../shared/role.service';
 
 import { CreateRoleComponent } from '../../partial/create-role/create-role.component';
@@ -25,7 +25,7 @@ export class RolesComponent implements OnInit, AfterViewInit {
   log: Logger;
   loading: boolean = false;
   roles: Role[] = [];
-  selectedRoles: any[] = [];
+  selectedRoles: Role[] = [];
   datatable: DatatableComponent;
   editing: any = {};
 
