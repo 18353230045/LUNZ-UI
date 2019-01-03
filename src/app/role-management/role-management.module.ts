@@ -6,6 +6,7 @@ import { TreeModule } from 'primeng/tree';
 
 import { SharedModule } from '../shared/shared.module';
 import { RoleManagementRoutingModule } from './role-management-routing.module';
+import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 
 import { RolesComponent } from './partial/roles/roles.component';
 import { EditRoleComponent } from './partial/edit-role/edit-role.component';
@@ -16,15 +17,13 @@ import { UsersListComponent } from './partial/role-users/users-list/users-list.c
 import { AddRoleUsersComponent } from './partial/add-role-users/add-role-users.component';
 import { InstitutionsComponent } from './partial/role-users/institutions/institutions.component';
 
-import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
-
 @NgModule({
   imports: [
-    TreeModule,
-    FormsModule,
     CommonModule,
-    SharedModule,
+    FormsModule,
     ReactiveFormsModule,
+    TreeModule,
+    SharedModule,
     RoleManagementRoutingModule
   ],
   declarations: [

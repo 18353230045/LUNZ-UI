@@ -38,6 +38,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
       groups: []
     }
   }];
+
   @ViewChild('appNgxDataTable')
   ngxDataTable: NgxDataTableDirective;
 

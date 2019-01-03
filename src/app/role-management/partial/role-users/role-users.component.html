@@ -1,10 +1,113 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-3" [ngStyle]="{'padding':'0'}">
-      <app-institutions (company)="company=$event"></app-institutions>
+<div class="m-portlet">
+  <!-- head -->
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+          <i class="flaticon-interface-2"></i>
+        </span>
+        <h3 class="m-portlet__head-text"> 角色用户列表 </h3>
+      </div>
     </div>
-    <div class="col-lg-9 col-md-9 col-sm-9" [ngStyle]="{'padding':'0'}">
-      <app-users-list [company]="company" [update]="updateUserList"></app-users-list>
+    <div class="m-portlet__head-tools">
+      <ul class="m-portlet__nav">
+        <li class="m-portlet__nav-item">
+          <a routerLink="/roles" class="btn btn-sm btn-secondary m-btn
+            m-btn--hover-brand m-btn--icon m-btn--pill">
+            <span>
+              <i class="la la-reply"></i>
+              <span>返回列表</span>
+            </span>
+          </a>
+        </li>
+        <li class="m-portlet__nav-item">
+          <a class="btn btn-sm btn-secondary m-btn m-btn--hover-brand
+            m-btn--icon m-btn--pill">
+            <span>
+              <i class="la la-plus"></i>
+              <span>添加用户</span>
+            </span>
+          </a>
+        </li>
+        <li class="m-portlet__nav-item">
+          <button (click)="appNgxDataTable.refreshData()" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon
+            m-btn--icon-only m-btn--pill">
+            <i class="la la-refresh"></i>
+          </button>
+        </li>
+        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
+          data-dropdown-toggle="hover" aria-expanded="true">
+          <a class="m-portlet__nav-link btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill m-dropdown__toggle">
+            <i class="la la-ellipsis-v"></i>
+          </a>
+          <div class="m-dropdown__wrapper">
+            <span class="m-dropdown__arrow m-dropdown__arrow--right
+              m-dropdown__arrow--adjust"></span>
+            <div class="m-dropdown__inner">
+              <div class="m-dropdown__body">
+                <div class="m-dropdown__content">
+                  <ul class="m-nav">
+                    <li class="m-nav__item">
+                      <a class="m-nav__link">
+                        <i class="m-nav__link-icon flaticon-close"></i>
+                        <span class="m-nav__link-text">批量移除</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- body -->
+  <div class="m-portlet__body p-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div [ngStyle]="{'height':'480px'}">
+            <ng-select [ngStyle]="{'margin':'2px 0'}" [options]="mechanismList" (selected)="getRootDepertList($event)"
+              placeholder="--请选择机构--">
+            </ng-select>
+            <p-tree *ngIf="nodeTrees.length>0" [value]="nodeTrees" selectionMode="single" [(selection)]="selectedNode"
+              (onNodeExpand)="getDeperChildtList($event)" (onNodeSelect)="nodeSelect($event)" [loading]="loadingTree"
+              [style]="{'width':'100%','max-height':'450px','overflow':'auto'}">
+            </p-tree>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9" [ngStyle]="{'padding':'0'}">
+          <ngx-datatable class="material" [scrollbarH]="true" (select)="onSelect($event)" [rows]="roleUsers"
+            [loadingIndicator]="loading" [selected]="selectedRoleUsers" [selectionType]="'checkbox'" #appNgxDataTable="NgxDataTableDirective"
+            appNgxDataTable (data)="loadRoleUsers($event)" [saveState]="false">
+            <ngx-datatable-footer [datatable]="datatable"></ngx-datatable-footer>
+            <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+              [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="帐号" prop="loginName">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="姓名" prop="name" [sortable]="false" headerClass="text-left" cellClass="text-left"
+              [sortable]="false">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="邮箱" prop="email" [sortable]="false" headerClass="text-left" cellClass="text-left"
+              [sortable]="false">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="联系电话" prop="mobile" [sortable]="false" headerClass="text-left" cellClass="text-left"
+              [sortable]="false">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="操作" maxWidth="150" headerClass="text-left" cellClass="text-left" [sortable]="false">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <div class="dropdown m-dropdown--inline">
+                  <a class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+                    <i class="la la-remove"></i>
+                  </a>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
     </div>
   </div>
 </div>

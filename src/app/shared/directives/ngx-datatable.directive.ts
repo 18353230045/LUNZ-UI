@@ -141,7 +141,6 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
       });
 
       ngxQuery.reset.subscribe(() => {
-        console.log(123 );
         timer(100).subscribe(() => {
           this._datatable.offset = 0;
           this.emitData(undefined, []);
