@@ -11,7 +11,7 @@ import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
 import { RoleService } from '../../shared/role.service';
 import { Dialogs } from '@core/dialogs.service';
 import { LoggerFactory } from '@core/logger-factory.service';
-import { Node, Department, RoleUser } from '../../interface/interface';
+import { Role, Node, Department, RoleUser } from '../../interface/interface';
 import { NgxDataTableDirective } from '@app/shared/directives/ngx-datatable.directive';
 
 import { AddRoleUsersComponent } from '../add-role-users/add-role-users.component';
@@ -29,7 +29,7 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
   departmentList: Department[] = [];
   selectedRoleUsers: RoleUser[] = [];
   selectedNode: TreeNode;
-  roleId: string;
+  role: Role;
   departmentId: string;
   loading: boolean = false;
   loadingTree: boolean = false;
@@ -52,8 +52,12 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
   ngxDataTable: NgxDataTableDirective;
 
   ngOnInit() {
-    // Get roleId
-    this.activatedRoute.params.pipe(map(params => params.id)).subscribe(id => this.roleId = id);
+    // Get role
+    this.activatedRoute.params.pipe(map(params => params.id)).subscribe(id => {
+      this.roleService.getRole(id).subscribe((role: Role) => {
+        this.role = role;
+      });
+    });
 
     // Get department type list
     this.loadDepartmentTypeList();
@@ -137,7 +141,7 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
     if (!this.departmentId) return;
 
     this.loading = true;
-    this.roleService.getRoleUsers(this.params, this.roleId, this.departmentId).pipe(finalize(() => {
+    this.roleService.getRoleUsers(this.params, this.role.id, this.departmentId).pipe(finalize(() => {
       this.loading = false;
     })).subscribe((response) => {
       if (response.data && response.data.length > 0) {
@@ -164,7 +168,7 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
   // Add role users
   addRoleUsers() {
     const config = {
-      initialState: { departId: this.selectedNode['id'], roleId: this.roleId },
+      initialState: { departId: this.selectedNode['id'], roleId: this.role.id },
       class: 'modal-lg',
       ignoreBackdropClick: true
     };

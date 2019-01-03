@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { Role } from '../interface/interface';
 
 import { WebApiResultResponse, PagingResponse } from '@core/http/web-api-result-response';
 import { AuthenticationService } from '@core/authentication/authentication.service';
@@ -60,7 +61,7 @@ export class RoleService extends WebApiResultResponse {
   }
 
   // Get role
-  getRole(roleId: string): Observable<PagingResponse> {
+  getRole(roleId: string): Observable<Role> {
     const initReqestOption = this.initRequest('Role/GetRole');
     const params = { roleId: roleId };
 
