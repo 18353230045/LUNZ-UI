@@ -13,9 +13,7 @@ import { EditRoleComponent } from './partial/edit-role/edit-role.component';
 import { RoleMenusComponent } from './partial/role-menus/role-menus.component';
 import { RoleUsersComponent } from './partial/role-users/role-users.component';
 import { CreateRoleComponent } from './partial/create-role/create-role.component';
-import { UsersListComponent } from './partial/role-users/users-list/users-list.component';
 import { AddRoleUsersComponent } from './partial/add-role-users/add-role-users.component';
-import { InstitutionsComponent } from './partial/role-users/institutions/institutions.component';
 
 @NgModule({
   imports: [
@@ -31,10 +29,8 @@ import { InstitutionsComponent } from './partial/role-users/institutions/institu
     EditRoleComponent,
     RoleMenusComponent,
     RoleUsersComponent,
-    UsersListComponent,
     CreateRoleComponent,
-    AddRoleUsersComponent,
-    InstitutionsComponent
+    AddRoleUsersComponent
   ],
   entryComponents: [
     CreateRoleComponent,

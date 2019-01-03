@@ -7,9 +7,9 @@ import { Logger } from '@core/logger.service';
 import { map, finalize } from 'rxjs/operators';
 import { BsModalService } from 'ngx-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
-import { DatatableFooterComponent } from 'ngx-datatable-footer';
 
 import { RoleService } from '../../shared/role.service';
+import { Dialogs } from '@core/dialogs.service';
 import { LoggerFactory } from '@core/logger-factory.service';
 import { Node, Department, RoleUser } from '../../interface/interface';
 import { NgxDataTableDirective } from '@app/shared/directives/ngx-datatable.directive';
@@ -29,7 +29,6 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
   departmentList: Department[] = [];
   selectedRoleUsers: RoleUser[] = [];
   selectedNode: TreeNode;
-  company: Node;
   roleId: string;
   departmentId: string;
   loading: boolean = false;
@@ -44,6 +43,7 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private modalService: BsModalService,
     private changeDetectorRef: ChangeDetectorRef,
+    private dialogs: Dialogs,
     private loggerFactory: LoggerFactory) {
     this.log = this.loggerFactory.getLogger(`角色用户`);
   }
@@ -61,23 +61,7 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() { this.changeDetectorRef.detectChanges(); }
 
-  // Add role users
-  // addRoleUsers() {
-  //   const config = {
-  //     initialState: { departId: this.company.id, roleId: this.roleId },
-  //     class: 'modal-lg',
-  //     ignoreBackdropClick: true
-  //   };
-  //   this.modalService.show(AddRoleUsersComponent, config);
-
-  //   const onHidden = this.modalService.onHidden.subscribe((val: boolean) => {
-  //     if (val) this.updateUserList = Math.random();
-  //     onHidden.unsubscribe();
-  //   });
-  // }
-
   // Load department type list(select)
-
   loadDepartmentTypeList() {
     this.roleService.getDepartmentTypeList().subscribe(response => {
       const mechanismList: IOption[] = [];
@@ -107,6 +91,11 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
   getRootDepertList(row: IOption) {
     const id = row.value;
     this.loadingTree = true;
+
+    this.roleUsers.length = 0;
+    this.selectedRoleUsers.length = 0;
+    this.datatable.count = 0;
+    this.selectedNode = undefined;
 
     this.roleService.getRootDepertList(id).subscribe((response: any) => {
       this.loadingTree = false;
@@ -170,5 +159,43 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
     if (event !== void 0 && event.selected !== void 0) {
       this.selectedRoleUsers = event.selected;
     }
+  }
+
+  // Add role users
+  addRoleUsers() {
+    const config = {
+      initialState: { departId: this.selectedNode['id'], roleId: this.roleId },
+      class: 'modal-lg',
+      ignoreBackdropClick: true
+    };
+    this.modalService.show(AddRoleUsersComponent, config);
+
+    const onHidden = this.modalService.onHidden.subscribe((val: boolean) => {
+      if (val) {
+        this.ngxDataTable.refreshData();
+        this.selectedRoleUsers.length = 0;
+      }
+      onHidden.unsubscribe();
+    });
+  }
+
+  // remove role users
+  removeRoleUsers(row?: RoleUser) {
+    const ids: string[] = [];
+
+    if (row) {
+      ids.push(row.id);
+    } else {
+      this.selectedRoleUsers.forEach(item => { ids.push(item.id); });
+    }
+    this.dialogs.confirm(`真的要删除选择的角色用户吗？`).subscribe(
+      () => {
+        this.roleService.deleteRoleUsers(ids)
+          .subscribe(response => {
+            this.ngxDataTable.refreshData();
+            this.log.success(`角色用户删除成功!`);
+            this.selectedRoleUsers.length = 0;
+          }, error => this.log.error(`角色用户删除成功`, error));
+      }, (error) => this.log.debug(`角色用户删除成功`, error));
   }
 }

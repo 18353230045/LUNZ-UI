@@ -20,22 +20,21 @@
             </span>
           </a>
         </li>
-        <li class="m-portlet__nav-item">
-          <a class="btn btn-sm btn-secondary m-btn m-btn--hover-brand
-            m-btn--icon m-btn--pill">
+        <li *ngIf="selectedNode" class="m-portlet__nav-item">
+          <a (click)="addRoleUsers()" class="btn btn-sm btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill">
             <span>
               <i class="la la-plus"></i>
               <span>添加用户</span>
             </span>
           </a>
         </li>
-        <li class="m-portlet__nav-item">
+        <li *ngIf="roleUsers.length>0" class="m-portlet__nav-item">
           <button (click)="appNgxDataTable.refreshData()" type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon
             m-btn--icon-only m-btn--pill">
             <i class="la la-refresh"></i>
           </button>
         </li>
-        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
+        <li *ngIf="selectedRoleUsers.length>0" class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
           data-dropdown-toggle="hover" aria-expanded="true">
           <a class="m-portlet__nav-link btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill m-dropdown__toggle">
             <i class="la la-ellipsis-v"></i>
@@ -48,7 +47,7 @@
                 <div class="m-dropdown__content">
                   <ul class="m-nav">
                     <li class="m-nav__item">
-                      <a class="m-nav__link">
+                      <a (click)="removeRoleUsers()" class="m-nav__link">
                         <i class="m-nav__link-icon flaticon-close"></i>
                         <span class="m-nav__link-text">批量移除</span>
                       </a>
@@ -99,7 +98,8 @@
             <ngx-datatable-column name="操作" maxWidth="150" headerClass="text-left" cellClass="text-left" [sortable]="false">
               <ng-template let-row="row" ngx-datatable-cell-template>
                 <div class="dropdown m-dropdown--inline">
-                  <a class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+                  <a (click)="removeRoleUsers(row)" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
+                    title="移除">
                     <i class="la la-remove"></i>
                   </a>
                 </div>
