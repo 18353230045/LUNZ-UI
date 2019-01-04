@@ -20,13 +20,22 @@ export interface Department {
 
 export interface Node {
   children: boolean;
-  icon: boolean;
+  icon: string;
   id: string;
   item: {};
   parentId: string;
   state: { opened: boolean; disabled: boolean; selected: boolean; type: string };
   text: string;
   type: string;
+}
+
+export interface TreeNode {
+  label: string;
+  id: string;
+  icon: string;
+  leaf: boolean;
+  parentId: string;
+  children?: TreeNode[];
 }
 
 export interface RoleUser {

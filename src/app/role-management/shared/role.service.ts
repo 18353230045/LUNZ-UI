@@ -72,7 +72,7 @@ export class RoleService extends WebApiResultResponse {
   }
 
   // Get root modules and operates
-  getRootModulesAndOperates(appId: string): Observable<any> {
+  getRootModulesAndOperates(): Observable<any> {
     const initReqestOption = this.initRequest('Role/ListRootModulesAndOperates');
     const params = { applicationId: environment.api.v1.applicationId };
 
@@ -116,19 +116,19 @@ export class RoleService extends WebApiResultResponse {
   }
 
   // Add role modules
-  addRoleModules(entity: any): Observable<any> {
+  addRoleModules(entitys: any): Observable<any> {
     const initReqestOption = this.initRequest('Role/AddRoleModules');
 
-    return this.http.post(initReqestOption.url, entity, {
+    return this.http.post(initReqestOption.url, entitys, {
       headers: initReqestOption.requestHeader
     }).pipe(map(super.handleSuccess), catchError(super.handleError));
   }
 
   // Remove role modules
-  removeRoleModules(id: Array<any>): Observable<any> {
+  removeRoleModules(ids: string[]): Observable<any> {
     const initReqestOption = this.initRequest('Role/RemoveRoleModules');
 
-    return this.http.post(initReqestOption.url, id, {
+    return this.http.post(initReqestOption.url, ids, {
       headers: initReqestOption.requestHeader
     }).pipe(map(super.handleSuccess), catchError(super.handleError));
   }
