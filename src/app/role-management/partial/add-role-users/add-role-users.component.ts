@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, AfterViewInit, Input } from '@angular/core';
 
-import { BsModalService } from 'ngx-bootstrap';
 import { finalize } from 'rxjs/operators';
+import { BsModalService } from 'ngx-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
 
 import { Logger } from '@core/logger.service';
@@ -26,6 +26,7 @@ export class AddRoleUsersComponent implements OnInit, AfterViewInit {
   users: User[] = [];
   selectedUsers: User[] = [];
   datatable: DatatableComponent;
+
   queryTemplates: any = [{
     name: 'Default',
     template: {
@@ -60,40 +61,32 @@ export class AddRoleUsersComponent implements OnInit, AfterViewInit {
     this.datatable = event.datatable;
     this.loading = true;
 
-    this.roleService.getUserList(params, this.departId).pipe(finalize(() => {
-      this.loading = false;
-    })).subscribe(response => {
-      this.users = response.data || [];
-      this.datatable.count = response.count;
-
-    }, error => {
-      this.log.error(`角色列表获取失败，${error}`);
-    });
+    this.roleService.getUserList(params, this.departId)
+      .pipe(finalize(() => { this.loading = false; }))
+      .subscribe(response => {
+        this.users = response.data || [];
+        this.datatable.count = response.count;
+      }, error => { this.log.error(`角色列表获取失败`, error); });
   }
 
   // Select role
   onSelect(event: any) {
-    if (event !== void 0 && event.selected !== void 0) {
-      this.selectedUsers = event.selected;
-    }
+    if (event !== void 0 && event.selected !== void 0) this.selectedUsers = event.selected;
   }
 
+  // Submit
   submit() {
     const entity = { RoleId: this.roleId, UserIds: <any>[] };
 
-    this.selectedUsers.forEach((item) => {
-      entity['UserIds'].push(item.id);
-    });
+    this.selectedUsers.forEach(item => { entity.UserIds.push(item.id); });
 
     this.saving = true;
     this.roleService.addUsersToRole(entity)
+      .pipe(finalize(() => { this.saving = false; }))
       .subscribe(() => {
-        this.saving = false;
         this.modalService.onHidden.emit(true);
         this.modalService.hide(1);
-      }, error => {
-        this.log.error(error);
-      });
+      }, error => { this.log.error(error); });
   }
 
 }
