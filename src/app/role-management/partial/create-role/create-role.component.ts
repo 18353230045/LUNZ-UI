@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { finalize } from 'rxjs/operators';
-import { BsModalService } from 'ngx-bootstrap';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
 import { Logger } from '@core/logger.service';
 import { LoggerFactory } from '@core/logger-factory.service';
@@ -24,6 +24,7 @@ export class CreateRoleComponent implements OnInit {
     private formBuilder: FormBuilder,
     private roleService: RoleService,
     private loggerFactory: LoggerFactory,
+    public activeModal: BsModalRef,
     public modalService: BsModalService) {
     this.log = this.loggerFactory.getLogger(`创建角色`);
     this.buildForm();
@@ -44,7 +45,7 @@ export class CreateRoleComponent implements OnInit {
         } else {
           this.log.success('角色创建成功!');
           this.modalService.onHidden.emit(true);
-          this.modalService.hide(1);
+          this.activeModal.hide();
         }
       }, error => { this.log.error(`角色创建失败，${error}`); });
   }

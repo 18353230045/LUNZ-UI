@@ -73,7 +73,8 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     this.loading = true;
     this.selectedOrders.length = 0;
 
-    this.ordersService.getOrders(params).pipe(finalize(() => this.loading = false))
+    this.ordersService.getOrders(params)
+      .pipe(finalize(() => this.loading = false))
       .subscribe(response => {
         this.datatable.count = response.count;
         this.orders = response.data;
@@ -86,34 +87,35 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
   // 使用简洁翻页组件时，获取总条数
   showCount() {
-    this.ordersService.getOrdersCount(this.countParams).subscribe(response => {
-      this.count = response.count;
-    });
+    this.ordersService.getOrdersCount(this.countParams)
+      .subscribe(response => {
+        this.count = response.count;
+      });
   }
 
   delete(row: any) {
-    this.dialogs.confirm(`真的要删除订单 ${row.subject} 吗？`).subscribe(
-      () => {
+    this.dialogs.confirm(`真的要删除订单 ${row.subject} 吗？`)
+      .subscribe(() => {
         this.ordersService.deleteOrder(row)
-          .subscribe(response => {
+          .subscribe(() => {
             this.ngxDataTable.refreshData();
             this.log.success(`订单 ${row.subject} 删除成功!`);
           }, error => this.log.error(`订单 ${row.subject} 删除失败,失败信息:`, error));
-      }, (error) => this.log.debug(`订单 ${row.subject} 删除失败,失败信息:`, error));
+      }, () => this.log.debug(`取消删除订单 ${row.subject}`));
   }
 
   editByModal(row: any) {
     const initialState = { data: row };
     this.modalService.show(EditOrderModalComponent, { initialState });
 
-    const onHidden = this.modalService.onHidden.subscribe((val: any) => {
-      // tslint:disable-next-line:forin
-      for (const r in val) {
-        row[r] = val[r];
-      }
-
-      onHidden.unsubscribe();
-    });
+    const onHidden = this.modalService.onHidden
+      .subscribe((val: any) => {
+        // tslint:disable-next-line:forin
+        for (const r in val) {
+          row[r] = val[r];
+        }
+        onHidden.unsubscribe();
+      });
   }
 
   onDetailToggle(event: any) {

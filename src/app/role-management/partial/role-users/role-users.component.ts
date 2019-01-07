@@ -202,6 +202,6 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
             this.log.success(`角色用户删除成功!`);
             this.selectedRoleUsers.length = 0;
           }, error => this.log.error(`角色用户删除成功`, error));
-      }, error => this.log.debug(`角色用户删除成功`, error));
+      }, () => this.log.debug(`取消删除角色用户`));
   }
 }

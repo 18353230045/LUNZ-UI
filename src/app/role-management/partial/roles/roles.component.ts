@@ -113,7 +113,7 @@ export class RolesComponent implements OnInit, AfterViewInit {
             this.log.success(`角色删除成功!`);
             this.selectedRoles.length = 0;
           }, error => this.log.error(`角色删除失败`, error));
-      }, error => this.log.error(`角色删除失败，`, error));
+      }, () => this.log.debug(`取消删除角色`));
   }
 
 }

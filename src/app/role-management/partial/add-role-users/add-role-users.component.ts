@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, AfterViewInit, Input } from '@angular/core';
 
 import { finalize } from 'rxjs/operators';
-import { BsModalService } from 'ngx-bootstrap';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
 
 import { Logger } from '@core/logger.service';
@@ -46,6 +46,7 @@ export class AddRoleUsersComponent implements OnInit, AfterViewInit {
     private roleService: RoleService,
     private loggerFactory: LoggerFactory,
     public modalService: BsModalService,
+    public activeModal: BsModalRef,
     private changeDetectorRef: ChangeDetectorRef) {
     this.log = this.loggerFactory.getLogger(`角色列表`);
   }
@@ -85,7 +86,7 @@ export class AddRoleUsersComponent implements OnInit, AfterViewInit {
       .pipe(finalize(() => { this.saving = false; }))
       .subscribe(() => {
         this.modalService.onHidden.emit(true);
-        this.modalService.hide(1);
+        this.activeModal.hide();
       }, error => { this.log.error(error); });
   }
 

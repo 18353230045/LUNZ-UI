@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { BsModalService } from 'ngx-bootstrap';
 import { cloneDeep } from 'lodash';
+import { finalize } from 'rxjs/operators';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
 import { LoggerFactory } from '@core/logger-factory.service';
 import { Logger } from '@core/logger.service';
@@ -31,6 +32,7 @@ export class EditOrderModalComponent implements OnInit {
     private ordersService: OrdersService,
     private loggerFactory: LoggerFactory,
     private formBuilder: FormBuilder,
+    public activeModal: BsModalRef,
     public modalService: BsModalService) {
     this.log = this.loggerFactory.getLogger('订单编辑');
     this.buildForm();
@@ -43,16 +45,13 @@ export class EditOrderModalComponent implements OnInit {
   submit() {
     this.saving = true;
     this.ordersService.updateOrder(this.middleVariable)
+      .pipe(finalize(() => { this.saving = false; }))
       .subscribe(() => {
-        this.saving = false;
         this.modalService.onHidden.emit(this.middleVariable);
-        this.modalService.hide(1);
+        this.activeModal.hide();
 
         this.log.success(`订单编辑成功!`);
-      }, error => {
-        this.saving = false;
-        this.log.error('订单保存失败。', error);
-      });
+      }, error => { this.log.error('订单保存失败。', error); });
   }
 
   private buildForm() {

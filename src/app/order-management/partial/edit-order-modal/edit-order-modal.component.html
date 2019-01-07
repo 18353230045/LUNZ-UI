@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h5 class="modal-title">编辑订单</h5>
-  <button type="button" class="close" (click)="modalService.hide(1)" aria-label="Close">
+  <button type="button" class="close" (click)="activeModal.hide()" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -60,7 +60,7 @@
       <span>保存</span>
     </span>
   </button>
-  <button type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" (click)="modalService.hide(1)">
+  <button type="button" class="btn btn-secondary m-btn m-btn--hover-brand m-btn--icon m-btn--pill" (click)="activeModal.hide()">
     <span>
       <i class="la la-rotate-left"></i>
       <span>取消</span>
