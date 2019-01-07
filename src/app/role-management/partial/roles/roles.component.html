@@ -68,8 +68,8 @@
             [(ngModel)]="row.name" (keyup.enter)="editRole('name', rowIndex, row)" ngxTrim='keyup' />
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="角色简称" prop="shortName" headerClass="text-left" cellClass="text-left" [sortable]="false"></ngx-datatable-column>
       <ngx-datatable-column name="角色编码" prop="code" headerClass="text-left" cellClass="text-left"></ngx-datatable-column>
+      <ngx-datatable-column name="备注" prop="shortName" headerClass="text-left" cellClass="text-left" [sortable]="false"></ngx-datatable-column>
       <ngx-datatable-column name="操作" maxWidth="150" headerClass="text-center" cellClass="text-left" [sortable]="false">
         <ng-template let-row="row" ngx-datatable-cell-template>
           <div class="dropdown m-dropdown--inline">
