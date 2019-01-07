@@ -1,4 +1,4 @@
-import { Response } from '@angular/http';
+import { HttpResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class WebApiResultResponse {
 
   constructor() { }
 
-  handleSuccess(response: Response): any | PagingResponse {
+  handleSuccess(response: HttpResponse<any>): any | PagingResponse {
     let result: any = response;
 
     // try {
