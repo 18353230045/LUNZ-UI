@@ -4,21 +4,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
-import { MomentModule } from 'angular2-moment';
-import { TranslateModule } from '@ngx-translate/core';
-import { LaddaModule } from 'angular2-ladda';
 import { ToastrModule } from 'ngx-toastr';
-import { SweetAlertOptions } from 'sweetalert2';
-import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { NgxQueryModule } from 'ngx-query';
-
+import { LaddaModule } from 'angular2-ladda';
+import { MomentModule } from 'angular2-moment';
+import { SweetAlertOptions } from 'sweetalert2';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { SignalRModule, SignalRConfiguration, ConnectionTransports } from 'ng2-signalr';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { environment } from '@env/environment';
 import { CoreModule } from '@app/core';
+import { environment } from '@env/environment';
 import { SharedModule } from './shared/shared.module';
 
 import { HomeModule } from './home/home.module';
@@ -82,24 +81,24 @@ export function getSignalrConfiguration(): SignalRConfiguration {
 
 @NgModule({
   imports: [
-    BrowserModule,
-    ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
+    CoreModule,
+    HomeModule,
     FormsModule,
+    LoginModule,
+    LaddaModule,
+    MomentModule,
+    BrowserModule,
     HttpClientModule,
+    AuthenticationModule,
+    ChangePasswordModule,
     TranslateModule.forRoot(),
+    NgIdleKeepaliveModule.forRoot(),
     SharedModule.forRoot(sweetAlertOptions),
     NgxQueryModule.forRoot(ngxQuerySettings),
     SweetAlert2Module.forRoot(sweetAlertOptions),
     SignalRModule.forRoot(getSignalrConfiguration),
+    ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     ToastrModule.forRoot({ timeOut: 3000, progressBar: true, positionClass: 'toast-bottom-right' }),
-    MomentModule,
-    NgIdleKeepaliveModule.forRoot(),
-    LaddaModule,
-    CoreModule,
-    HomeModule,
-    LoginModule,
-    AuthenticationModule,
-    ChangePasswordModule,
     // must be imported as the last module as it contains the fallback route
     AppRoutingModule
   ],
