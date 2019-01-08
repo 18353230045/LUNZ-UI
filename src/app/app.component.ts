@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
-import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
-import { TranslateService } from '@ngx-translate/core';
 import { merge } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
+import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 
 import { environment } from '@env/environment';
-import { Logger, I18nService, LoggerFactory } from '@app/core';
 import { CreateSubscriptionService } from '@app/shared';
+import { Logger, I18nService, LoggerFactory } from '@app/core';
 
 @Component({
   selector: 'app-root, body',
@@ -27,14 +27,14 @@ export class AppComponent implements OnInit {
   onTimeoutWarning: any;
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private idle: Idle,
+    private router: Router,
     private titleService: Title,
+    private i18nService: I18nService,
     private loggerFactory: LoggerFactory,
+    private activatedRoute: ActivatedRoute,
     private translateService: TranslateService,
-    private createSubscriptionService: CreateSubscriptionService,
-    private i18nService: I18nService) {
+    private createSubscriptionService: CreateSubscriptionService) {
     this.log = this.loggerFactory.getLogger('App');
   }
 
@@ -81,21 +81,21 @@ export class AppComponent implements OnInit {
 
   setIdleMonitor() {
     this.idleWatch = true;
-    // 设置空闲时间
+    // Set idle time.
     this.idle.setIdle(environment.freeTime * 60);
 
-    // 设置倒计时时长时间
+    // Set the countdown long.
     this.idle.setTimeout(environment.countdownTime);
 
-    // 设置中断倒计时方式（单击、滚动、对文档的操作）
+    // Set the interrupt mode.
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
-    // 倒计时开始了，触动电脑后回调
+    // After the countdown starts, the callback after touching the computer.
     this.onIdleEnd = this.idle.onIdleEnd.subscribe(() => {
       this.idleShow = false;
     });
 
-    // 超时后的回调
+    // Callback after timeout.
     this.onTimeout = this.idle.onTimeout.subscribe(() => {
       this.idleShow = false;
       this.idleWatch = false;
@@ -103,13 +103,13 @@ export class AppComponent implements OnInit {
     });
 
 
-    // 正在倒计时的回调
+    // When the countdown is in progress.
     this.onTimeoutWarning = this.idle.onTimeoutWarning.subscribe((countdown: number) => {
       this.idleShow = true;
       this.countdown = countdown;
     });
 
-    // 启动空闲监控
+    // Start idle monitor》
     this.idle.watch();
   }
 }

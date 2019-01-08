@@ -1,17 +1,18 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ModuleWithProviders } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+
+import { SweetAlertOptions } from 'sweetalert2';
+import { ThirdPartyModule } from './third-party.module';
 
 import {
   HostComponent, FileUploadOssComponent, VehicleSelectionComponent, swalDefaultsProvider,
   RemoveSpacePipe, RmbPipe, ToFixedPipe, DomSanitizerPipe, LaddaDirective, NgxDataTableDirective,
   AutoFocusDirective
 } from '@app/shared';
-import { SweetAlertOptions } from 'sweetalert2';
-import { ThirdPartyModule } from './third-party.module';
-import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 
+import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 import { environment } from '@env/environment';
 
 export function createDecimalPipe() {
@@ -20,34 +21,39 @@ export function createDecimalPipe() {
 
 @NgModule({
   imports: [
+    FormsModule,
     CommonModule,
     RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
     ThirdPartyModule,
+    ReactiveFormsModule
   ],
   declarations: [
+    RmbPipe,
+    ToFixedPipe,
+    LaddaDirective,
+    RemoveSpacePipe,
+    DomSanitizerPipe,
+
+    AutoFocusDirective,
+    NgxDataTableDirective,
+
     HostComponent,
     FileUploadOssComponent,
     VehicleSelectionComponent,
-    RmbPipe,
-    ToFixedPipe,
-    RemoveSpacePipe,
-    DomSanitizerPipe,
-    LaddaDirective,
-    AutoFocusDirective,
-    NgxDataTableDirective,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [
     ThirdPartyModule,
+
     HostComponent,
     FileUploadOssComponent,
     VehicleSelectionComponent,
+
     RmbPipe,
     ToFixedPipe,
     RemoveSpacePipe,
     DomSanitizerPipe,
+
     LaddaDirective,
     AutoFocusDirective,
     NgxDataTableDirective
