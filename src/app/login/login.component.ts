@@ -62,10 +62,7 @@ export class LoginComponent implements OnInit {
           }
         }
         this.router.navigate(['/']);
-      }, error => {
-        this.error = error.message;
-        this.log.debug(this.error);
-      });
+      }, error => { this.error = error.error.message; });
   }
 
   setLanguage(language: string) {

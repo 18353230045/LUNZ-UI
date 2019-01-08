@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { BsModalRef } from 'ngx-bootstrap';
 import { timer } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { BsModalRef } from 'ngx-bootstrap';
 
-import { Logger } from '../../core/logger.service';
-import { LoggerFactory } from '../../core/logger-factory.service';
-import { ProfileService } from '../../core/profile/profile.service';
+import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
+import { ProfileService } from '@core/profile/profile.service';
 
 @Component({
   selector: 'app-change-password-modal',
@@ -43,17 +43,14 @@ export class ChangePasswordModalComponent implements OnInit {
       .pipe(finalize(() => {
         this.isLoading = false;
         this.changePassForm.markAsPristine();
-      })).subscribe(credentials => {
+      })).subscribe(() => {
         this.log.info('密码修改成功,请重新登录！');
 
         timer(1500).subscribe(() => {
           this.activeModal.hide();
           this.router.navigate(['/login']);
-          window.location.reload();
         });
-      }, error => {
-        this.log.error(error.message);
-      });
+      }, error => { this.log.error(error.error.message); });
   }
 
   validateEqual() {
