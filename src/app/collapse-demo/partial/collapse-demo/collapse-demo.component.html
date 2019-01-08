@@ -24,8 +24,8 @@
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
           <h5>基础用法</h5>
           <div>
-            <p-accordion>
-              <p-accordionTab header="Godfather I" [selected]="true">
+            <p-accordion [multiple]="true">
+              <p-accordionTab header="Godfather I">
                 The story begins as Don Vito Corleone, the head of a New York Mafia family, overseeshis daughter's
                 wedding. His
                 beloved son ichael has just come home from the war, but does not intend to become part of his father's
@@ -64,8 +64,8 @@
         <div class="col-lg-6 col-md-6 col-sm-6 m-portlet__body">
           <h5>手风琴效果</h5>
           <div>
-            <p-accordion [multiple]="true">
-              <p-accordionTab header="Godfather I">
+            <p-accordion>
+              <p-accordionTab header="Godfather I" [selected]="true">
                 The story begins as Don Vito Corleone, the head of a New York Mafia family, overseeshis daughter's
                 wedding. His
                 beloved son ichael has just come home from the war, but does not intend to become part of his father's
