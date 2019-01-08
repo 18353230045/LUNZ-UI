@@ -39,13 +39,14 @@ export class OrderComponent implements OnInit {
   }
 
   private load() {
-    this.route.params.pipe(map(params => params.id)).subscribe(id => {
-      if (id) {
-        this.ordersService.getOrder(id)
-          .subscribe(order => {
-            this.order = order;
-          }, error => this.log.error(`订单数据获取失败,失败信息: ${error}`));
-      }
-    });
+    this.route.params.pipe(map(params => params.id))
+      .subscribe(id => {
+        if (id) {
+          this.ordersService.getOrder(id)
+            .subscribe(order => {
+              this.order = order;
+            }, error => this.log.error(`订单数据获取失败,失败信息: ${error}`));
+        }
+      });
   }
 }

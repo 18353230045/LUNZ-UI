@@ -4,13 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { OrderManagementRoutingModule } from './order-management-routing.module';
-import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 
+import { OrderComponent } from './partial/order/order.component';
 import { OrdersComponent } from './partial/orders/orders.component';
 import { EditOrderComponent } from './partial/edit-order/edit-order.component';
-import { EditOrderModalComponent } from './partial/edit-order-modal/edit-order-modal.component';
 import { CreateOrderComponent } from './partial/create-order/create-order.component';
-import { OrderComponent } from './partial/order/order.component';
+import { EditOrderModalComponent } from './partial/edit-order-modal/edit-order-modal.component';
 
 @NgModule({
   imports: [
@@ -21,13 +20,12 @@ import { OrderComponent } from './partial/order/order.component';
     OrderManagementRoutingModule
   ],
   declarations: [
+    OrderComponent,
     OrdersComponent,
     EditOrderComponent,
     CreateOrderComponent,
     EditOrderModalComponent,
-    OrderComponent
   ],
-  entryComponents: [EditOrderModalComponent],
-  providers: [createBsDatepickerConfigProvider()]
+  entryComponents: [EditOrderModalComponent]
 })
 export class OrderManagementModule { }

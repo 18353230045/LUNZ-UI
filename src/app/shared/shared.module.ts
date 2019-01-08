@@ -10,6 +10,7 @@ import {
 } from '@app/shared';
 import { SweetAlertOptions } from 'sweetalert2';
 import { ThirdPartyModule } from './third-party.module';
+import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 
 import { environment } from '@env/environment';
 
@@ -51,7 +52,7 @@ export function createDecimalPipe() {
     AutoFocusDirective,
     NgxDataTableDirective
   ],
-  providers: []
+  providers: [createBsDatepickerConfigProvider()]
 })
 export class SharedModule {
   public static forRoot(defaultSwalOptions?: SweetAlertOptions): ModuleWithProviders {

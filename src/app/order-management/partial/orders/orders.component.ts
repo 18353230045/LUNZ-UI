@@ -1,8 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 
+import { finalize } from 'rxjs/operators';
 import { BsModalService } from 'ngx-bootstrap';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { finalize } from 'rxjs/operators';
+import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
 
 import { Logger } from '@core/logger.service';
 import { Dialogs } from '@core/dialogs.service';
@@ -42,7 +43,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   @ViewChild('appNgxDataTable')
   ngxDataTable: NgxDataTableDirective;
 
-  public datatable: any;
+  public datatable: DatatableComponent;
 
   constructor(
     private localeService: BsLocaleService,
