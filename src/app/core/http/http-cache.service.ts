@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { each } from 'lodash';
 
-import { Logger } from '../logger.service';
-import { LoggerFactory } from '../logger-factory.service';
+import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
 
 const cachePersistenceKey = 'httpCache';
 

@@ -1,13 +1,13 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpEvent, HttpResponse, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { AuthenticationService } from '../authentication/authentication.service';
-import { Logger } from '../logger.service';
-import { LoggerFactory } from '../logger-factory.service';
+import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
+import { AuthenticationService } from '@core/authentication/authentication.service';
 
 /**
  * Adds a default error handler to all requests.

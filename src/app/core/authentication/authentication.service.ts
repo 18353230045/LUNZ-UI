@@ -1,8 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpResponse, HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
@@ -39,16 +38,13 @@ export class AuthenticationService extends WebApiResultResponse implements OnIni
 
   constructor(
     private http: HttpClient,
-    private sharedSessionStorage: SharedSessionStorageService
-  ) {
+    private sharedSessionStorage: SharedSessionStorageService) {
     super();
     this._credentials = JSON.parse(
       this.sharedSessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey));
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   isUsing(): boolean {
     return environment.authentication.type === 'usercenter';

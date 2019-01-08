@@ -2,15 +2,15 @@ import { Inject, Injectable, InjectionToken, Injector, Optional } from '@angular
 import { HttpClient, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { ErrorHandlerInterceptor } from './error-handler.interceptor';
 import { CacheInterceptor } from './cache.interceptor';
 import { ApiPrefixInterceptor } from './api-prefix.interceptor';
+import { ErrorHandlerInterceptor } from './error-handler.interceptor';
 
-import { AuthenticationService, Credentials } from '../authentication/authentication.service';
-import { AuthenticationOAuth2Service } from '../authentication/authentication-oauth2.service';
 import { environment } from '@env/environment';
-
+import { AuthenticationService, Credentials } from '@core/authentication/authentication.service';
+import { AuthenticationOAuth2Service } from '@core/authentication/authentication-oauth2.service';
 import { toURLSearchParams } from './http-helper';
+
 
 // HttpClient is declared in a re-exported module, so we have to extend the original module to make it work properly
 // (see https://github.com/Microsoft/TypeScript/issues/13897)
@@ -113,8 +113,7 @@ export class HttpService extends HttpClient {
 
     // url = this._apiSettings.baseUrl + url;
     const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
-    const credentials: Credentials =
-      authenticationService.isAuthenticated() ? authenticationService.credentials : null;
+    const credentials: Credentials = authenticationService.isAuthenticated() ? authenticationService.credentials : null;
     const token: string = credentials == null ? 'null' : credentials.token;
     const authenticationOAuth2Service: AuthenticationOAuth2Service = this.injector.get(AuthenticationOAuth2Service);
     const authorization = authenticationOAuth2Service.getAuthorizationHeaderValue();
@@ -133,6 +132,7 @@ export class HttpService extends HttpClient {
     if (!regex.test(url)) {
       url = this._apiSettings.baseUrl + url;
       if (this._apiSettings.withHeaders) {
+
         // You can customize the 'headers' here.
         const headers = new HttpHeaders().set('AppKey', this._apiSettings.appKey).set('AuthToken', token);
 

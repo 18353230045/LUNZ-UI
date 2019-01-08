@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Logger } from './logger.service';
-import { Dialogs } from './dialogs.service';
+import { Logger } from '@core/logger.service';
+import { Dialogs } from '@core/dialogs.service';
 
 @Injectable()
 export class LoggerFactory {

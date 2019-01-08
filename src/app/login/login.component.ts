@@ -34,8 +34,7 @@ export class LoginComponent implements OnInit {
     this.log = this.loggerFactory.getLogger('Login');
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   showForgetPassword() {
     this.forgetPassword = !this.forgetPassword;
@@ -48,7 +47,8 @@ export class LoginComponent implements OnInit {
       .pipe(finalize(() => {
         this.isLoading = false;
         this.loginForm.markAsPristine();
-      })).subscribe(credentials => {
+      }))
+      .subscribe(credentials => {
         this.log.debug(`${credentials.username} Login Successfully.`);
 
         const uri = new URI(location.href);

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { BsModalService } from 'ngx-bootstrap';
 import { finalize } from 'rxjs/operators';
+import { BsModalService } from 'ngx-bootstrap';
 
 import { environment } from '@env/environment';
+import { CreateSubscriptionService } from '@app/shared';
+
 import { Logger } from '@core/logger.service';
 import { LoggerFactory } from '@core/logger-factory.service';
+import { ProfileService, Profile } from '@core/profile/profile.service';
 import { AuthenticationService } from '@core/authentication/authentication.service';
 import { AuthenticationOAuth2Service } from '@core/authentication/authentication-oauth2.service';
-import { ProfileService, Profile } from '@core/profile/profile.service';
-import { CreateSubscriptionService } from '@app/shared';
 
 import {
   ChangePasswordModalComponent
@@ -64,26 +65,24 @@ export class ProfileComponent implements OnInit {
   logout() {
     // if usercenter authentication
     if (this.authenticationService.isUsing()) {
-
-      this.authenticationService.logout().pipe(finalize(() => {
-        this.checkoutMenuActive().then(() => {
-          window.location.reload();
-          this.router.navigate(['/login']);
-        });
-      })).subscribe(() => { });
+      this.authenticationService.logout()
+        .pipe(finalize(() => {
+          this.checkoutMenuActive().then(() => {
+            this.router.navigate(['/login']);
+          });
+        })).subscribe();
     }
 
     // if micro service authentication
     if (this.authenticationOAuth2Service.isUsing()) {
 
       if (environment.authentication.useServiceV1) {
-        this.authenticationService.logout().pipe(finalize(() => {
-          window.location.reload();
-          this.router.navigate(['/login']);
-        })).subscribe(() => { });
+        this.authenticationService.logout();
       }
 
-      this.authenticationOAuth2Service.signout();
+      this.authenticationOAuth2Service.signout().then(() => {
+        this.router.navigate(['/']);
+      });
     }
   }
 
@@ -100,7 +99,7 @@ export class ProfileComponent implements OnInit {
   }
 
   changePassword() {
-    const modalRef = this.modalService.show(ChangePasswordModalComponent, { backdrop: 'static' });
+    this.modalService.show(ChangePasswordModalComponent, { backdrop: 'static' });
   }
 
   viewMessages() {

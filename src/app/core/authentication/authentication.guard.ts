@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
-import { Logger } from '../logger.service';
-import { LoggerFactory } from '../logger-factory.service';
+import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
 import { AuthenticationService } from './authentication.service';
 import { SsoServiceService } from '../../sso/shared/sso-service.service';
-import { AuthenticationOAuth2Service } from '../authentication/authentication-oauth2.service';
+import { AuthenticationOAuth2Service } from '@core/authentication/authentication-oauth2.service';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
@@ -15,8 +15,8 @@ export class AuthenticationGuard implements CanActivate {
     private router: Router,
     private loggerFactory: LoggerFactory,
     private ssoServiceService: SsoServiceService,
-    private authenticationOAuth2Service: AuthenticationOAuth2Service,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService,
+    private authenticationOAuth2Service: AuthenticationOAuth2Service) {
     this.log = this.loggerFactory.getLogger('AuthenticationGuard');
   }
 
@@ -25,20 +25,19 @@ export class AuthenticationGuard implements CanActivate {
     if (this.authenticationService.isUsing()) {
       return this.checkByUserCenter();
     }
+
     // Using OAuth2
     if (this.authenticationOAuth2Service.isUsing()) {
       return this.checkByOAuth2();
     }
 
-    // log.debug('Not authenticated, redirecting...');
-    this.router.navigate(['/login'], { replaceUrl: true });
-    return false;
   }
 
   private checkByUserCenter(): boolean {
     if (this.authenticationService.isAuthenticated()) {
       return true;
     }
+
     if (this.ssoServiceService.canLogin) {
       this.log.debug('Not authenticated, redirecting...');
 

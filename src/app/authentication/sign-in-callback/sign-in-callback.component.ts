@@ -1,6 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { timer } from 'rxjs';
 import { environment } from '@env/environment';
 import { AuthenticationService, AuthenticationOAuth2Service } from '@app/core';
 
@@ -23,7 +24,7 @@ export class SignInCallbackComponent implements OnInit {
 
   ngOnInit() {
 
-    setTimeout(() => {
+    timer(1000).subscribe(() => {
       this.authenticationOAuth2Service.signinCallback().then(() => {
         this.loading = false;
         this.success = true;
@@ -31,20 +32,19 @@ export class SignInCallbackComponent implements OnInit {
         const claims: any = this.authenticationOAuth2Service.claims;
         const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
         const currentRouting: string = sessionStorage.getItem('currentRouting');
-
         if (environment.authentication.useServiceV1 && claims.authToken &&
           (!authenticationService.isAuthenticated() ||
             authenticationService.credentials.token !== claims.authToken)) {
           authenticationService.loginByAuthToken(claims.authToken)
             .subscribe(() => {
-              if (currentRouting !== null) {
+              if (currentRouting !== null && currentRouting !== '/login') {
                 this.router.navigateByUrl(`/${currentRouting}`);
               } else {
                 this.router.navigateByUrl(`/dashboard`);
               }
             });
         } else {
-          if (currentRouting !== null) {
+          if (currentRouting !== null && currentRouting !== '/login') {
             this.router.navigateByUrl(`/${currentRouting}`);
           } else {
             this.router.navigateByUrl(`/dashboard`);
@@ -52,17 +52,17 @@ export class SignInCallbackComponent implements OnInit {
         }
 
         if (!environment.authentication.useServiceV1) {
-          if (currentRouting !== null) {
+          if (currentRouting !== null && currentRouting !== '/login') {
             this.router.navigateByUrl(`/${currentRouting}`);
           } else {
             this.router.navigateByUrl(`/dashboard`);
           }
         }
 
-      }).catch(error => {
+      }).catch(() => {
         this.loading = false;
         this.success = false;
       });
-    }, 1000);
+    });
   }
 }

@@ -5,10 +5,9 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
-
-import { WebApiResultResponse } from '../http/web-api-result-response';
-import { AuthenticationService, Credentials } from '../authentication/authentication.service';
-import { AuthenticationOAuth2Service } from '../authentication/authentication-oauth2.service';
+import { WebApiResultResponse } from '@core/http/web-api-result-response';
+import { AuthenticationService, Credentials } from '@core/authentication/authentication.service';
+import { AuthenticationOAuth2Service } from '@core/authentication/authentication-oauth2.service';
 
 export interface Profile {
   displayName: string;
@@ -22,9 +21,9 @@ export class ProfileService extends WebApiResultResponse {
   private _credentials: Credentials;
 
   constructor(
+    private http: HttpClient,
     private authenticationService: AuthenticationService,
-    private authenticationOAuth2Service: AuthenticationOAuth2Service,
-    private http: HttpClient) {
+    private authenticationOAuth2Service: AuthenticationOAuth2Service) {
     super();
 
     if (this.authenticationService.isUsing()) {
