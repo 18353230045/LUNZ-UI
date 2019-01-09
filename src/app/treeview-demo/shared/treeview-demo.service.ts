@@ -91,8 +91,9 @@ export class TreeviewDemoService extends WebApiResultResponse {
 
     const params = {
       id: event.dragNode.id,
-      parentId: event.dragNode.parentId,
-      position: event.dropIndex,
+      parentId: event.dropNode.children ? event.dropNode.id :
+        event.dropNode.parentId === '' ? '#' : event.dropNode.parentId,
+      position: event.dropNode.children ? 0 : event.dropIndex,
     };
 
     return this.http.post(initReqestOption.url, params, {
