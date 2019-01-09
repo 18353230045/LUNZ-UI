@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, Params } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs/operators';
-
-import { I18nService } from '../../i18n.service';
 
 interface IBreadcrumb {
   label: string;
@@ -19,36 +16,35 @@ interface IBreadcrumb {
 })
 export class BreadcrumbsComponent implements OnInit {
 
-  public breadcrumbs: IBreadcrumb[];
+  breadcrumbs: IBreadcrumb[] = [];
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute) {
-    this.breadcrumbs = [];
     this.init();
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   private init() {
 
-    // subscribe to the NavigationEnd event
+    // Subscribe to the NavigationEnd event.
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
-      // set breadcrumbs
+      // Set breadcrumbs.
       const root: ActivatedRoute = this.activatedRoute.root;
       this.breadcrumbs = this.getBreadcrumbs(root);
-      // A page that jumps to a refresh at a refresh
+      // A page that jumps to a refresh at a refresh.
       if (this.breadcrumbs.length > 0) {
         const lastOne = this.breadcrumbs.length - 1;
         const currentRouting = this.breadcrumbs[lastOne].url;
         sessionStorage.setItem('currentRouting', currentRouting);
       }
     });
+
   }
 
   /**
-   * Returns array of IBreadcrumb objects that represent the breadcrumb
+   * Returns array of IBreadcrumb objects that represent the breadcrumb.
    *
    * @class DetailComponent
    * @method getBreadcrumbs
@@ -60,40 +56,40 @@ export class BreadcrumbsComponent implements OnInit {
     const ROUTE_DATA_BREADCRUMB = 'title';
     const ROUTE_DATA_IS_BREADCRUMB = 'breadcrumb';
 
-    // get the child routes
+    // Get the child routes.
     const children: ActivatedRoute[] = route.children;
 
-    // return if there are no more children
+    // Return if there are no more children.
     if (children.length === 0) {
       return breadcrumbs;
     }
 
-    // iterate over each children
+    // Iterate over each children.
     for (const child of children) {
-      // verify primary route
+      // Verify primary route
       if (child.outlet !== 'primary') {
         continue;
       }
 
-      // verify the custom data property 'breadcrumb' is specified on the route
+      // Verify the custom data property 'breadcrumb' is specified on the route.
       if (child.snapshot.data.hasOwnProperty(ROUTE_DATA_IS_BREADCRUMB)) {
         if (!child.snapshot.data[ROUTE_DATA_IS_BREADCRUMB]) {
           return this.getBreadcrumbs(child, url, breadcrumbs);
         }
       }
 
-      // verify the custom data property 'breadcrumb' is specified on the route
+      // Verify the custom data property 'breadcrumb' is specified on the route.
       if (!child.snapshot.data.hasOwnProperty(ROUTE_DATA_BREADCRUMB)) {
         return this.getBreadcrumbs(child, url, breadcrumbs);
       }
 
-      // get the route's URL segment
+      // Get the route's URL segment.
       const routeURL: string = child.snapshot.url.map(segment => segment.path).join('/');
 
-      // append route URL to URL
+      // Append route URL to URL.
       url += `/${routeURL}`;
 
-      // add breadcrumb
+      // Add breadcrumb.
       const breadcrumb: IBreadcrumb = {
         label: child.snapshot.data[ROUTE_DATA_BREADCRUMB],
         params: child.snapshot.params,
@@ -101,7 +97,7 @@ export class BreadcrumbsComponent implements OnInit {
       };
       breadcrumbs.push(breadcrumb);
 
-      // recursive
+      // Recursive.
       return this.getBreadcrumbs(child, url, breadcrumbs);
     }
   }

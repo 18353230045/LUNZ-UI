@@ -13,16 +13,15 @@ declare const URI: any;
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-
 export class LoginComponent implements OnInit {
   log: Logger;
+  loginForm: FormGroup;
 
+  isLoading = false;
+  error: string = null;
+  forgetPassword: boolean = true;
   appName: string = environment.appName;
   version: string = environment.version;
-  error: string = null;
-  isLoading = false;
-  loginForm: FormGroup;
-  forgetPassword: Boolean = true;
 
   constructor(
     private router: Router,
@@ -62,7 +61,7 @@ export class LoginComponent implements OnInit {
           }
         }
         this.router.navigate(['/']);
-      }, error => { this.error = error.error.message; });
+      }, error => this.error = error.error.message);
   }
 
   setLanguage(language: string) {

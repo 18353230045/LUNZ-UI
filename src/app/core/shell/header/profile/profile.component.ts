@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { BsModalService } from 'ngx-bootstrap';
 
@@ -25,8 +26,9 @@ declare const $: any;
   styleUrls: ['./profile.component.scss'],
   providers: [BsModalService]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   log: Logger;
+  idleHandle$: Subscription;
   processing = true;
   isAuthenticated: boolean;
   profile: Profile = { displayName: '', username: '' };
@@ -56,14 +58,14 @@ export class ProfileComponent implements OnInit {
       this.getProfile();
     }
 
-    this.createSubscriptionService.currentData.subscribe(currentData => {
+    this.idleHandle$ = this.createSubscriptionService.currentData.subscribe(currentData => {
       if (currentData !== '') this.logout();
     });
 
   }
 
   logout() {
-    // if usercenter authentication
+    // If usercenter authentication
     if (this.authenticationService.isUsing()) {
       this.authenticationService.logout()
         .pipe(finalize(() => {
@@ -73,7 +75,7 @@ export class ProfileComponent implements OnInit {
         })).subscribe();
     }
 
-    // if micro service authentication
+    // If micro service authentication
     if (this.authenticationOAuth2Service.isUsing()) {
 
       if (environment.authentication.useServiceV1) {
@@ -109,8 +111,10 @@ export class ProfileComponent implements OnInit {
   private getProfile(): void {
     this.profileService.getProfile().subscribe(profile => {
       this.profile = profile;
-    }, error => {
-      this.log.error(error);
-    });
+    }, error => this.log.error(error));
+  }
+
+  ngOnDestroy() {
+    this.idleHandle$.unsubscribe();
   }
 }

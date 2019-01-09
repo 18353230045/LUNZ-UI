@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from '@app/core/authentication/authentication.service';
-import { I18nService } from '@app/core/i18n.service';
 import { environment } from '@env/environment';
+import { I18nService } from '@app/core/i18n.service';
+import { AuthenticationService } from '@app/core/authentication/authentication.service';
 
 declare const $: any;
 declare const mLayout: any;
@@ -13,17 +13,16 @@ declare const mLayout: any;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
-
   height: string;
   topMenuHeight: string;
-  menuHidden = true;
-  showTabs: Boolean = environment.haveTabs;
+  menuHidden: boolean = true;
+  showTabs: boolean = environment.haveTabs;
 
-  constructor(private router: Router,
-    private authenticationService: AuthenticationService,
-    private i18nService: I18nService) { }
+  constructor(
+    private router: Router,
+    private i18nService: I18nService,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     $('#m_aside_left_minimize_toggle').click(() => {

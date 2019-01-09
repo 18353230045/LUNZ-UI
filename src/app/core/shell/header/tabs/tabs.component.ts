@@ -14,11 +14,12 @@ declare const $: any;
 export class TabsComponent implements OnInit {
   tabs: any[] = [];
   tabActive: string;
-  showMoveIcon: Boolean = true;
-  disableLeftMoveIcon: Boolean = true;
-  disableRightMoveIcon: Boolean = true;
+  showMoveIcon: boolean = true;
+  disableLeftMoveIcon: boolean = true;
+  disableRightMoveIcon: boolean = true;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router) {
     this.init();
   }
 
@@ -37,7 +38,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // is have
+  // Is have
   isHave(activeUrl: string) {
     for (const tab of this.tabs) {
       if (activeUrl === tab.url) {
@@ -47,7 +48,7 @@ export class TabsComponent implements OnInit {
     }
   }
 
-  // init
+  // Init
   init() {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
       const activeUrl = event['urlAfterRedirects'];
@@ -66,7 +67,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // add tab
+  // Add tab
   addTab(activeUrl: string) {
     return new Promise((resolve) => {
       const timer = setInterval(() => {
@@ -105,7 +106,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // remove tab encapsulation
+  // Remove tab encapsulation
   removeTabEncapsulation(tab: any, index: number) {
     return new Promise(() => {
       if (this.tabs.length !== 1) {
@@ -121,7 +122,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // remove tab
+  // Remove tab
   removeTab(tab: any, index: number) {
     this.removeTabEncapsulation(tab, index).then(() => {
       this.isShowMoveTabIcon().then(() => {
@@ -132,7 +133,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // active tab
+  // Active tab
   activeTab(tab: any) {
     this.tabActive = tab.name;
     this.router.navigate([`${tab.url}`]);
@@ -167,7 +168,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // is rendering completion
+  // Is rendering completion
   isRenderingcompletion() {
     return new Promise((resolve) => {
       const allTabDomOldLength = $('.lz-tabs-item-lhg').length;
@@ -182,7 +183,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // move tab encapsulation
+  // Move tab encapsulation
   moveTabEncapsulation(direction: string) {
     return new Promise((resolve) => {
       const tabContinerDom = $('#lz-tabs-continer-ul');
@@ -224,7 +225,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // move to tab
+  // Move to tab
   moveTab(direction: string) {
     this.moveTabEncapsulation(direction).then(() => {
       this.isShowMoveTabIcon().then(() => {
@@ -235,7 +236,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // show move icon
+  // Show move icon
   isShowMoveTabIcon() {
     return new Promise((resolve) => {
       const tabCcontentDomWidth = $('#lz-tabs-content').outerWidth();
@@ -256,7 +257,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // is disable left move icon
+  // Is disable left move icon
   isDisableLeftMoveIcon() {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -271,7 +272,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // is disable right move icon
+  // Is disable right move icon
   isDisableRightMoveIcon() {
     return new Promise((resolve) => {
       const tabCcontentDomWidth = $('#lz-tabs-content').outerWidth();
@@ -295,7 +296,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // moving the activated tab to the visual area
+  // Moving the activated tab to the visual area
   movingTabToVisualArea(activeUrl: string) {
     return new Promise((resolve) => {
       const tabsContent = $('#lz-tabs-content').outerWidth();
@@ -324,7 +325,7 @@ export class TabsComponent implements OnInit {
     });
   }
 
-  // remove right tabs
+  // Remove right tabs
   removeRightTabs() {
     const tabsArray: any[] = [];
     let activeIndex: number;
@@ -356,7 +357,7 @@ export class TabsComponent implements OnInit {
     }, 200);
   }
 
-  // remove left tabs
+  // Remove left tabs
   removeLeftTabs() {
     const tabsArray: any[] = [];
     let activeIndex: number;
@@ -388,7 +389,7 @@ export class TabsComponent implements OnInit {
     }, 200);
   }
 
-  // remove all tabs
+  // Remove all tabs
   removeAllTabs() {
     let activeItem: any;
     this.tabs.forEach((item) => {

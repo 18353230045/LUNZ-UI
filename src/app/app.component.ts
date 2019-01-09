@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
-import { merge } from 'rxjs';
+import { Subscription, merge } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
@@ -16,15 +16,14 @@ import { Logger, I18nService, LoggerFactory } from '@app/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   log: Logger;
-  idleShow: boolean = false;
+  onIdleEnd$: Subscription;
+  onTimeout$: Subscription;
+  onTimeoutWarning$: Subscription;
   idleWatch: boolean = false;
   countdown: number;
   freeTime: number = environment.freeTime;
-  onIdleEnd: any;
-  onTimeout: any;
-  onTimeoutWarning: any;
 
   constructor(
     private idle: Idle,
@@ -68,15 +67,15 @@ export class AppComponent implements OnInit {
           if (!this.idleWatch) this.setIdleMonitor();
         } else {
           if (this.idleWatch) {
+            this.idle.stop();
             this.idleWatch = false;
-            this.onIdleEnd.unsubscribe();
-            this.onTimeout.unsubscribe();
-            this.onTimeoutWarning.unsubscribe();
+            this.onIdleEnd$.unsubscribe();
+            this.onTimeout$.unsubscribe();
+            this.onTimeoutWarning$.unsubscribe();
           }
         }
       });
     }
-
   }
 
   setIdleMonitor() {
@@ -91,25 +90,35 @@ export class AppComponent implements OnInit {
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
     // After the countdown starts, the callback after touching the computer.
-    this.onIdleEnd = this.idle.onIdleEnd.subscribe(() => {
-      this.idleShow = false;
+    this.onIdleEnd$ = this.idle.onIdleEnd.subscribe(() => {
+      this.countdown = undefined;
     });
 
     // Callback after timeout.
-    this.onTimeout = this.idle.onTimeout.subscribe(() => {
-      this.idleShow = false;
-      this.idleWatch = false;
+    this.onTimeout$ = this.idle.onTimeout.subscribe(() => {
       this.createSubscriptionService.publishSubscribeIdle('idle');
+      this.idle.stop();
+      this.idleWatch = false;
+      this.countdown = undefined;
+      this.onIdleEnd$.unsubscribe();
+      this.onTimeout$.unsubscribe();
+      this.onTimeoutWarning$.unsubscribe();
     });
 
-
     // When the countdown is in progress.
-    this.onTimeoutWarning = this.idle.onTimeoutWarning.subscribe((countdown: number) => {
-      this.idleShow = true;
+    this.onTimeoutWarning$ = this.idle.onTimeoutWarning.subscribe((countdown: number) => {
       this.countdown = countdown;
     });
 
-    // Start idle monitor》
+    // Start idle monitor
     this.idle.watch();
+  }
+
+  ngOnDestroy() {
+    this.idle.stop();
+    this.idleWatch = false;
+    this.onIdleEnd$.unsubscribe();
+    this.onTimeout$.unsubscribe();
+    this.onTimeoutWarning$.unsubscribe();
   }
 }

@@ -1,60 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Logger } from '../../logger.service';
-import { LoggerFactory } from '../../logger-factory.service';
-import { AuthenticationService } from '../../authentication/authentication.service';
-import { AuthenticationOAuth2Service } from '../../authentication/authentication-oauth2.service';
-import { ProfileService } from '../../profile/profile.service';
+import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
+import { ProfileService } from '@core/profile/profile.service';
+import { AuthenticationService } from '@core/authentication/authentication.service';
+import { AuthenticationOAuth2Service } from '@core/authentication/authentication-oauth2.service';
 
 @Component({
-    selector: 'app-navigation',
-    templateUrl: './navigation.component.html',
-    styleUrls: ['./navigation.component.scss'],
-    providers: [AuthenticationService, ProfileService]
+  selector: 'app-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.scss'],
+  providers: [AuthenticationService, ProfileService]
 })
-
 export class NavigationComponent implements OnInit {
-    log: Logger;
-    isAuthenticated: boolean;
-    menuItems: any = [];
+  log: Logger;
+  isAuthenticated: boolean;
+  menuItems: any = [];
 
-    constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService,
-        private authenticationOAuth2Service: AuthenticationOAuth2Service,
-        private profileService: ProfileService,
-        private loggerFactory: LoggerFactory) {
-        this.log = this.loggerFactory.getLogger('Navigation');
+  constructor(
+    private router: Router,
+    private loggerFactory: LoggerFactory,
+    private profileService: ProfileService,
+    private authenticationService: AuthenticationService,
+    private authenticationOAuth2Service: AuthenticationOAuth2Service) {
+    this.log = this.loggerFactory.getLogger('Navigation');
+  }
+
+  ngOnInit() {
+    if (this.authenticationService.isUsing()) {
+      this.isAuthenticated = this.authenticationService.isAuthenticated();
     }
 
-    ngOnInit() {
-        if (this.authenticationService.isUsing()) {
-            this.isAuthenticated = this.authenticationService.isAuthenticated();
-        }
-
-        if (this.authenticationOAuth2Service.isUsing()) {
-            this.isAuthenticated = this.authenticationOAuth2Service.isAuthenticated();
-        }
-
-        if (this.isAuthenticated) {
-            this.getMenuItems();
-        }
+    if (this.authenticationOAuth2Service.isUsing()) {
+      this.isAuthenticated = this.authenticationOAuth2Service.isAuthenticated();
     }
 
-    isActive(url: string): boolean {
-        if (url) {
-            return this.router.isActive(url, true);
-        }
+    if (this.isAuthenticated) {
+      this.getMenus();
     }
+  }
 
-    private getMenuItems(): void {
-        this.profileService.getMenuItems()
-            .subscribe((menuItems: any) => {
-                this.menuItems = menuItems;
-                localStorage.setItem('moduleTree', JSON.stringify(menuItems));
-            }, (error: any) => {
-                this.log.error(error);
-            });
+  isActive(url: string): boolean {
+    if (url) {
+      return this.router.isActive(url, true);
     }
+  }
+
+  private getMenus(): void {
+    this.profileService.getMenus().subscribe((menuItems: any) => {
+      this.menuItems = menuItems;
+      localStorage.setItem('moduleTree', JSON.stringify(menuItems));
+    }, error => this.log.error(error));
+  }
 }

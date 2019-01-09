@@ -6,7 +6,7 @@
 <!-- end::Scroll Top -->
 
 <!-- begin:: Idle monitoring -->
-<div [hidden]="!idleShow" class="idle-mask">
+<div *ngIf="countdown" class="idle-mask">
   <h2>系统检测到您有<span>{{ freeTime }}</span>分钟未使用系统，<span class="idle-countdown"> {{ countdown }} </span>S后将自动退出</h2>
 </div>
 <!-- begin:: Idle monitoring -->

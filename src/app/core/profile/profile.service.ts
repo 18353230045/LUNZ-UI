@@ -70,7 +70,7 @@ export class ProfileService extends WebApiResultResponse {
    * Get the current user's menu items.
    * @return {Observable<any>} The current user's menu items.
    */
-  getMenuItems(): Observable<any> {
+  getMenus(): Observable<any> {
     const url = environment.api.userCenter.baseUrl + 'membership/getCurrentUserMenuItems';
 
     return this.http.get(url, {
