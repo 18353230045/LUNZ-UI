@@ -58,8 +58,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.getProfile();
     }
 
-    this.idleHandle$ = this.createSubscriptionService.currentData.subscribe(currentData => {
-      if (currentData !== '') this.logout();
+    this.idleHandle$ = this.createSubscriptionService.idle$.subscribe(current => {
+      if (current !== '') {
+        this.logout();
+      }
     });
 
   }

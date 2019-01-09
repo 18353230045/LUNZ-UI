@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateSubscriptionService {
-  $idle = new BehaviorSubject('');
-  currentData = this.$idle.asObservable();
+  idle$ = new Subject();
 
   constructor() { }
 
-  publishSubscribeIdle(val?: string) {
-    this.$idle.next(val);
-  }
 }

@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
   freeTime: number = environment.freeTime;
 
   constructor(
-    private idle: Idle,
+    public idle: Idle,
     private router: Router,
     private titleService: Title,
     private i18nService: I18nService,
@@ -96,7 +96,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Callback after timeout.
     this.onTimeout$ = this.idle.onTimeout.subscribe(() => {
-      this.createSubscriptionService.publishSubscribeIdle('idle');
+      this.createSubscriptionService.idle$.next('idle');
       this.idle.stop();
       this.idleWatch = false;
       this.countdown = undefined;
