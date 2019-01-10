@@ -7,20 +7,17 @@ declare const OSS: any;
   templateUrl: './file-upload-oss.component.html',
   styleUrls: ['./file-upload-oss.component.scss']
 })
-
 export class FileUploadOssComponent implements OnInit {
-
-  // configuration parameter
+  @Input() fileSize?: number;
+  @Input() fileNumber?: number = 10;
   @Input() region: string;
   @Input() accessKeyId: string;
   @Input() accesskey: string;
   @Input() bucket: string;
-  @Input() type?: any = 'rectangle';
-  @Input() uploadButton?: Boolean = false;
-  @Input() accept?: String = '*';
-  @Input() fileSize?: Number;
-  @Input() fileNumber?: Number = 10;
-  @Input() uploadButtonBg?: String = 'btn-success';
+  @Input() accept?: string = '*';
+  @Input() type?: string = 'rectangle';
+  @Input() uploadButtonBg?: string = 'btn-success';
+  @Input() uploadButton?: boolean = false;
 
   @Output() uploadStatus = new EventEmitter();
 
@@ -30,9 +27,13 @@ export class FileUploadOssComponent implements OnInit {
   client: any;
   filesList: any[] = [];
   randomId: number;
-  isDisabledUploadButton: Boolean = true;
+  isDisabledUploadButton: boolean = true;
+  isFirefox: boolean = false;
 
-  constructor() { this.randomId = Math.random(); }
+  constructor() {
+    this.randomId = Math.random();
+    this.isFirefox = /Firefox/.test(navigator.userAgent);
+  }
 
   ngOnInit() {
     this.client = new OSS.Wrapper({
@@ -43,7 +44,7 @@ export class FileUploadOssComponent implements OnInit {
     });
   }
 
-  // isDisabledUploadButton
+  // IsDisabledUploadButton
   isDisabled() {
     if (this.filesList.length === 0) {
       this.isDisabledUploadButton = true;
@@ -58,7 +59,7 @@ export class FileUploadOssComponent implements OnInit {
     }
   }
 
-  // filter file type
+  // Filter file type
   filterFileType(files: any[]) {
     return new Promise((resolve) => {
       const filesFilter: any[] = [];
@@ -77,7 +78,7 @@ export class FileUploadOssComponent implements OnInit {
     });
   }
 
-  // filter file size
+  // Filter file size
   filterFileSize(files: any[]) {
     const filesFilter: any[] = [];
     return new Promise((resolve) => {
@@ -95,7 +96,7 @@ export class FileUploadOssComponent implements OnInit {
     });
   }
 
-  // filter file number
+  // Filter file number
   filterFileNumber(files: any[]) {
     return new Promise((resolve) => {
       if (files.length > this.fileNumber) {
@@ -117,6 +118,7 @@ export class FileUploadOssComponent implements OnInit {
               filesA['remove'] = false;
               filesA['percent'] = 0;
               filesA['isLoad'] = false;
+              filesA['status'] = 'ready';
             }
             resolve(filesArr);
           });
@@ -137,14 +139,19 @@ export class FileUploadOssComponent implements OnInit {
         this.uploadFile();
       }
     });
+
+    setTimeout(() => {
+      this.input1.nativeElement.value = null;
+      this.input2.nativeElement.value = null;
+    }, 300);
   }
 
-  // dragover preventDefault
+  // Dragover preventDefault
   dragover($event: any) {
     $event.preventDefault();
   }
 
-  // remove files
+  // Remove files
   removeFile(index: number) {
     this.filesList[index]['removeAnimation'] = 'fadeOutRight';
     setTimeout(() => {
@@ -153,15 +160,14 @@ export class FileUploadOssComponent implements OnInit {
     }, 300);
   }
 
-  // upload files
+  // Upload files
   uploadFile() {
     for (const file of this.filesList) {
-      if (file.isLoad) {
-        continue;
-      }
+      if (file.isLoad) continue;
 
       const index = file.name.lastIndexOf('.');
       const key = `${file.name.substring(0, index)}|${new Date().valueOf()}|${Math.random()}`;
+      file['status'] = 'loading';
 
       const progress = function (pro: any) {
         return function (done: any) {
@@ -181,7 +187,6 @@ export class FileUploadOssComponent implements OnInit {
           file['href'] = href;
         }
         file['status'] = 'success';
-        file['displaySize'] = file['size'];
         this.uploadStatus.emit(res);
       })).catch((reason: any) => {
         file['status'] = 'error';
