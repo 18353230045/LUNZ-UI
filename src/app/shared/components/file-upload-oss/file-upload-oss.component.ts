@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 declare const OSS: any;
 
@@ -24,9 +24,12 @@ export class FileUploadOssComponent implements OnInit {
 
   @Output() uploadStatus = new EventEmitter();
 
+  @ViewChild(`input1`) input1: ElementRef;
+  @ViewChild(`input2`) input2: ElementRef;
+
   client: any;
   filesList: any[] = [];
-  randomId: any;
+  randomId: number;
   isDisabledUploadButton: Boolean = true;
 
   constructor() { this.randomId = Math.random(); }
@@ -122,23 +125,10 @@ export class FileUploadOssComponent implements OnInit {
     });
   }
 
-  // click select files
-  clickSelectFiles($event: any) {
-    this.handleFiles($event.target.files).then((file: any[]) => {
-      this.filesList.push(...file);
-    }).then(() => {
-      this.isDisabled();
-    }).then(() => {
-      if (!this.uploadButton) {
-        this.uploadFile();
-      }
-    });
-  }
-
-  // drop select files
-  dropSelectFiles($event: any) {
+  // Select files
+  selectFiles($event: any) {
     $event.preventDefault();
-    this.handleFiles($event.dataTransfer.files).then((file: any[]) => {
+    this.handleFiles($event.target.files || $event.dataTransfer.files).then((file: any[]) => {
       this.filesList.push(...file);
     }).then(() => {
       this.isDisabled();
@@ -198,5 +188,7 @@ export class FileUploadOssComponent implements OnInit {
         this.uploadStatus.emit(reason);
       });
     }
+    this.input1.nativeElement.value = null;
+    this.input2.nativeElement.value = null;
   }
 }
