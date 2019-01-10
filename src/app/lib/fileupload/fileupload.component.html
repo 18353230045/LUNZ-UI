@@ -5,7 +5,7 @@
         [disabled]="disabled" (focus)="onFocus()" (blur)="onBlur()">
     </span>
     <button *ngIf="!auto&&showUploadButton" type="button" [label]="uploadLabel" icon="pi pi-upload" pButton (click)="upload()"
-      [disabled]="!hasFiles()">
+      [disabled]="!hasFiles()||!hasNoUpload">
     </button>
     <button *ngIf="!auto&&showCancelButton" type="button" [label]="cancelLabel" icon="pi pi-times" pButton (click)="clear()"
       [disabled]="!hasFiles()">
@@ -19,7 +19,7 @@
       <div *ngIf="!fileTemplate">
         <div *ngFor="let file of files; let i=index;" [ngStyle]="{'margin-top':i>0?'10px':'0'}">
           <p class="file-item-p">
-            <img [src]="file['objectURL']" *ngIf="isImage(file)" [width]="40" />
+            <img [src]="file['objectURL']" *ngIf="isImage(file)" [width]="40" [height]="40" />
             <span *ngIf="!file.url">{{file.name}}</span>
             <span *ngIf="file.url"> <a [href]="file['url']" target="_blank">{{file.name}}</a> </span>
             <span>{{formatSize(file.size)}}</span>

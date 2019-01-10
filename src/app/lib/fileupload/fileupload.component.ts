@@ -4,9 +4,9 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { DomHandler } from 'primeng/components/dom/domhandler';
-import { Message } from 'primeng/components/common/message';
 import { PrimeTemplate } from 'primeng/shared';
+import { Message } from 'primeng/components/common/message';
+import { DomHandler } from 'primeng/components/dom/domhandler';
 import { BlockableUI } from 'primeng/components/common/blockableui';
 
 @Component({
@@ -17,29 +17,29 @@ import { BlockableUI } from 'primeng/components/common/blockableui';
 })
 export class FileUpload implements OnInit, AfterViewInit, AfterContentInit, OnDestroy, BlockableUI {
   @Input() files: File[];
+  @Input() style: any;
+  @Input() auto: boolean;
+  @Input() multiple: boolean;
+  @Input() disabled: boolean;
+  @Input() customUpload: boolean;
+  @Input() withCredentials: boolean;
+  @Input() showUploadButton: boolean = true;
+  @Input() showCancelButton: boolean = true;
+  @Input() maxFileSize: number;
+  @Input() previewWidth: number = 50;
   @Input() name: string;
   @Input() url: string;
-  @Input() method: string = 'POST';
-  @Input() multiple: boolean;
   @Input() accept: string;
-  @Input() disabled: boolean;
-  @Input() auto: boolean;
-  @Input() withCredentials: boolean;
-  @Input() maxFileSize: number;
-  @Input() invalidFileSizeMessageSummary: string = '{0}: Invalid file size, ';
-  @Input() invalidFileSizeMessageDetail: string = 'maximum upload size is {0}.';
-  @Input() invalidFileTypeMessageSummary: string = '{0}: Invalid file type, ';
-  @Input() invalidFileTypeMessageDetail: string = 'allowed file types: {0}.';
-  @Input() style: any;
   @Input() styleClass: string;
-  @Input() previewWidth: number = 50;
+  @Input() method: string = 'POST';
+  @Input() mode: string = 'advanced';
   @Input() chooseLabel: string = 'Choose';
   @Input() uploadLabel: string = 'Upload';
   @Input() cancelLabel: string = 'Cancel';
-  @Input() showUploadButton: boolean = true;
-  @Input() showCancelButton: boolean = true;
-  @Input() mode: string = 'advanced';
-  @Input() customUpload: boolean;
+  @Input() invalidFileTypeMessageDetail: string = 'allowed file types: {0}.';
+  @Input() invalidFileTypeMessageSummary: string = '{0}: Invalid file type, ';
+  @Input() invalidFileSizeMessageDetail: string = 'maximum upload size is {0}.';
+  @Input() invalidFileSizeMessageSummary: string = '{0}: Invalid file size, ';
 
   @Output() onBeforeUpload: EventEmitter<any> = new EventEmitter();
   @Output() onBeforeSend: EventEmitter<any> = new EventEmitter();
@@ -58,12 +58,13 @@ export class FileUpload implements OnInit, AfterViewInit, AfterContentInit, OnDe
   @ViewChild('content') content: ElementRef;
 
   public progress: number = 0;
-  public dragHighlight: boolean;
   public msgs: Message[];
   public fileTemplate: TemplateRef<any>;
   public contentTemplate: TemplateRef<any>;
   public toolbarTemplate: TemplateRef<any>;
   public focus: boolean;
+  public dragHighlight: boolean;
+  public hasNoUpload: boolean = false;
   public duplicateIEEvent: boolean;  // flag to recognize duplicate onchange event for file input
 
   constructor(
@@ -106,8 +107,8 @@ export class FileUpload implements OnInit, AfterViewInit, AfterContentInit, OnDe
       this.duplicateIEEvent = false;
       return;
     }
-
     this.msgs = [];
+    this.hasNoUpload = true;
     // if (!this.multiple) this.files = [];
 
     const files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
@@ -211,47 +212,50 @@ export class FileUpload implements OnInit, AfterViewInit, AfterContentInit, OnDe
     if (this.customUpload) {
       this.uploadHandler.emit({ files: this.files });
     } else {
-      this.msgs = [];
+      if (this.hasNoUpload) {
+        this.hasNoUpload = false;
+        this.msgs = [];
+        for (let i = 0; i < this.files.length; i++) {
+          if (this.files[i]['status'] === 'ready') {
+            const xhr = new XMLHttpRequest();
+            const formData = new FormData();
 
-      for (let i = 0; i < this.files.length; i++) {
-        if (this.files[i]['status'] === 'ready') {
-          const xhr = new XMLHttpRequest();
-          const formData = new FormData();
+            formData.append(this.name, this.files[i], this.files[i].name);
 
-          formData.append(this.name, this.files[i], this.files[i].name);
+            this.onBeforeUpload.emit({ 'xhr': xhr, 'formData': formData });
 
-          this.onBeforeUpload.emit({ 'xhr': xhr, 'formData': formData });
+            xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
+              if (e.lengthComputable) { this.files[i]['progress'] = Math.round((e.loaded * 100) / e.total); }
 
-          xhr.upload.addEventListener('progress', (e: ProgressEvent) => {
-            if (e.lengthComputable) { this.files[i]['progress'] = Math.round((e.loaded * 100) / e.total); }
+              this.onProgress.emit({ originalEvent: e, progress: this.files });
+            }, false);
 
-            this.onProgress.emit({ originalEvent: e, progress: this.files });
-          }, false);
+            xhr.onreadystatechange = (event) => {
+              if (xhr.readyState === 4) {
 
-          xhr.onreadystatechange = (event) => {
-            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                  const response = JSON.parse(xhr.response);
+                  this.files[i]['url'] = response.Data.FullUrl;
+                  this.files[i]['status'] = 'successfully';
 
-              if (xhr.status >= 200 && xhr.status < 300) {
-                const response = JSON.parse(xhr.response);
-                this.files[i]['url'] = response.Data.FullUrl;
-                this.files[i]['status'] = 'successfully';
-
-                this.onUpload.emit({ xhr: xhr, files: this.files });
-              } else {
-                this.files[i]['status'] = 'failed';
-                this.onError.emit({ xhr: xhr, files: this.files });
+                  this.onUpload.emit({ xhr: xhr, files: this.files });
+                } else {
+                  this.files[i]['status'] = 'failed';
+                  this.onError.emit({ xhr: xhr, files: this.files });
+                }
               }
-            }
-          };
+            };
 
-          xhr.open(this.method, this.url, true);
+            xhr.open(this.method, this.url, true);
 
-          this.onBeforeSend.emit({ 'xhr': xhr, 'formData': formData });
+            this.onBeforeSend.emit({ 'xhr': xhr, 'formData': formData });
 
-          xhr.withCredentials = this.withCredentials;
+            xhr.withCredentials = this.withCredentials;
 
-          xhr.send(formData);
+            xhr.send(formData);
+          }
         }
+
       }
     }
   }
