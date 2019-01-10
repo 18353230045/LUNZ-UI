@@ -96,7 +96,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Callback after timeout.
     this.onTimeout$ = this.idle.onTimeout.subscribe(() => {
-      this.createSubscriptionService.idle$.next('idle');
+      this.createSubscriptionService.idle$.next();
       this.idle.stop();
       this.idleWatch = false;
       this.countdown = undefined;

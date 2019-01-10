@@ -10,15 +10,14 @@ import { AuthenticationService, AuthenticationOAuth2Service } from '@app/core';
   templateUrl: './sign-in-callback.component.html',
   styleUrls: ['./sign-in-callback.component.scss']
 })
-
 export class SignInCallbackComponent implements OnInit {
   loading: boolean;
   success: boolean;
 
   constructor(
-    private authenticationOAuth2Service: AuthenticationOAuth2Service,
     private router: Router,
-    private injector: Injector) {
+    private injector: Injector,
+    private authenticationOAuth2Service: AuthenticationOAuth2Service) {
     this.loading = true;
   }
 
