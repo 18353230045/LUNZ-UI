@@ -64,17 +64,15 @@
   <!-- body -->
   <div class="m-portlet__body p-0">
     <div class="container-fluid">
-      <div class="row">
+      <div class="row" [ngStyle]="{'min-height':'530px'}">
         <div class="col-lg-3 col-md-3 col-sm-3">
-          <div [ngStyle]="{'height':'480px'}">
-            <ng-select [ngStyle]="{'margin':'2px 0'}" [options]="mechanismList" (selected)="getRootDepertList($event)"
-              placeholder="--请选择机构--">
-            </ng-select>
-            <p-tree *ngIf="nodeTrees.length>0" [value]="nodeTrees" selectionMode="single" [(selection)]="selectedNode"
-              (onNodeExpand)="getDeperChildtList($event)" (onNodeSelect)="nodeSelect($event)" [loading]="loadingTree"
-              [style]="{'width':'100%','max-height':'450px','overflow':'auto'}">
-            </p-tree>
-          </div>
+          <ng-select [ngStyle]="{'margin':'2px 0'}" [options]="mechanismList" (selected)="getRootDepertList($event)"
+            placeholder="--请选择机构--">
+          </ng-select>
+          <p-tree *ngIf="nodeTrees.length>0" [value]="nodeTrees" selectionMode="single" [(selection)]="selectedNode"
+            (onNodeExpand)="getDeperChildtList($event)" (onNodeSelect)="nodeSelect($event)" [loading]="loadingTree"
+            [style]="{'width':'100%','max-height':'450px','overflow':'auto'}">
+          </p-tree>
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9" [ngStyle]="{'padding':'0'}">
           <ngx-datatable class="material" [scrollbarH]="true" (select)="onSelect($event)" [rows]="roleUsers"
