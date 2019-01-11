@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
-import { filter } from 'rxjs/operators';
+import { timer, fromEvent, Subscription } from 'rxjs';
+import { filter, debounceTime } from 'rxjs/operators';
 
 declare const $: any;
 
@@ -10,32 +11,33 @@ declare const $: any;
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss']
 })
-
-export class TabsComponent implements OnInit {
+export class TabsComponent implements OnInit, OnDestroy {
   tabs: any[] = [];
   tabActive: string;
   showMoveIcon: boolean = true;
   disableLeftMoveIcon: boolean = true;
   disableRightMoveIcon: boolean = true;
+  windowResize$: Subscription;
 
-  constructor(
-    private router: Router) {
+  constructor(private router: Router) {
     this.init();
   }
 
   ngOnInit() {
-    $(window).resize(() => {
-      setTimeout(() => {
-        const activeUrl = sessionStorage.getItem('activeUrl');
-        this.movingTabToVisualArea(activeUrl).then(() => {
-          this.isShowMoveTabIcon().then(() => {
-            this.isDisableLeftMoveIcon().then(() => {
-              this.isDisableRightMoveIcon();
+    this.windowResize$ = fromEvent(window, 'resize')
+      .pipe(debounceTime(200))
+      .subscribe(() => {
+        timer(500).subscribe(() => {
+          const activeUrl = sessionStorage.getItem('activeUrl');
+          this.movingTabToVisualArea(activeUrl).then(() => {
+            this.isShowMoveTabIcon().then(() => {
+              this.isDisableLeftMoveIcon().then(() => {
+                this.isDisableRightMoveIcon();
+              });
             });
           });
         });
-      }, 500);
-    });
+      });
   }
 
   // Is have
@@ -70,10 +72,10 @@ export class TabsComponent implements OnInit {
   // Add tab
   addTab(activeUrl: string) {
     return new Promise((resolve) => {
-      const timer = setInterval(() => {
+      const interval = setInterval(() => {
         const allModule = JSON.parse(localStorage.getItem('moduleTree'));
         if (allModule !== null) {
-          clearInterval(timer);
+          clearInterval(interval);
           if (this.isHave(activeUrl)) {
             this.movingTabToVisualArea(activeUrl).then(() => {
               this.isShowMoveTabIcon().then(() => {
@@ -102,7 +104,7 @@ export class TabsComponent implements OnInit {
             }
           }
         }
-      }, 200);
+      }, 50);
     });
   }
 
@@ -172,14 +174,14 @@ export class TabsComponent implements OnInit {
   isRenderingcompletion() {
     return new Promise((resolve) => {
       const allTabDomOldLength = $('.lz-tabs-item-lhg').length;
-      const timer = setInterval(() => {
+      const interval = setInterval(() => {
         const allTabDomNew = $('.lz-tabs-item-lhg');
         const allTabDomNewLength = allTabDomNew.length;
         if ((allTabDomOldLength + 1 === allTabDomNewLength) || (allTabDomOldLength === allTabDomNewLength)) {
-          clearInterval(timer);
+          clearInterval(interval);
           resolve();
         }
-      }, 200);
+      }, 50);
     });
   }
 
@@ -202,24 +204,16 @@ export class TabsComponent implements OnInit {
       if (direction === 'left') { // to left
         const afterMarginRight = marginLeft - 300;
         if (afterMarginRight <= minMarginLeft) {
-          tabContinerDom.animate({ 'margin-left': `${minMarginLeft}px` }, 400, () => {
-            resolve();
-          });
+          tabContinerDom.animate({ 'margin-left': `${minMarginLeft}px` }, 400, () => resolve());
         } else {
-          tabContinerDom.animate({ 'margin-left': `${afterMarginRight}px` }, 400, () => {
-            resolve();
-          });
+          tabContinerDom.animate({ 'margin-left': `${afterMarginRight}px` }, 400, () => resolve());
         }
       } else if (direction === 'right') { // to right
         const afterMarginLeft = marginLeft + 300;
         if (afterMarginLeft >= 0 || afterMarginLeft > -50) {
-          tabContinerDom.animate({ 'margin-left': '0px' }, 400, () => {
-            resolve();
-          });
+          tabContinerDom.animate({ 'margin-left': '0px' }, 400, () => resolve());
         } else {
-          tabContinerDom.animate({ 'margin-left': afterMarginLeft + 'px' }, 400, () => {
-            resolve();
-          });
+          tabContinerDom.animate({ 'margin-left': afterMarginLeft + 'px' }, 400, () => resolve());
         }
       }
     });
@@ -342,10 +336,10 @@ export class TabsComponent implements OnInit {
     this.tabs.length = 0;
     this.tabs = tabsArray;
     $('#lz-tabs-continer-ul').css('margin-left', '0px');
-    const timer = setInterval(() => {
+    const interval = setInterval(() => {
       const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
       if (marginLeft === '0px') {
-        clearInterval(timer);
+        clearInterval(interval);
         this.movingTabToVisualArea(activeUrl).then(() => {
           this.isShowMoveTabIcon().then(() => {
             this.isDisableLeftMoveIcon().then(() => {
@@ -354,7 +348,7 @@ export class TabsComponent implements OnInit {
           });
         });
       }
-    }, 200);
+    }, 50);
   }
 
   // Remove left tabs
@@ -374,10 +368,10 @@ export class TabsComponent implements OnInit {
     this.tabs.length = 0;
     this.tabs = tabsArray;
     $('#lz-tabs-continer-ul').css('margin-left', '0px');
-    const timer = setInterval(() => {
+    const interval = setInterval(() => {
       const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
       if (marginLeft === '0px') {
-        clearInterval(timer);
+        clearInterval(interval);
         this.movingTabToVisualArea(activeUrl).then(() => {
           this.isShowMoveTabIcon().then(() => {
             this.isDisableLeftMoveIcon().then(() => {
@@ -386,7 +380,7 @@ export class TabsComponent implements OnInit {
           });
         });
       }
-    }, 200);
+    }, 50);
   }
 
   // Remove all tabs
@@ -401,16 +395,20 @@ export class TabsComponent implements OnInit {
     this.tabs.push(activeItem);
 
     $('#lz-tabs-continer-ul').css('margin-left', '0px');
-    const timer = setInterval(() => {
+    const interval = setInterval(() => {
       const modeDomLength = $('.lz-tabs-item-lhg').length;
       if (modeDomLength === 1 && $('#lz-tabs-continer-ul').css('margin-left') === '0px') {
-        clearInterval(timer);
+        clearInterval(interval);
         this.isShowMoveTabIcon().then(() => {
           this.isDisableLeftMoveIcon().then(() => {
             this.isDisableRightMoveIcon();
           });
         });
       }
-    }, 200);
+    }, 50);
+  }
+
+  ngOnDestroy() {
+    this.windowResize$.unsubscribe();
   }
 }
