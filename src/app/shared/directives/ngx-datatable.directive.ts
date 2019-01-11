@@ -4,16 +4,12 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
-import { ColumnMode, SortType } from '@swimlane/ngx-datatable/release/types';
+import { timer } from 'rxjs';
 import { NgxQueryComponent, cloneQueryGroup } from 'ngx-query';
 import { DatatableFooterComponent } from 'ngx-datatable-footer';
 import { NgxDatatableActionsComponent } from 'ngx-datatable-actions';
-
-import { timer } from 'rxjs';
-
-// import { QueryComponent } from '@zhongruigroup/ngx-query/query.component';
-// import { cloneQueryGroup } from '@zhongruigroup/ngx-query/utils/query-helper';
+import { ColumnMode, SortType } from '@swimlane/ngx-datatable/release/types';
+import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
 
 declare const $: any;
 
@@ -25,10 +21,10 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
 
   @Output() data: EventEmitter<any> = new EventEmitter();
 
-  @Input() ngxQuery: NgxQueryComponent;
   @Input() rowHeight = 44;
-  @Input() externalPaging = true;
   @Input() saveState = true;
+  @Input() externalPaging = true;
+  @Input() ngxQuery: NgxQueryComponent;
   @Input()
   set pageSize(val: number) {
     if (val < 1) {
@@ -57,16 +53,15 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
   get pageIndex(): number {
     return this._pageIndex;
   }
-  @ContentChild(DatatableFooterComponent)
-  footer: DatatableFooterComponent;
-  @ContentChild(NgxDatatableActionsComponent)
-  toolbar: NgxDatatableActionsComponent;
 
-  private _datatable: DatatableComponent;
+  @ContentChild(DatatableFooterComponent) footer: DatatableFooterComponent;
+  @ContentChild(NgxDatatableActionsComponent) toolbar: NgxDatatableActionsComponent;
+
   private _pageSize = 10;
   private _pageIndex = 1;
   private _sorts: any[] = [];
   private _tempQueryTemplates: any;
+  private _datatable: DatatableComponent;
 
   constructor(
     private _view: ViewContainerRef,
@@ -90,9 +85,7 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
   // 解决Edge浏览器下，ngx-datatable组件header处有'null'空值的现象
   public removeHeaderNull() {
     $('.datatable-header-cell-label').each(function () {
-      if ($(this).text() === 'null') {
-        $(this).remove();
-      }
+      if ($(this).text() === 'null') $(this).remove();
     });
   }
 
@@ -103,19 +96,20 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
   private initialize(datatable: DatatableComponent, ngxQuery: NgxQueryComponent): void {
 
     // datatable
-    datatable.externalPaging = this.externalPaging;
-    datatable.columnMode = ColumnMode.force;
-    datatable.scrollbarV = false;
-    datatable.rowHeight = this.rowHeight;
     datatable.headerHeight = 40;
     datatable.footerHeight = 40;
-    datatable.sortType = SortType.multi;
+    datatable.scrollbarV = false;
     datatable.limit = this._pageSize;
+    datatable.sortType = SortType.multi;
+    datatable.rowHeight = this.rowHeight;
     datatable.offset = this._pageIndex - 1;
+    datatable.columnMode = ColumnMode.force;
+    datatable.externalPaging = this.externalPaging;
 
     if (this.footer) {
       this.footer.datatable = datatable;
     }
+
     if (this._sorts && this._sorts.length > 0) {
       datatable.sorts = this._sorts;
     }
@@ -129,6 +123,7 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
     datatable.page.subscribe((event: any) => {
       if (event.offset || event.offset === 0) this.emitData(event);
     });
+
     datatable.sort.subscribe((event: any) => {
       this.emitData(undefined, event.sorts);
     });
@@ -202,6 +197,7 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
       };
       sessionStorage.setItem(this.router.url + '|saveState|dt', JSON.stringify(paging));
     }
+
     // event
     this.data.emit({
       datatable: this._datatable,
@@ -272,7 +268,6 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
         name: this.ngxQuery.queryTemplates[0].name,
         template: cloneQueryGroup(this.ngxQuery.queryTemplates[0].template)
       }];
-
     }
 
     const paging = JSON.parse(sessionStorage.getItem(this.router.url + '|saveState|dt'));
