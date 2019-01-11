@@ -27,8 +27,8 @@ export class FileUpload implements OnInit, AfterViewInit, AfterContentInit, OnDe
   @Input() showCancelButton: boolean = true;
   @Input() maxFileSize: number;
   @Input() previewWidth: number = 50;
-  @Input() name: string;
   @Input() url: string;
+  @Input() name: string;
   @Input() accept: string;
   @Input() styleClass: string;
   @Input() method: string = 'POST';
@@ -41,15 +41,15 @@ export class FileUpload implements OnInit, AfterViewInit, AfterContentInit, OnDe
   @Input() invalidFileSizeMessageDetail: string = 'maximum upload size is {0}.';
   @Input() invalidFileSizeMessageSummary: string = '{0}: Invalid file size, ';
 
-  @Output() onBeforeUpload: EventEmitter<any> = new EventEmitter();
-  @Output() onBeforeSend: EventEmitter<any> = new EventEmitter();
-  @Output() onUpload: EventEmitter<any> = new EventEmitter();
   @Output() onError: EventEmitter<any> = new EventEmitter();
   @Output() onClear: EventEmitter<any> = new EventEmitter();
+  @Output() onUpload: EventEmitter<any> = new EventEmitter();
   @Output() onRemove: EventEmitter<any> = new EventEmitter();
   @Output() onSelect: EventEmitter<any> = new EventEmitter();
   @Output() onProgress: EventEmitter<any> = new EventEmitter();
+  @Output() onBeforeSend: EventEmitter<any> = new EventEmitter();
   @Output() uploadHandler: EventEmitter<any> = new EventEmitter();
+  @Output() onBeforeUpload: EventEmitter<any> = new EventEmitter();
 
   @ContentChildren(PrimeTemplate) templates: QueryList<any>;
 
