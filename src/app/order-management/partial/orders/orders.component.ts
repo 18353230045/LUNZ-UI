@@ -40,18 +40,17 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     }
   }];
 
-  @ViewChild('appNgxDataTable')
-  ngxDataTable: NgxDataTableDirective;
+  @ViewChild('appNgxDataTable') ngxDataTable: NgxDataTableDirective;
 
   public datatable: DatatableComponent;
 
   constructor(
-    private localeService: BsLocaleService,
-    private ordersService: OrdersService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private loggerFactory: LoggerFactory,
     private dialogs: Dialogs,
-    private modalService: BsModalService) {
+    private ordersService: OrdersService,
+    private modalService: BsModalService,
+    private loggerFactory: LoggerFactory,
+    private localeService: BsLocaleService,
+    private changeDetectorRef: ChangeDetectorRef) {
     this.log = this.loggerFactory.getLogger(`订单列表`);
     this.localeService.use('zh-cn');
   }
@@ -81,9 +80,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
         this.orders = response.data;
 
         this.log.debug('订单列表', this.orders);
-      }, error => {
-        this.log.error('订单获取失败。', error);
-      });
+      }, error => this.log.error('订单获取失败。', error));
   }
 
   // 使用简洁翻页组件时，获取总条数

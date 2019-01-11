@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { map } from 'rxjs/operators';
 
-import { LoggerFactory } from '@core/logger-factory.service';
 import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
 import { OrdersService } from '../../shared/orders.service';
 
 @Component({
@@ -15,7 +15,6 @@ import { OrdersService } from '../../shared/orders.service';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-
   log: Logger;
   title = '订单详细';
   form: FormGroup;
@@ -27,16 +26,14 @@ export class OrderComponent implements OnInit {
   ];
 
   constructor(
+    public location: Location,
     private route: ActivatedRoute,
-    private ordersService: OrdersService,
     private loggerFactory: LoggerFactory,
-    public location: Location) {
+    private ordersService: OrdersService) {
     this.log = this.loggerFactory.getLogger(`订单详情`);
   }
 
-  ngOnInit() {
-    this.load();
-  }
+  ngOnInit() { this.load(); }
 
   private load() {
     this.route.params.pipe(map(params => params.id))

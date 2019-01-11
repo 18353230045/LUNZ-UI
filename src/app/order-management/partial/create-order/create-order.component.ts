@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { LoggerFactory } from '@core/logger-factory.service';
+import { finalize } from 'rxjs/operators';
 import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
 import { OrdersService } from '../../shared/orders.service';
 
 declare const lengthStorageArea: any;
@@ -15,7 +16,6 @@ declare const lengthStorageArea: any;
   styleUrls: ['../edit-order/edit-order.component.scss']
 })
 export class CreateOrderComponent implements OnInit {
-
   log: Logger;
   title = '新建订单';
   saving = false;
@@ -29,10 +29,10 @@ export class CreateOrderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private ordersService: OrdersService,
-    private loggerFactory: LoggerFactory,
     public location: Location,
-    private formBuilder: FormBuilder, ) {
+    private formBuilder: FormBuilder,
+    private ordersService: OrdersService,
+    private loggerFactory: LoggerFactory) {
     this.log = this.loggerFactory.getLogger(`创建订单`);
     this.buildForm();
   }
@@ -44,14 +44,12 @@ export class CreateOrderComponent implements OnInit {
   submit() {
     this.saving = true;
 
-    this.ordersService.createOrder(this.order).subscribe(() => {
-      this.saving = false;
-      this.router.navigate(['/orders']);
-      this.log.success('订单创建成功!');
-    }, error => {
-      this.saving = false;
-      this.log.error('订单创建失败。', error);
-    });
+    this.ordersService.createOrder(this.order)
+      .pipe(finalize(() => this.saving = false))
+      .subscribe(() => {
+        this.router.navigate(['/orders']);
+        this.log.success('订单创建成功!');
+      }, error => this.log.error('订单创建失败。', error));
   }
 
   private buildForm() {

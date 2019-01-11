@@ -41,11 +41,13 @@ export class AuthenticationGuard implements CanActivate {
     if (this.ssoServiceService.canLogin) {
       this.log.debug('Not authenticated, redirecting...');
 
-      const returnUrl: string = window.location.pathname;
       let url = '/login';
+      const returnUrl: string = window.location.pathname;
+
       if (returnUrl && returnUrl !== '/' && returnUrl !== '/dashboard') {
         url += '?ReturnUrl=' + encodeURI(returnUrl);
       }
+
       this.router.navigateByUrl(url);
 
       return false;

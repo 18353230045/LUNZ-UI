@@ -12,8 +12,8 @@ import {
   AutoFocusDirective
 } from '@app/shared';
 
-import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 import { environment } from '@env/environment';
+import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 
 export function createDecimalPipe() {
   return new DecimalPipe(environment.localeId);
@@ -41,14 +41,7 @@ export function createDecimalPipe() {
     FileUploadOssComponent,
     VehicleSelectionComponent,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   exports: [
-    ThirdPartyModule,
-
-    HostComponent,
-    FileUploadOssComponent,
-    VehicleSelectionComponent,
-
     RmbPipe,
     ToFixedPipe,
     RemoveSpacePipe,
@@ -56,8 +49,15 @@ export function createDecimalPipe() {
 
     LaddaDirective,
     AutoFocusDirective,
-    NgxDataTableDirective
+    NgxDataTableDirective,
+
+    HostComponent,
+    FileUploadOssComponent,
+    VehicleSelectionComponent,
+
+    ThirdPartyModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [createBsDatepickerConfigProvider()]
 })
 export class SharedModule {

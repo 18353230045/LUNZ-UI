@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { WebApiResultResponse, PagingResponse } from '../../core/http/web-api-result-response';
+import { WebApiResultResponse, PagingResponse } from '@core/http/web-api-result-response';
 
 @Injectable({
   providedIn: 'root'

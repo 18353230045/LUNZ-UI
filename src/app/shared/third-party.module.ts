@@ -15,8 +15,8 @@ import { ZrProgressModule } from 'zr-progress';
 import { ZrDatepickerModule } from 'zr-datepicker';
 import { NgxQueryToolbarModule } from 'ngx-query-toolbar';
 import { MomentModule } from 'angular2-moment/moment.module';
-import { ZrSelectSelectionModule } from 'zr-select-selection';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ZrSelectSelectionModule } from 'zr-select-selection';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxDatatableFooterModule } from 'ngx-datatable-footer';
 import { NgxDatatableActionsModule } from 'ngx-datatable-actions';
@@ -46,7 +46,7 @@ import { ZrValidationMessageModule } from 'zr-validation-message';
     ZrSelectSelectionModule,
     NgxDatatableFooterModule,
     NgxDatatableActionsModule,
-    ZrValidationMessageModule,
+    ZrValidationMessageModule
   ]
 })
 export class ThirdPartyModule { }

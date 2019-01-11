@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { AuthenticationService } from '@core/authentication/authentication.service';
 import { environment } from '@env/environment';
 import { WebApiResultResponse } from '@core/http/web-api-result-response';
+import { AuthenticationService } from '@core/authentication/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +15,12 @@ export class VehicleService extends WebApiResultResponse {
 
   constructor(
     private http: HttpClient,
-    private authenticationService: AuthenticationService,
-  ) {
+    private authenticationService: AuthenticationService) {
     super();
   }
 
   // 获取字母表
-  letterList(): Array<any> {
+  letterList(): string[] {
     return ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
       'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   }
@@ -50,7 +49,6 @@ export class VehicleService extends WebApiResultResponse {
         'authToken': this.authenticationService.credentials.token,
         'parentId': parentId,
         'query': ' '
-
       }
     }).pipe(map(super.handleSuccess), catchError(super.handleError));
   }

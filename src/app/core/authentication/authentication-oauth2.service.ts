@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { UserManager, User, Log } from 'oidc-client';
 import { environment } from '@env/environment';
+import { UserManager, User, Log } from 'oidc-client';
 
 @Injectable()
 export class AuthenticationOAuth2Service {
@@ -10,8 +10,8 @@ export class AuthenticationOAuth2Service {
   private _userManager: UserManager;
 
   constructor() {
-    this._userManager = new UserManager(environment.odic.config);
     Log.logger = console;
+    this._userManager = new UserManager(environment.odic.config);
   }
 
   isUsing(): boolean {

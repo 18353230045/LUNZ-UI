@@ -5,8 +5,8 @@ import { cloneDeep } from 'lodash';
 import { finalize } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
-import { LoggerFactory } from '@core/logger-factory.service';
 import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
 import { OrdersService } from '../../shared/orders.service';
 
 @Component({
@@ -29,29 +29,27 @@ export class EditOrderModalComponent implements OnInit {
   ];
 
   constructor(
+    public activeModal: BsModalRef,
+    private formBuilder: FormBuilder,
     private ordersService: OrdersService,
     private loggerFactory: LoggerFactory,
-    private formBuilder: FormBuilder,
-    public activeModal: BsModalRef,
     public modalService: BsModalService) {
     this.log = this.loggerFactory.getLogger('订单编辑');
     this.buildForm();
   }
 
-  ngOnInit() {
-    this.middleVariable = cloneDeep(this.data);
-  }
+  ngOnInit() { this.middleVariable = cloneDeep(this.data); }
 
   submit() {
     this.saving = true;
     this.ordersService.updateOrder(this.middleVariable)
-      .pipe(finalize(() => { this.saving = false; }))
+      .pipe(finalize(() => this.saving = false))
       .subscribe(() => {
         this.modalService.onHidden.emit(this.middleVariable);
         this.activeModal.hide();
 
         this.log.success(`订单编辑成功!`);
-      }, error => { this.log.error('订单保存失败。', error); });
+      }, error => this.log.error('订单保存失败。', error));
   }
 
   private buildForm() {

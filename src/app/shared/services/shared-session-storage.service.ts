@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { timer } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -65,9 +67,9 @@ export class SharedSessionStorageService {
   }
 
   private refresh() {
-    window.setTimeout(() => {
+    timer(this._duration * 1000).subscribe(() => {
       this.setData(this.getData());
       this.refresh();
-    }, this._duration * 1000);
+    });
   }
 }

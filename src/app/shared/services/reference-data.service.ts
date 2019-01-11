@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { WebApiResultResponse } from '@app/core';
 import { IHearFromDetails } from '@app/shared';
+import { WebApiResultResponse } from '@app/core';
 
 @Injectable({
   providedIn: 'root'

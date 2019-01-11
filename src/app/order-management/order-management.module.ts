@@ -13,10 +13,10 @@ import { EditOrderModalComponent } from './partial/edit-order-modal/edit-order-m
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     SharedModule,
+    CommonModule,
+    ReactiveFormsModule,
     OrderManagementRoutingModule
   ],
   declarations: [

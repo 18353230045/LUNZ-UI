@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
-import { SharedSessionStorageService } from '../../shared/services/shared-session-storage.service';
-import { WebApiResultResponse } from '../http/web-api-result-response';
+import { WebApiResultResponse } from '@core/http/web-api-result-response';
+import { SharedSessionStorageService } from '@app/shared/services/shared-session-storage.service';
 
 export interface Credentials {
   // Customize received credentials here
@@ -63,17 +63,17 @@ export class AuthenticationService extends WebApiResultResponse implements OnIni
       'password': context.password,
       'remember': context.remember
     };
+
     return this.http.post(url, params)
       .pipe(map((response: any) => {
         const result = super.handleSuccess(response);
-        const data = {
-          username: context.username,
-          token: result
-        };
+        const data = { username: context.username, token: result };
+
         this.setCredentials(data, context.remember);
         return data;
       }), catchError(super.handleError));
   }
+
   /**
    * Authenticates the user.
    * @param {AuthToken} authToken The login parameters.
@@ -85,10 +85,8 @@ export class AuthenticationService extends WebApiResultResponse implements OnIni
     return this.http.get(url)
       .pipe(map((response: any) => {
         const result = super.handleSuccess(response);
-        const data = {
-          username: result.userName,
-          token: result.authToken
-        };
+        const data = { username: result.userName, token: result.authToken };
+
         this.setCredentials(data);
         return data;
       }), catchError(super.handleError));
@@ -105,6 +103,7 @@ export class AuthenticationService extends WebApiResultResponse implements OnIni
     return this.http.get(url)
       .pipe(map((response: any) => {
         const result = super.handleSuccess(response);
+
         if (result) {
           this.setCredentials();
           return true;

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
 
-import { LoggerFactory } from '@core/logger-factory.service';
 import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
 import { OrdersService } from '../../shared/orders.service';
 
 declare const lengthStorageArea: any;
@@ -17,7 +17,6 @@ declare const lengthStorageArea: any;
   styleUrls: ['./edit-order.component.scss']
 })
 export class EditOrderComponent implements OnInit {
-
   log: Logger;
   title = '编辑订单';
   saving = false;
@@ -31,8 +30,8 @@ export class EditOrderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     public location: Location,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private ordersService: OrdersService,
     private loggerFactory: LoggerFactory) {
@@ -40,20 +39,16 @@ export class EditOrderComponent implements OnInit {
     this.buildForm();
   }
 
-  ngOnInit() {
-    this.load();
-  }
+  ngOnInit() { this.load(); }
 
   submit() {
     this.saving = true;
-    this.ordersService.updateOrder(this.order).subscribe(() => {
-      this.saving = false;
-      this.router.navigate(['/orders']);
-      this.log.success(`订单 ${this.order.subject} 编辑成功!`);
-    }, error => {
-      this.saving = false;
-      this.log.error(`订单 ${this.order.subject} 保存失败，失败信息:`, error);
-    });
+    this.ordersService.updateOrder(this.order)
+      .pipe(finalize(() => this.saving = false))
+      .subscribe(() => {
+        this.router.navigate(['/orders']);
+        this.log.success(`订单 ${this.order.subject} 编辑成功!`);
+      }, error => this.log.error(`订单 ${this.order.subject} 保存失败，失败信息:`, error));
   }
 
   private buildForm() {
