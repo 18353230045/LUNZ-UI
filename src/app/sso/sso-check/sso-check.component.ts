@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Injector } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { AuthenticationService } from '../../core/authentication/authentication.service';
+import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
+import { AuthenticationService, Credentials } from '@core/authentication/authentication.service';
 
 declare const URI: any;
 
@@ -11,27 +13,45 @@ declare const URI: any;
   styleUrls: ['./sso-check.component.scss']
 })
 export class SsoCheckComponent implements OnInit {
+  log: Logger;
 
-  constructor(private router: Router,
-    private route: ActivatedRoute,
-    private authenticationService: AuthenticationService) { }
+  constructor(
+    private router: Router,
+    private injector: Injector,
+    private loggerFactory: LoggerFactory,
+    private authenticationService: AuthenticationService) {
+    this.log = this.loggerFactory.getLogger();
+  }
 
   ngOnInit() {
     if (!this.authenticationService.isUsing()) {
       return;
     }
 
+    const authenticationService: AuthenticationService = this.injector.get(AuthenticationService);
+    const credentials: Credentials = authenticationService.isAuthenticated() ? authenticationService.credentials : null;
+    const token: string = credentials == null ? null : credentials.token;
+
     let returnUrl = '/';
     const uri = new URI(window.location.href);
     const queryString = uri.query();
+
     if (queryString && queryString !== null && queryString !== '') {
       const query = URI.parseQuery(queryString.toLowerCase());
+
       if (query.returnurl && query.returnurl !== null && query.returnurl !== '') {
         returnUrl = query.returnurl;
       }
+
       if (query.authtoken && query.authtoken !== null && query.authtoken !== '') {
         sessionStorage.setItem('SingleWebSiteLogin', 'Yes');
-        this.loginByAuthToken(returnUrl, query.authtoken);
+
+        if (token) {
+          this.loginByAuthToken(returnUrl, query.authtoken);
+        } else {
+          this.router.navigate(['/login']);
+        }
+
       } else {
         this.router.navigate(['/login']);
       }
@@ -42,8 +62,8 @@ export class SsoCheckComponent implements OnInit {
 
   private loginByAuthToken(returnUrl: string, authToken: string) {
     this.authenticationService.loginByAuthToken(authToken)
-      .subscribe(order => {
+      .subscribe(() => {
         this.router.navigate([returnUrl]);
-      }, error => { this.router.navigate(['/login']); });
+      }, () => this.router.navigate(['/login']));
   }
 }

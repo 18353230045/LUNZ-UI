@@ -34,7 +34,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
 
     if (authenticationService.isUsing()) {
       if (response && response['status'] && response['status'] === 401) {
-        this.log.debug('未认证，跳转登录页...');
+        this.log.info('未认证，请登录...');
         this.router.navigate(['/login']).then(() => {
           window.location.reload();
           return;

@@ -70,6 +70,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.authenticationService.logout()
         .pipe(finalize(() => {
           this.checkoutMenuActive().then(() => {
+            localStorage.clear();
+            sessionStorage.clear();
             this.router.navigate(['/login']);
           });
         })).subscribe();
