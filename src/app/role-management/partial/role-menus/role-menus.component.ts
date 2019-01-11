@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { map, finalize } from 'rxjs/operators';
+
 import { Logger } from '@core/logger.service';
 import { LoggerFactory } from '@core/logger-factory.service';
 import { RoleService } from '../../shared/role.service';
@@ -147,7 +148,7 @@ export class RoleMenusComponent implements OnInit {
     ids.forEach(id => {
       nodes.forEach(item => {
         if (id === item.id) {
-          const index = nodes.findIndex(node => { return id === node.id; });
+          const index = nodes.findIndex(node => id === node.id);
           nodes.splice(index, 1);
         } else if (item.children && item.children.length > 0) {
           this.removeNode([id], item.children);

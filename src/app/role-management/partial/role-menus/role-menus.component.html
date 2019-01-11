@@ -5,7 +5,7 @@
         <span class="m-portlet__head-icon">
           <i class="flaticon-interface-2"></i>
         </span>
-        <h3 class="m-portlet__head-text">角色</h3>
+        <h3 class="m-portlet__head-text">【{{role?.name}}】角色菜单</h3>
       </div>
     </div>
     <div class="m-portlet__head-tools">
@@ -32,13 +32,13 @@
               aria-valuemax="100" [ngStyle]="{'width':'50%'}"></div>
           </div>
           <p-tree
-            [ngStyle]="{'display':'block','margin-top':'20px'}"
             [value]="treeNodes1"
             selectionMode="checkbox"
             [(selection)]="selectedNodes1"
             (onNodeExpand)="getSelectedMenuChildrenList($event)"
             [loading]="loading1"
-            [style]="{'max-height':'400px','overflow':'auto'}">
+            [style]="{'max-height':'400px','overflow':'auto'}"
+            [ngStyle]="{'display':'block','margin-top':'20px'}">
           </p-tree>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2" [ngStyle]="{'display':'flex'}">
@@ -61,13 +61,13 @@
               aria-valuemax="100" [ngStyle]="{'width':'50%'}"></div>
           </div>
           <p-tree
-            [ngStyle]="{'display':'block','margin-top':'20px'}"
             [value]="treeNodes2"
             selectionMode="checkbox"
             [(selection)]="selectedNodes2"
             (onNodeExpand)="getWaitMenuChildrenList($event)"
             [loading]="loading2"
-            [style]="{'max-height':'400px','overflow':'auto'}">
+            [style]="{'max-height':'400px','overflow':'auto'}"
+            [ngStyle]="{'display':'block','margin-top':'20px'}">
           </p-tree>
         </div>
       </div>
