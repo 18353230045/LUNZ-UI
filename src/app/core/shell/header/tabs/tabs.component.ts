@@ -17,14 +17,14 @@ export class TabsComponent implements OnInit, OnDestroy {
   showMoveIcon: boolean = true;
   disableLeftMoveIcon: boolean = true;
   disableRightMoveIcon: boolean = true;
-  windowResize$: Subscription;
+  windowResizeEvent$: Subscription;
 
   constructor(private router: Router) {
     this.init();
   }
 
   ngOnInit() {
-    this.windowResize$ = fromEvent(window, 'resize')
+    this.windowResizeEvent$ = fromEvent(window, 'resize')
       .pipe(debounceTime(200))
       .subscribe(() => {
         timer(500).subscribe(() => {
@@ -409,6 +409,6 @@ export class TabsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.windowResize$.unsubscribe();
+    this.windowResizeEvent$.unsubscribe();
   }
 }

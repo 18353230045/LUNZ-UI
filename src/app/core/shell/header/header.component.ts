@@ -1,11 +1,13 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { I18nService } from '@app/core/i18n.service';
 import { AuthenticationService } from '@app/core/authentication/authentication.service';
+import { CreateSubscriptionService } from '@app/shared/services/create-subscription.service';
 
-declare const $: any;
 declare const mLayout: any;
 
 @Component({
@@ -18,24 +20,20 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   topMenuHeight: string;
   menuHidden: boolean = true;
   showTabs: boolean = environment.haveTabs;
+  windowResizeEvent$: Subscription;
 
   constructor(
     private router: Router,
     private i18nService: I18nService,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService,
+    private subscriptionService: CreateSubscriptionService) { }
 
   ngOnInit() {
-    $('#m_aside_left_minimize_toggle').click(() => {
-      if (!sessionStorage.getItem('logout')) {
-        $('.la-refresh').trigger('click');
-      }
-    });
     this.setHeaderHeight();
 
-    $(window).resize(() => {
-      this.setHeaderHeight();
-    });
-
+    this.windowResizeEvent$ = fromEvent(window, 'resize')
+      .pipe(debounceTime(200))
+      .subscribe(() => this.setHeaderHeight());
   }
 
   ngAfterViewInit() {
@@ -72,6 +70,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(() => this.router.navigate(['/login']));
   }
 
+  refreshNgxDateTableData() {
+    this.subscriptionService.refreshNgxDateTableData$.next();
+  }
+
   get currentLanguage(): string {
     return this.i18nService.language;
   }
@@ -86,7 +88,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    $('#m_aside_left_minimize_toggle').unbind('click');
+    this.windowResizeEvent$.unsubscribe();
   }
 
 }

@@ -39,8 +39,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private loggerFactory: LoggerFactory,
     private profileService: ProfileService,
     private authenticationService: AuthenticationService,
-    private authenticationOAuth2Service: AuthenticationOAuth2Service,
-    private createSubscriptionService: CreateSubscriptionService) {
+    private subscriptionService: CreateSubscriptionService,
+    private authenticationOAuth2Service: AuthenticationOAuth2Service) {
     this.log = this.loggerFactory.getLogger('Profile');
   }
 
@@ -58,9 +58,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.getProfile();
     }
 
-    this.idleHandle$ = this.createSubscriptionService.idle$.subscribe(() => {
-      this.logout();
-    });
+    this.idleHandle$ = this.subscriptionService.idle$.subscribe(() => this.logout());
 
   }
 

@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private loggerFactory: LoggerFactory,
     private activatedRoute: ActivatedRoute,
     private translateService: TranslateService,
-    private createSubscriptionService: CreateSubscriptionService) {
+    private subscriptionService: CreateSubscriptionService) {
     this.log = this.loggerFactory.getLogger('App');
   }
 
@@ -96,7 +96,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Callback after timeout.
     this.onTimeout$ = this.idle.onTimeout.subscribe(() => {
-      this.createSubscriptionService.idle$.next();
+      this.subscriptionService.idle$.next();
       this.idle.stop();
       this.idleWatch = false;
       this.countdown = undefined;

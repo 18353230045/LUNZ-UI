@@ -1,15 +1,16 @@
 import {
   Directive, OnInit, AfterViewInit, Input, Output,
-  ViewContainerRef, EventEmitter, ContentChild
+  ViewContainerRef, EventEmitter, ContentChild, OnDestroy
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { timer } from 'rxjs';
+import { timer, Subscription } from 'rxjs';
 import { NgxQueryComponent, cloneQueryGroup } from 'ngx-query';
 import { DatatableFooterComponent } from 'ngx-datatable-footer';
 import { NgxDatatableActionsComponent } from 'ngx-datatable-actions';
 import { ColumnMode, SortType } from '@swimlane/ngx-datatable/release/types';
 import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
+import { CreateSubscriptionService } from '@app/shared/services/create-subscription.service';
 
 declare const $: any;
 
@@ -17,7 +18,7 @@ declare const $: any;
   selector: '[appNgxDataTable]',
   exportAs: 'NgxDataTableDirective'
 })
-export class NgxDataTableDirective implements OnInit, AfterViewInit {
+export class NgxDataTableDirective implements OnInit, AfterViewInit, OnDestroy {
 
   @Output() data: EventEmitter<any> = new EventEmitter();
 
@@ -62,10 +63,12 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
   private _sorts: any[] = [];
   private _tempQueryTemplates: any;
   private _datatable: DatatableComponent;
+  private clickLeftMenuTopIcon$: Subscription;
 
   constructor(
+    private router: Router,
     private _view: ViewContainerRef,
-    private router: Router) {
+    private subscriptionService: CreateSubscriptionService) {
   }
 
   ngOnInit() {
@@ -74,6 +77,8 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
     }
     this._datatable = (<any>this._view)._data.componentView.component;
     this.initialize(this._datatable, this.ngxQuery);
+
+    this.clickLeftMenuTopIcon$ = this.subscriptionService.refreshNgxDateTableData$.subscribe(() => this.refreshData());
   }
 
   ngAfterViewInit() {
@@ -285,5 +290,9 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit {
         this._sorts = paging.sorts;
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.clickLeftMenuTopIcon$.unsubscribe();
   }
 }
