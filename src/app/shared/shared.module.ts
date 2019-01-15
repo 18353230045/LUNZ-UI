@@ -39,7 +39,7 @@ export function createDecimalPipe() {
 
     HostComponent,
     FileUploadOssComponent,
-    VehicleSelectionComponent,
+    VehicleSelectionComponent
   ],
   exports: [
     RmbPipe,
