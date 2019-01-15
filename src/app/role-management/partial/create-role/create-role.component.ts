@@ -38,7 +38,7 @@ export class CreateRoleComponent implements OnInit {
     this.saving = true;
 
     this.roleService.createRole(role)
-      .pipe(finalize(() => { this.saving = false; }))
+      .pipe(finalize(() => this.saving = false))
       .subscribe((response) => {
         if (response.Success === false) {
           this.log.info(`${response.AllMessages}`);
@@ -47,7 +47,7 @@ export class CreateRoleComponent implements OnInit {
           this.modalService.onHidden.emit(true);
           this.activeModal.hide();
         }
-      }, error => { this.log.error(`角色创建失败，${error}`); });
+      }, error => this.log.error(`角色创建失败，${error}`));
   }
 
   // Build form

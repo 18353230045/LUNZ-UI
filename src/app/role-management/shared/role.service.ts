@@ -3,12 +3,12 @@ import { HttpClient, HttpHeaders, } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { Role } from '../interface/interface';
 
-import { WebApiResultResponse, PagingResponse } from '@core/http/web-api-result-response';
-import { AuthenticationService } from '@core/authentication/authentication.service';
-import { AuthenticationOAuth2Service } from '@core/authentication/authentication-oauth2.service';
+import { Role } from '../interface/interface';
 import { environment } from '@env/environment';
+import { AuthenticationService } from '@core/authentication/authentication.service';
+import { WebApiResultResponse, PagingResponse } from '@core/http/web-api-result-response';
+import { AuthenticationOAuth2Service } from '@core/authentication/authentication-oauth2.service';
 
 @Injectable({
   providedIn: 'root'

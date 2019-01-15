@@ -26,8 +26,7 @@ export class RolesComponent implements OnInit, AfterViewInit {
   loading: boolean = false;
   editing: any = {};
 
-  @ViewChild('appNgxDataTable')
-  ngxDataTable: NgxDataTableDirective;
+  @ViewChild('appNgxDataTable') ngxDataTable: NgxDataTableDirective;
 
   constructor(
     private dialogs: Dialogs,
@@ -50,11 +49,11 @@ export class RolesComponent implements OnInit, AfterViewInit {
     this.loading = true;
 
     this.roleService.getAppRoles(params)
-      .pipe(finalize(() => { this.loading = false; }))
+      .pipe(finalize(() => this.loading = false))
       .subscribe(response => {
         this.roles = response.data || [];
         this.datatable.count = response.count;
-      }, error => { this.log.error(`角色列表获取失败`, error); });
+      }, error => this.log.error(`角色列表获取失败`, error));
   }
 
   // Select role
@@ -102,7 +101,7 @@ export class RolesComponent implements OnInit, AfterViewInit {
     if (row) {
       ids.push(row.id);
     } else {
-      this.selectedRoles.forEach(item => { ids.push(item.id); });
+      this.selectedRoles.forEach(item => ids.push(item.id));
     }
 
     this.dialogs.confirm(`真的要删除选择的角色吗？`)

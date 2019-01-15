@@ -24,9 +24,9 @@ export class RoleMenusComponent implements OnInit {
   loading2: boolean = false;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private roleService: RoleService,
-    private loggerFactory: LoggerFactory) {
+    private loggerFactory: LoggerFactory,
+    private activatedRoute: ActivatedRoute) {
     this.log = this.loggerFactory.getLogger(`角色菜单`);
   }
 
@@ -63,10 +63,10 @@ export class RoleMenusComponent implements OnInit {
     this.loading1 = true;
 
     this.roleService.getRoleRootModules(roleId)
-      .pipe(finalize(() => { this.loading1 = false; }))
+      .pipe(finalize(() => this.loading1 = false))
       .subscribe((response: Node[]) => {
         const node: TreeNode[] = [];
-        response.forEach(item => { node.push(this.processingNodeData(item)); });
+        response.forEach(item => node.push(this.processingNodeData(item)));
 
         this.treeNodes1 = node;
       }, error => this.log.error('已选择菜单根列表获取失败。', error));
@@ -77,10 +77,10 @@ export class RoleMenusComponent implements OnInit {
     if (event.node) {
       this.loading1 = true;
       this.roleService.getRoleChildModules(event.node.id)
-        .pipe(finalize(() => { this.loading1 = false; }))
+        .pipe(finalize(() => this.loading1 = false))
         .subscribe((response: Node[]) => {
           const node: TreeNode[] = [];
-          response.forEach(item => { node.push(this.processingNodeData(item)); });
+          response.forEach(item => node.push(this.processingNodeData(item)));
 
           event.node.children = node;
         }, error => this.log.error('子菜单列表获取失败。', error));
@@ -95,7 +95,7 @@ export class RoleMenusComponent implements OnInit {
       .pipe(finalize(() => { this.loading2 = false; }))
       .subscribe((response: Node[]) => {
         const node: TreeNode[] = [];
-        response.forEach(item => { node.push(this.processingNodeData(item)); });
+        response.forEach(item => node.push(this.processingNodeData(item)));
 
         this.treeNodes2 = node;
       }, error => this.log.error('菜单根列表获取失败。', error));
@@ -106,10 +106,10 @@ export class RoleMenusComponent implements OnInit {
     if (event.node) {
       this.loading2 = true;
       this.roleService.getChildModulesAndOperates(event.node.id)
-        .pipe(finalize(() => { this.loading2 = false; }))
+        .pipe(finalize(() => this.loading2 = false))
         .subscribe((response: Node[]) => {
           const node: TreeNode[] = [];
-          response.forEach(item => { node.push(this.processingNodeData(item)); });
+          response.forEach(item => node.push(this.processingNodeData(item)));
 
           event.node.children = node;
         }, error => this.log.error('子菜单列表获取失败。', error));
@@ -119,7 +119,7 @@ export class RoleMenusComponent implements OnInit {
   // Add an menu module.
   addMenuModule() {
     const ids: string[] = [];
-    this.selectedNodes2.forEach(item => { ids.push(item.id); });
+    this.selectedNodes2.forEach(item => ids.push(item.id));
     const params = { moduleIds: ids, roleId: this.role.id };
 
     this.roleService.addRoleModules(params)
@@ -127,20 +127,20 @@ export class RoleMenusComponent implements OnInit {
         this.getSelectedMenuRootList(this.role.id);
         this.selectedNodes2.length = 0;
         this.log.success(`添加成功！`);
-      }, error => { this.log.error('添加失败。', error); });
+      }, error => this.log.error('添加失败。', error));
   }
 
   // Remove the menu module.
   removeMenuModule() {
     const ids: string[] = [];
-    this.selectedNodes1.forEach(item => { ids.push(item.id); });
+    this.selectedNodes1.forEach(item => ids.push(item.id));
 
     this.roleService.removeRoleModules(ids)
       .subscribe(() => {
         this.selectedNodes1.length = 0;
         this.removeNode(ids, this.treeNodes1);
         this.log.success(`移除成功！`);
-      }, error => { this.log.error('移除失败。', error); });
+      }, error => this.log.error('移除失败。', error));
   }
 
   // When the menu module is removed successfully, the node is removed from the node tree.

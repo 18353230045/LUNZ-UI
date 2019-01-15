@@ -39,17 +39,16 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
   datatable: DatatableComponent;
 
   constructor(
-    private roleService: RoleService,
-    private activatedRoute: ActivatedRoute,
-    private modalService: BsModalService,
-    private changeDetectorRef: ChangeDetectorRef,
     private dialogs: Dialogs,
-    private loggerFactory: LoggerFactory) {
+    private roleService: RoleService,
+    private modalService: BsModalService,
+    private loggerFactory: LoggerFactory,
+    private activatedRoute: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef) {
     this.log = this.loggerFactory.getLogger(`角色用户`);
   }
 
-  @ViewChild('appNgxDataTable')
-  ngxDataTable: NgxDataTableDirective;
+  @ViewChild('appNgxDataTable') ngxDataTable: NgxDataTableDirective;
 
   ngOnInit() {
     // Get role
@@ -57,9 +56,7 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
       .pipe(map(params => params.id))
       .subscribe(id => {
         this.roleService.getRole(id)
-          .subscribe((role: Role) => {
-            this.role = role;
-          });
+          .subscribe((role: Role) => this.role = role);
       });
 
     // Get department type list
@@ -104,7 +101,7 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
     this.selectedNode = undefined;
 
     this.roleService.getRootDepertList(id)
-      .pipe(finalize(() => { this.loadingTree = false; }))
+      .pipe(finalize(() => this.loadingTree = false))
       .subscribe((response: any) => {
         const node = [];
         for (const res of response) {
@@ -121,7 +118,7 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
     this.loadingTree = true;
 
     this.roleService.getChildDepertList(id)
-      .pipe(finalize(() => { this.loadingTree = false; }))
+      .pipe(finalize(() => this.loadingTree = false))
       .subscribe(response => {
         const nodeChild = [];
         for (const res of response) {
@@ -144,7 +141,7 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
 
     this.loading = true;
     this.roleService.getRoleUsers(this.params, this.role.id, this.departmentId)
-      .pipe(finalize(() => { this.loading = false; }))
+      .pipe(finalize(() => this.loading = false))
       .subscribe((response) => {
         if (response.data && response.data.length > 0) {
           this.datatable.count = response.count;
@@ -191,7 +188,7 @@ export class RoleUsersComponent implements OnInit, AfterViewInit {
     if (row) {
       ids.push(row.id);
     } else {
-      this.selectedRoleUsers.forEach(item => { ids.push(item.id); });
+      this.selectedRoleUsers.forEach(item => ids.push(item.id));
     }
 
     this.dialogs.confirm(`真的要删除选择的角色用户吗？`)

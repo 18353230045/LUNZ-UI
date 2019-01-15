@@ -39,14 +39,13 @@ export class AddRoleUsersComponent implements OnInit, AfterViewInit {
     }
   }];
 
-  @ViewChild('appNgxDataTable')
-  ngxDataTable: NgxDataTableDirective;
+  @ViewChild('appNgxDataTable') ngxDataTable: NgxDataTableDirective;
 
   constructor(
-    private roleService: RoleService,
-    private loggerFactory: LoggerFactory,
-    public modalService: BsModalService,
     public activeModal: BsModalRef,
+    public roleService: RoleService,
+    public modalService: BsModalService,
+    private loggerFactory: LoggerFactory,
     private changeDetectorRef: ChangeDetectorRef) {
     this.log = this.loggerFactory.getLogger(`角色列表`);
   }
@@ -63,11 +62,11 @@ export class AddRoleUsersComponent implements OnInit, AfterViewInit {
     this.loading = true;
 
     this.roleService.getUserList(params, this.departId)
-      .pipe(finalize(() => { this.loading = false; }))
+      .pipe(finalize(() => this.loading = false))
       .subscribe(response => {
         this.users = response.data || [];
         this.datatable.count = response.count;
-      }, error => { this.log.error(`角色列表获取失败`, error); });
+      }, error => this.log.error(`角色列表获取失败`, error));
   }
 
   // Select role
@@ -79,15 +78,15 @@ export class AddRoleUsersComponent implements OnInit, AfterViewInit {
   submit() {
     const entity = { RoleId: this.roleId, UserIds: <any>[] };
 
-    this.selectedUsers.forEach(item => { entity.UserIds.push(item.id); });
+    this.selectedUsers.forEach(item => entity.UserIds.push(item.id));
 
     this.saving = true;
     this.roleService.addUsersToRole(entity)
-      .pipe(finalize(() => { this.saving = false; }))
+      .pipe(finalize(() => this.saving = false))
       .subscribe(() => {
         this.modalService.onHidden.emit(true);
         this.activeModal.hide();
-      }, error => { this.log.error(error); });
+      }, error => this.log.error(error));
   }
 
 }
