@@ -48,7 +48,7 @@ export class AuthenticationOAuth2Service {
    * Gets the user credentials.
    * @return {Credentials} The user credentials or null if the user is not authenticated.
    */
-  get credentials(): User {
+  get credentials(): any {
     return this._credentials;
   }
 

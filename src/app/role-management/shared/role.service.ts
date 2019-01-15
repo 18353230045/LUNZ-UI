@@ -205,13 +205,14 @@ export class RoleService extends WebApiResultResponse {
   }
 
   initRequest(action: string) {
-    const claims: any = this.authenticationService.credentials;
+    const token = environment.authentication.type === 'usercenter' ? this.authenticationService.credentials.token :
+      this.authenticationOAuth2Service.credentials.profile.authToken;
 
     return {
       url: `${environment.api.userCenter.baseUrl}${action}`,
       requestHeader: new HttpHeaders({
         'appKey': environment.api.userCenter.appKey,
-        'authToken': claims.token
+        'authToken': token
       })
     };
   }
