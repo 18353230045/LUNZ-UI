@@ -9,7 +9,7 @@ import { ThirdPartyModule } from './third-party.module';
 import {
   HostComponent, FileUploadOssComponent, VehicleSelectionComponent, swalDefaultsProvider,
   RemoveSpacePipe, RmbPipe, ToFixedPipe, DomSanitizerPipe, LaddaDirective, NgxDataTableDirective,
-  AutoFocusDirective
+  AutoFocusDirective, ApplyPermissionDirective
 } from '@app/shared';
 
 import { environment } from '@env/environment';
@@ -36,6 +36,7 @@ export function createDecimalPipe() {
 
     AutoFocusDirective,
     NgxDataTableDirective,
+    ApplyPermissionDirective,
 
     HostComponent,
     FileUploadOssComponent,
@@ -50,6 +51,7 @@ export function createDecimalPipe() {
     LaddaDirective,
     AutoFocusDirective,
     NgxDataTableDirective,
+    ApplyPermissionDirective,
 
     HostComponent,
     FileUploadOssComponent,
