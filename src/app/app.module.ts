@@ -99,7 +99,7 @@ export function getSignalrConfiguration(): SignalRConfiguration {
     SignalRModule.forRoot(getSignalrConfiguration),
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     ToastrModule.forRoot({ timeOut: 3000, progressBar: true, positionClass: 'toast-bottom-right' }),
-    // must be imported as the last module as it contains the fallback route
+    // Must be imported as the last module as it contains the fallback route
     AppRoutingModule
   ],
   declarations: [AppComponent],
