@@ -75,15 +75,23 @@ export class RoleMenusComponent implements OnInit {
   // Get the selected menu sublist.
   getSelectedMenuChildrenList(event: any) {
     if (event.node) {
-      this.loading1 = true;
-      this.roleService.getRoleChildModules(event.node.id)
-        .pipe(finalize(() => this.loading1 = false))
-        .subscribe((response: Node[]) => {
-          const node: TreeNode[] = [];
-          response.forEach(item => node.push(this.processingNodeData(item)));
+      if (event.node.children && event.node.children.length > 0) {
+        return;
+      } else {
+        this.loading1 = true;
+        this.roleService.getRoleChildModules(event.node.id)
+          .pipe(finalize(() => this.loading1 = false))
+          .subscribe((response: Node[]) => {
+            const node: TreeNode[] = [];
+            response.forEach(item => node.push(this.processingNodeData(item)));
 
-          event.node.children = node;
-        }, error => this.log.error('子菜单列表获取失败。', error));
+            event.node.children = node;
+
+            if (event.node.partialSelected === false) {
+              event.node.children.forEach((item: any) => this.selectedNodes1.push(item));
+            }
+          }, error => this.log.error('子菜单列表获取失败。', error));
+      }
     }
   }
 
@@ -104,15 +112,23 @@ export class RoleMenusComponent implements OnInit {
   // Get the list of menu sublists to select.
   getWaitMenuChildrenList(event: any) {
     if (event.node) {
-      this.loading2 = true;
-      this.roleService.getChildModulesAndOperates(event.node.id)
-        .pipe(finalize(() => this.loading2 = false))
-        .subscribe((response: Node[]) => {
-          const node: TreeNode[] = [];
-          response.forEach(item => node.push(this.processingNodeData(item)));
+      if (event.node.children && event.node.children.length > 0) {
+        return;
+      } else {
+        this.loading2 = true;
+        this.roleService.getChildModulesAndOperates(event.node.id)
+          .pipe(finalize(() => this.loading2 = false))
+          .subscribe((response: Node[]) => {
+            const node: TreeNode[] = [];
+            response.forEach(item => node.push(this.processingNodeData(item)));
 
-          event.node.children = node;
-        }, error => this.log.error('子菜单列表获取失败。', error));
+            event.node.children = node;
+
+            if (event.node.partialSelected === false) {
+              event.node.children.forEach((item: any) => this.selectedNodes2.push(item));
+            }
+          }, error => this.log.error('子菜单列表获取失败。', error));
+      }
     }
   }
 
@@ -125,7 +141,6 @@ export class RoleMenusComponent implements OnInit {
     this.roleService.addRoleModules(params)
       .subscribe(() => {
         this.getSelectedMenuRootList(this.role.id);
-        this.selectedNodes2.length = 0;
         this.log.success(`添加成功！`);
       }, error => this.log.error('添加失败。', error));
   }
