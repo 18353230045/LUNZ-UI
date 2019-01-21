@@ -23,6 +23,7 @@ body .ui-tree .ui-treenode .ui-treenode-content .ui-treenode-label {
   padding: 2px 10px;
 }
 
-.ui-contextmenu {
+.ui-contextmenu,
+.ui-dropdown-panel {
   z-index: 100 !important;
 }

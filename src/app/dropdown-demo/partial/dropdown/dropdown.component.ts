@@ -1,54 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 
+export interface City {
+  name: string;
+  label?: string;
+  code: string;
+}
+
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss']
 })
-
 export class DropdownComponent implements OnInit {
-  options: Array<any> = [];
-  item1: any;
-  item2: any;
-  item3: any;
-  item4: any;
+  cities: City[];
+  groupedCars: any[];
+  selectedCity: City;
+  selectedCity1: City;
+  selectedCity2: City;
+  selectedCity3: any;
 
   constructor() { }
 
   ngOnInit() {
-    this.options = [
-      { text: 'item1', id: '01', icon: 'flaticon-share' },
-      { text: 'item2', id: '02', disabled: true },
+    this.cities = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' }
+    ];
+    this.groupedCars = [
       {
-        text: 'item3',
-        id: '03',
-        childrenOpen: false,
-        children: [
-          { text: 'item3-item4', id: '05' },
-          { text: 'item3-item10', id: '04' }
+        label: 'Germany', value: 'germany.png',
+        items: [
+          { label: 'Audi', value: 'Audi' },
+          { label: 'BMW', value: 'BMW' },
+          { label: 'Mercedes', value: 'Mercedes' }
         ]
       },
-      { text: 'item4', id: '04' },
-      { text: 'item5', id: '05' },
       {
-        text: 'item6',
-        id: '06',
-        childrenOpen: false,
-        children: [
-          { text: 'item6-item23', id: '12', icon: 'flaticon-share' },
-          { text: 'item6-item25', id: '04' }
+        label: 'USA', value: 'usa.png',
+        items: [
+          { label: 'Cadillac', value: 'Cadillac' },
+          { label: 'Ford', value: 'Ford' },
+          { label: 'GMC', value: 'GMC' }
+        ]
+      },
+      {
+        label: 'Japan', value: 'japan.png',
+        items: [
+          { label: 'Honda', value: 'Honda' },
+          { label: 'Mazda', value: 'Mazda' },
+          { label: 'Toyota', value: 'Toyota' }
         ]
       }
     ];
   }
 
-  handle1(event: any) { this.item1 = JSON.stringify(event); }
-
-  handle2(event: any) { this.item2 = JSON.stringify(event); }
-
-  handle3(event: any) { this.item3 = JSON.stringify(event); }
-
-  handle4(event: any) { this.item4 = JSON.stringify(event); }
-
-  remove() { this.item2 = ''; }
 }
