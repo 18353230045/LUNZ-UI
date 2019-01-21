@@ -11,7 +11,6 @@ export function createDatepickerConfig() {
   const config: BsDatepickerConfig = new BsDatepickerConfig();
 
   config.containerClass = 'theme-blue';
-  config.dateInputFormat = 'YYYY-MM-DD';
 
   return config;
 }

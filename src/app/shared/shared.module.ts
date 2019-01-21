@@ -11,9 +11,7 @@ import {
   RemoveSpacePipe, RmbPipe, ToFixedPipe, DomSanitizerPipe, LaddaDirective, NgxDataTableDirective,
   AutoFocusDirective, ApplyPermissionDirective
 } from '@app/shared';
-
 import { environment } from '@env/environment';
-import { createBsDatepickerConfigProvider } from '../utils/bs-datepicker-config';
 
 export function createDecimalPipe() {
   return new DecimalPipe(environment.localeId);
@@ -59,8 +57,7 @@ export function createDecimalPipe() {
 
     ThirdPartyModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-  providers: [createBsDatepickerConfigProvider()]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class SharedModule {
   public static forRoot(defaultSwalOptions?: SweetAlertOptions): ModuleWithProviders {
