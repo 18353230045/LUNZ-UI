@@ -24,7 +24,7 @@
         <div class="col-lg-3 col-md-3 col-sm-3 m-portlet__body">
           <h6>有图标</h6>
           <div class="input-group">
-            <input class="form-control" type="text" id="icon" appDatepicker [format]="'yyyy-mm-dd hh:ii:00'"
+            <input class="form-control" type="text" id="icon" appDatepicker [format]="'yyyy-mm-dd hh:ii:00'" [isIcon]="true"
               [(ngModel)]="date1" />
           </div>
           <div>{{date1}}</div>
@@ -104,7 +104,7 @@
           <h6>自定义图标</h6>
           <div class="input-group">
             <input class="form-control" type="text" id="iconde" appDatepicker [format]="'yyyy-mm-dd hh:ii:00'"
-              [iconClass]="'fa fa-table'" [(ngModel)]="date11" />
+              [isIcon]="true" [iconClass]="'fa fa-table'" [(ngModel)]="date11" />
           </div>
           <div>{{date11}}</div>
         </div>
