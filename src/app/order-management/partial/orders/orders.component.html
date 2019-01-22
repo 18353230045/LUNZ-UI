@@ -70,7 +70,7 @@
   </div>
   <div class="m-portlet__body p-0">
     <ngx-query [hidden]="!ngxQueryToolbar.visible" [datePickerReadonly]="true" [columnNumber]="2" class="full-screen no-header"
-      #ngxQuery [queryTemplates]="queryTemplates" [dateFormat]="'YYYY-MM'" (query)="count=undefined">
+      #ngxQuery [queryTemplates]="queryTemplates" (query)="count=undefined">
       <!-- #ngxQuery [queryTemplates]="queryTemplates"> -->
       <!-- 使用简洁翻页组件时 -->
       <ngx-query-field [name]="'subject'" [label]="'订单摘要'" [type]="'string'"></ngx-query-field>

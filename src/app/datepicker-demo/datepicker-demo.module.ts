@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { DatepickerDemoRoutingModule } from './datepicker-demo-routing.module';
 
-import { DatepickerSelectComponent } from './partial/datepicker-select/datepicker-select.component';
 import { UsingDocumentsComponent } from './partial/using-documents/using-documents.component';
+import { DatepickerSelectComponent } from './partial/datepicker-select/datepicker-select.component';
 
 @NgModule({
   imports: [
@@ -15,11 +15,9 @@ import { UsingDocumentsComponent } from './partial/using-documents/using-documen
     SharedModule,
     DatepickerDemoRoutingModule
   ],
-
   declarations: [
     DatepickerSelectComponent,
     UsingDocumentsComponent
   ]
 })
-
 export class DatepickerDemoModule { }
