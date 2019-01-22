@@ -1,33 +1,39 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
-import { LoggerFactory } from '@core/logger-factory.service';
 import { Logger } from '@core/logger.service';
+import { LoggerFactory } from '@core/logger-factory.service';
 import { VehicleService } from '../../services/vehicle.service';
 
 @Component({
   selector: 'app-vehicle-selection',
   templateUrl: './vehicle-selection.component.html',
-  styleUrls: ['./vehicle-selection.component.scss']
+  styleUrls: ['./vehicle-selection.component.scss'],
+  animations: [
+    trigger('visibilityChanged', [
+      state('hidden', style({ height: '0', display: 'none' })),
+      state('shown', style({ height: '*', display: 'block' })),
+      transition('shown <=> hidden', animate('200ms')),
+    ])
+  ]
 })
-
 export class VehicleSelectionComponent implements OnInit {
-  @Input() outputType?: String = 'model';
-  @Input() separateCharacter?: String = '/';
+  @Input() outputType?: string = 'model';
+  @Input() separateCharacter?: string = '/';
   @Input() outPutResult?: any;
 
   @Output() selected = new EventEmitter<Array<any>>();
   @Output() outPutResultChange = new EventEmitter();
 
   log: Logger;
-
-  openPanel: Boolean = true;
-  carSeriesNav: Boolean = true;
-  carModelNav: Boolean = true;
-  carBrand: Boolean = false;
-  carSeries: Boolean = true;
-  carModels: Boolean = true;
-  isclose: Boolean = false;
-  loading: Boolean = false;
+  isclose: boolean = false;
+  loading: boolean = false;
+  carBrand: boolean = false;
+  carSeries: boolean = true;
+  carModels: boolean = true;
+  openPanel: boolean = false;
+  carModelNav: boolean = true;
+  carSeriesNav: boolean = true;
 
   letterList: Array<any>;
   carBrandList: Array<any>;
@@ -38,13 +44,13 @@ export class VehicleSelectionComponent implements OnInit {
   filterTemporaryList: Array<any>;
   outGoingList: any;
 
-  letterActive: String = 'A';
+  letterActive: string = 'A';
   filterSeriesString: any = '';
   filterCarModelsString: any = '';
-  outPutBrand: String = '品牌';
-  outPutSeries: String = '车系';
-  outPutModel: String = '车型';
-  showResult: String;
+  outPutBrand: string = '品牌';
+  outPutSeries: string = '车系';
+  outPutModel: string = '车型';
+  showResult: string;
 
   constructor(
     private vehicleService: VehicleService,
@@ -66,9 +72,7 @@ export class VehicleSelectionComponent implements OnInit {
   // handling vehicle data
   handleCarSeriesData(obj: any) {
     const arr: Array<any> = [];
-    let assembleObj = {
-      title: true
-    };
+    let assembleObj = { title: true };
 
     obj.forEach((item: any) => {
       let itemAssemble: any[] = [];
@@ -152,7 +156,7 @@ export class VehicleSelectionComponent implements OnInit {
 
       this.outPutResultChange.emit(this.outGoingList);
 
-      this.openPanel = true;
+      this.openPanel = false;
       return;
 
     } else if (this.outputType === `series`) {
@@ -203,7 +207,7 @@ export class VehicleSelectionComponent implements OnInit {
 
       this.outPutResultChange.emit(this.outGoingList);
 
-      this.openPanel = true;
+      this.openPanel = false;
       return;
 
     } else if (this.outputType === `model`) {
@@ -245,7 +249,7 @@ export class VehicleSelectionComponent implements OnInit {
 
     this.outPutResultChange.emit(this.outGoingList);
 
-    this.openPanel = true;
+    this.openPanel = false;
   }
 
   // filter car series data
