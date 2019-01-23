@@ -1,6 +1,7 @@
 {
   "name": "lunz-ui",
   "version": "3.0.0",
+  "description": "这个项目是使用 [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)\r version 5.2.0 生成的。",
   "private": false,
   "scripts": {
     "ng": "ng",
@@ -36,6 +37,7 @@
     "@toverux/ngx-sweetalert2": "^4.0.0",
     "@ng-idle/core": "6.0.0-beta.3",
     "@ng-idle/keepalive": "6.0.0-beta.3",
+    "@zhongruigroup/ngx-query": "^3.0.0",
     "ali-oss": "^5.3.0",
     "angular-tree-component": "^8.0.0",
     "angular2-ladda": "^2.0.0",
@@ -54,7 +56,6 @@
     "ng-select": "^1.0.1",
     "ng2-signalr": "^6.1.0",
     "ng2-validation": "^4.2.0",
-    "ngx-query": "^3.0.0",
     "ngx-bootstrap": "^3.2.0",
     "ngx-query-toolbar": "^3.0.0",
     "ngx-datatable-footer": "^3.0.0",
