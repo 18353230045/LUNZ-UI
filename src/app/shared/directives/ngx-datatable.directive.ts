@@ -5,7 +5,7 @@ import {
 import { Router } from '@angular/router';
 
 import { timer, Subscription } from 'rxjs';
-import { NgxQueryComponent, cloneQueryGroup } from 'ngx-query';
+import { NgxQueryComponent, cloneQueryGroup } from '@zhongruigroup/ngx-query';
 import { DatatableFooterComponent } from 'ngx-datatable-footer';
 import { NgxDatatableActionsComponent } from 'ngx-datatable-actions';
 import { ColumnMode, SortType } from '@swimlane/ngx-datatable/release/types';

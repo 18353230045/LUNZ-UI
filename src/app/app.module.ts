@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { ToastrModule } from 'ngx-toastr';
-import { NgxQueryModule } from 'ngx-query';
+import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { LaddaModule } from 'angular2-ladda';
 import { MomentModule } from 'angular2-moment';
 import { SweetAlertOptions } from 'sweetalert2';
