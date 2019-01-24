@@ -12,10 +12,12 @@ export const environment = {
   hmr: false,
   version: env.npm_package_version + '-dev',
   localeId: 'zh-CN',
-  haveTabs: false,
-  serverUrl: '',
   defaultLanguage: 'zh-CN',
   supportedLanguages: ['en-US', 'fr-FR'],
+  idle: true,
+  freeTime: 5,  // 单位：分钟
+  countdownTime: 10, // 单位：秒
+  haveTabs: false,
   authentication: {
     // oauth2 / usercenter
     type: 'usercenter',
@@ -24,10 +26,10 @@ export const environment = {
   odic: {
     config: {
       authority: '',
-      client_id: '',
+      client_id: 'lunz-ui-dev',
       redirect_uri: '',
-      response_type: '',
-      scope: '',
+      response_type: 'id_token token',
+      scope: 'openid profile lunz-sharp-template',
       post_logout_redirect_uri: ''
     }
   },
@@ -41,13 +43,14 @@ export const environment = {
     v1: {
       baseUrl: '',
       appKey: '',
+      applicationId: '',
       withHeaders: true
     },
     // User Center
     userCenter: {
       baseUrl: '',
       appKey: '',
-      authUri: ''
+      authUri: '',
     },
     // Message Center
     messageCenter: {
