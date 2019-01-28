@@ -30,8 +30,8 @@ export class TabsComponent implements OnInit, OnDestroy {
       .pipe(debounceTime(200))
       .subscribe(() => {
         timer(500).subscribe(() => {
-          const activeUrl = sessionStorage.getItem('activeUrl');
-          this.movingTabToVisualArea(activeUrl)
+          const currentRouting = sessionStorage.getItem('currentRouting');
+          this.movingTabToVisualArea(currentRouting)
             .then(() => this.isShowMoveTabIcon())
             .then(() => this.isDisableLeftMoveIcon())
             .then(() => this.isDisableRightMoveIcon());
@@ -40,9 +40,9 @@ export class TabsComponent implements OnInit, OnDestroy {
   }
 
   // Is have
-  isHave(activeUrl: string) {
+  isHave(currentRouting: string) {
     for (const tab of this.tabs) {
-      if (activeUrl === tab.url) {
+      if (currentRouting === tab.url) {
         this.tabActive = tab.name;
         return true;
       }
@@ -54,11 +54,11 @@ export class TabsComponent implements OnInit, OnDestroy {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
-        const activeUrl = event['urlAfterRedirects'];
-        sessionStorage.setItem('activeUrl', activeUrl);
-        this.addTab(activeUrl)
+        const currentRouting = event['urlAfterRedirects'];
+        sessionStorage.setItem('currentRouting', currentRouting);
+        this.addTab(currentRouting)
           .then(() => this.isFill())
-          .then(() => this.movingTabToVisualArea(activeUrl))
+          .then(() => this.movingTabToVisualArea(currentRouting))
           .then(() => this.isShowMoveTabIcon())
           .then(() => this.isDisableLeftMoveIcon())
           .then(() => this.isDisableRightMoveIcon());
@@ -66,26 +66,26 @@ export class TabsComponent implements OnInit, OnDestroy {
   }
 
   // Add tab
-  addTab(activeUrl: string) {
+  addTab(currentRouting: string) {
     return new Promise((resolve) => {
       const interval = setInterval(() => {
         const allModule = JSON.parse(localStorage.getItem('moduleTree'));
         if (allModule !== null) {
           clearInterval(interval);
-          if (this.isHave(activeUrl)) {
-            this.movingTabToVisualArea(activeUrl)
+          if (this.isHave(currentRouting)) {
+            this.movingTabToVisualArea(currentRouting)
               .then(() => this.isShowMoveTabIcon())
               .then(() => this.isDisableLeftMoveIcon())
               .then(() => this.isDisableRightMoveIcon());
           } else {
             for (const module of allModule) {
-              if (module.children.length === 0 && module.ngUrl === activeUrl) {
+              if (module.children.length === 0 && module.ngUrl === currentRouting) {
                 this.tabs.push({ name: module.name, url: module.ngUrl, icon: module.icon });
                 this.tabActive = module.name;
                 resolve();
               } else {
                 for (const childModule of module.children) {
-                  if (childModule.ngUrl === activeUrl) {
+                  if (childModule.ngUrl === currentRouting) {
                     this.tabs.push({ name: childModule.name, url: childModule.ngUrl, icon: childModule.icon });
                     this.tabActive = childModule.name;
                     resolve();
@@ -276,7 +276,7 @@ export class TabsComponent implements OnInit, OnDestroy {
   }
 
   // Moving the activated tab to the visual area
-  movingTabToVisualArea(activeUrl: string) {
+  movingTabToVisualArea(currentRouting: string) {
     return new Promise((resolve) => {
       const tabsContent = $('#lz-tabs-content').outerWidth();
       const tabscontiner = $('#lz-tabs-continer-ul');
@@ -288,7 +288,7 @@ export class TabsComponent implements OnInit, OnDestroy {
       });
       if (allTabWidth - tabsContent > 0) {
         this.tabs.forEach((item) => {
-          if (item.url === activeUrl) {
+          if (item.url === currentRouting) {
             const index = this.tabs.indexOf(item);
             const occupationRatio = index / this.tabs.length;
             if (occupationRatio < 0.5) {
@@ -308,13 +308,13 @@ export class TabsComponent implements OnInit, OnDestroy {
   removeRightTabs() {
     const tabsArray: any[] = [];
     let activeIndex: number;
-    let activeUrl: string;
+    let currentRouting: string;
     this.tabs.forEach((item, index) => {
       if (item.name !== this.tabActive && activeIndex === undefined) {
         tabsArray.push(item);
       } else if (item.name === this.tabActive) {
         activeIndex = index;
-        activeUrl = item.url;
+        currentRouting = item.url;
         tabsArray.push(item);
       }
     });
@@ -324,7 +324,7 @@ export class TabsComponent implements OnInit, OnDestroy {
       const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
       if (marginLeft === '0px') {
         clearInterval(interval);
-        this.movingTabToVisualArea(activeUrl)
+        this.movingTabToVisualArea(currentRouting)
           .then(() => this.isShowMoveTabIcon())
           .then(() => this.isDisableLeftMoveIcon())
           .then(() => this.isDisableRightMoveIcon());
@@ -336,12 +336,12 @@ export class TabsComponent implements OnInit, OnDestroy {
   removeLeftTabs() {
     const tabsArray: any[] = [];
     let activeIndex: number;
-    let activeUrl: string;
+    let currentRouting: string;
     this.tabs.forEach((item, index) => {
       if (item.name === this.tabActive && activeIndex === undefined) {
         tabsArray.push(item);
         activeIndex = index;
-        activeUrl = item.url;
+        currentRouting = item.url;
       } else if (index > activeIndex) {
         tabsArray.push(item);
       }
@@ -352,7 +352,7 @@ export class TabsComponent implements OnInit, OnDestroy {
       const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
       if (marginLeft === '0px') {
         clearInterval(interval);
-        this.movingTabToVisualArea(activeUrl)
+        this.movingTabToVisualArea(currentRouting)
           .then(() => this.isShowMoveTabIcon())
           .then(() => this.isDisableLeftMoveIcon())
           .then(() => this.isDisableRightMoveIcon());

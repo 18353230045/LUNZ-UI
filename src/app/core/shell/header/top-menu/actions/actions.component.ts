@@ -89,25 +89,25 @@ export class ActionsComponent implements OnInit {
     // init
     init() {
         this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
-            const activeUrl = event['urlAfterRedirects'];
+            const currentRouting = event['urlAfterRedirects'];
             const moduleTree = JSON.parse(localStorage.getItem('moduleTree'));
             const openHistoryList = localStorage.getItem(`${this.userName}-openHistoryList`);
 
             if (openHistoryList == null) {
-                this.existence(activeUrl, moduleTree).then(() => {
+                this.existence(currentRouting, moduleTree).then(() => {
                     localStorage.setItem(`${this.userName}-openHistoryList`, JSON.stringify(this.recordClickMenu));
                 });
             } else {
                 this.recordClickMenu = JSON.parse(openHistoryList);
                 for (let i = 0; i < this.recordClickMenu.length; i++) {
-                    if (this.recordClickMenu[i].url === activeUrl) {
+                    if (this.recordClickMenu[i].url === currentRouting) {
                         this.recordClickMenu[i].clickNum += 1;
                         localStorage.setItem(`${this.userName}-openHistoryList`, JSON.stringify(this.recordClickMenu));
                         this.recordClickMenu = [];
                         return;
                     }
                 }
-                this.existence(activeUrl, moduleTree).then(() => {
+                this.existence(currentRouting, moduleTree).then(() => {
                     localStorage.setItem(`${this.userName}-openHistoryList`, JSON.stringify(this.recordClickMenu));
                     this.recordClickMenu = [];
                 });
@@ -116,14 +116,14 @@ export class ActionsComponent implements OnInit {
     }
 
     // existence
-    existence(activeUrl: any, moduleTree: any[]) {
+    existence(currentRouting: any, moduleTree: any[]) {
         return new Promise((resolve) => {
             const timer = setInterval(() => {
                 if (moduleTree !== null) {
                     clearInterval(timer);
                     for (const model of moduleTree) {
                         if (model.children.length === 0) {
-                            if (activeUrl === model.ngUrl) {
+                            if (currentRouting === model.ngUrl) {
                                 this.recordClickMenu.push({
                                     clickNum: 1,
                                     name: model.name,
@@ -134,7 +134,7 @@ export class ActionsComponent implements OnInit {
                             }
                         } else {
                             for (const mode of model.children) {
-                                if (activeUrl === mode.ngUrl) {
+                                if (currentRouting === mode.ngUrl) {
                                     this.recordClickMenu.push({
                                         clickNum: 1,
                                         name: mode.name,
