@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { timer, fromEvent, Subscription } from 'rxjs';
@@ -19,6 +19,8 @@ export class TabsComponent implements OnInit, OnDestroy {
   disableRightMoveIcon: boolean = true;
   windowResizeEvent$: Subscription;
 
+  @ViewChild('continer') continer: ElementRef;
+
   constructor(private router: Router) {
     this.init();
   }
@@ -29,13 +31,10 @@ export class TabsComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         timer(500).subscribe(() => {
           const activeUrl = sessionStorage.getItem('activeUrl');
-          this.movingTabToVisualArea(activeUrl).then(() => {
-            this.isShowMoveTabIcon().then(() => {
-              this.isDisableLeftMoveIcon().then(() => {
-                this.isDisableRightMoveIcon();
-              });
-            });
-          });
+          this.movingTabToVisualArea(activeUrl)
+            .then(() => this.isShowMoveTabIcon())
+            .then(() => this.isDisableLeftMoveIcon())
+            .then(() => this.isDisableRightMoveIcon());
         });
       });
   }
@@ -52,21 +51,18 @@ export class TabsComponent implements OnInit, OnDestroy {
 
   // Init
   init() {
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
-      const activeUrl = event['urlAfterRedirects'];
-      sessionStorage.setItem('activeUrl', activeUrl);
-      this.addTab(activeUrl).then(() => {
-        this.isFill();
-      }).then(() => {
-        this.movingTabToVisualArea(activeUrl).then(() => {
-          this.isShowMoveTabIcon().then(() => {
-            this.isDisableLeftMoveIcon().then(() => {
-              this.isDisableRightMoveIcon();
-            });
-          });
-        });
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(event => {
+        const activeUrl = event['urlAfterRedirects'];
+        sessionStorage.setItem('activeUrl', activeUrl);
+        this.addTab(activeUrl)
+          .then(() => this.isFill())
+          .then(() => this.movingTabToVisualArea(activeUrl))
+          .then(() => this.isShowMoveTabIcon())
+          .then(() => this.isDisableLeftMoveIcon())
+          .then(() => this.isDisableRightMoveIcon());
       });
-    });
   }
 
   // Add tab
@@ -77,21 +73,16 @@ export class TabsComponent implements OnInit, OnDestroy {
         if (allModule !== null) {
           clearInterval(interval);
           if (this.isHave(activeUrl)) {
-            this.movingTabToVisualArea(activeUrl).then(() => {
-              this.isShowMoveTabIcon().then(() => {
-                this.isDisableLeftMoveIcon().then(() => {
-                  this.isDisableRightMoveIcon();
-                });
-              });
-            });
+            this.movingTabToVisualArea(activeUrl)
+              .then(() => this.isShowMoveTabIcon())
+              .then(() => this.isDisableLeftMoveIcon())
+              .then(() => this.isDisableRightMoveIcon());
           } else {
             for (const module of allModule) {
-              if (module.children.length === 0) {
-                if (module.ngUrl === activeUrl) {
-                  this.tabs.push({ name: module.name, url: module.ngUrl, icon: module.icon });
-                  this.tabActive = module.name;
-                  resolve();
-                }
+              if (module.children.length === 0 && module.ngUrl === activeUrl) {
+                this.tabs.push({ name: module.name, url: module.ngUrl, icon: module.icon });
+                this.tabActive = module.name;
+                resolve();
               } else {
                 for (const childModule of module.children) {
                   if (childModule.ngUrl === activeUrl) {
@@ -110,29 +101,26 @@ export class TabsComponent implements OnInit, OnDestroy {
 
   // Remove tab encapsulation
   removeTabEncapsulation(tab: any, index: number) {
-    return new Promise(() => {
-      if (this.tabs.length !== 1) {
-        if (tab.name === this.tabActive) {
-          if (index === 0) {
-            this.router.navigate([`${this.tabs[index + 1].url}`]);
-          } else {
-            this.router.navigate([`${this.tabs[index - 1].url}`]);
-          }
+    return new Promise((resolve) => {
+      if (this.tabs.length !== 1 && tab.name === this.tabActive) {
+        if (index === 0) {
+          this.router.navigate([`${this.tabs[index + 1].url}`]);
+        } else {
+          this.router.navigate([`${this.tabs[index - 1].url}`]);
         }
-        this.tabs.splice(index, 1);
       }
+      this.tabs.splice(index, 1);
+      this.continer.nativeElement.style.marginLeft = '0px';
+      resolve();
     });
   }
 
   // Remove tab
   removeTab(tab: any, index: number) {
-    this.removeTabEncapsulation(tab, index).then(() => {
-      this.isShowMoveTabIcon().then(() => {
-        this.isDisableLeftMoveIcon().then(() => {
-          this.isDisableRightMoveIcon();
-        });
-      });
-    });
+    this.removeTabEncapsulation(tab, index)
+      .then(() => this.isShowMoveTabIcon())
+      .then(() => this.isDisableLeftMoveIcon())
+      .then(() => this.isDisableRightMoveIcon());
   }
 
   // Active tab
@@ -221,13 +209,10 @@ export class TabsComponent implements OnInit, OnDestroy {
 
   // Move to tab
   moveTab(direction: string) {
-    this.moveTabEncapsulation(direction).then(() => {
-      this.isShowMoveTabIcon().then(() => {
-        this.isDisableRightMoveIcon().then(() => {
-          this.isDisableLeftMoveIcon();
-        });
-      });
-    });
+    this.moveTabEncapsulation(direction)
+      .then(() => this.isShowMoveTabIcon())
+      .then(() => this.isDisableRightMoveIcon())
+      .then(() => this.isDisableLeftMoveIcon());
   }
 
   // Show move icon
@@ -333,20 +318,16 @@ export class TabsComponent implements OnInit, OnDestroy {
         tabsArray.push(item);
       }
     });
-    this.tabs.length = 0;
     this.tabs = tabsArray;
     $('#lz-tabs-continer-ul').css('margin-left', '0px');
     const interval = setInterval(() => {
       const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
       if (marginLeft === '0px') {
         clearInterval(interval);
-        this.movingTabToVisualArea(activeUrl).then(() => {
-          this.isShowMoveTabIcon().then(() => {
-            this.isDisableLeftMoveIcon().then(() => {
-              this.isDisableRightMoveIcon();
-            });
-          });
-        });
+        this.movingTabToVisualArea(activeUrl)
+          .then(() => this.isShowMoveTabIcon())
+          .then(() => this.isDisableLeftMoveIcon())
+          .then(() => this.isDisableRightMoveIcon());
       }
     }, 50);
   }
@@ -365,20 +346,16 @@ export class TabsComponent implements OnInit, OnDestroy {
         tabsArray.push(item);
       }
     });
-    this.tabs.length = 0;
     this.tabs = tabsArray;
     $('#lz-tabs-continer-ul').css('margin-left', '0px');
     const interval = setInterval(() => {
       const marginLeft = $('#lz-tabs-continer-ul').css('margin-left');
       if (marginLeft === '0px') {
         clearInterval(interval);
-        this.movingTabToVisualArea(activeUrl).then(() => {
-          this.isShowMoveTabIcon().then(() => {
-            this.isDisableLeftMoveIcon().then(() => {
-              this.isDisableRightMoveIcon();
-            });
-          });
-        });
+        this.movingTabToVisualArea(activeUrl)
+          .then(() => this.isShowMoveTabIcon())
+          .then(() => this.isDisableLeftMoveIcon())
+          .then(() => this.isDisableRightMoveIcon());
       }
     }, 50);
   }
@@ -387,9 +364,7 @@ export class TabsComponent implements OnInit, OnDestroy {
   removeAllTabs() {
     let activeItem: any;
     this.tabs.forEach((item) => {
-      if (item.name === this.tabActive) {
-        activeItem = item;
-      }
+      if (item.name === this.tabActive) activeItem = item;
     });
     this.tabs.length = 0;
     this.tabs.push(activeItem);
@@ -399,11 +374,9 @@ export class TabsComponent implements OnInit, OnDestroy {
       const modeDomLength = $('.lz-tabs-item-lhg').length;
       if (modeDomLength === 1 && $('#lz-tabs-continer-ul').css('margin-left') === '0px') {
         clearInterval(interval);
-        this.isShowMoveTabIcon().then(() => {
-          this.isDisableLeftMoveIcon().then(() => {
-            this.isDisableRightMoveIcon();
-          });
-        });
+        this.isShowMoveTabIcon()
+          .then(() => this.isDisableLeftMoveIcon())
+          .then(() => this.isDisableRightMoveIcon());
       }
     }, 50);
   }
