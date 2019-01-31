@@ -7,7 +7,6 @@ import { Subject } from 'rxjs';
 })
 export class CreateSubscriptionService {
   idle$ = new Subject();
-  refreshNgxDateTableData$ = new Subject();
 
   constructor() { }
 

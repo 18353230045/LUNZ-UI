@@ -1,24 +1,21 @@
 import {
-  Directive, OnInit, AfterViewInit, Input, Output,
-  ViewContainerRef, EventEmitter, ContentChild, OnDestroy
+  Directive, OnInit, AfterViewInit, Input, Output, AfterContentChecked,
+  ViewContainerRef, EventEmitter, ContentChild, ChangeDetectorRef
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { timer, Subscription } from 'rxjs';
-import { NgxQueryComponent, cloneQueryGroup } from '@zhongruigroup/ngx-query';
+import { timer } from 'rxjs';
 import { DatatableFooterComponent } from 'ngx-datatable-footer';
 import { NgxDatatableActionsComponent } from 'ngx-datatable-actions';
+import { NgxQueryComponent, cloneQueryGroup } from '@zhongruigroup/ngx-query';
 import { ColumnMode, SortType } from '@swimlane/ngx-datatable/release/types';
 import { DatatableComponent } from '@swimlane/ngx-datatable/release/components';
-import { CreateSubscriptionService } from '@app/shared/services/create-subscription.service';
-
-declare const $: any;
 
 @Directive({
   selector: '[appNgxDataTable]',
   exportAs: 'NgxDataTableDirective'
 })
-export class NgxDataTableDirective implements OnInit, AfterViewInit, OnDestroy {
+export class NgxDataTableDirective implements OnInit, AfterViewInit, AfterContentChecked {
 
   @Output() data: EventEmitter<any> = new EventEmitter();
 
@@ -58,17 +55,17 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit, OnDestroy {
   @ContentChild(DatatableFooterComponent) footer: DatatableFooterComponent;
   @ContentChild(NgxDatatableActionsComponent) toolbar: NgxDatatableActionsComponent;
 
+  private latestTableWidth: number;
   private _pageSize = 10;
   private _pageIndex = 1;
   private _sorts: any[] = [];
   private _tempQueryTemplates: any;
   private _datatable: DatatableComponent;
-  private clickLeftMenuTopIcon$: Subscription;
 
   constructor(
     private router: Router,
     private _view: ViewContainerRef,
-    private subscriptionService: CreateSubscriptionService) {
+    private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -77,21 +74,16 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit, OnDestroy {
     }
     this._datatable = (<any>this._view)._data.componentView.component;
     this.initialize(this._datatable, this.ngxQuery);
-
-    this.clickLeftMenuTopIcon$ = this.subscriptionService.refreshNgxDateTableData$.subscribe(() => this.refreshData());
   }
 
-  ngAfterViewInit() {
-    this.removeHeaderNull();
+  ngAfterViewInit() { this.emitData(); }
 
-    this.emitData();
-  }
-
-  // 解决Edge浏览器下，ngx-datatable组件header处有'null'空值的现象
-  public removeHeaderNull() {
-    $('.datatable-header-cell-label').each(function () {
-      if ($(this).text() === 'null') $(this).remove();
-    });
+  ngAfterContentChecked() {
+    if (this._datatable && this._datatable.element.clientWidth !== this.latestTableWidth) {
+      this.latestTableWidth = this._datatable.element.clientWidth;
+      this._datatable.recalculate();
+      this.changeDetectorRef.detectChanges();
+    }
   }
 
   public refreshData() {
@@ -290,9 +282,5 @@ export class NgxDataTableDirective implements OnInit, AfterViewInit, OnDestroy {
         this._sorts = paging.sorts;
       }
     }
-  }
-
-  ngOnDestroy() {
-    this.clickLeftMenuTopIcon$.unsubscribe();
   }
 }

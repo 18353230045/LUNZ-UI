@@ -6,7 +6,6 @@ import { debounceTime } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { I18nService } from '@app/core/i18n.service';
 import { AuthenticationService } from '@app/core/authentication/authentication.service';
-import { CreateSubscriptionService } from '@app/shared/services/create-subscription.service';
 
 declare const mLayout: any;
 
@@ -25,8 +24,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private router: Router,
     private i18nService: I18nService,
-    private authenticationService: AuthenticationService,
-    private subscriptionService: CreateSubscriptionService) { }
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.setHeaderHeight();
@@ -68,10 +66,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   logout() {
     this.authenticationService.logout()
       .subscribe(() => this.router.navigate(['/login']));
-  }
-
-  refreshNgxDateTableData() {
-    this.subscriptionService.refreshNgxDateTableData$.next();
   }
 
   get currentLanguage(): string {
