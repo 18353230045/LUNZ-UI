@@ -14,7 +14,7 @@ export class FileUploadOssComponent implements OnInit {
   @Input() accessKeyId: string;
   @Input() accesskey: string;
   @Input() bucket: string;
-  @Input() accept?: string = '*';
+  @Input() accept?: string[] = [];
   @Input() type?: string = 'rectangle';
   @Input() uploadButtonBg?: string = 'btn-success';
   @Input() uploadButton?: boolean = false;
@@ -63,15 +63,17 @@ export class FileUploadOssComponent implements OnInit {
   filterFileType(files: any[]) {
     return new Promise((resolve) => {
       const filesFilter: any[] = [];
-      if (this.accept === '*') {
+      if (this.accept.length === 0) {
         resolve(files);
       } else {
         for (const file of files) {
           const fileName = file.name;
-          const pattern = new RegExp(`${this.accept}`);
-          if (pattern.test(fileName)) {
-            filesFilter.push(file);
-          }
+          this.accept.forEach(item => {
+            const pattern = new RegExp(`${item}`);
+            if (pattern.test(fileName)) {
+              filesFilter.push(file);
+            }
+          });
         }
         resolve(filesFilter);
       }
