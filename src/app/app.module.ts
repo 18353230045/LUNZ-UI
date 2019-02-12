@@ -5,22 +5,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { ToastrModule } from 'ngx-toastr';
-import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { LaddaModule } from 'angular2-ladda';
 import { MomentModule } from 'angular2-moment';
 import { SweetAlertOptions } from 'sweetalert2';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxQueryModule } from '@zhongruigroup/ngx-query';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { SignalRModule, SignalRConfiguration, ConnectionTransports } from 'ng2-signalr';
 
-import { AppRoutingModule } from './app-routing.module';
-
 import { CoreModule } from '@app/core';
 import { environment } from '@env/environment';
 import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
 
-import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { ChangePasswordModule } from './change-password/change-password.module';
@@ -82,7 +80,6 @@ export function getSignalrConfiguration(): SignalRConfiguration {
 @NgModule({
   imports: [
     CoreModule,
-    HomeModule,
     FormsModule,
     LoginModule,
     LaddaModule,
@@ -103,7 +100,6 @@ export function getSignalrConfiguration(): SignalRConfiguration {
     AppRoutingModule
   ],
   declarations: [AppComponent],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
