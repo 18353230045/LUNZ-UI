@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="m-portlet__body p-0">
-    <ngx-query [hidden]="!ngxQueryToolbar.visible" class="full-screen no-header" #ngxQuery [queryTemplates]="queryTemplates">
+    <ngx-query [hidden]="!ngxQueryToolbar.visible" class="full-screen no-header" [showModeButtons]="false" #ngxQuery [queryTemplates]="queryTemplates">
       <ngx-query-field name="LoginName" label="帐号" [type]="'string'">
         <ng-template ngx-query-value-input-template let-rule="rule" let-dataIndex="dataIndex">
           <input class="form-control form-control-sm" [(ngModel)]="rule.datas[dataIndex]" placeholder="帐号" />
